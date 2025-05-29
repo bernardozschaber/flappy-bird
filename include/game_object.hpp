@@ -14,9 +14,9 @@ typedef struct absolute_position{
 class game_object{
 private:
     absolute_position position;
-    std::string sprite;
+    ALLEGRO_BITMAP* Bitmap;
 public:
-     game_object(int a, int b, int c, int d, std::string e);
+     game_object(int a, int b, int c, int d, char *e);
 
      void virtual Draw();
 
@@ -24,7 +24,9 @@ public:
 
      abs_pos* Get_position();
     
-    std::string get_sprite();
+    ALLEGRO_BITMAP* get_bitmap();
+
+    void set_bitmap(std::string sprite);
 };
 
 #endif // GAME_OBJECT_HPP

@@ -5,6 +5,7 @@
 #include <math.h>
 #include "game_object.hpp"
 #include "bird_object.hpp"
+#include "pipe_object.hpp"
 
 #include <iostream>
 #include <sstream>
@@ -94,10 +95,10 @@ int main(int argc, char **argv) {
     al_start_timer(timer);
 
     // Main game loop
-    int WIDTH_BIRD=60;
-    int HEIGHT_BIRD=60;
-    std::string sprite_bird = "assets/birdo.png";  // Path to the bird sprite image
- 
+    int WIDTH_BIRD=50;
+    int HEIGHT_BIRD=50;
+    char * sprite_bird = "assets/birdo.png";  // Path to the bird sprite image
+    float contador_segundos=0;
     bool open = true;
     bool playing = false;
     bird_object* birdo= new bird_object(SCREEN_W/2-WIDTH_BIRD/2,SCREEN_H/2-HEIGHT_BIRD,WIDTH_BIRD,HEIGHT_BIRD,sprite_bird,-25,+20,-15);  // Initialize the game object (ball)
@@ -105,6 +106,7 @@ int main(int argc, char **argv) {
     ALLEGRO_EVENT ev;
     al_wait_for_event(event_queue, &ev);
     if (ev.type == ALLEGRO_EVENT_TIMER) {
+        contador_segundos+=1.0/FPS;
         al_clear_to_color(al_map_rgba_f(12, 112, 12, 1));
         birdo->Draw();
        // al_draw_textf(font_arial, al_map_rgb(255, 0, 255), SCREEN_W - 80, 20, ALLEGRO_ALIGN_CENTRE, "%d seconds", (int)(al_get_timer_count(timer) / FPS));
@@ -128,8 +130,13 @@ int main(int argc, char **argv) {
         al_wait_for_event(event_queue, &ev);
 
         if (ev.type == ALLEGRO_EVENT_TIMER) {
+            contador_segundos+=1.0/FPS;
             al_clear_to_color(al_map_rgba_f(122, 1, 122, 13));
-            birdo->Update();
+            birdo->Update(SCREEN_W, SCREEN_H);
+            if (contador_segundos >3){
+                
+                contador_segundos=0;
+            }
             birdo->Draw();
      //       al_draw_textf(font_arial, al_map_rgb(255, 0, 255), SCREEN_W - 80, 20, ALLEGRO_ALIGN_CENTRE, "%d seconds", (int)(al_get_timer_count(timer) / FPS));
             al_flip_display();

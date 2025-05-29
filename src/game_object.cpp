@@ -4,11 +4,10 @@
 #include <string>
 
 
-    game_object::game_object(int a, int b, int c, int d, std::string e) : position{a,b,c,d}, sprite(e){};
+    game_object::game_object(int a, int b, int c, int d, char* e) : position{a,b,c,d}, Bitmap(al_load_bitmap(e)){};
     
     void game_object::Draw(){
-        ALLEGRO_BITMAP* BITMAP = al_load_bitmap(sprite.c_str());
-        al_draw_scaled_rotated_bitmap(BITMAP,position.x+(position.w/2),position.y+(position.h/2),position.x,position.y,position.w,position.h,0,0);
+        al_draw_scaled_rotated_bitmap(this->Bitmap,position.x+(position.w/2),position.y+(position.h/2),position.x,position.y,position.w,position.h,0,0);
     }
 
     void game_object::Update(){};
@@ -17,6 +16,10 @@
         return &(this->position);
     }
 
-    std::string game_object::get_sprite(){
-        return this->sprite;
+    ALLEGRO_BITMAP* game_object::get_bitmap(){
+        return this->Bitmap;
+    }
+
+    void game_object::set_bitmap(std::string sprite){
+        this->Bitmap = al_load_bitmap(sprite.c_str());
     }

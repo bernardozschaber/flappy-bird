@@ -16,14 +16,14 @@ private:
     int JUMP_VEL;
     float angle;
 public:
-    bird_object(int a, int b, int c, int d, std::string e, int f, int g, int h);
+    bird_object(int a, int b, int c, int d, char * e, int f, int g, int h);
     void Jump();
     void Set_x_speed(int a);
     void Set_x_acelleration(int a);
     void Set_y_speed(int a);
     void Set_y_acelleration(int a);
     void Draw();
-    void Update();
+    void Update(const int SCREEN_W,const int SCREEN_H);
 };
 
 #endif // BIRD_OBJECT_HPP
