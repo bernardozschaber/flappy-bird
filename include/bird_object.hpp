@@ -16,7 +16,7 @@ private:
     int JUMP_VEL;
     float angle;
 public:
-    bird_object(int a, int b, int c, int d, char * e, int f, int g, int h);
+    bird_object(float a, float b, int c, int d, const char * e, int f, int g, int h);
     void Jump();
     void Set_x_speed(int a);
     void Set_x_acelleration(int a);

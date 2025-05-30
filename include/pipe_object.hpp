@@ -8,7 +8,7 @@ private:
     int vel_y;
     bool scored;
 public:
-    pipe_object(int a, int b, int c, int d, char * e, float f);
+    pipe_object(float a, float b, int c, int d, const char * e, float f);
 
     void Draw(float a);
 

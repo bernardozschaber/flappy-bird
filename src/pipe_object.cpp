@@ -2,7 +2,7 @@
 #include "pipe_object.hpp"
 
 
-pipe_object::pipe_object(int a, int b, int c, int d, char *e, float f) : game_object(a, b, c, d, e), vel_x(f), vel_y(0), scored(false) {};
+pipe_object::pipe_object(float a, float b, int c, int d, const char *e, float f) : game_object(a, b, c, d, e), vel_x(f), vel_y(0), scored(false) {};
     
 void pipe_object::Draw(float scale){
     abs_pos* drw_pos = this->Get_position();

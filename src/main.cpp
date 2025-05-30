@@ -113,10 +113,9 @@ int main(int argc, char **argv) {
     // Main game loop
     ALLEGRO_BITMAP *death_bitmap = al_load_bitmap("assets/urdeadfrfr.png");
     int random_offset;
-    char * sprite_bird = "assets/birdo.png";  // Path to the bird sprite image
-    char * sprite_pipe = "assets/cano.png";
+    const char * sprite_bird = "assets/birdo.png";  // Path to the bird sprite image
+    const char * sprite_pipe = "assets/cano.png";
     float contador_segundos=0;
-    int contador_3segundos=0;
     int PIPE_SPACE = 160; 
     float PIPE_SPEED = -5;
     float PIPE_SPEED_MAX = -10;  // Maximum speed for pipes
@@ -162,15 +161,14 @@ int main(int argc, char **argv) {
         if (ev.type == ALLEGRO_EVENT_TIMER) {
             al_clear_to_color(al_map_rgba_f(122, 1, 122, 13));
             contador_segundos+=1.0/FPS;
-            if (contador_segundos>=2.2){
-                contador_3segundos++;
+            if (contador_segundos>=-11/PIPE_SPEED){ //11 é velocidade inicial x tempo de reação inicial
                 random_offset = dis(gen);
                 game_objects.push_back(new pipe_object(SCREEN_W+250,SCREEN_H/2-108-random_offset,WIDTH_PIPE,HEIGHT_PIPE,sprite_pipe,PIPE_SPEED)); 
                 game_objects.push_back(new pipe_object(SCREEN_W+250,SCREEN_H/2-108+HEIGHT_PIPE+PIPE_SPACE-random_offset,WIDTH_PIPE,HEIGHT_PIPE,sprite_pipe,PIPE_SPEED)); 
-               // if(PIPE_SPEED>PIPE_SPEED_MAX){
-                //    PIPE_SPEED-=0.01;
-               //    cout<<"Pipe speed: " << PIPE_SPEED << endl;
-              // }
+                if(PIPE_SPEED>PIPE_SPEED_MAX){
+                PIPE_SPEED-=0.1;
+               // cout<<"Pipe speed: " << PIPE_SPEED << endl;
+                }
               //  cout<<"Pipe speed: " << PIPE_SPEED << endl;
                 contador_segundos=0;
             }
@@ -195,7 +193,7 @@ int main(int argc, char **argv) {
                 }
                 if((i!=0)&&(game_objects.at(i)->is_colliding(game_objects.at(0)))) {
                     dead=true;
-                    game_objects.at(0)->Set_x_speed(PIPE_SPEED*2);
+                    game_objects.at(0)->Set_x_speed(PIPE_SPEED*1.7);
                     game_objects.at(0)->Jump();
                 }
                 game_objects.at(i)->Draw(1);
