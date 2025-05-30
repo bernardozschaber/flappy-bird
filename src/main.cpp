@@ -195,7 +195,7 @@ int main(int argc, char **argv) {
                 }
                 if((i!=0)&&(game_objects.at(i)->is_colliding(game_objects.at(0)))) {
                     dead=true;
-                    game_objects.at(0)->Set_x_speed(PIPE_SPEED*1.5);
+                    game_objects.at(0)->Set_x_speed(PIPE_SPEED*2);
                     game_objects.at(0)->Jump();
                 }
                 game_objects.at(i)->Draw(1);
@@ -208,7 +208,7 @@ int main(int argc, char **argv) {
                 }
                 game_objects.at(0)->Draw_spin(0.1*PIPE_SPEED);
                // cout << "drew at " << game_objects.at(0)->Get_position()->y << "out of"<< SCREEN_H + 100<< endl;
-                if(game_objects.at(0)->Get_position()->y >= SCREEN_H + 100) {
+                if(game_objects.at(0)->Get_position()->y >= SCREEN_H + 100 || game_objects.at(0)->Get_position()->x < -100) {
                //     cout << "restarting" << dead << endl;
                     death_menu=true;
                     dead=false;
