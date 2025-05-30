@@ -2,14 +2,14 @@
 #include "pipe_object.hpp"
 
 
-pipe_object::pipe_object(int a, int b, int c, int d, std::string e, int f) : game_object(a, b, c, d, e), vel_x(f), vel_y(0), scored(false) {};
+pipe_object::pipe_object(int a, int b, int c, int d, char *e, float f) : game_object(a, b, c, d, e), vel_x(f), vel_y(0), scored(false) {};
     
-void pipe_object::Draw(float scale_x, float scale_y,float angle=0){
+void pipe_object::Draw(float scale){
     abs_pos* drw_pos = this->Get_position();
-    al_draw_scaled_rotated_bitmap(this->get_bitmap(),drw_pos->x+(drw_pos->w/2),drw_pos->y+(drw_pos->h/2),drw_pos->x,drw_pos->y,scale_x,scale_y,angle,0);
+    al_draw_scaled_rotated_bitmap(this->get_bitmap(),drw_pos->w/2,drw_pos->h/2,drw_pos->x,drw_pos->y,scale,scale,0,0);
 };
     
-void pipe_object::Update(){
+void pipe_object::Update(int a , int b){
     this->Get_position()->x += vel_x;
     this->Get_position()->y += vel_y;
 };

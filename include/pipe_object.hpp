@@ -4,15 +4,15 @@
 
 class pipe_object : public game_object {
 private:
-    int vel_x;
+    float vel_x;
     int vel_y;
     bool scored;
 public:
-    pipe_object(int a, int b, int c, int d, std::string e, int f);
+    pipe_object(int a, int b, int c, int d, char * e, float f);
 
-    void Draw(float a,float b, float c);
+    void Draw(float a);
 
-    void Update(){};
+    void Update(int a, int b);
 
     void Set_x_speed(int a);
 

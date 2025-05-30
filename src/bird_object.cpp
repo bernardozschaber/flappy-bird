@@ -35,14 +35,26 @@
         }
     }
 
-    void bird_object::Draw(){
+    void bird_object::Draw(float scale){
         abs_pos* drw_pos = this->Get_position();
         if (vel_y<0){
             angle=((-vel_y*(8.0/(18.0*VEL_MAX))*3.14)+angle)/2.0;
         }else if(vel_y>0){
             angle=((vel_y*(1.0/(2.0*VEL_MIN))*3.14)+angle)/2.0;
+        } else {
+            angle=0;
         }
-        al_draw_scaled_rotated_bitmap(this->get_bitmap(),drw_pos->x+(drw_pos->w/2),drw_pos->y+(drw_pos->h/2),drw_pos->x,drw_pos->y,0.15,0.15,angle,0);
+        if(this->vel_x>=0){
+        al_draw_scaled_rotated_bitmap(this->get_bitmap(),drw_pos->w/2,drw_pos->h/2,drw_pos->x,drw_pos->y,scale,scale,angle,0);
+        }else{
+            al_draw_scaled_rotated_bitmap(this->get_bitmap(),drw_pos->w/2,drw_pos->h/2,drw_pos->x,drw_pos->y,-scale,scale,-angle,0);
+        }
+    }
+
+    void bird_object::Draw_spin(float SPIN_SPEED){
+    abs_pos* drw_pos = this->Get_position();
+    angle+=SPIN_SPEED;
+    al_draw_scaled_rotated_bitmap(this->get_bitmap(),drw_pos->w/2,drw_pos->h/2,drw_pos->x,drw_pos->y,1,1,angle,0);
     }
         
     void bird_object::Jump(){

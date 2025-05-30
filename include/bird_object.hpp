@@ -22,8 +22,9 @@ public:
     void Set_x_acelleration(int a);
     void Set_y_speed(int a);
     void Set_y_acelleration(int a);
-    void Draw();
+    void Draw(float a);
     void Update(const int SCREEN_W,const int SCREEN_H);
+    void Draw_spin(float SPIN_SPEED);
 };
 
 #endif // BIRD_OBJECT_HPP
