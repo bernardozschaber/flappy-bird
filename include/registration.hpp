@@ -22,6 +22,7 @@ public:
 
   int get_max_score();
   std::string get_max_user();
+  void update_champion(std::string new_champion, int new_max);
 };
 
 #endif // REGISTRATION_HPP
