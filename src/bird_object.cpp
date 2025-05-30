@@ -1,10 +1,5 @@
-#include "game_object.hpp"
 #include "bird_object.hpp"
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_image.h>
-#include <string>
 #include <iostream>
-
 
     bird_object::bird_object(float a, float b, int c, int d, const char* e, int f, int g, int h) : 
     game_object(a, b, c, d, e), vel_x(0), vel_y(0), acel_x(0), acel_y(0), VEL_MAX(f), VEL_MIN(g), JUMP_VEL(h), angle(0){};
