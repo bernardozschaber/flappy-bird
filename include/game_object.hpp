@@ -5,8 +5,8 @@
 #include <allegro5/allegro_image.h>
 
 typedef struct absolute_position{
-    int x;
-    int y;
+    float x;
+    float y;
     int w;
     int h;
 } abs_pos;
@@ -16,7 +16,7 @@ private:
     absolute_position position;
     ALLEGRO_BITMAP* Bitmap;
 public:
-     game_object(int a, int b, int c, int d, char *e);
+     game_object(float a, float b, int c, int d, const char *e);
 
      void virtual Draw(float a);
 

@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-    bird_object::bird_object(int a, int b, int c, int d, char* e, int f, int g, int h) : 
+    bird_object::bird_object(float a, float b, int c, int d, const char* e, int f, int g, int h) : 
     game_object(a, b, c, d, e), vel_x(0), vel_y(0), acel_x(0), acel_y(0), VEL_MAX(f), VEL_MIN(g), JUMP_VEL(h), angle(0){};
 
     void bird_object::Update(int SCREEN_W, int SCREEN_H){
