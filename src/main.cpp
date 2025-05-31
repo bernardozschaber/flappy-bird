@@ -15,15 +15,18 @@
 using namespace std;
 
 // Constants for game configuration
-const float FPS = 30;                                        // Frames per second
-const int SCREEN_W = 800;                                    // Screen width in pixels
-const int SCREEN_H = 600;                                    // Screen height in pixels
+const float FPS = 30;                                          // Frames per second
+const int SCREEN_W = 800;                                      // Screen width in pixels
+const int SCREEN_H = 600;                                      // Screen height in pixels
 //const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0);  // Background color (black)
-const string FONT_FILEPATH = "assets/arial.ttf";             // Path to the font file
-const int WIDTH_BIRD=44;
-const int HEIGHT_BIRD=41;
-const int WIDTH_PIPE=75;
-const int HEIGHT_PIPE=450;
+const string FONT_FILEPATH = "assets/arial.ttf";               // Path to arial font file
+const string PSANS_FONT_FILEPATH = "assets/pixelify_sans.ttf"; // Path to pixelify sans font file
+const int WIDTH_BIRD = 44;          // Fixed size for bird sprite width
+const int HEIGHT_BIRD = 41;         // Fixed size for bird sprite height
+const int WIDTH_PIPE = 75;          // Fixed size for pipe sprite width
+const int HEIGHT_PIPE = 450;        // Fixed size for pipe sprite height
+const int WIDTH_MOUNTAIN_1 = 384;   // Fixed size for mountain(1) sprite width
+const int HEIGHT_MOUNTAIN_1 = 192;  // Fixed size for mountain(1) sprite height
 
 std::random_device rd;
 std::mt19937 gen(rd());
@@ -128,149 +131,151 @@ int main(int argc, char **argv) {
     bird_object* birdo= new bird_object(SCREEN_W/2,SCREEN_H/2,WIDTH_BIRD,HEIGHT_BIRD,sprite_bird,-25,+20,-15);  // Initialize the game object (ball)
     game_objects.push_back(birdo);  
     while (open) {
-       // cout << "Waiting for events..." << endl;
-    ALLEGRO_EVENT ev;
-    PIPE_SPEED = -5;
-    al_wait_for_event(event_queue, &ev);
-    if (ev.type == ALLEGRO_EVENT_TIMER) {
-        contador_segundos+=1.0/FPS;
-        al_clear_to_color(al_map_rgba_f(12, 112, 12, 1));
-      //  cout<< "Drawing game objects..." << endl;
-        game_objects.at(0)->Draw(1);
-       // al_draw_textf(font_arial, al_map_rgb(255, 0, 255), SCREEN_W - 80, 20, ALLEGRO_ALIGN_CENTRE, "%d seconds", (int)(al_get_timer_count(timer) / FPS));
-        al_flip_display();
-    } else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
-        switch (ev.keyboard.keycode) {
-            case ALLEGRO_KEY_SPACE:
-                game_objects.at(0)->Jump();
-                game_objects.at(0)->Set_y_acelleration(2);
-                playing = true;
-                break;
-            case ALLEGRO_KEY_ESCAPE:
-                open = false;
-                break;
-        }
-    } else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-        open = false;
-    }
-    //cout << "passing through the main loop" << endl;
-    while (playing && open) {
-        //cout << "Playing..." << endl;
+        // cout << "Waiting for events..." << endl;
+        ALLEGRO_EVENT ev;
+        PIPE_SPEED = -5;
         al_wait_for_event(event_queue, &ev);
 
         if (ev.type == ALLEGRO_EVENT_TIMER) {
-            al_clear_to_color(al_map_rgba_f(122, 1, 122, 13));
             contador_segundos+=1.0/FPS;
-            if (contador_segundos>=-11/PIPE_SPEED){ //11 é velocidade inicial x tempo de reação inicial
-                random_offset = dis(gen);
-                game_objects.push_back(new pipe_object(SCREEN_W+250,SCREEN_H/2-108-random_offset,WIDTH_PIPE,HEIGHT_PIPE,sprite_pipe,PIPE_SPEED)); 
-                game_objects.push_back(new pipe_object(SCREEN_W+250,SCREEN_H/2-108+HEIGHT_PIPE+PIPE_SPACE-random_offset,WIDTH_PIPE,HEIGHT_PIPE,sprite_pipe,PIPE_SPEED)); 
-                if(PIPE_SPEED>PIPE_SPEED_MAX){
-                PIPE_SPEED-=0.1;
-               // cout<<"Pipe speed: " << PIPE_SPEED << endl;
-                }
-              //  cout<<"Pipe speed: " << PIPE_SPEED << endl;
-                contador_segundos=0;
-            }
-            if (game_objects.size() > 0 && game_objects.at(0)->Get_position()->y > SCREEN_H) {
-              //  cout<< "Bird is out of screen, checking for death..." << endl;
-              //  cout << "Dead: " << dead << endl;
-                //cout<< "Death menu active: " << death_menu << endl;
-                if (dead==false&&death_menu==false) {
-                //cout << "Bird is dead, setting death state..." << endl;
-                dead = true;
-                game_objects.at(0)->Set_y_speed(PIPE_SPEED*1.5);
-                game_objects.at(0)->Jump();
-                }
-            }
-            if(!dead){
-            for(int i = game_objects.size() - 1; i >= 0; i--) {
-                game_objects.at(i)->Update(SCREEN_W, SCREEN_H);
-                if(game_objects.at(i)->Get_position()->x < -400) {
-                    delete game_objects.at(i);
-                    game_objects.erase(game_objects.begin() + i);
-                    continue;
-                }
-                if((i!=0)&&(game_objects.at(i)->is_colliding(game_objects.at(0)))) {
-                    dead=true;
-                    game_objects.at(0)->Set_x_speed(PIPE_SPEED*1.7);
-                    game_objects.at(0)->Jump();
-                }
-                game_objects.at(i)->Draw(1);
-                }
-            }else{
-              //  cout << "Dead: " << dead << endl;
-                game_objects.at(0)->Update(SCREEN_W, SCREEN_H);
-                for(int i = game_objects.size() - 1; i >= 1; i--) {
-                 game_objects.at(i)->Draw(1);
-                }
-                game_objects.at(0)->Draw_spin(0.1*PIPE_SPEED);
-               // cout << "drew at " << game_objects.at(0)->Get_position()->y << "out of"<< SCREEN_H + 100<< endl;
-                if(game_objects.at(0)->Get_position()->y >= SCREEN_H + 100 || game_objects.at(0)->Get_position()->x < -100) {
-               //     cout << "restarting" << dead << endl;
-                    death_menu=true;
-                    dead=false;
-                    playing=false;
-                }
-            }
-            al_flip_display();
-         }
-            //std::cout << "Game objects count: " << game_objects.size() << std::endl;
-     //       al_draw_textf(font_arial, al_map_rgb(255, 0, 255), SCREEN_W - 80, 20, ALLEGRO_ALIGN_CENTRE, "%d seconds", (int)(al_get_timer_count(timer) / FPS));
-        else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
-            switch (ev.keyboard.keycode) {
-                case ALLEGRO_KEY_SPACE:
-                    if(!dead){
-                    game_objects.at(0)->Jump();
-                    }
-                    break;
-                case ALLEGRO_KEY_ESCAPE:
-                    playing = false;
-                    open = false;
-                    break;
-            }
-        } else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-            playing = false;
-            open = false;
-        }
-        while(death_menu){
-         //   cout<< "Death menu active..." << endl;
-            al_wait_for_event(event_queue, &ev);
-
-        if (ev.type == ALLEGRO_EVENT_TIMER) {
-            al_clear_to_color(al_map_rgba_f(122, 1, 122, 13));
-            for(int i = game_objects.size() - 1; i >= 1; i--) {
-                 game_objects.at(i)->Draw(1);
-                }
-            al_draw_scaled_rotated_bitmap(death_bitmap,al_get_bitmap_width(death_bitmap)/2,al_get_bitmap_height(death_bitmap)/2,SCREEN_W/2,SCREEN_H/2,2,2,0,0);
-            al_draw_textf(al_create_builtin_font(), al_map_rgb(255, 0, 0), SCREEN_W / 2, SCREEN_H / 2 + 70, ALLEGRO_ALIGN_CENTRE, "Press SPACE to restart or ESC to exit");
+            al_clear_to_color(al_map_rgba_f(12, 112, 12, 1));
+        //  cout<< "Drawing game objects..." << endl;
+            game_objects.at(0)->Draw(1);
+        // al_draw_textf(font_arial, al_map_rgb(255, 0, 255), SCREEN_W - 80, 20, ALLEGRO_ALIGN_CENTRE, "%d seconds", (int)(al_get_timer_count(timer) / FPS));
             al_flip_display();
         } else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
             switch (ev.keyboard.keycode) {
                 case ALLEGRO_KEY_SPACE:
-                    // Reset the game state
-                    for (auto obj : game_objects) {
-                        delete obj;
-                    }
-                    game_objects.clear();
-                    birdo = new bird_object(SCREEN_W/2,SCREEN_H/2,WIDTH_BIRD,HEIGHT_BIRD,sprite_bird,-25,+20,-15);
-                    game_objects.push_back(birdo);
-                    contador_segundos = 0;
-                    dead = false;
-                    death_menu = false;
+                    game_objects.at(0)->Jump();
+                    game_objects.at(0)->Set_y_acelleration(2);
+                    playing = true;
                     break;
                 case ALLEGRO_KEY_ESCAPE:
                     open = false;
-                    death_menu = false;
                     break;
             }
         } else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
             open = false;
-            death_menu = false;
         }
-    }
-    //cout<< "Exiting game loop..." << endl;
-    }
+
+        //cout << "passing through the main loop" << endl;
+        while (playing && open) {
+            //cout << "Playing..." << endl;
+            al_wait_for_event(event_queue, &ev);
+
+            if (ev.type == ALLEGRO_EVENT_TIMER) {
+                al_clear_to_color(al_map_rgba_f(122, 1, 122, 13));
+                contador_segundos+=1.0/FPS;
+                if (contador_segundos>=-11/PIPE_SPEED){ //11 é velocidade inicial x tempo de reação inicial
+                    random_offset = dis(gen);
+                    game_objects.push_back(new pipe_object(SCREEN_W+250,SCREEN_H/2-108-random_offset,WIDTH_PIPE,HEIGHT_PIPE,sprite_pipe,PIPE_SPEED)); 
+                    game_objects.push_back(new pipe_object(SCREEN_W+250,SCREEN_H/2-108+HEIGHT_PIPE+PIPE_SPACE-random_offset,WIDTH_PIPE,HEIGHT_PIPE,sprite_pipe,PIPE_SPEED)); 
+                    if(PIPE_SPEED>PIPE_SPEED_MAX){
+                    PIPE_SPEED-=0.1;
+                // cout<<"Pipe speed: " << PIPE_SPEED << endl;
+                    }
+                //  cout<<"Pipe speed: " << PIPE_SPEED << endl;
+                    contador_segundos=0;
+                }
+                if (game_objects.size() > 0 && game_objects.at(0)->Get_position()->y > SCREEN_H) {
+                //  cout<< "Bird is out of screen, checking for death..." << endl;
+                //  cout << "Dead: " << dead << endl;
+                    //cout<< "Death menu active: " << death_menu << endl;
+                    if (dead==false&&death_menu==false) {
+                    //cout << "Bird is dead, setting death state..." << endl;
+                    dead = true;
+                    game_objects.at(0)->Set_y_speed(PIPE_SPEED*1.5);
+                    game_objects.at(0)->Jump();
+                    }
+                }
+                if(!dead){
+                for(int i = game_objects.size() - 1; i >= 0; i--) {
+                    game_objects.at(i)->Update(SCREEN_W, SCREEN_H);
+                    if(game_objects.at(i)->Get_position()->x < -400) {
+                        delete game_objects.at(i);
+                        game_objects.erase(game_objects.begin() + i);
+                        continue;
+                    }
+                    if((i!=0)&&(game_objects.at(i)->is_colliding(game_objects.at(0)))) {
+                        dead=true;
+                        game_objects.at(0)->Set_x_speed(PIPE_SPEED*1.7);
+                        game_objects.at(0)->Jump();
+                    }
+                    game_objects.at(i)->Draw(1);
+                    }
+                }else{
+                //  cout << "Dead: " << dead << endl;
+                    game_objects.at(0)->Update(SCREEN_W, SCREEN_H);
+                    for(int i = game_objects.size() - 1; i >= 1; i--) {
+                    game_objects.at(i)->Draw(1);
+                    }
+                    game_objects.at(0)->Draw_spin(0.1*PIPE_SPEED);
+                // cout << "drew at " << game_objects.at(0)->Get_position()->y << "out of"<< SCREEN_H + 100<< endl;
+                    if(game_objects.at(0)->Get_position()->y >= SCREEN_H + 100 || game_objects.at(0)->Get_position()->x < -100) {
+                //     cout << "restarting" << dead << endl;
+                        death_menu=true;
+                        dead=false;
+                        playing=false;
+                    }
+                }
+                al_flip_display();
+            }
+                //std::cout << "Game objects count: " << game_objects.size() << std::endl;
+        //       al_draw_textf(font_arial, al_map_rgb(255, 0, 255), SCREEN_W - 80, 20, ALLEGRO_ALIGN_CENTRE, "%d seconds", (int)(al_get_timer_count(timer) / FPS));
+            else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
+                switch (ev.keyboard.keycode) {
+                    case ALLEGRO_KEY_SPACE:
+                        if(!dead){
+                        game_objects.at(0)->Jump();
+                        }
+                        break;
+                    case ALLEGRO_KEY_ESCAPE:
+                        playing = false;
+                        open = false;
+                        break;
+                }
+            } else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+                playing = false;
+                open = false;
+            }
+            while(death_menu){
+            //   cout<< "Death menu active..." << endl;
+                al_wait_for_event(event_queue, &ev);
+
+            if (ev.type == ALLEGRO_EVENT_TIMER) {
+                al_clear_to_color(al_map_rgba_f(122, 1, 122, 13));
+                for(int i = game_objects.size() - 1; i >= 1; i--) {
+                    game_objects.at(i)->Draw(1);
+                    }
+                al_draw_scaled_rotated_bitmap(death_bitmap,al_get_bitmap_width(death_bitmap)/2,al_get_bitmap_height(death_bitmap)/2,SCREEN_W/2,SCREEN_H/2,2,2,0,0);
+                al_draw_textf(al_create_builtin_font(), al_map_rgb(255, 0, 0), SCREEN_W / 2, SCREEN_H / 2 + 70, ALLEGRO_ALIGN_CENTRE, "Press SPACE to restart or ESC to exit");
+                al_flip_display();
+            } else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
+                switch (ev.keyboard.keycode) {
+                    case ALLEGRO_KEY_SPACE:
+                        // Reset the game state
+                        for (auto obj : game_objects) {
+                            delete obj;
+                        }
+                        game_objects.clear();
+                        birdo = new bird_object(SCREEN_W/2,SCREEN_H/2,WIDTH_BIRD,HEIGHT_BIRD,sprite_bird,-25,+20,-15);
+                        game_objects.push_back(birdo);
+                        contador_segundos = 0;
+                        dead = false;
+                        death_menu = false;
+                        break;
+                    case ALLEGRO_KEY_ESCAPE:
+                        open = false;
+                        death_menu = false;
+                        break;
+                }
+            } else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+                open = false;
+                death_menu = false;
+            }
+        }
+        //cout<< "Exiting game loop..." << endl;
+        }
     }
          // Cleanup resources
     delete birdo;

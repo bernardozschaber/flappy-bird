@@ -10,7 +10,7 @@ class pipe_object : public game_object {
 
     public:
         //Construtor
-        pipe_object(float a, float b, int c, int d, const char * e, float f);
+        pipe_object(float pos_x, float pos_y, int width, int height, const char *sprite_dir, float x_spd);
 
         //Override
         void Draw(float a);
