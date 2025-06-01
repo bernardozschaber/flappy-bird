@@ -26,7 +26,7 @@ const std::string ARIAL_FONT_FILEPATH = "assets/arial.ttf";         // caminho p
 const std::string PSANS_FONT_FILEPATH = "assets/pixelify_sans.ttf"; // caminho para a fonte pixelify sans
 const char * BIRD_SPRITE = "assets/birdo.png";                      // bitmap do sprite do pássaro
 const char * PIPE_SPRITE = "assets/cano.png";                       // bitmap do sprite do cano
-const char * MOUNTAIN_SPRITE = "assets/mountains.png";
+const char * MOUNTAIN_SPRITE_1 = "assets/mountains.png";            // bitmap das montanhas (da frente)
 
 // CONSTANTES DE PROPRIEDADE PARA GAME OBJECTS
 const int WIDTH_BIRD = 44;          // largura do sprite do pássaro
@@ -138,17 +138,18 @@ int main(int argc, char **argv)
 
     // CRIAÇÃO DO PÁSSARO
     bird_object* birdo = new bird_object(SCREEN_W/2, SCREEN_H/2, WIDTH_BIRD, HEIGHT_BIRD, BIRD_SPRITE, -25, +20, -15);
-    game_objects.push_back(birdo);
+    game_objects.push_back(birdo);  // Inserção do pássaro no vetor de objetos
 
     // CRIAÇÃO DAS MONTANHAS
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 5; i++)     // Para as montanhas da frente
+    {
         float spawn_X_cord = (SCREEN_W/2 - 2 * WIDTH_MOUNTAIN_1) + (i * WIDTH_MOUNTAIN_1);   // Definição do X de spawn de cada montanha
-        background_object* mountain = new background_object(spawn_X_cord, SCREEN_H - HEIGHT_MOUNTAIN_1, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE);      // Criação da montanha
+        background_object* mountain = new background_object(spawn_X_cord, SCREEN_H - HEIGHT_MOUNTAIN_1, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE_1);    // Criação da montanha
         background_objects.push_back(mountain);   // Inserção da montanha criada no vetor
     }
 
     // INÍCIO DA EXECUÇÃO DO JOGO DE FATO
-    al_start_timer(timer);
+    al_start_timer(timer);  // Início do timer
     while(open)
     {
         al_wait_for_event(queue, &event);
@@ -172,19 +173,22 @@ int main(int argc, char **argv)
                 break;
 
             // Key Up - registra uma tecla que foi solta em key (... 0 0 1 0)
+            // Essa parte talvez não funcione ainda, vou dar uma olhada depois
             case ALLEGRO_EVENT_KEY_UP:
                 key[event.keyboard.keycode] &= RELEASED;
                 break;
 
             // Mouse Button Down - registra as coordenadas do clique do mouse
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-                if (event.mouse.button & 1) {
+                if (event.mouse.button & 1) // Botão esquerdo
+                {
                     mouse_click_pos_x = event.mouse.x;
                     mouse_click_pos_y = event.mouse.y;
                 }
                 break;
         }
 
+        // UPDATE DO QUADRO (depende das variáveis de estado da execução)
         if (open && update) 
         {
             // PROCESSAMENTO SE ESTIVER EM JOGO
@@ -200,8 +204,8 @@ int main(int argc, char **argv)
                     int spawn_x = SCREEN_W + 250;                           // Coordenada X de spawn dos canos (fora da tela)
                     int spawn_y = (SCREEN_H / 2) - 108 - random_offset;     // Coordenada Y de referência para spawn dos canos
 
-                    game_objects.push_back(new pipe_object(spawn_x, spawn_y, WIDTH_PIPE, HEIGHT_PIPE, PIPE_SPRITE, PIPE_SPEED));                                           // Instanciação do cano superior (?)
-                    game_objects.push_back(new pipe_object(spawn_x, spawn_y+HEIGHT_PIPE+PIPE_SPACE, WIDTH_PIPE, HEIGHT_PIPE, PIPE_SPRITE, PIPE_SPEED));                              // Instanciação do cano inferior (?)
+                    game_objects.push_back(new pipe_object(spawn_x, spawn_y, WIDTH_PIPE, HEIGHT_PIPE, PIPE_SPRITE, PIPE_SPEED));                  // Instanciação do cano superior (?)
+                    game_objects.push_back(new pipe_object(spawn_x, spawn_y+HEIGHT_PIPE+PIPE_SPACE, WIDTH_PIPE, HEIGHT_PIPE, PIPE_SPRITE, PIPE_SPEED));     // Instanciação do cano inferior (?)
 
                     if (PIPE_SPEED > PIPE_SPEED_MAX) {
                         PIPE_SPEED -= 0.1;     // Se a velocidade do cano for maior que o máximo, reduza ela
@@ -234,7 +238,7 @@ int main(int argc, char **argv)
                             background_objects.erase(background_objects.begin() + i);   // Apaga o elemento do vetor
 
                             float new_X_position = background_objects.at(background_objects.size() - 1)->Get_position()->x + 384;
-                            background_object* new_mountain = new background_object(new_X_position, SCREEN_H - HEIGHT_MOUNTAIN_1, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE);  // Cria uma nova montanha logo após a última
+                            background_object* new_mountain = new background_object(new_X_position, SCREEN_H - HEIGHT_MOUNTAIN_1, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE_1);  // Cria uma nova montanha logo após a última
                             background_objects.push_back(new_mountain);             // Insere a montanha nova no vetor
 
                             continue;   // Pula os próximos comandos (objeto nao existe mais)
@@ -350,7 +354,7 @@ int main(int argc, char **argv)
                     // Recriação das montanhas
                     for (int i = 0; i < 5; i++) {
                         float spawn_X_cord = (SCREEN_W/2 - 2 * WIDTH_MOUNTAIN_1) + (i * WIDTH_MOUNTAIN_1);
-                        background_object* mountain = new background_object(spawn_X_cord, SCREEN_H - HEIGHT_MOUNTAIN_1, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE);      // Criação da montanha
+                        background_object* mountain = new background_object(spawn_X_cord, SCREEN_H - HEIGHT_MOUNTAIN_1, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE_1);      // Criação da montanha
                         background_objects.push_back(mountain);   // Inserção da montanha criada no vetor
                     }
 
