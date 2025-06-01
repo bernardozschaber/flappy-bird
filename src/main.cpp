@@ -2,287 +2,423 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_ttf.h>
-#include <math.h>
-#include "game_object.hpp"
+
 #include "bird_object.hpp"
 #include "pipe_object.hpp"
+#include "background_object.hpp"
+
+#include <math.h>
 #include <vector>
 #include <random>
-
 #include <iostream>
 #include <sstream>
+#include <fstream>
 
-using namespace std;
+// CONSTANTES PARA CONFIGURAÇÕES GERAIS DO JOGO
+#define FPS 30          // frames por segundo 
+#define SCREEN_W 800    // comprimento da tela
+#define SCREEN_H 600    // altura da tela
+#define SEEN 1          // importante para detecção de teclas
+#define RELEASED 2      // importante para detecção de teclas
 
-// Constants for game configuration
-const float FPS = 30;                                          // Frames per second
-const int SCREEN_W = 800;                                      // Screen width in pixels
-const int SCREEN_H = 600;                                      // Screen height in pixels
-//const ALLEGRO_COLOR BACKGROUND_COLOR = al_map_rgb(0, 0, 0);  // Background color (black)
-const string FONT_FILEPATH = "assets/arial.ttf";               // Path to arial font file
-const string PSANS_FONT_FILEPATH = "assets/pixelify_sans.ttf"; // Path to pixelify sans font file
-const int WIDTH_BIRD = 44;          // Fixed size for bird sprite width
-const int HEIGHT_BIRD = 41;         // Fixed size for bird sprite height
-const int WIDTH_PIPE = 75;          // Fixed size for pipe sprite width
-const int HEIGHT_PIPE = 450;        // Fixed size for pipe sprite height
-const int WIDTH_MOUNTAIN_1 = 384;   // Fixed size for mountain(1) sprite width
-const int HEIGHT_MOUNTAIN_1 = 192;  // Fixed size for mountain(1) sprite height
+// CONSTANTES DE PATH
+const std::string ARIAL_FONT_FILEPATH = "assets/arial.ttf";         // caminho para a fonte arial
+const std::string PSANS_FONT_FILEPATH = "assets/pixelify_sans.ttf"; // caminho para a fonte pixelify sans
+const char * BIRD_SPRITE = "assets/birdo.png";                      // bitmap do sprite do pássaro
+const char * PIPE_SPRITE = "assets/cano.png";                       // bitmap do sprite do cano
+const char * MOUNTAIN_SPRITE = "assets/mountains.png";
 
+// CONSTANTES DE PROPRIEDADE PARA GAME OBJECTS
+const int WIDTH_BIRD = 44;          // largura do sprite do pássaro
+const int HEIGHT_BIRD = 41;         // altura do sprite do pássaro
+const int WIDTH_PIPE = 75;          // largura do sprite do cano
+const int HEIGHT_PIPE = 450;        // altura do sprite do cano
+const int WIDTH_MOUNTAIN_1 = 384;   // largura do sprite da montanha (1)
+const int HEIGHT_MOUNTAIN_1 = 192;  // altura do sprite da montanha (1)
+
+// CONFIGURAÇÃO DO RNG PARA OS CANOS (NÃO MEXER, NGM SABE COMO FUNCIONA DIREITO)
 std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_int_distribution<> dis(0, 384);
 
-bool is_colliding(abs_pos* position_one, abs_pos* position_two) {
-    return (std::fabs(position_one->x - position_two->x) < (position_one->w + position_two->w) / 2.0) && (std::fabs(position_one->y - position_two->y) < (position_one->h + position_two->h) / 2.0);
-}
+int main(int argc, char **argv) 
+{
+    // ROTINAS DO SISTEMA, ADDONS E EXTENSÕES
+    /*
+    Essa parte talvez seja difícil de entender o que está acontecendo, então é básicamente assim:
+        1- Criamos booleanas dinamicamente para cada uma das instalações
+        2- Atribuímos cada booleana à respectiva função de instalação 
+        3- Como as funções retornam false em caso de erro, verificamos se alguma delas não foi instalada corretamente
+        4- Apagamos a memória alocada dinamicamente
+    */
+    bool* sys_install = new bool;
+    bool* prim_install = new bool;
+    bool* font_install = new bool;
+    bool* ttf_install = new bool;
+    bool* img_install = new bool;
+    bool* keyboard_install = new bool;
+    bool* mouse_install = new bool;
 
-int main(int argc, char **argv) {
-    // Pointers for Allegro components
-    ALLEGRO_DISPLAY *display = NULL;
-    ALLEGRO_EVENT_QUEUE *event_queue = NULL;
-    ALLEGRO_TIMER *timer = NULL;
+    *sys_install = al_init();                   // Instalação principal
+    *prim_install = al_init_primitives_addon(); // Instalação dos primitivos
+    *font_install = al_init_font_addon();       // Instalação do addon de fontes
+    *ttf_install = al_init_ttf_addon();         // Instalação do addon de fontes ttf
+    *img_install = al_init_image_addon();       // Instalação do addon de imagem
+    *keyboard_install = al_install_keyboard();  // Instalação do teclado
+    *mouse_install = al_install_mouse();        // Instalação do mouse
 
-
-    // Initialize Allegro library
-    if (!al_init()) {
-        cout << "ERROR:" << "failed to initialize allegro" << endl;
-        return -1;
+    if(!(*sys_install && *prim_install && *font_install && *ttf_install && *img_install && *keyboard_install && *mouse_install)) {
+        std::cout << "Falha na instalação." << std::endl;
+        std::cout << "SYS: " << sys_install << std::endl;
+        std::cout << "PRIMITIVES: " << prim_install << std::endl;
+        std::cout << "FONT: " << font_install << std::endl;
+        std::cout << "KEYBOARD: " << keyboard_install << std::endl;
+        std::cout << "MOUSE: " << mouse_install << std::endl;
+        system("pause");
+        return 4;
     }
 
-    // Initialize Allegro primitives addon
-    if (!al_init_primitives_addon()) {
-        cout << "ERROR:" << "failed to initialize allegro primitives" << endl;
-        return -1;
+    delete sys_install;
+    delete prim_install;
+    delete font_install;
+    delete keyboard_install;
+    delete mouse_install;
+
+    // VARIÁVEIS INICIAIS ALLEGRO
+    ALLEGRO_DISPLAY *display = al_create_display(SCREEN_W, SCREEN_H);   // Inicialização do display
+    ALLEGRO_EVENT_QUEUE *queue = al_create_event_queue();               // Inicialização da fila de eventos
+    ALLEGRO_TIMER *timer = al_create_timer(1.0 / FPS);                  // Inicialização do timer
+    ALLEGRO_EVENT event;                                                // Armazena o evento a ser atendido da fila
+
+    // VERIFICAÇÃO DE INICIALIZAÇÃO CORRETA DOS PONTEIROS
+    if (display == NULL) {
+        std::cout << "Display nao foi criado com sucesso.\n";
+        system("pause");
+        return 1;
+    }
+    if (queue == NULL) {
+        std::cout << "Fila de eventos nao foi criada com sucesso.\n";
+        system("pause");
+        return 2;
+    }
+    if (timer == NULL) {
+        std::cout << "Timer nao foi criado com sucesso.\n";
+        system("pause");
+        return 3;
     }
 
-    // Initialize Allegro image addon
-    if (!al_init_image_addon()) {
-        cout << "ERROR:" << "failed to initialize allegro images" << endl;
-        return -1;
-    }
-
-    // Initialize Allegro font and TTF addons
-   // if (!al_init_font_addon() || !al_init_ttf_addon()) {
-    //    cout << "ERROR:" << "failed to initialize fonts" << endl;
-   //     al_destroy_timer(timer);
-   //     return -1;
-   // }
-
-    // Load the font from the specified file
-   // ALLEGRO_FONT *font_arial = al_load_font(FONT_FILEPATH.c_str(), 32, 0);
-   // if (font_arial == nullptr) {
-   //     cout << "ERROR:" << "failed to load font" << endl;
-   //     return -1;
-   // }
-
-    // Create an event queue to handle events
-    event_queue = al_create_event_queue();
-    if (!event_queue) {
-        cout << "ERROR:" << "failed to create event_queue" << endl;
-        return -1;
-    }
-
-    // Install keyboard input support
-    if (!al_install_keyboard()) {
-        cout << "ERROR:" << "failed to initialize keyboard" << endl;
-        return -1;
-    }
-
-    // Create the display window
-    display = al_create_display(SCREEN_W, SCREEN_H);
-    if (!display) {
-        cout << "ERROR:" << "failed to create display" << endl;
-        return -1;
-    }
-
-    // Create a timer to control the game loop
-    timer = al_create_timer(1.0 / FPS);
-    if (!timer) {
-        cout << "ERROR:" << "failed to initialize timer" << endl;
-        al_destroy_display(display);
-        return -1;
-    }
-
-    al_set_blender(ALLEGRO_ADD, ALLEGRO_ALPHA, ALLEGRO_INVERSE_ALPHA);
-
-    // Register event sources for the event queue
-    al_register_event_source(event_queue, al_get_display_event_source(display)); 
-    al_register_event_source(event_queue, al_get_timer_event_source(timer));
-    al_register_event_source(event_queue, al_get_keyboard_event_source());
-
-    // Start the timer to control game speed
-    al_start_timer(timer);
-
-    // Main game loop
-    ALLEGRO_BITMAP *death_bitmap = al_load_bitmap("assets/urdeadfrfr.png");
-    int random_offset;
-    const char * sprite_bird = "assets/birdo.png";  // Path to the bird sprite image
-    const char * sprite_pipe = "assets/cano.png";
-    float contador_segundos=0;
-    int PIPE_SPACE = 160; 
-    float PIPE_SPEED = -5;
-    float PIPE_SPEED_MAX = -10;  // Maximum speed for pipes
-    bool open = true;
-    bool playing = false;
-    bool dead = false;
-    bool death_menu = false;
-
-    vector<game_object*> game_objects;  // Vector to hold game objects
-    bird_object* birdo= new bird_object(SCREEN_W/2,SCREEN_H/2,WIDTH_BIRD,HEIGHT_BIRD,sprite_bird,-25,+20,-15);  // Initialize the game object (ball)
-    game_objects.push_back(birdo);  
-    while (open) {
-        // cout << "Waiting for events..." << endl;
-        ALLEGRO_EVENT ev;
-        PIPE_SPEED = -5;
-        al_wait_for_event(event_queue, &ev);
-
-        if (ev.type == ALLEGRO_EVENT_TIMER) {
-            contador_segundos+=1.0/FPS;
-            al_clear_to_color(al_map_rgba_f(12, 112, 12, 1));
-        //  cout<< "Drawing game objects..." << endl;
-            game_objects.at(0)->Draw(1);
-        // al_draw_textf(font_arial, al_map_rgb(255, 0, 255), SCREEN_W - 80, 20, ALLEGRO_ALIGN_CENTRE, "%d seconds", (int)(al_get_timer_count(timer) / FPS));
-            al_flip_display();
-        } else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
-            switch (ev.keyboard.keycode) {
-                case ALLEGRO_KEY_SPACE:
-                    game_objects.at(0)->Jump();
-                    game_objects.at(0)->Set_y_acelleration(2);
-                    playing = true;
-                    break;
-                case ALLEGRO_KEY_ESCAPE:
-                    open = false;
-                    break;
-            }
-        } else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-            open = false;
-        }
-
-        //cout << "passing through the main loop" << endl;
-        while (playing && open) {
-            //cout << "Playing..." << endl;
-            al_wait_for_event(event_queue, &ev);
-
-            if (ev.type == ALLEGRO_EVENT_TIMER) {
-                al_clear_to_color(al_map_rgba_f(122, 1, 122, 13));
-                contador_segundos+=1.0/FPS;
-                if (contador_segundos>=-11/PIPE_SPEED){ //11 é velocidade inicial x tempo de reação inicial
-                    random_offset = dis(gen);
-                    game_objects.push_back(new pipe_object(SCREEN_W+250,SCREEN_H/2-108-random_offset,WIDTH_PIPE,HEIGHT_PIPE,sprite_pipe,PIPE_SPEED)); 
-                    game_objects.push_back(new pipe_object(SCREEN_W+250,SCREEN_H/2-108+HEIGHT_PIPE+PIPE_SPACE-random_offset,WIDTH_PIPE,HEIGHT_PIPE,sprite_pipe,PIPE_SPEED)); 
-                    if(PIPE_SPEED>PIPE_SPEED_MAX){
-                    PIPE_SPEED-=0.1;
-                // cout<<"Pipe speed: " << PIPE_SPEED << endl;
-                    }
-                //  cout<<"Pipe speed: " << PIPE_SPEED << endl;
-                    contador_segundos=0;
-                }
-                if (game_objects.size() > 0 && game_objects.at(0)->Get_position()->y > SCREEN_H) {
-                //  cout<< "Bird is out of screen, checking for death..." << endl;
-                //  cout << "Dead: " << dead << endl;
-                    //cout<< "Death menu active: " << death_menu << endl;
-                    if (dead==false&&death_menu==false) {
-                    //cout << "Bird is dead, setting death state..." << endl;
-                    dead = true;
-                    game_objects.at(0)->Set_y_speed(PIPE_SPEED*1.5);
-                    game_objects.at(0)->Jump();
-                    }
-                }
-                if(!dead){
-                for(int i = game_objects.size() - 1; i >= 0; i--) {
-                    game_objects.at(i)->Update(SCREEN_W, SCREEN_H);
-                    if(game_objects.at(i)->Get_position()->x < -400) {
-                        delete game_objects.at(i);
-                        game_objects.erase(game_objects.begin() + i);
-                        continue;
-                    }
-                    if((i!=0)&&(game_objects.at(i)->is_colliding(game_objects.at(0)))) {
-                        dead=true;
-                        game_objects.at(0)->Set_x_speed(PIPE_SPEED*1.7);
-                        game_objects.at(0)->Jump();
-                    }
-                    game_objects.at(i)->Draw(1);
-                    }
-                }else{
-                //  cout << "Dead: " << dead << endl;
-                    game_objects.at(0)->Update(SCREEN_W, SCREEN_H);
-                    for(int i = game_objects.size() - 1; i >= 1; i--) {
-                    game_objects.at(i)->Draw(1);
-                    }
-                    game_objects.at(0)->Draw_spin(0.1*PIPE_SPEED);
-                // cout << "drew at " << game_objects.at(0)->Get_position()->y << "out of"<< SCREEN_H + 100<< endl;
-                    if(game_objects.at(0)->Get_position()->y >= SCREEN_H + 100 || game_objects.at(0)->Get_position()->x < -100) {
-                //     cout << "restarting" << dead << endl;
-                        death_menu=true;
-                        dead=false;
-                        playing=false;
-                    }
-                }
-                al_flip_display();
-            }
-                //std::cout << "Game objects count: " << game_objects.size() << std::endl;
-        //       al_draw_textf(font_arial, al_map_rgb(255, 0, 255), SCREEN_W - 80, 20, ALLEGRO_ALIGN_CENTRE, "%d seconds", (int)(al_get_timer_count(timer) / FPS));
-            else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
-                switch (ev.keyboard.keycode) {
-                    case ALLEGRO_KEY_SPACE:
-                        if(!dead){
-                        game_objects.at(0)->Jump();
-                        }
-                        break;
-                    case ALLEGRO_KEY_ESCAPE:
-                        playing = false;
-                        open = false;
-                        break;
-                }
-            } else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-                playing = false;
-                open = false;
-            }
-            while(death_menu){
-            //   cout<< "Death menu active..." << endl;
-                al_wait_for_event(event_queue, &ev);
-
-            if (ev.type == ALLEGRO_EVENT_TIMER) {
-                al_clear_to_color(al_map_rgba_f(122, 1, 122, 13));
-                for(int i = game_objects.size() - 1; i >= 1; i--) {
-                    game_objects.at(i)->Draw(1);
-                    }
-                al_draw_scaled_rotated_bitmap(death_bitmap,al_get_bitmap_width(death_bitmap)/2,al_get_bitmap_height(death_bitmap)/2,SCREEN_W/2,SCREEN_H/2,2,2,0,0);
-                al_draw_textf(al_create_builtin_font(), al_map_rgb(255, 0, 0), SCREEN_W / 2, SCREEN_H / 2 + 70, ALLEGRO_ALIGN_CENTRE, "Press SPACE to restart or ESC to exit");
-                al_flip_display();
-            } else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
-                switch (ev.keyboard.keycode) {
-                    case ALLEGRO_KEY_SPACE:
-                        // Reset the game state
-                        for (auto obj : game_objects) {
-                            delete obj;
-                        }
-                        game_objects.clear();
-                        birdo = new bird_object(SCREEN_W/2,SCREEN_H/2,WIDTH_BIRD,HEIGHT_BIRD,sprite_bird,-25,+20,-15);
-                        game_objects.push_back(birdo);
-                        contador_segundos = 0;
-                        dead = false;
-                        death_menu = false;
-                        break;
-                    case ALLEGRO_KEY_ESCAPE:
-                        open = false;
-                        death_menu = false;
-                        break;
-                }
-            } else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-                open = false;
-                death_menu = false;
-            }
-        }
-        //cout<< "Exiting game loop..." << endl;
-        }
-    }
-         // Cleanup resources
-    delete birdo;
-    al_destroy_timer(timer);
-    al_destroy_display(display);
-    al_destroy_event_queue(event_queue);
-    return 0;
-    }
+    // VETOR PARA LEITURA DE TECLA PRESSIONADA
+    unsigned char key[ALLEGRO_KEY_MAX];     // Cria um vetor com a quantidade de teclas que podem ser detectadas
+    memset(key, 0, sizeof(key));            // Inicializa todas os elementos do vetor como 0
     
-// End of main.cpp
+    // REGISTRO DA ORIGEM DOS EVENTOS NA FILA DE EVENTOS
+    al_register_event_source(queue, al_get_display_event_source(display));  // Eventos do display
+    al_register_event_source(queue, al_get_timer_event_source(timer));      // Eventos do timer
+    al_register_event_source(queue, al_get_keyboard_event_source());        // Eventos do teclado
+    al_register_event_source(queue, al_get_mouse_event_source());           // Eventos do mouse
+
+    // VARIÁVEIS EXTRAS
+    ALLEGRO_BITMAP *death_bitmap = al_load_bitmap("assets/urdeadfrfr.png"); // Imagem de morte (temporário provavelmente)
+    int random_offset;                                                      // Offset do cano a ser spawnado
+    float chronometer = 0;                                                  // Controle de tempo (em segundos) para spawns e afins
+    int PIPE_SPACE = 160;                                                   // Espaçamento entre os canos
+    float PIPE_SPEED = -5;                                                  // Velocidade atual dos canos
+    float PIPE_SPEED_MAX = -10;                                             // Velocidade máxima dos canos
+    std::vector<game_object*> game_objects;                                 // Vetor que guarda os objects (pássaro(0) e canos(>0))
+    std::vector<background_object*> background_objects;                     // Vetor que armazena as montanhas
+    int mouse_click_pos_x;                                                  // Armazena a posição X do clique do mouse
+    int mouse_click_pos_y;                                                  // Armazena a posição Y do clique do mouse
+
+    // VARIÁVEIS DE ESTADO DA EXECUÇÃO
+    bool open = true;           // Jogo está aberto
+    bool update = false;        // O jogo deve atualizar o estado
+    bool playing = false;       // Jogador está no meio de uma partida
+    bool dead = false;          // Jogador está morto
+    bool death_menu = false;    // Menu de morte está aberto
+
+    // CRIAÇÃO DO PÁSSARO
+    bird_object* birdo = new bird_object(SCREEN_W/2, SCREEN_H/2, WIDTH_BIRD, HEIGHT_BIRD, BIRD_SPRITE, -25, +20, -15);
+    game_objects.push_back(birdo);
+
+    // CRIAÇÃO DAS MONTANHAS
+    for (int i = 0; i < 5; i++) {
+        float spawn_X_cord = (SCREEN_W/2 - 2 * WIDTH_MOUNTAIN_1) + (i * WIDTH_MOUNTAIN_1);   // Definição do X de spawn de cada montanha
+        background_object* mountain = new background_object(spawn_X_cord, SCREEN_H - HEIGHT_MOUNTAIN_1, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE);      // Criação da montanha
+        background_objects.push_back(mountain);   // Inserção da montanha criada no vetor
+    }
+
+    // INÍCIO DA EXECUÇÃO DO JOGO DE FATO
+    al_start_timer(timer);
+    while(open)
+    {
+        al_wait_for_event(queue, &event);
+
+        // LEITURA DO EVENTO
+        switch(event.type) 
+        {
+            // Fechamento do display - sai do loop principal
+            case ALLEGRO_EVENT_DISPLAY_CLOSE:
+                open = false;
+                break;
+
+            // Timer - "chama" o loop de update
+            case ALLEGRO_EVENT_TIMER:
+                update = true;
+                break;
+
+            // Key Down - registra uma tecla pressionada em key (... 0 0 1 1)
+            case ALLEGRO_EVENT_KEY_DOWN:
+                key[event.keyboard.keycode] = SEEN | RELEASED;
+                break;
+
+            // Key Up - registra uma tecla que foi solta em key (... 0 0 1 0)
+            case ALLEGRO_EVENT_KEY_UP:
+                key[event.keyboard.keycode] &= RELEASED;
+                break;
+
+            // Mouse Button Down - registra as coordenadas do clique do mouse
+            case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
+                if (event.mouse.button & 1) {
+                    mouse_click_pos_x = event.mouse.x;
+                    mouse_click_pos_y = event.mouse.y;
+                }
+                break;
+        }
+
+        if (open && update) 
+        {
+            // PROCESSAMENTO SE ESTIVER EM JOGO
+            if (playing) 
+            {
+                chronometer += 1.0 / FPS;                               // Atualiza o cronômetro
+                al_clear_to_color(al_map_rgba_f(0.6, 0.6, 1.0, 1));     // Limpa a tela e deixa fundo azul
+
+                // SPAWN DE UM CANO COM BASE NO CRONÔMETRO
+                if (chronometer >= -11/PIPE_SPEED)    // Não sei de onde saiu esse -11, só o Laércio sabe
+                {
+                    random_offset = dis(gen);                               // Determina o offset do cano a ser spawnado
+                    int spawn_x = SCREEN_W + 250;                           // Coordenada X de spawn dos canos (fora da tela)
+                    int spawn_y = (SCREEN_H / 2) - 108 - random_offset;     // Coordenada Y de referência para spawn dos canos
+
+                    game_objects.push_back(new pipe_object(spawn_x, spawn_y, WIDTH_PIPE, HEIGHT_PIPE, PIPE_SPRITE, PIPE_SPEED));                                           // Instanciação do cano superior (?)
+                    game_objects.push_back(new pipe_object(spawn_x, spawn_y+HEIGHT_PIPE+PIPE_SPACE, WIDTH_PIPE, HEIGHT_PIPE, PIPE_SPRITE, PIPE_SPEED));                              // Instanciação do cano inferior (?)
+
+                    if (PIPE_SPEED > PIPE_SPEED_MAX) {
+                        PIPE_SPEED -= 0.1;     // Se a velocidade do cano for maior que o máximo, reduza ela
+                    }
+
+                    chronometer = 0;    // Reseta o cronômetro (age como cooldown)
+                }
+
+                // CHECAGEM SE O PÁSSARO CAIU NO CHÃO
+                if (game_objects.size() > 0 && game_objects.at(0)->Get_position()->y > SCREEN_H) 
+                {
+                    if (!dead && !death_menu) {
+                        dead = true;                                        // Ativa o estado de morto
+                        game_objects.at(0)->Set_y_speed(PIPE_SPEED*1.5);    // Não tenho a menor ideia do que é isso
+                        game_objects.at(0)->Jump();                         // Pulinho para animação (?)
+                    }
+                }
+
+                // ATUALIZAÇÕES DOS OBJETOS
+                background_objects.at(0)->Set_standard_speed(PIPE_SPEED);   // Ajuste da velocidade padrão dos objetos de cenário
+                if (!dead)       // Caso não esteja morto
+                {
+                    // Elementos do cenário
+                    for (int i = background_objects.size() - 1; i >= 0; i--) {
+                        background_objects.at(i)->Update(SCREEN_W, SCREEN_H, 0.5); // Atualiza os objetos do cenário
+
+                        if (background_objects.at(i)->Get_position()->x < -200)    // Verifica se um objeto saiu do cenário
+                        {
+                            delete background_objects.at(i);                // Apaga o background object alocado dinamicamente
+                            background_objects.erase(background_objects.begin() + i);   // Apaga o elemento do vetor
+
+                            float new_X_position = background_objects.at(background_objects.size() - 1)->Get_position()->x + 384;
+                            background_object* new_mountain = new background_object(new_X_position, SCREEN_H - HEIGHT_MOUNTAIN_1, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE);  // Cria uma nova montanha logo após a última
+                            background_objects.push_back(new_mountain);             // Insere a montanha nova no vetor
+
+                            continue;   // Pula os próximos comandos (objeto nao existe mais)
+                        }
+
+                        background_objects.at(i)->Draw(1);                          // Desenha as montanhas
+                    }
+
+                    // Pássaro e canos (vetor de game_object*)
+                    for (int i = game_objects.size() - 1; i >= 0; i--) {
+                        game_objects.at(i)->Update(SCREEN_W, SCREEN_H);     // Faz o update de cada game object no vetor
+
+                        if (game_objects.at(i)->Get_position()->x < -400)       // Detecta se há um cano fora da tela
+                        {
+                            delete game_objects.at(i);                      // Apaga o game object alocado dinamicamente
+                            game_objects.erase(game_objects.begin() + i);   // Apaga o elemento do vetor
+                            continue;                                       // Pula os próximos comandos (objeto nao existe mais)
+                        }
+                        if ((i!=0) && (game_objects.at(i)->is_colliding(game_objects.at(0)))) // Detecta colisão entre pássaro e cano
+                        {
+                            dead = true;                                        // Ativa o estado de morto se houve colisão
+                            game_objects.at(0)->Set_x_speed(PIPE_SPEED*1.7);    // Não tenho a menor ideia do que é isso
+                            game_objects.at(0)->Jump();                         // Pulinho para animação (?)
+                        }
+
+                        game_objects.at(i)->Draw(1);                        // Desenha cada game object no vetor
+                    }
+                }
+
+                else            // Caso esteja morto
+                {
+                    // Elementos do cenário
+                    for (background_object* bgo : background_objects) {
+                        bgo->Draw(1);       // Desenha as montanhas
+                    }
+
+                    // Pássaro e canos (vetor de game_object*)
+                    game_objects.at(0)->Update(SCREEN_W, SCREEN_H);     // Faz o Update somente do pássaro
+
+                    for (int i = game_objects.size() - 1; i >= 1; i--) {
+                        game_objects.at(i)->Draw(1);    // Desenha todos os canos
+                    }
+
+                    game_objects.at(0)->Draw_spin(0.1*PIPE_SPEED);      // Desenha o pássaro com rotação (?)
+
+                    if (game_objects.at(0)->Get_position()->y >= SCREEN_H + 100 || game_objects.at(0)->Get_position()->x < -100)    // Controle da posição da animação de morte do pássaro em que o menu de morte deve aparecer
+                    {
+                        death_menu = true;              // Ativa o estado de menu de morte
+                        dead = false;                   // Tira o estado de morto (não sei por quê)
+                        playing = false;                // Desativa o estado de jogando
+                    }
+                }
+                
+                // DETECÇÃO DE PRESSÃO DE TECLA
+                if (key[ALLEGRO_KEY_SPACE] == 3)     // Ser =3 aqui significa que ESPAÇO acabou de ser pressionada
+                {
+                    if (!dead) {
+                        game_objects.at(0)->Jump();     // Se não estiver morto, faça o pássaro pular
+                    }
+                }
+                if (key[ALLEGRO_KEY_ESCAPE] == 3)    // Ser =3 aqui significa que ESC acabou de ser pressionada
+                {
+                    // ESC fecha o jogo
+                    playing = false;
+                    open = false;
+                }
+                for (int i = 0; i < ALLEGRO_KEY_MAX; i++)   // "Marca" que as teclas apertadas já foram vistas
+                {
+                    key[i] &= SEEN;
+                }
+
+                al_flip_display();      // Atualiza o display (?)
+            }
+
+            // PROCESSAMENTO SE ESTIVER NA TELA DE MORTE
+            if (death_menu) 
+            {
+                chronometer += 1.0 / FPS;
+                al_clear_to_color(al_map_rgba_f(1.0, 0.6, 1.0, 1));   // Limpa a tela e deixa fundo rosa
+
+                // DESENHOS DE SPRITES
+                for (background_object* bgo : background_objects) {
+                    bgo->Draw(1);                   // Desenha as montanhas
+                }
+                for (int i = game_objects.size() - 1; i >= 1; i--) {
+                    game_objects.at(i)->Draw(1);    // Desenha cada objeto do vetor
+                }
+
+                al_draw_scaled_rotated_bitmap(death_bitmap,al_get_bitmap_width(death_bitmap)/2,al_get_bitmap_height(death_bitmap)/2,SCREEN_W/2,SCREEN_H/2,2,2,0,0);             // Desenho do bitmap de morte (Temporário)
+
+                al_draw_textf(al_create_builtin_font(), al_map_rgb(210, 20, 20), SCREEN_W / 2, SCREEN_H / 2 + 70, ALLEGRO_ALIGN_CENTRE, "Press SPACE to restart or ESC to exit");   // Desenho de texto de instrução (Temporário)
+                
+
+                // DETECÇÃO DE PRESSÃO DE TECLA
+                if (key[ALLEGRO_KEY_SPACE] == 3)    // Ser =3 aqui significa que ESPAÇO acabou de ser pressionada
+                {
+                    // RESET DO ESTADO DO JOGO
+                    // Deleção de todos os objetos
+                    for (game_object* obj : game_objects) {
+                        delete obj;
+                    }
+                    game_objects.clear();       // Pássaro e canos
+
+                    for (background_object* bgo : background_objects) {
+                        delete bgo;
+                    }
+                    background_objects.clear(); // Montanhas
+
+                    // Recriação do pássaro
+                    birdo = new bird_object(SCREEN_W/2, SCREEN_H/2, WIDTH_BIRD, HEIGHT_BIRD, BIRD_SPRITE, -25, +20, -15);
+                    game_objects.push_back(birdo);
+
+                    // Recriação das montanhas
+                    for (int i = 0; i < 5; i++) {
+                        float spawn_X_cord = (SCREEN_W/2 - 2 * WIDTH_MOUNTAIN_1) + (i * WIDTH_MOUNTAIN_1);
+                        background_object* mountain = new background_object(spawn_X_cord, SCREEN_H - HEIGHT_MOUNTAIN_1, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE);      // Criação da montanha
+                        background_objects.push_back(mountain);   // Inserção da montanha criada no vetor
+                    }
+
+                    chronometer = 0;    // Reset do cronômetro
+                    dead = false;       // Desativa o estado de morto
+                    death_menu = false; // Desativa o estado de menu de morte
+                }
+                if (key[ALLEGRO_KEY_ESCAPE] == 3)   // Ser =3 aqui significa que ESC acabou de ser pressionada
+                {
+                    // ESC fecha o jogo
+                    death_menu = false;
+                    open = false;
+                }
+                for (int i = 0; i < ALLEGRO_KEY_MAX; i++)   // "Marca" que as teclas apertadas já foram vistas
+                {
+                    key[i] &= SEEN;
+                }
+
+                al_flip_display();      // Atualiza o display (?)
+            }
+
+            // PROCESSAMENTO SE ESTIVER PARA COMEÇAR O JOGO
+            if (!playing && !death_menu)
+            {
+                chronometer = 0;                                    // Zera o cronômetro
+                al_clear_to_color(al_map_rgba_f(0.6, 1.0, 0.4, 1)); // Limpa a tela e deixa fundo verde
+                for (background_object* bgo : background_objects)   // Desenha as montanhas
+                {
+                    bgo->Draw(1);
+                }
+                game_objects.at(0)->Draw(1);                        // Desenha o pássaro na tela
+                
+
+                // DETECÇÃO DE PRESSÃO DE TECLA
+                if (key[ALLEGRO_KEY_SPACE] == 3)    // Ser =3 aqui significa que ESPAÇO acabou de ser pressionada
+                {
+                    playing = true;                             // ESPAÇO inicia o jogo
+                    game_objects.at(0)->Jump();                 // Executa o primeiro pulo
+                    game_objects.at(0)->Set_y_acelleration(2);  // Seta a aceleração da gravidade (eu acho)
+                }
+                if (key[ALLEGRO_KEY_ESCAPE] == 3)   // Ser =3 aqui significa que ESC acabou de ser pressionada
+                {
+                    // ESC fecha o jogo
+                    open = false;                               
+                }
+                for (int i = 0; i < ALLEGRO_KEY_MAX; i++)   // "Marca" que as teclas apertadas já foram vistas
+                {
+                    key[i] &= SEEN;
+                }
+
+                al_flip_display();      // Atualiza o display (?)
+            }
+
+            update = false;
+        }
+    }
+
+    // FIM DA EXECUÇÃO
+    for (game_object* object : game_objects) {
+        delete object;  // Deleção de todos os game objects
+    }
+    for (background_object* object : background_objects) {
+        delete object;  // Deleção de todos os objetos de background
+    }
+
+    al_destroy_display(display);    // Destruição do display
+    al_destroy_event_queue(queue);  // Destruição da fila de eventos
+    al_destroy_timer(timer);        // Destruição do timer
+
+    return 0;
+}
