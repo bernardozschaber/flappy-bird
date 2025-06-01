@@ -1,0 +1,8 @@
+01-06-2025
+    Sam (makefile, main.cpp):
+        - Adicionado o arquivo de log de alterações
+        - Atualizado o makefile para incluir o background_object (quem conseguir testar o makefile depois teste)
+        - Corrigida a inicialização incorreta da fonte para escrita do texto na tela de morte
+            - Agora a fonte é customizada
+            - A fonte é corretamente inicializada somente uma vez e destruída
+            - O texto aparece um pouco mais acima na tela

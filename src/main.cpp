@@ -22,8 +22,8 @@
 #define RELEASED 2      // importante para detecção de teclas
 
 // CONSTANTES DE PATH
-const std::string ARIAL_FONT_FILEPATH = "assets/arial.ttf";         // caminho para a fonte arial
-const std::string PSANS_FONT_FILEPATH = "assets/pixelify_sans.ttf"; // caminho para a fonte pixelify sans
+const char * ARIAL_FONT_FILEPATH = "assets/arial.ttf";         // caminho para a fonte arial
+const char * PSANS_FONT_FILEPATH = "assets/pixelify_sans.ttf"; // caminho para a fonte pixelify sans
 const char * BIRD_SPRITE = "assets/birdo.png";                      // bitmap do sprite do pássaro
 const char * PIPE_SPRITE = "assets/cano.png";                       // bitmap do sprite do cano
 const char * MOUNTAIN_SPRITE_1 = "assets/mountains.png";            // bitmap das montanhas (da frente)
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
         std::cout << "KEYBOARD: " << keyboard_install << std::endl;
         std::cout << "MOUSE: " << mouse_install << std::endl;
         system("pause");
-        return 4;
+        return -1;
     }
 
     delete sys_install;
@@ -85,10 +85,11 @@ int main(int argc, char **argv)
     delete mouse_install;
 
     // VARIÁVEIS INICIAIS ALLEGRO
-    ALLEGRO_DISPLAY *display = al_create_display(SCREEN_W, SCREEN_H);   // Inicialização do display
-    ALLEGRO_EVENT_QUEUE *queue = al_create_event_queue();               // Inicialização da fila de eventos
-    ALLEGRO_TIMER *timer = al_create_timer(1.0 / FPS);                  // Inicialização do timer
-    ALLEGRO_EVENT event;                                                // Armazena o evento a ser atendido da fila
+    ALLEGRO_DISPLAY *display = al_create_display(SCREEN_W, SCREEN_H);           // Inicialização do display
+    ALLEGRO_EVENT_QUEUE *queue = al_create_event_queue();                       // Inicialização da fila de eventos
+    ALLEGRO_TIMER *timer = al_create_timer(1.0 / FPS);                          // Inicialização do timer
+    ALLEGRO_FONT *pixel_sans = al_load_ttf_font(PSANS_FONT_FILEPATH, 20, 0);    // Criação da fonte pixelify sans
+    ALLEGRO_EVENT event;                                                        // Armazena o evento a ser atendido da fila
 
     // VERIFICAÇÃO DE INICIALIZAÇÃO CORRETA DOS PONTEIROS
     if (display == NULL) {
@@ -105,6 +106,11 @@ int main(int argc, char **argv)
         std::cout << "Timer nao foi criado com sucesso.\n";
         system("pause");
         return 3;
+    }
+    if (pixel_sans == NULL) {
+        std::cout << "Fonte nao foi criada com sucesso.\n";
+        system("pause");
+        return 4;
     }
 
     // VETOR PARA LEITURA DE TECLA PRESSIONADA
@@ -329,7 +335,7 @@ int main(int argc, char **argv)
 
                 al_draw_scaled_rotated_bitmap(death_bitmap,al_get_bitmap_width(death_bitmap)/2,al_get_bitmap_height(death_bitmap)/2,SCREEN_W/2,SCREEN_H/2,2,2,0,0);             // Desenho do bitmap de morte (Temporário)
 
-                al_draw_textf(al_create_builtin_font(), al_map_rgb(210, 20, 20), SCREEN_W / 2, SCREEN_H / 2 + 70, ALLEGRO_ALIGN_CENTRE, "Press SPACE to restart or ESC to exit");   // Desenho de texto de instrução (Temporário)
+                al_draw_textf(pixel_sans, al_map_rgb(210, 20, 20), SCREEN_W / 2, SCREEN_H / 2 + 60, ALLEGRO_ALIGN_CENTRE, "Press SPACE to restart or ESC to exit");   // Desenho de texto de instrução (Temporário)
                 
 
                 // DETECÇÃO DE PRESSÃO DE TECLA
@@ -358,6 +364,7 @@ int main(int argc, char **argv)
                         background_objects.push_back(mountain);   // Inserção da montanha criada no vetor
                     }
 
+                    
                     chronometer = 0;    // Reset do cronômetro
                     dead = false;       // Desativa o estado de morto
                     death_menu = false; // Desativa o estado de menu de morte
@@ -423,6 +430,7 @@ int main(int argc, char **argv)
     al_destroy_display(display);    // Destruição do display
     al_destroy_event_queue(queue);  // Destruição da fila de eventos
     al_destroy_timer(timer);        // Destruição do timer
+    al_destroy_font(pixel_sans);    // Destruição da fonte pixelify sans
 
     return 0;
 }
