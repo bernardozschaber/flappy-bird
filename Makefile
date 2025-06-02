@@ -15,5 +15,5 @@ obj/background_object.o: include/background_object.hpp src/background_object.cpp
 obj/main.o: src/main.cpp
 	g++ -o obj/main.o -c src/main.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
 
-main: obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o
+main: obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o
 	g++ obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o -o main `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
