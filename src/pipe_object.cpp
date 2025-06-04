@@ -2,7 +2,7 @@
 #include "pipe_object.hpp"
 
 
-pipe_object::pipe_object(float a, float b, int c, int d, const char *e, float f) : game_object(a, b, c, d, e), vel_x(f), vel_y(0), scored(false) {};
+pipe_object::pipe_object(float a, float b, int c, int d, const char *e) : game_object(a, b, c, d, e), vel_y(0), scored(false) {};
     
 void pipe_object::Draw(float scale){
     abs_pos* drw_pos = this->Get_position();
@@ -14,14 +14,18 @@ void pipe_object::Update(int a , int b){
     this->Get_position()->y += vel_y;
 };
 
-void pipe_object::Set_x_speed(int a){
-    this->vel_x = a;
+void pipe_object::Set_x_speed(float a){
+    vel_x = a;
 };
 
-void pipe_object::Set_y_speed(int a){
+void pipe_object::Set_y_speed(float a){
     this->vel_y = a;
 };
 
 void pipe_object::Set_score(bool a){
     this->scored = a;
+};
+
+float pipe_object::Get_x_speed(){
+    return vel_x;
 };

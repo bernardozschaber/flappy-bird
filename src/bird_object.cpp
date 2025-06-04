@@ -9,8 +9,9 @@
             upd_pos->x+=vel_x;
         if(upd_pos->y+vel_y>SCREEN_H+100){
             upd_pos->y=SCREEN_H+100;
-        }else if(upd_pos->y+vel_y<-100){
-            upd_pos->y=-100;
+        }else if(upd_pos->y+vel_y<0){
+            upd_pos->y=0;
+            vel_y=0;
         }else{
             upd_pos->y+=vel_y;
         }
@@ -60,7 +61,7 @@
         }
     };
 
-    void bird_object::Set_x_speed(int a){
+    void bird_object::Set_x_speed(float a){
         this->vel_x=a;
     };
 
@@ -68,7 +69,7 @@
         this->acel_x=a;
     };
 
-    void bird_object::Set_y_speed(int a){
+    void bird_object::Set_y_speed(float a){
         this->vel_y=a;
     };
 

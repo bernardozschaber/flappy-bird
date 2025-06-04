@@ -47,6 +47,9 @@ std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_int_distribution<> dis(0, 384);
 
+// DECLARANDO A STATIC VELOCIDADE DO CANO
+float pipe_object::vel_x = -5;                                          
+
 int main(int argc, char **argv) 
 {
     // ROTINAS DO SISTEMA, ADDONS E EXTENSÕES
@@ -132,7 +135,6 @@ int main(int argc, char **argv)
     // VARIÁVEIS EXTRAS
     ALLEGRO_BITMAP *death_bitmap = al_load_bitmap("assets/urdeadfrfr.png"); // Imagem de morte (temporário provavelmente)
     int random_offset;                                                      // Offset do cano a ser spawnado
-    float chronometer = 0;                                                  // Controle de tempo (em segundos) para spawns e afins
     int PIPE_SPACE = 160;                                                   // Espaçamento entre os canos
     float PIPE_SPEED = -5;                                                  // Velocidade atual dos canos
     float PIPE_SPEED_MAX = -10;                                             // Velocidade máxima dos canos
@@ -220,24 +222,22 @@ int main(int argc, char **argv)
             // PROCESSAMENTO SE ESTIVER EM JOGO
             if (playing) 
             {
-                chronometer += 1.0 / FPS;                               // Atualiza o cronômetro
                 al_clear_to_color(al_map_rgba_f(0.6, 0.6, 1.0, 1));     // Limpa a tela e deixa fundo azul
 
                 // SPAWN DE UM CANO COM BASE NO CRONÔMETRO
-                if (chronometer >= -11/PIPE_SPEED)    // Não sei de onde saiu esse -11, só o Laércio sabe
+                if (game_objects.size()==1|| game_objects.at(game_objects.size()-1)->Get_position()->x<SCREEN_W-100)    // Adiciona o primeiro cano se não houver nenhum ou se o último cano estiver à distância adequada (100 + 250)
                 {
                     random_offset = dis(gen);                               // Determina o offset do cano a ser spawnado
                     int spawn_x = SCREEN_W + 250;                           // Coordenada X de spawn dos canos (fora da tela)
                     int spawn_y = (SCREEN_H / 2) - 108 - random_offset;     // Coordenada Y de referência para spawn dos canos
 
-                    game_objects.push_back(new pipe_object(spawn_x, spawn_y, WIDTH_PIPE, HEIGHT_PIPE, PIPE_SPRITE, PIPE_SPEED));                  // Instanciação do cano superior (?)
-                    game_objects.push_back(new pipe_object(spawn_x, spawn_y+HEIGHT_PIPE+PIPE_SPACE, WIDTH_PIPE, HEIGHT_PIPE, PIPE_SPRITE, PIPE_SPEED));     // Instanciação do cano inferior (?)
-
-                    if (PIPE_SPEED > PIPE_SPEED_MAX) {
-                        PIPE_SPEED -= 0.1;     // Se a velocidade do cano for maior que o máximo, reduza ela
+                    game_objects.push_back(new pipe_object(spawn_x, spawn_y, WIDTH_PIPE, HEIGHT_PIPE, PIPE_SPRITE));                  // Instanciação do cano superior (?)
+                    game_objects.push_back(new pipe_object(spawn_x, spawn_y+HEIGHT_PIPE+PIPE_SPACE, WIDTH_PIPE, HEIGHT_PIPE, PIPE_SPRITE));     // Instanciação do cano inferior (?)
+                    
+                    if (game_objects.at(1)->Get_x_speed() > PIPE_SPEED_MAX) {
+                        game_objects.at(1)->Set_x_speed(game_objects.at(1)->Get_x_speed()-0.1);     // Se a velocidade do cano for maior que o máximo, reduza ela
                     }
-
-                    chronometer = 0;    // Reseta o cronômetro (age como cooldown)
+                    PIPE_SPEED=game_objects.at(1)->Get_x_speed();
                 }
 
                 // CHECAGEM SE O PÁSSARO CAIU NO CHÃO
@@ -245,8 +245,9 @@ int main(int argc, char **argv)
                 {
                     if (!dead && !death_menu) {
                         dead = true;                                        // Ativa o estado de morto
-                        game_objects.at(0)->Set_y_speed(PIPE_SPEED*1.5);    // Não tenho a menor ideia do que é isso
-                        game_objects.at(0)->Jump();                         // Pulinho para animação (?)
+                        game_objects.at(0)->Set_y_speed(PIPE_SPEED*1.5);    // Knockback da colisão com o cano
+                        game_objects.at(0)->Jump();                         // Knockback da colisão com o cano
+                        game_objects.at(1)->Set_x_speed(-5);
                     }
                 }
 
@@ -323,8 +324,9 @@ int main(int argc, char **argv)
                         if ((i!=0) && (game_objects.at(i)->is_colliding(game_objects.at(0)))) // Detecta colisão entre pássaro e cano
                         {
                             dead = true;                                        // Ativa o estado de morto se houve colisão
-                            game_objects.at(0)->Set_x_speed(PIPE_SPEED*1.7);    // Não tenho a menor ideia do que é isso
-                            game_objects.at(0)->Jump();                         // Pulinho para animação (?)
+                            game_objects.at(0)->Set_x_speed(PIPE_SPEED*1.7);    // Knockback da colisão com o cano
+                            game_objects.at(0)->Jump();                         // Knockback da colisão com o cano
+                            game_objects.at(1)->Set_x_speed(-5);
                         }
 
                         game_objects.at(i)->Draw(1);                        // Desenha cada game object no vetor
@@ -351,12 +353,12 @@ int main(int argc, char **argv)
                         game_objects.at(i)->Draw(1);    // Desenha todos os canos
                     }
 
-                    game_objects.at(0)->Draw_spin(0.1*PIPE_SPEED);      // Desenha o pássaro com rotação (?)
+                    game_objects.at(0)->Draw_spin(0.1*PIPE_SPEED);      // Desenha o pássaro com rotação 
 
                     if (game_objects.at(0)->Get_position()->y >= SCREEN_H + 100 || game_objects.at(0)->Get_position()->x < -100)    // Controle da posição da animação de morte do pássaro em que o menu de morte deve aparecer
                     {
                         death_menu = true;              // Ativa o estado de menu de morte
-                        dead = false;                   // Tira o estado de morto (não sei por quê)
+                        dead = false;                   // Tira o estado de morto
                         playing = false;                // Desativa o estado de jogando
                     }
                 }
@@ -373,6 +375,7 @@ int main(int argc, char **argv)
                     // ESC fecha o jogo
                     playing = false;
                     open = false;
+                    break;
                 }
                 for (int i = 0; i < ALLEGRO_KEY_MAX; i++)   // "Marca" que as teclas apertadas já foram vistas
                 {
@@ -385,7 +388,6 @@ int main(int argc, char **argv)
             // PROCESSAMENTO SE ESTIVER NA TELA DE MORTE
             if (death_menu) 
             {
-                chronometer += 1.0 / FPS;
                 al_clear_to_color(al_map_rgba_f(1.0, 0.6, 1.0, 1));   // Limpa a tela e deixa fundo rosa
 
                 // DESENHOS DE SPRITES
@@ -458,7 +460,6 @@ int main(int argc, char **argv)
                     }
 
                     
-                    chronometer = 0;    // Reset do cronômetro
                     dead = false;       // Desativa o estado de morto
                     death_menu = false; // Desativa o estado de menu de morte
                 }
@@ -467,6 +468,7 @@ int main(int argc, char **argv)
                     // ESC fecha o jogo
                     death_menu = false;
                     open = false;
+                    break;
                 }
                 for (int i = 0; i < ALLEGRO_KEY_MAX; i++)   // "Marca" que as teclas apertadas já foram vistas
                 {
@@ -479,7 +481,6 @@ int main(int argc, char **argv)
             // PROCESSAMENTO SE ESTIVER PARA COMEÇAR O JOGO
             if (!playing && !death_menu)
             {
-                chronometer = 0;                                    // Zera o cronômetro
                 al_clear_to_color(al_map_rgba_f(0.6, 1.0, 0.4, 1)); // Limpa a tela e deixa fundo verde
 
                 for (background_object* bgo_3 : background_objects_3)   // Desenha as montanhas de trás
@@ -508,7 +509,8 @@ int main(int argc, char **argv)
                 if (key[ALLEGRO_KEY_ESCAPE] == 3)   // Ser =3 aqui significa que ESC acabou de ser pressionada
                 {
                     // ESC fecha o jogo
-                    open = false;                               
+                    open = false;                 
+                    break;              
                 }
                 for (int i = 0; i < ALLEGRO_KEY_MAX; i++)   // "Marca" que as teclas apertadas já foram vistas
                 {

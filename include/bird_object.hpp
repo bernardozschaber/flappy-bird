@@ -24,9 +24,9 @@ class bird_object : public game_object{
         void Draw(float a);
         void Update(const int SCREEN_W,const int SCREEN_H);
         void Jump();
-        void Set_x_speed(int a);
+        void Set_x_speed(float a);
         void Set_x_acelleration(int a);
-        void Set_y_speed(int a);
+        void Set_y_speed(float a);
         void Set_y_acelleration(int a);
         void Draw_spin(float SPIN_SPEED);
 };
