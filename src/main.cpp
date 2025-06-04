@@ -24,16 +24,16 @@
 // CONSTANTES DE PATH
 const char * ARIAL_FONT_FILEPATH = "assets/arial.ttf";         // caminho para a fonte arial
 const char * PSANS_FONT_FILEPATH = "assets/pixelify_sans.ttf"; // caminho para a fonte pixelify sans
-const char * BIRD_SPRITE = "assets/birdo.png";                      // bitmap do sprite do pássaro
-const char * PIPE_SPRITE = "assets/cano.png";                       // bitmap do sprite do cano
+const char * BIRD_SPRITE = "assets/bird-1.png";                      // bitmap do sprite do pássaro
+const char * PIPE_SPRITE = "assets/pipe.png";                       // bitmap do sprite do cano
 const char * MOUNTAIN_SPRITE_1 = "assets/mountains_1.png";          // bitmap das montanhas (da frente)
 const char * MOUNTAIN_SPRITE_2 = "assets/mountains_2.png";          // bitmap das montanhas (do meio)
 const char * MOUNTAIN_SPRITE_3 = "assets/mountains_3.png";          // bitmap das montanhas (de trás)
 const char * GRASS_SPRITE = "assets/grama.png";                     // bitmap da grama
 
 // CONSTANTES DE PROPRIEDADE PARA GAME OBJECTS
-const int WIDTH_BIRD = 44;          // largura do sprite do pássaro
-const int HEIGHT_BIRD = 41;         // altura do sprite do pássaro
+const int WIDTH_BIRD = 42;          // largura do sprite do pássaro
+const int HEIGHT_BIRD = 42;         // altura do sprite do pássaro
 const int WIDTH_PIPE = 75;          // largura do sprite do cano
 const int HEIGHT_PIPE = 450;        // altura do sprite do cano
 
@@ -325,7 +325,7 @@ int main(int argc, char **argv)
                     }
                     for (int i = background_objects_1.size() - 1; i >= 0; i--) // Grama
                     {
-                        background_objects_0.at(i)->Update(SCREEN_W, SCREEN_H, 0.4); // Atualiza os objetos do cenário
+                        background_objects_0.at(i)->Update(SCREEN_W, SCREEN_H, 0.5); // Atualiza os objetos do cenário
 
                         if (background_objects_0.at(i)->Get_position()->x < -200)    // Verifica se um objeto saiu do cenário
                         {

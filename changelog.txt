@@ -18,3 +18,9 @@
         - Adicionada grama
         - Modificados os sprites das montanhas para não incluir lineart
         - Ajustado a posição de desenho das montanhas
+
+    Sam (assets, main.cpp):
+        - Atualizado sprite do pássaro
+        - Atualizado sprite dos canos
+        - Levemente aumentada a velocidade de movimento da grama
+
