@@ -83,27 +83,24 @@ std::vector<player> registration::get_all(){
 void registration::update(std::string user, int score){
     std::vector<std::string> lines;
     int counter = 0;
-    std::string games, current_score, password;
+    int games, new_score;
+    std::string password;
     std::string line = get_stats(user); 
-
     std::stringstream line_user(line);
-    int scoreint, gamesint;
     while(counter < 4){
         counter++;
         if(counter == 1){
-            line_user >> current_score;
-            scoreint = std::stoi(current_score);
+            line_user >> new_score;
         }else if(counter == 4){
             line_user >> games;
-            gamesint = std::stoi(games);
         }else if(counter == 3){
             line_user >> password;
         }else{
             line_user >> line;
         }
     }
-    scoreint = score;
-    gamesint += 1;
+    new_score = score;
+    games++;
     int currentLine = 0;
     //Localizar a linha que deseja mudar
     int targetLine = getline_number(user);
@@ -113,7 +110,7 @@ void registration::update(std::string user, int score){
     while (std::getline(users, line)) {
         if (currentLine == targetLine - 1) {
             // Altere a linha conforme necessário
-            line = std::to_string(scoreint) + " " + user + " " + password + " " + std::to_string(gamesint);
+            line = std::to_string(new_score) + " " + user + " " + password + " " + std::to_string(games);
         }
         lines.push_back(line);
         currentLine++;
