@@ -10,3 +10,11 @@
     
     Sam (assets, main.cpp):
         - Adicionadas mais duas camadas de montanhas para o cenário
+
+04-06-2025
+
+    Sam (assets, main.cpp):
+        - Corrigido um problema que fazia com que a velocidade dos canos não fosse resetada após o reinício
+        - Adicionada grama
+        - Modificados os sprites das montanhas para não incluir lineart
+        - Ajustado a posição de desenho das montanhas

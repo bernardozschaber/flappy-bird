@@ -29,18 +29,24 @@ const char * PIPE_SPRITE = "assets/cano.png";                       // bitmap do
 const char * MOUNTAIN_SPRITE_1 = "assets/mountains_1.png";          // bitmap das montanhas (da frente)
 const char * MOUNTAIN_SPRITE_2 = "assets/mountains_2.png";          // bitmap das montanhas (do meio)
 const char * MOUNTAIN_SPRITE_3 = "assets/mountains_3.png";          // bitmap das montanhas (de trás)
+const char * GRASS_SPRITE = "assets/grama.png";                     // bitmap da grama
 
 // CONSTANTES DE PROPRIEDADE PARA GAME OBJECTS
 const int WIDTH_BIRD = 44;          // largura do sprite do pássaro
 const int HEIGHT_BIRD = 41;         // altura do sprite do pássaro
 const int WIDTH_PIPE = 75;          // largura do sprite do cano
 const int HEIGHT_PIPE = 450;        // altura do sprite do cano
+
+// CONSTANTES DE PROPRIEDADE PARA OBJETOS DO CENÁRIO
+const int HEIGHT_REFFERENCE = SCREEN_H - 204;
 const int WIDTH_MOUNTAIN_1 = 384;   // largura do sprite da montanha (1)
 const int HEIGHT_MOUNTAIN_1 = 192;  // altura do sprite da montanha (1)
 const int WIDTH_MOUNTAIN_2 = 384;   // largura do sprite da montanha (2)
 const int HEIGHT_MOUNTAIN_2 = 243;  // altura do sprite da montanha (2)
 const int WIDTH_MOUNTAIN_3 = 384;   // largura do sprite da montanha (3)
 const int HEIGHT_MOUNTAIN_3 = 183;  // altura do sprite da montanha (3)
+const int WIDTH_GRASS = 384;        // largura do sprite da grama
+const int HEIGHT_GRASS = 120;       // altura do sprite da grama
 
 // CONFIGURAÇÃO DO RNG PARA OS CANOS (NÃO MEXER, NGM SABE COMO FUNCIONA DIREITO)
 std::random_device rd;
@@ -137,6 +143,7 @@ int main(int argc, char **argv)
     float PIPE_SPEED = -5;                                                  // Velocidade atual dos canos
     float PIPE_SPEED_MAX = -10;                                             // Velocidade máxima dos canos
     std::vector<game_object*> game_objects;                                 // Vetor que guarda os objects (pássaro(0) e canos(>0))
+    std::vector<background_object*> background_objects_0;                   // Vetor que armazena os tiles de grama
     std::vector<background_object*> background_objects_1;                   // Vetor que armazena as montanhas (1)
     std::vector<background_object*> background_objects_2;                   // Vetor que armazena as montanhas (2)
     std::vector<background_object*> background_objects_3;                   // Vetor que armazena as montanhas (3)
@@ -154,23 +161,29 @@ int main(int argc, char **argv)
     bird_object* birdo = new bird_object(SCREEN_W/2, SCREEN_H/2, WIDTH_BIRD, HEIGHT_BIRD, BIRD_SPRITE, -25, +20, -15);
     game_objects.push_back(birdo);  // Inserção do pássaro no vetor de objetos
 
-    // CRIAÇÃO DAS MONTANHAS
+    // CRIAÇÃO DO CENÁRIO
+    for (int i = 0; i < 5; i++)     // Para a grama
+    {
+        float spawn_X_cord = (SCREEN_W/2 - 2 * WIDTH_GRASS) + (i * WIDTH_GRASS);   // Definição do X de spawn de cada tile de grama
+        background_object* grass = new background_object(spawn_X_cord, SCREEN_H - 60, WIDTH_GRASS, HEIGHT_GRASS, GRASS_SPRITE);         // Criação do tile de grama
+        background_objects_0.push_back(grass);   // Inserção do tile de grama no vetor
+    }
     for (int i = 0; i < 5; i++)     // Para as montanhas da frente
     {
         float spawn_X_cord = (SCREEN_W/2 - 2 * WIDTH_MOUNTAIN_1) + (i * WIDTH_MOUNTAIN_1);   // Definição do X de spawn de cada montanha
-        background_object* mountain_1 = new background_object(spawn_X_cord, SCREEN_H - HEIGHT_MOUNTAIN_1, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE_1);    // Criação da montanha
+        background_object* mountain_1 = new background_object(spawn_X_cord, HEIGHT_REFFERENCE, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE_1);    // Criação da montanha
         background_objects_1.push_back(mountain_1);   // Inserção da montanha criada no vetor
     }
     for (int i = 0; i < 5; i++)     // Para as montanhas do meio
     {
         float spawn_X_cord = (SCREEN_W/2 - 2 * WIDTH_MOUNTAIN_2) + (i * WIDTH_MOUNTAIN_2);   // Definição do X de spawn de cada montanha
-        background_object* mountain_2 = new background_object(spawn_X_cord, (SCREEN_H - HEIGHT_MOUNTAIN_1) - 103.5, WIDTH_MOUNTAIN_2, HEIGHT_MOUNTAIN_2, MOUNTAIN_SPRITE_2);    // Criação da montanha
+        background_object* mountain_2 = new background_object(spawn_X_cord, HEIGHT_REFFERENCE - 103.5, WIDTH_MOUNTAIN_2, HEIGHT_MOUNTAIN_2, MOUNTAIN_SPRITE_2);    // Criação da montanha
         background_objects_2.push_back(mountain_2);   // Inserção da montanha criada no vetor
     }
     for (int i = 0; i < 5; i++)     // Para as montanhas de trás
     {
         float spawn_X_cord = (SCREEN_W/2 - 2 * WIDTH_MOUNTAIN_3) + (i * WIDTH_MOUNTAIN_3);   // Definição do X de spawn de cada montanha
-        background_object* mountain_3 = new background_object(spawn_X_cord, (SCREEN_H - HEIGHT_MOUNTAIN_1) - 73.5, WIDTH_MOUNTAIN_3, HEIGHT_MOUNTAIN_3, MOUNTAIN_SPRITE_3);    // Criação da montanha
+        background_object* mountain_3 = new background_object(spawn_X_cord, HEIGHT_REFFERENCE - 73.5, WIDTH_MOUNTAIN_3, HEIGHT_MOUNTAIN_3, MOUNTAIN_SPRITE_3);    // Criação da montanha
         background_objects_3.push_back(mountain_3);   // Inserção da montanha criada no vetor
     }
 
@@ -214,7 +227,7 @@ int main(int argc, char **argv)
                 break;
         }
 
-        // UPDATE DO QUADRO (depende das variáveis de estado da execução)
+        // UPDATE DO QUADRO (acontece uma vez por frame, depende das variáveis de estado da execução)
         if (open && update) 
         {
             // PROCESSAMENTO SE ESTIVER EM JOGO
@@ -264,8 +277,8 @@ int main(int argc, char **argv)
                             delete background_objects_3.at(i);                // Apaga o background object alocado dinamicamente
                             background_objects_3.erase(background_objects_3.begin() + i);   // Apaga o elemento do vetor
 
-                            float new_X_position = background_objects_3.at(background_objects_3.size() - 1)->Get_position()->x + 384;
-                            background_object* new_mountain = new background_object(new_X_position, (SCREEN_H - HEIGHT_MOUNTAIN_1) - 73.5, WIDTH_MOUNTAIN_3, HEIGHT_MOUNTAIN_3, MOUNTAIN_SPRITE_3);  // Cria uma nova montanha logo após a última
+                            float new_X_position = background_objects_3.at(background_objects_3.size() - 1)->Get_position()->x + WIDTH_MOUNTAIN_3;
+                            background_object* new_mountain = new background_object(new_X_position, HEIGHT_REFFERENCE - 73.5, WIDTH_MOUNTAIN_3, HEIGHT_MOUNTAIN_3, MOUNTAIN_SPRITE_3);  // Cria uma nova montanha logo após a última
                             background_objects_3.push_back(new_mountain);             // Insere a montanha nova no vetor
 
                             continue;   // Pula os próximos comandos (objeto nao existe mais)
@@ -282,8 +295,8 @@ int main(int argc, char **argv)
                             delete background_objects_2.at(i);                // Apaga o background object alocado dinamicamente
                             background_objects_2.erase(background_objects_2.begin() + i);   // Apaga o elemento do vetor
 
-                            float new_X_position = background_objects_2.at(background_objects_2.size() - 1)->Get_position()->x + 384;
-                            background_object* new_mountain = new background_object(new_X_position, (SCREEN_H - HEIGHT_MOUNTAIN_1) - 103.5, WIDTH_MOUNTAIN_2, HEIGHT_MOUNTAIN_2, MOUNTAIN_SPRITE_2);  // Cria uma nova montanha logo após a última
+                            float new_X_position = background_objects_2.at(background_objects_2.size() - 1)->Get_position()->x + WIDTH_MOUNTAIN_2;
+                            background_object* new_mountain = new background_object(new_X_position, HEIGHT_REFFERENCE - 103.5, WIDTH_MOUNTAIN_2, HEIGHT_MOUNTAIN_2, MOUNTAIN_SPRITE_2);  // Cria uma nova montanha logo após a última
                             background_objects_2.push_back(new_mountain);             // Insere a montanha nova no vetor
 
                             continue;   // Pula os próximos comandos (objeto nao existe mais)
@@ -300,14 +313,32 @@ int main(int argc, char **argv)
                             delete background_objects_1.at(i);                // Apaga o background object alocado dinamicamente
                             background_objects_1.erase(background_objects_1.begin() + i);   // Apaga o elemento do vetor
 
-                            float new_X_position = background_objects_1.at(background_objects_1.size() - 1)->Get_position()->x + 384;
-                            background_object* new_mountain = new background_object(new_X_position, SCREEN_H - HEIGHT_MOUNTAIN_1, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE_1);  // Cria uma nova montanha logo após a última
+                            float new_X_position = background_objects_1.at(background_objects_1.size() - 1)->Get_position()->x + WIDTH_MOUNTAIN_1;
+                            background_object* new_mountain = new background_object(new_X_position, HEIGHT_REFFERENCE, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE_1);  // Cria uma nova montanha logo após a última
                             background_objects_1.push_back(new_mountain);             // Insere a montanha nova no vetor
 
                             continue;   // Pula os próximos comandos (objeto nao existe mais)
                         }
 
                         background_objects_1.at(i)->Draw(1);                          // Desenha as montanhas
+                    }
+                    for (int i = background_objects_1.size() - 1; i >= 0; i--) // Grama
+                    {
+                        background_objects_0.at(i)->Update(SCREEN_W, SCREEN_H, 0.4); // Atualiza os objetos do cenário
+
+                        if (background_objects_0.at(i)->Get_position()->x < -200)    // Verifica se um objeto saiu do cenário
+                        {
+                            delete background_objects_0.at(i);                // Apaga o background object alocado dinamicamente
+                            background_objects_0.erase(background_objects_0.begin() + i);   // Apaga o elemento do vetor
+
+                            float new_X_position = background_objects_0.at(background_objects_0.size() - 1)->Get_position()->x + WIDTH_GRASS;
+                            background_object* new_grass = new background_object(new_X_position, SCREEN_H - 60, WIDTH_GRASS, HEIGHT_GRASS, GRASS_SPRITE);  // Cria um novo tile de grama logo após o último
+                            background_objects_0.push_back(new_grass);             // Insere o tile novo no vetor
+
+                            continue;   // Pula os próximos comandos (objeto nao existe mais)
+                        }
+
+                        background_objects_0.at(i)->Draw(1);                          // Desenha a grama
                     }
 
                     // Pássaro e canos (vetor de game_object*)
@@ -342,6 +373,9 @@ int main(int argc, char **argv)
                     }
                     for (background_object* bgo : background_objects_1) {
                         bgo->Draw(1);       // Desenha as montanhas 1
+                    }
+                    for (background_object* bgo : background_objects_0) {
+                        bgo->Draw(1);       // Desenha a grama
                     }
 
                     // Pássaro e canos (vetor de game_object*)
@@ -399,6 +433,9 @@ int main(int argc, char **argv)
                 for (background_object* bgo_1 : background_objects_1) {
                     bgo_1->Draw(1);                   // Desenha as montanhas da frente
                 }
+                for (background_object* bgo_0 : background_objects_0) {
+                    bgo_0->Draw(1);                   // Desenha a grama
+                }
 
                 // Canos
                 for (int i = game_objects.size() - 1; i >= 1; i--) {
@@ -420,6 +457,10 @@ int main(int argc, char **argv)
                     }
                     game_objects.clear();       // Pássaro e canos
 
+                    for (background_object* bgo : background_objects_0) {
+                        delete bgo;
+                    }
+                    background_objects_0.clear(); // Grama
                     for (background_object* bgo : background_objects_1) {
                         delete bgo;
                     }
@@ -438,22 +479,28 @@ int main(int argc, char **argv)
                     game_objects.push_back(birdo);
 
                     // Recriação do cenário
+                    for (int i = 0; i < 5; i++) // Grama
+                    {
+                        float spawn_X_cord = (SCREEN_W/2 - 2 * WIDTH_GRASS) + (i * WIDTH_GRASS);   // Definição do X de spawn de cada tile de grama
+                        background_object* grass = new background_object(spawn_X_cord, SCREEN_H - 60, WIDTH_GRASS, HEIGHT_GRASS, GRASS_SPRITE);         // Criação do tile de grama
+                        background_objects_0.push_back(grass);   // Inserção do tile de grama no vetor
+                    }
                     for (int i = 0; i < 5; i++) // Montanhas 1
                     {
                         float spawn_X_cord = (SCREEN_W/2 - 2 * WIDTH_MOUNTAIN_1) + (i * WIDTH_MOUNTAIN_1);
-                        background_object* mountain = new background_object(spawn_X_cord, SCREEN_H - HEIGHT_MOUNTAIN_1, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE_1);      // Criação da montanha
+                        background_object* mountain = new background_object(spawn_X_cord, HEIGHT_REFFERENCE, WIDTH_MOUNTAIN_1, HEIGHT_MOUNTAIN_1, MOUNTAIN_SPRITE_1);      // Criação da montanha
                         background_objects_1.push_back(mountain);   // Inserção da montanha criada no vetor
                     }
                     for (int i = 0; i < 5; i++) // Montanhas 2
                     {
                         float spawn_X_cord = (SCREEN_W/2 - 2 * WIDTH_MOUNTAIN_2) + (i * WIDTH_MOUNTAIN_2);   // Definição do X de spawn de cada montanha
-                        background_object* mountain_2 = new background_object(spawn_X_cord, (SCREEN_H - HEIGHT_MOUNTAIN_1) - 103.5, WIDTH_MOUNTAIN_2, HEIGHT_MOUNTAIN_2, MOUNTAIN_SPRITE_2);    // Criação da montanha
+                        background_object* mountain_2 = new background_object(spawn_X_cord, HEIGHT_REFFERENCE - 103.5, WIDTH_MOUNTAIN_2, HEIGHT_MOUNTAIN_2, MOUNTAIN_SPRITE_2);    // Criação da montanha
                         background_objects_2.push_back(mountain_2);   // Inserção da montanha criada no vetor
                     }
                     for (int i = 0; i < 5; i++) // Montanhas 3
                     {
                         float spawn_X_cord = (SCREEN_W/2 - 2 * WIDTH_MOUNTAIN_3) + (i * WIDTH_MOUNTAIN_3);   // Definição do X de spawn de cada montanha
-                        background_object* mountain_3 = new background_object(spawn_X_cord, (SCREEN_H - HEIGHT_MOUNTAIN_1) - 73.5, WIDTH_MOUNTAIN_3, HEIGHT_MOUNTAIN_3, MOUNTAIN_SPRITE_3);    // Criação da montanha
+                        background_object* mountain_3 = new background_object(spawn_X_cord, HEIGHT_REFFERENCE - 73.5, WIDTH_MOUNTAIN_3, HEIGHT_MOUNTAIN_3, MOUNTAIN_SPRITE_3);    // Criação da montanha
                         background_objects_3.push_back(mountain_3);   // Inserção da montanha criada no vetor
                     }
 
@@ -480,6 +527,7 @@ int main(int argc, char **argv)
             if (!playing && !death_menu)
             {
                 chronometer = 0;                                    // Zera o cronômetro
+                PIPE_SPEED = -5;                              // Reset da velocidade dos canos
                 al_clear_to_color(al_map_rgba_f(0.6, 1.0, 0.4, 1)); // Limpa a tela e deixa fundo verde
 
                 for (background_object* bgo_3 : background_objects_3)   // Desenha as montanhas de trás
@@ -493,6 +541,10 @@ int main(int argc, char **argv)
                 for (background_object* bgo_1 : background_objects_1)   // Desenha as montanhas da frente
                 {
                     bgo_1->Draw(1);
+                }
+                for (background_object* bgo_0 : background_objects_0)   // Desenha a grama
+                {
+                    bgo_0->Draw(1);
                 }
                 
                 game_objects.at(0)->Draw(1);                        // Desenha o pássaro na tela
@@ -535,6 +587,9 @@ int main(int argc, char **argv)
     }
     for (background_object* object : background_objects_1) {
         delete object;  // Deleção de todos as montanhas da frente
+    }
+    for (background_object* object : background_objects_0) {
+        delete object;  // Deleção dos tiles de grama
     }
 
     al_destroy_display(display);    // Destruição do display
