@@ -29,3 +29,15 @@ void pipe_object::Set_score(bool a){
 float pipe_object::Get_x_speed(){
     return vel_x;
 };
+
+bool pipe_object::is_scored() const {
+    return scored;
+}
+
+void pipe_object::set_scored(bool val) {
+    scored = val;
+}
+
+
+
+

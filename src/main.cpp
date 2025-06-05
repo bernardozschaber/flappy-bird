@@ -6,6 +6,8 @@
 #include "bird_object.hpp"
 #include "pipe_object.hpp"
 #include "background_object.hpp"
+#include "scenario.hpp"
+scenario scenario_instance;
 
 #include <math.h>
 #include <vector>
@@ -104,6 +106,7 @@ int main(int argc, char **argv)
     ALLEGRO_EVENT_QUEUE *queue = al_create_event_queue();                       // Inicialização da fila de eventos
     ALLEGRO_TIMER *timer = al_create_timer(1.0 / FPS);                          // Inicialização do timer
     ALLEGRO_FONT *pixel_sans = al_load_ttf_font(PSANS_FONT_FILEPATH, 20, 0);    // Criação da fonte pixelify sans
+    ALLEGRO_FONT *pixel_sans_score = al_load_ttf_font(PSANS_FONT_FILEPATH, 80, 0);    // Criação da fonte pixelify sans para o score
     ALLEGRO_EVENT event;                                                        // Armazena o evento a ser atendido da fila
 
     // VERIFICAÇÃO DE INICIALIZAÇÃO CORRETA DOS PONTEIROS
@@ -139,8 +142,11 @@ int main(int argc, char **argv)
     al_register_event_source(queue, al_get_mouse_event_source());           // Eventos do mouse
 
     // VARIÁVEIS EXTRAS
-    ALLEGRO_BITMAP *death_bitmap = al_load_bitmap("assets/urdeadfrfr.png"); // Imagem de morte (temporário provavelmente)
+    ALLEGRO_BITMAP *death_bitmap = al_load_bitmap("assets/urdeadfrfr.png"); // Imagem de morte (temporário)
+    ALLEGRO_BITMAP *background_death_bitmap = al_load_bitmap("assets/background_death_bitmap.jpg"); // Background de morte (temporário)
     int random_offset;                                                      // Offset do cano a ser spawnado
+    int score = 0; // Contabiliza o score
+    int score_add = 0; // Variavel auxiliar para contabilizar o score
     int PIPE_SPACE = 160;                                                   // Espaçamento entre os canos
     float PIPE_SPEED = -5;                                                  // Velocidade atual dos canos
     float PIPE_SPEED_MAX = -10;                                             // Velocidade máxima dos canos
@@ -359,9 +365,20 @@ int main(int argc, char **argv)
                             game_objects.at(0)->Jump();                         // Knockback da colisão com o cano
                             game_objects.at(1)->Set_x_speed(-5);
                         }
+                        if (i != 0) {  // Para não verificar com o pássaro
+                            pipe_object* pipe = dynamic_cast<pipe_object*>(game_objects.at(i));
+                            if (pipe != nullptr) {
+                                    if (!pipe->is_scored() && pipe->Get_position()->x + WIDTH_PIPE < game_objects.at(0)->Get_position()->x) {
+                                        pipe->Set_score(true);
+                                        score_add++;
+                                    }
+                            }
+                            
+                        }
 
                         game_objects.at(i)->Draw(1);                        // Desenha cada game object no vetor
                     }
+                    score = score_add / 2;
                 }
 
                 else            // Caso esteja morto
@@ -415,7 +432,8 @@ int main(int argc, char **argv)
                 {
                     key[i] &= SEEN;
                 }
-
+                
+                al_draw_textf(pixel_sans_score, al_map_rgb(255, 255, 255), SCREEN_W / 2, SCREEN_H / 2 - 250, ALLEGRO_ALIGN_CENTRE, "%d", score); // Desenho  do placar do score
                 al_flip_display();      // Atualiza o display (?)
             }
 
@@ -443,11 +461,11 @@ int main(int argc, char **argv)
                 for (int i = game_objects.size() - 1; i >= 1; i--) {
                     game_objects.at(i)->Draw(1);    // Desenha cada objeto do vetor
                 }
-
-                al_draw_scaled_rotated_bitmap(death_bitmap,al_get_bitmap_width(death_bitmap)/2,al_get_bitmap_height(death_bitmap)/2,SCREEN_W/2,SCREEN_H/2,2,2,0,0);             // Desenho do bitmap de morte (Temporário)
-
-                al_draw_textf(pixel_sans, al_map_rgb(210, 20, 20), SCREEN_W / 2, SCREEN_H / 2 + 60, ALLEGRO_ALIGN_CENTRE, "Press SPACE to restart or ESC to exit");   // Desenho de texto de instrução (Temporário)
-                
+                al_draw_scaled_rotated_bitmap(background_death_bitmap,al_get_bitmap_width(background_death_bitmap)/2,al_get_bitmap_height(background_death_bitmap)/2,SCREEN_W/2,SCREEN_H/2 - 75,1,1,0,0);             // Desenho do background do bitmap de morte (Temporário)
+                al_draw_scaled_rotated_bitmap(death_bitmap,al_get_bitmap_width(death_bitmap)/2,al_get_bitmap_height(death_bitmap)/2,SCREEN_W/2,SCREEN_H/2 - 150,2,2,0,0);             // Desenho do bitmap de morte (Temporário)
+                al_draw_textf(pixel_sans, al_map_rgb(210, 20, 20), SCREEN_W / 2, SCREEN_H / 2 - 100, ALLEGRO_ALIGN_CENTRE, "Press SPACE to restart or ESC to exit");   // Desenho de texto de instrução (Temporário)
+                al_draw_textf(pixel_sans, al_map_rgb(210, 20, 20), SCREEN_W / 2, SCREEN_H / 2 - 50, ALLEGRO_ALIGN_CENTRE, "Your score:");   // Desenho do texto da pontuação (Temporário)
+                al_draw_textf(pixel_sans_score, al_map_rgb(250, 20, 20), SCREEN_W / 2, SCREEN_H / 2 - 30, ALLEGRO_ALIGN_CENTRE, "%d", score); // Desenho do número da pontuação (Temporário)
 
                 // DETECÇÃO DE PRESSÃO DE TECLA
                 if (key[ALLEGRO_KEY_SPACE] == 3)    // Ser =3 aqui significa que ESPAÇO acabou de ser pressionada
@@ -528,6 +546,8 @@ int main(int argc, char **argv)
             // PROCESSAMENTO SE ESTIVER PARA COMEÇAR O JOGO
             if (!playing && !death_menu)
             {
+                score = 0;
+                score_add = 0;
                 al_clear_to_color(al_map_rgba_f(0.6, 1.0, 0.4, 1)); // Limpa a tela e deixa fundo verde
 
                 for (background_object* bgo_3 : background_objects_3)   // Desenha as montanhas de trás

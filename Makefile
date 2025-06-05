@@ -1,19 +1,34 @@
+ALLEGRO_CFLAGS := $(shell pkg-config --cflags allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5)
+ALLEGRO_LIBS := $(shell pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5)
+
+CXX := g++
+CXXFLAGS := -Iinclude $(ALLEGRO_CFLAGS) -Wall -g
+
+OBJDIR := obj
+OBJS := $(OBJDIR)/main.o $(OBJDIR)/game_object.o $(OBJDIR)/pipe_object.o $(OBJDIR)/bird_object.o $(OBJDIR)/background_object.o $(OBJDIR)/scenario.o
+
 all: main
 
-obj/game_object.o: include/game_object.hpp src/game_object.cpp
-	g++ -o obj/game_object.o -c src/game_object.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+$(OBJDIR)/scenario.o: src/scenario.cpp include/scenario.hpp
+	$(CXX) $(CXXFLAGS) -c src/scenario.cpp -o $@
 
-obj/bird_object.o: include/bird_object.hpp src/bird_object.cpp
-	g++ -o obj/bird_object.o -c src/bird_object.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+$(OBJDIR)/game_object.o: src/game_object.cpp include/game_object.hpp
+	$(CXX) $(CXXFLAGS) -c src/game_object.cpp -o $@
 
-obj/pipe_object.o: include/pipe_object.hpp src/pipe_object.cpp
-	g++ -o obj/pipe_object.o -c src/pipe_object.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+$(OBJDIR)/bird_object.o: src/bird_object.cpp include/bird_object.hpp
+	$(CXX) $(CXXFLAGS) -c src/bird_object.cpp -o $@
 
-obj/background_object.o: include/background_object.hpp src/background_object.cpp
-	g++ -o obj/background_object.o -c src/background_object.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+$(OBJDIR)/pipe_object.o: src/pipe_object.cpp include/pipe_object.hpp
+	$(CXX) $(CXXFLAGS) -c src/pipe_object.cpp -o $@
 
-obj/main.o: src/main.cpp
-	g++ -o obj/main.o -c src/main.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+$(OBJDIR)/background_object.o: src/background_object.cpp include/background_object.hpp
+	$(CXX) $(CXXFLAGS) -c src/background_object.cpp -o $@
 
-main: obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o
-	g++ obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o -o main `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
+$(OBJDIR)/main.o: src/main.cpp
+	$(CXX) $(CXXFLAGS) -c src/main.cpp -o $@
+
+main: $(OBJS)
+	$(CXX) $(OBJS) -o main $(ALLEGRO_LIBS)
+
+clean:
+	rm -f $(OBJDIR)/*.o main

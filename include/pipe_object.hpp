@@ -19,6 +19,8 @@ class pipe_object : public game_object {
         void Set_y_speed(float a);
         void Set_score(bool a);
         float Get_x_speed();
+        bool is_scored() const;
+        void set_scored(bool val);
 
 };
 #endif // PIPE_OBJECT_HPP
