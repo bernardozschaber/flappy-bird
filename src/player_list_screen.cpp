@@ -1,13 +1,15 @@
 #include "player_list_screen.hpp"
 #include <allegro5/allegro_font.h>
 
-player_list_screen::player_list_screen(int screen_w, int screen_h)
+player_list_screen::player_list_screen(int screen_w, int screen_h,
+                                       std::string file_name)
     : screen_width(screen_w), screen_height(screen_h), current_page(0),
       players_per_page(15), // 15 por página mantém boa visibilidade
       next_button(650, 550, 100, 30, "Próximo"),
       back_button(50, 550, 100, 30, "Voltar"),
-      main_menu_button(350, 550, 100, 30, "Menu"), go_to_menu(false) {
-  // jogadores = registration::get_todos_jogadores();
+      main_menu_button(350, 550, 100, 30, "Menu"), go_to_menu(false),
+      data(file_name) {
+  players = data.get_all();
 }
 
 void player_list_screen::handle_event(const ALLEGRO_EVENT &ev) {
@@ -27,8 +29,7 @@ void player_list_screen::handle_event(const ALLEGRO_EVENT &ev) {
     }
     if (next_button.was_clicked()) {
       next_button.reset_clicked();
-      int max_pages = 1;
-      // int max_pages = (jogadores.size() - 1) / players_per_page;
+      int max_pages = (players.size() - 1) / players_per_page;
       if (current_page < max_pages) {
         current_page++;
       }
@@ -41,29 +42,26 @@ void player_list_screen::handle_event(const ALLEGRO_EVENT &ev) {
 }
 
 void player_list_screen::draw(ALLEGRO_FONT *font) {
-  // jogadores = registration::get_todos_jogadores();
-
   int line_h = al_get_font_line_height(font);
   int start_y = 50;
   int start_x = 100;
 
-  // for (int i = 0; i < players_per_page; ++i) {
-  // int idx = current_page * players_per_page + i;
-  // if (idx >= static_cast<int>(jogadores.size())) break;
-  // jogador p = jogadores[idx];
-  // std::string line = p.nome + " - " + std::to_string(p.recorde);
-  // int y = start_y + i * (line_h + 5);
-  // al_draw_text(font, al_map_rgb(255, 255, 255), start_x, y, 0, line.c_str());
-  //}
+  for (int i = 0; i < players_per_page; ++i) {
+    int idx = current_page * players_per_page + i;
+    if (idx >= static_cast<int>(players.size()))
+      break;
+    player p = players[idx];
+    std::string line = p.username + " - " + std::to_string(p.score);
+    int y = start_y + i * (line_h + 5);
+    al_draw_text(font, al_map_rgb(255, 255, 255), start_x, y, 0, line.c_str());
+  }
 
   back_button.draw(font);
   next_button.draw(font);
   main_menu_button.draw(font);
 
   // Exibe indicador de página
-  // int total_pages = (jogadores.size() + players_per_page - 1) /
-  // players_per_page;
-  int total_pages = 0;
+  int total_pages = (players.size() + players_per_page - 1) / players_per_page;
   if (total_pages == 0)
     total_pages = 1;
   std::string page_text = "Página " + std::to_string(current_page + 1) + " / " +

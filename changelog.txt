@@ -29,3 +29,9 @@
         - Adicionadas funcões de manipulação do arquivo de armazenamento dos players
         - Adicionada função que obtém infos(username, score, games) de cada player
 
+05-06-2025
+
+    Matsura(src,include)
+        - Inicio da integração da interface de login com a manipulação de arquivos
+        - Adição de mensagens de erro de login
+        - Inicio da implementação de tela de registro separada do login
