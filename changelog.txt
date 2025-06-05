@@ -25,7 +25,7 @@
         - Levemente aumentada a velocidade de movimento da grama
     
     Pedro(registration.cpp, registration.hpp)
-        - Adicionada as funcionalidades para registro do player
-        - Adicionado funcões de manipulação do arquivo de armazenamento dos players
+        - Adicionadas funcionalidades para registro do player
+        - Adicionadas funcões de manipulação do arquivo de armazenamento dos players
         - Adicionada função que obtém infos(username, score, games) de cada player
 
