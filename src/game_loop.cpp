@@ -12,20 +12,20 @@ const char * PSANS_FONT_FILEPATH = "assets/fonts/pixelify_sans.ttf";            
 const char * BIRD_SPRITE[5] = {"assets/bird-1.png","assets/bird-2.png","assets/bird-3.png","assets/bird-2.png","assets/bird-1.png"};                      // bitmap do sprite do pássaro
 const char * PIPE_SPRITE = "assets/pipe.png";                                                                     // caminho do sprite do cano
 const char * GOLDEN_PIPE_SPRITE = "assets/pipe_golden.png";                                                       // caminho do sprite do cano dourado
-const char * MOUNTAIN_SPRITE_1 = "assets/mountains_1.png";                                                        // caminho das montanhas (da frente)
-const char * MOUNTAIN_SPRITE_2 = "assets/mountains_2.png";                                                        // caminho das montanhas (do meio)
-const char * MOUNTAIN_SPRITE_3 = "assets/mountains_3.png";                                                        // caminho das montanhas (de trás)
-const char * GRASS_SPRITE = "assets/grama.png";                                                                   // caminho da grama
+const char * MOUNTAIN_SPRITE_1 = "assets/scenario/mountains_1.png";                                                        // caminho das montanhas (da frente)
+const char * MOUNTAIN_SPRITE_2 = "assets/scenario/mountains_2.png";                                                        // caminho das montanhas (do meio)
+const char * MOUNTAIN_SPRITE_3 = "assets/scenario/mountains_3.png";                                                        // caminho das montanhas (de trás)
+const char * GRASS_SPRITE = "assets/scenario/grama.png";                                                                   // caminho da grama
 const char * ACHIEVEMENTS_BUTTON_SPRITE = "assets/UI/achievements_button.png";                                       // caminho do botão de conquistas
 const char * BACK_BUTTON_SPRITE = "assets/UI/back_button.png";                                                       // caminho do botão de voltar
 const char * SETTINGS_BUTTON_SPRITE = "assets/UI/settings_button.png";                                               // caminho do botão de configurações
 const char * INSTRUÇÕES_SPRITE = "assets/UI/instruções.png";                                                         // caminho das instruções
-const char * SCORE_SPRITE = "assets/UI/score.png";                                                                   // caminho da tela de morte
+const char * SCORE_SPRITE = "assets/UI/score_text.png";                                                                   // caminho da tela de morte
 const char * HOME_SPRITE= "assets/UI/home_button.png";                                                                      // caminho do sprite de home
 const char * BACKGROUND = "assets/background.png";                                                                          // caminho do sprite do fundo
-const char * NUMBERS_SPRITES[10] = {"assets/UI/0.png", "assets/UI/1.png", "assets/UI/2.png", "assets/UI/3.png",  
-                                    "assets/UI/4.png", "assets/UI/5.png", "assets/UI/6.png", "assets/UI/7.png", 
-                                    "assets/UI/8.png", "assets/UI/9.png"};                                                              // caminho dos números 
+const char * NUMBERS_SPRITES[10] = {"assets/UI/num_0.png", "assets/UI/num_1.png", "assets/UI/num_2.png", "assets/UI/num_3.png",  
+                                    "assets/UI/num_4.png", "assets/UI/num_5.png", "assets/UI/num_6.png", "assets/UI/num_7.png", 
+                                    "assets/UI/num_8.png", "assets/UI/num_9.png"};                                                              // caminho dos números 
 const char * SOUND_BUTTON_SPRITE[2] = {"assets/UI/sound_on.png", "assets/UI/sound_off.png"};                            // caminho do botão de som ligado/desligado
 const char * PAUSE_BUTTON_SPRITE[2] = {"assets/UI/pause_button.png", "assets/UI/resume_button.png"};                    // caminho do botão de pause/despause
 

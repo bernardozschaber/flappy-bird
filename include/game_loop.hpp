@@ -37,19 +37,19 @@ extern const int HEIGHT_REFFERENCE;
 // VARIÁVEIS EXTRAS
     extern int random_offset;                                                      // Offset do cano a ser spawnado
     extern float score;
-    extern int PIPE_SPACE;                                                   // Espaçamento entre os canos
-    extern float PIPE_INITIAL_SPEED;                                          // Velocidade atual dos canos
-    extern float PIPE_SPEED_MAX;                                             // Velocidade máxima dos canos
+    extern int PIPE_SPACE;                                                  // Espaçamento entre os canos
+    extern float PIPE_INITIAL_SPEED;                                        // Velocidade atual dos canos
+    extern float PIPE_SPEED_MAX;                                            // Velocidade máxima dos canos
     extern float PIPE_SPEED_INCREASE;                                       // Aumento da velocidade dos canos a cada 10 pontos
-    extern int BIRD_JUMP_VEL;                                                // Velocidade do pulo do pássaro
-    extern int BIRD_MAX_UP_VEL;                                              // Velocidade máxima de subida do pássaro
-    extern int BIRD_MAX_DOWN_VEL;                                             // Velocidade máxima de descida do pássaro
+    extern int BIRD_JUMP_VEL;                                               // Velocidade do pulo do pássaro
+    extern int BIRD_MAX_UP_VEL;                                             // Velocidade máxima de subida do pássaro
+    extern int BIRD_MAX_DOWN_VEL;                                           // Velocidade máxima de descida do pássaro
 
 class game_loop {
     private:
         //Vetores dos objetos do jogo
         std::vector<game_object*> game_objects;               // Vetor que armazena os objetos do jogo
-        std::vector<moving_button*> buttons;                     // Vetor que armazena os botões do jogo
+        std::vector<moving_button*> buttons;                  // Vetor que armazena os botões do jogo
         std::vector<background_object*> background_objects_0; // Vetor que armazena os tiles de grama
         std::vector<background_object*> background_objects_1; // Vetor que armazena as montanhas (1)
         std::vector<background_object*> background_objects_2; // Vetor que armazena as montanhas (2)
@@ -70,7 +70,7 @@ class game_loop {
         ALLEGRO_BITMAP* score_sprite;                         // Bitmap da tela de morte
         ALLEGRO_BITMAP* home_sprite;                          // Bitmap do botão de home
         ALLEGRO_BITMAP* background;                           // Bitmap do fundo
-        ALLEGRO_BITMAP* numbers_sprites[10];                   // Bitmap dos números de 0 a 9 
+        ALLEGRO_BITMAP* numbers_sprites[10];                  // Bitmap dos números de 0 a 9 
         ALLEGRO_BITMAP* sound_button_sprite[2];               // Vetor de bitmaps do botão de som ligado/desligado
         ALLEGRO_BITMAP* pause_button_sprite[2];               // Vetor de bitmaps do botão de pause/despause
 
@@ -91,7 +91,7 @@ class game_loop {
         game_loop();               // Construtor
         ~game_loop();              // Destrutor
         void commands(unsigned char key[], bool mouse_is_down, bool mouse_just_released);
-        void update(bool update); // Método que atualiza o estado dos objetos do jogo
+        void update(bool update);  // Método que atualiza o estado dos objetos do jogo
         void draw();               // Método que desenha os objetos do jogo na tela
         void reset_game();         // Método que reseta o jogo, recriando os objetos e o cenário
 };
