@@ -14,7 +14,7 @@
         abs_pos* pos_one = this->Get_position();
         abs_pos* pos_two = position_two->Get_position();
 
-        return (std::abs(pos_one->x - pos_two->x) * 2 < (al_get_bitmap_width(this->get_bitmap())-6 + al_get_bitmap_width(position_two->get_bitmap()))) && (std::abs(pos_one->y - pos_two->y) * 2 < (al_get_bitmap_height(this->get_bitmap()) + al_get_bitmap_height(position_two->get_bitmap())));
+        return (std::abs(pos_one->x - pos_two->x) * 2 < (al_get_bitmap_width(this->get_bitmap())-10 + al_get_bitmap_width(position_two->get_bitmap()))) && (std::abs(pos_one->y - pos_two->y) * 2 < (al_get_bitmap_height(this->get_bitmap())-4 + al_get_bitmap_height(position_two->get_bitmap())));
     }
 
     ALLEGRO_BITMAP* game_object::get_bitmap(){
