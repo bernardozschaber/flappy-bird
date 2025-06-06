@@ -10,7 +10,7 @@ class pipe_object : public game_object {
 
     public:
         //Construtor
-        pipe_object(float pos_x, float pos_y, int width, int height, const char *sprite_dir);
+        pipe_object(float pos_x, float pos_y, int width, int height, ALLEGRO_BITMAP *Bitmap);
 
         //Override
         void Draw(float a);
@@ -18,6 +18,7 @@ class pipe_object : public game_object {
         void Set_x_speed(float a);
         void Set_y_speed(float a);
         void Set_score(bool a);
+        bool is_scored();
         float Get_x_speed();
 
 };

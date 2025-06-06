@@ -1,7 +1,7 @@
 #include "bird_object.hpp"
 #include <iostream>
 
-    bird_object::bird_object(float a, float b, int c, int d, const char* e, int f, int g, int h) : 
+    bird_object::bird_object(float a, float b, int c, int d, ALLEGRO_BITMAP* e, int f, int g, int h) : 
     game_object(a, b, c, d, e), vel_x(0), vel_y(0), acel_x(0), acel_y(0), VEL_MAX(f), VEL_MIN(g), JUMP_VEL(h), angle(0){};
 
     void bird_object::Update(int SCREEN_W, int SCREEN_H){
@@ -51,6 +51,12 @@
     abs_pos* drw_pos = this->Get_position();
     angle+=SPIN_SPEED;
     al_draw_scaled_rotated_bitmap(this->get_bitmap(),drw_pos->w/2,drw_pos->h/2,drw_pos->x,drw_pos->y,1,1,angle,0);
+    }
+
+     void bird_object::Draw(float SPIN_SPEED, ALLEGRO_BITMAP* bitmap){
+    abs_pos* drw_pos = this->Get_position();
+    angle+=SPIN_SPEED;
+    al_draw_scaled_rotated_bitmap(bitmap,drw_pos->w/2,drw_pos->h/2,drw_pos->x,drw_pos->y,1,1,angle,0);
     }
         
     void bird_object::Jump(){

@@ -2,7 +2,7 @@
 
 float background_object::standard_x_speed = 0;
 
-background_object::background_object(float pos_x, float pos_y, int width, int height, const char *sprite_dir) : game_object(pos_x, pos_y, width, height, sprite_dir) {};
+background_object::background_object(float pos_x, float pos_y, int width, int height, ALLEGRO_BITMAP* Bitmap) : game_object(pos_x, pos_y, width, height, Bitmap) {};
 
 void background_object::Draw(float scale) {
     abs_pos* drawing_position = this->Get_position();

@@ -1,8 +1,7 @@
 #include "game_object.hpp"
 #include "pipe_object.hpp"
 
-
-pipe_object::pipe_object(float a, float b, int c, int d, const char *e) : game_object(a, b, c, d, e), vel_y(0), scored(false) {};
+pipe_object::pipe_object(float a, float b, int c, int d, ALLEGRO_BITMAP *Bitmap) : game_object(a, b, c, d, Bitmap), vel_y(0), scored(false) {};
     
 void pipe_object::Draw(float scale){
     abs_pos* drw_pos = this->Get_position();
@@ -25,6 +24,10 @@ void pipe_object::Set_y_speed(float a){
 void pipe_object::Set_score(bool a){
     this->scored = a;
 };
+
+bool pipe_object::is_scored(){
+    return scored;
+}
 
 float pipe_object::Get_x_speed(){
     return vel_x;

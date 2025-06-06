@@ -11,7 +11,7 @@ class background_object : public game_object {
 
     public:
         //Construtor
-        background_object(float pos_x, float pos_y, int width, int height, const char *sprite_dir);
+        background_object(float pos_x, float pos_y, int width, int height, ALLEGRO_BITMAP *Bitmap);
 
         //Overrides
         void Draw(float scale);

@@ -18,13 +18,14 @@ class game_object {
 
     public:
         //Construtor
-        game_object(float pos_x, float pos_y, int width, int height, const char *sprite_dir);
+        game_object(float a, float b, int c, int d, ALLEGRO_BITMAP* e);
 
         //Métodos padrão
         abs_pos* Get_position();
         ALLEGRO_BITMAP* get_bitmap();
         bool is_colliding(game_object* other_object);
         void set_bitmap(std::string sprite);
+        void set_bitmap(ALLEGRO_BITMAP* sprite);
 
         //Métodos virtuais
         virtual void Draw(float scale);
@@ -36,7 +37,8 @@ class game_object {
         virtual void Set_y_acelleration(int new_y_acceleration) {};
         virtual void Set_score(bool new_score) {};
         virtual void Draw_spin(float spin_speed) {};
-        virtual float Get_x_speed() {return 0;};
+        virtual float Get_x_speed() {return 0;}
+        virtual bool is_scored() {return false;}
 };
 
 #endif // GAME_OBJECT_HPP

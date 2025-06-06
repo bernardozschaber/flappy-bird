@@ -1,6 +1,6 @@
 #include "game_object.hpp"
 
-    game_object::game_object(float a, float b, int c, int d, const char* e) : position{a,b,c,d}, Bitmap(al_load_bitmap(e)){};
+    game_object::game_object(float a, float b, int c, int d, ALLEGRO_BITMAP* e) : position{a,b,c,d}, Bitmap(e){};
     
     void game_object::Draw(float scale){
         al_draw_scaled_rotated_bitmap(this->Bitmap, position.w/2, position.h/2, position.x, position.y, scale, scale, 0, 0);
@@ -23,4 +23,8 @@
 
     void game_object::set_bitmap(std::string sprite){
         this->Bitmap = al_load_bitmap(sprite.c_str());
+    }
+
+    void game_object::set_bitmap(ALLEGRO_BITMAP* sprite) {
+        this->Bitmap = sprite;
     }
