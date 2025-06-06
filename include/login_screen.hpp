@@ -8,7 +8,7 @@
 
 class login_screen {
 public:
-  login_screen(int screen_w, int screen_h, std::string file_name);
+  login_screen(int screen_w, int screen_h, registration &data_ref);
 
   // Trata eventos (mouse/teclado) e repassa aos componentes
   void handle_event(const ALLEGRO_EVENT &ev);
@@ -17,10 +17,15 @@ public:
   void draw(ALLEGRO_FONT *font);
 
   // Indica se deve trocar para a tela de listagem
-  bool go_to_player_list() const { return go_to_list; }
+  bool go_to_player_list() const;
 
   // Indica se deve trocar para a tela de registro
-  bool go_to_register_screen() const { return go_to_register; }
+  bool go_to_register_screen() const;
+
+  // Indica se o login foi finalizado
+  bool login_done() const;
+
+  std::string get_logged_user();
 
   // Reseta caixas e flags
   void reset();
@@ -28,7 +33,10 @@ public:
 private:
   int screen_width, screen_height;
 
-  int valid_login;
+  bool valid_login;
+  bool done;
+
+  std::string logged_user;
 
   // Componentes de UI
   text_box username_box;
@@ -38,7 +46,7 @@ private:
   button view_players_button;
 
   // registro de jogadores
-  registration data;
+  registration &data;
 
   bool go_to_list;
   bool go_to_register;

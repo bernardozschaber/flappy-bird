@@ -35,3 +35,9 @@
         - Inicio da integração da interface de login com a manipulação de arquivos
         - Adição de mensagens de erro de login
         - Inicio da implementação de tela de registro separada do login
+
+06-06-2025
+
+    Matsura(src,include)
+        - Integração da manipulação de arquivos e interface de login concluída
+        - Criação de tela de registro com confirmação de senha concluído

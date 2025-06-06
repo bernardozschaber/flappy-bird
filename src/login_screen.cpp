@@ -1,12 +1,14 @@
 #include "login_screen.hpp"
+#include <sstream>
 
-login_screen::login_screen(int screen_w, int screen_h, std::string file_name)
+login_screen::login_screen(int screen_w, int screen_h, registration &data_ref)
     : screen_width(screen_w), screen_height(screen_h),
-      username_box(300, 200, 200, 30), password_box(300, 250, 200, 30),
+      username_box(300, 200, 200, 30, 20), password_box(300, 250, 200, 30, 20),
       login_button(300, 300, 100, 30, "Login"),
       register_button(410, 300, 100, 30, "Registrar"),
-      view_players_button(300, 350, 150, 30, "Ver Jogadores"), valid_login(1),
-      go_to_list(false), go_to_register(false), data(file_name) {
+      view_players_button(300, 350, 150, 30, "Ver Jogadores"),
+      valid_login(true), go_to_list(false), go_to_register(false),
+      data(data_ref) {
   password_box.set_mask(true);
   username_box.set_active(false);
   password_box.set_active(false);
@@ -42,12 +44,28 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
       std::string senha = password_box.get_text();
 
       std::string aux = data.get_stats(nome);
-      std::string aux_nome;
-      std::string aux_senha;
 
       if (aux == "") {
-        valid_login = 0
-      };
+        valid_login = false;
+        username_box.set_text("");
+        password_box.set_text("");
+      } else {
+        std::istringstream iss(aux);
+        int aux_score;
+        std::string aux_nome, aux_senha;
+        iss >> aux_score;
+        iss >> aux_nome;
+        iss >> aux_senha;
+
+        if (aux_senha != senha) {
+          valid_login = false;
+          username_box.set_text("");
+          password_box.set_text("");
+        } else {
+          done = true;
+          logged_user = aux_nome;
+        }
+      }
     }
 
     if (register_button.was_clicked()) {
@@ -70,13 +88,16 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
 }
 
 void login_screen::draw(ALLEGRO_FONT *font) {
+  al_draw_text(font, al_map_rgb(255, 255, 255), 300, 180, 0, "Usuário:");
+  al_draw_text(font, al_map_rgb(255, 255, 255), 300, 230, 0, "Senha:");
+
   username_box.draw(font);
   password_box.draw(font);
   login_button.draw(font);
   register_button.draw(font);
   view_players_button.draw(font);
 
-  if (valid_login == 0) {
+  if (!valid_login) {
     std::string erro = "usuário e/ou senha inválidos";
     int erro_w = al_get_text_width(font, erro.c_str());
     int x_erro = 300;
@@ -86,7 +107,6 @@ void login_screen::draw(ALLEGRO_FONT *font) {
   }
 
   // Desenha nome e recorde do maior pontuador no canto superior direito
-  data.update_champion();
   std::string top = data.get_max_user();
   int top_score = data.get_max_score();
   std::string texto = "Campeão: " + top + " - " + std::to_string(top_score);
@@ -96,6 +116,14 @@ void login_screen::draw(ALLEGRO_FONT *font) {
   al_draw_text(font, al_map_rgb(255, 255, 0), x, y, 0, texto.c_str());
 }
 
+bool login_screen::go_to_player_list() const { return go_to_list; }
+
+bool login_screen::go_to_register_screen() const { return go_to_register; }
+
+bool login_screen::login_done() const { return done; }
+
+std::string login_screen::get_logged_user() { return logged_user; }
+
 void login_screen::reset() {
   username_box.set_text("");
   password_box.set_text("");
@@ -103,5 +131,5 @@ void login_screen::reset() {
   password_box.set_active(false);
   go_to_list = false;
   go_to_register = false;
-  valid_login = 1;
+  valid_login = true;
 }

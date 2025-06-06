@@ -2,9 +2,9 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
 
-text_box::text_box(int x, int y, int width, int height)
-    : ui_object(x, y, width, height), text(""), is_active(false),
-      masked(false) {}
+text_box::text_box(int x, int y, int width, int height, int max_length)
+    : ui_object(x, y, width, height), text(""), is_active(false), masked(false),
+      max_length(max_length) {}
 
 void text_box::handle_event(const ALLEGRO_EVENT &ev) {
   // Só processa teclado se estiver ativo (focado)
@@ -19,7 +19,8 @@ void text_box::handle_event(const ALLEGRO_EVENT &ev) {
     } else {
       // Adiciona caractere imprimível (ASCII simples)
       if (ev.keyboard.unichar > 0 && ev.keyboard.unichar < 128) {
-        text.push_back(static_cast<char>(ev.keyboard.unichar));
+        if (static_cast<int>(text.size()) < max_length)
+          text.push_back(static_cast<char>(ev.keyboard.unichar));
       }
     }
   }
@@ -49,3 +50,9 @@ void text_box::draw(ALLEGRO_FONT *font) {
     al_draw_rectangle(x, y, x + width, y + height, al_map_rgb(255, 255, 0), 2);
   }
 }
+
+void text_box::set_mask(bool mask_enabled) { masked = mask_enabled; }
+void text_box::set_active(bool active) { is_active = active; }
+bool text_box::is_active_box() const { return is_active; }
+std::string text_box::get_text() const { return text; }
+void text_box::set_text(const std::string &t) { text = t; }
