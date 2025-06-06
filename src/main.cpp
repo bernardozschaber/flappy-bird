@@ -151,6 +151,9 @@ int main(int argc, char **argv)
     std::vector<background_object*> background_objects_3;                   // Vetor que armazena as montanhas (3)
     int mouse_click_pos_x;                                                  // Armazena a posição X do clique do mouse
     int mouse_click_pos_y;                                                  // Armazena a posição Y do clique do mouse
+    int mouse_release_pos_x;                                                // Armazena a posição X em que o botão do mouse foi solto
+    int mouse_release_pos_y;                                                // Armazena a posição Y em que o botão do mouse foi solto
+    unsigned char mouse_state;                                              // Armazena o estado do mouse
 
     // VARIÁVEIS DE ESTADO DA EXECUÇÃO
     bool open = true;           // Jogo está aberto
@@ -213,20 +216,41 @@ int main(int argc, char **argv)
                 key[event.keyboard.keycode] = SEEN | RELEASED;
                 break;
 
-            // Key Up - registra uma tecla que foi solta em key (... 0 0 1 0)
-            // Essa parte talvez não funcione ainda, vou dar uma olhada depois
+            // Key Up - registra uma tecla que foi solta em key (... 0 0 0 0)
             case ALLEGRO_EVENT_KEY_UP:
                 key[event.keyboard.keycode] &= RELEASED;
                 break;
 
-            // Mouse Button Down - registra as coordenadas do clique do mouse
+            // Mouse Button Down - registra um botão do mouse clicado
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-                if (event.mouse.button & 1) // Botão esquerdo
-                {
-                    mouse_click_pos_x = event.mouse.x;
-                    mouse_click_pos_y = event.mouse.y;
+                switch(event.mouse.button) {
+                    case ALLEGRO_MOUSE_BUTTON_LEFT: {
+                        mouse_state = SEEN | RELEASED;
+                        mouse_click_pos_x = event.mouse.x;
+                        mouse_click_pos_y = event.mouse.y;
+                        break;
+                    }
+
+                    default:
+                        break;
                 }
                 break;
+            
+            // Mouse Button Up - registra um botão do mouse solto
+            case ALLEGRO_EVENT_MOUSE_BUTTON_UP:
+                switch(event.mouse.button) {
+                    case ALLEGRO_MOUSE_BUTTON_LEFT: {
+                        mouse_state &= RELEASED;
+                        mouse_release_pos_x = event.mouse.x;
+                        mouse_release_pos_y = event.mouse.y;
+                        break;
+                    }
+
+                    default:
+                        break;
+                }
+                break;
+
         }
 
         // UPDATE DO QUADRO (acontece uma vez por frame, depende das variáveis de estado da execução)
@@ -323,7 +347,7 @@ int main(int argc, char **argv)
 
                         background_objects_1.at(i)->Draw(1);                          // Desenha as montanhas
                     }
-                    for (int i = background_objects_1.size() - 1; i >= 0; i--) // Grama
+                    for (int i = background_objects_0.size() - 1; i >= 0; i--) // Grama
                     {
                         background_objects_0.at(i)->Update(SCREEN_W, SCREEN_H, 0.5); // Atualiza os objetos do cenário
 
