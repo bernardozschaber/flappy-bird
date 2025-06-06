@@ -8,7 +8,7 @@ register_screen::register_screen(int screen_w, int screen_h,
       confirm_box(300, 280, 200, 30, 20),
       confirm_button(300, 330, 100, 30, "Confirmar"),
       cancel_button(410, 330, 100, 30, "Cancelar"), reg_complete(false),
-      go_to_login(false), senha_mismatch(false), data(data_ref) {
+      go_to_login(false), password_mismatch(false), existing_user(false), data(data_ref) {
   password_box.set_mask(true);
   confirm_box.set_mask(true);
   username_box.set_active(false);
@@ -51,14 +51,23 @@ void register_screen::handle_event(const ALLEGRO_EVENT &ev) {
 
       if (nome.empty() || senha.empty() || conf.empty()) {
         // Não permitir registro com campos vazios
-        senha_mismatch = true;
+        password_mismatch = true;
+        username_box.set_text("");
+        password_box.set_text("");
+        confirm_box.set_text("");
       } else if (senha != conf) {
         // Senhas diferentes: erro
-        senha_mismatch = true;
+        password_mismatch = true;
+        username_box.set_text("");
+        password_box.set_text("");
+        confirm_box.set_text("");
       } else {
         std::string aux = data.get_stats(nome);
         if (aux != "") {
           existing_user = true;
+          username_box.set_text("");
+          password_box.set_text("");
+          confirm_box.set_text("");
         } else {
           data.new_user(nome, senha, 0, 0);
           reg_complete = true;
@@ -101,7 +110,7 @@ void register_screen::draw(ALLEGRO_FONT *font) {
   cancel_button.draw(font);
 
   // Se houve erro de confirmação de senha ou campo vazio, exibe mensagem
-  if (senha_mismatch) {
+  if (password_mismatch) {
     std::string msg = "Senhas diferem ou campos vazios!";
     int text_w = al_get_text_width(font, msg.c_str());
     int x = (screen_width - text_w) / 2;
@@ -126,6 +135,6 @@ void register_screen::reset() {
   confirm_box.set_active(false);
   reg_complete = false;
   go_to_login = false;
-  senha_mismatch = false;
+  password_mismatch = false;
   existing_user = false;
 }

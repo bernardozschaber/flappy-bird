@@ -6,7 +6,7 @@
 
 class text_box : public ui_object {
 public:
-  text_box(int x, int y, int width, int height);
+  text_box(int x, int y, int width, int height, int max_length);
 
   // Ativa/Desativa máscara de caracteres (para senhas)
   void set_mask(bool mask_enabled);

@@ -41,3 +41,7 @@
     Matsura(src,include)
         - Integração da manipulação de arquivos e interface de login concluída
         - Criação de tela de registro com confirmação de senha concluído
+
+    Matsura(Makefile, src, include)
+        -Menu de login e registro concluído
+        -Nova Makefile com o main incluindo o menu

@@ -8,7 +8,7 @@ login_screen::login_screen(int screen_w, int screen_h, registration &data_ref)
       register_button(410, 300, 100, 30, "Registrar"),
       view_players_button(300, 350, 150, 30, "Ver Jogadores"),
       valid_login(true), go_to_list(false), go_to_register(false),
-      data(data_ref) {
+      done(false), data(data_ref) {
   password_box.set_mask(true);
   username_box.set_active(false);
   password_box.set_active(false);
@@ -132,4 +132,5 @@ void login_screen::reset() {
   go_to_list = false;
   go_to_register = false;
   valid_login = true;
+  done = false;
 }

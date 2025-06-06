@@ -71,6 +71,8 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
                0, page_text.c_str());
 }
 
+bool player_list_screen::go_to_main_menu() const { return go_to_menu; }
+
 void player_list_screen::reset() {
   current_page = 0;
   go_to_menu = false;

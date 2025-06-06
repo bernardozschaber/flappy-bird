@@ -22,9 +22,6 @@ bool registration::isFileEmpty(){
     return users.tellg() == 0;
 }
 
-std::fstream registration::get_users(){
-}
-
 void registration::new_user(std::string name, std::string password, int score, int games){
     users.clear();
     users.seekp(0, std::ios::end);
@@ -226,8 +223,3 @@ std::string registration::get_max_user(){
     return user;
 }
 
-// void registration::update_champion(){
-//     std::string user_champion;
-//     user_champion = get_max_user();
-//     this->user_champion = user_champion;
-// }

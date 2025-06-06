@@ -22,22 +22,25 @@ private:
 //score, username, password, games 
 public:
   registration(std::string arquivo);
+
   bool isFileEmpty();
 
-  std::fstream get_users();
-  // std::fstream get_champion();
   int getline_number(std::string user);
 
   void new_user(std::string name, std::string password, int score, int games);
-  // void list_users();
+
   std::string get_stats(std::string name); // retorna "null" se não existe
+
   std::vector<player> get_all(); //resgata as informações de todos os jogadores, exceto senha
+
   void update(std::string user, int score);
+
   void delete_user(std::string user);
 
   int get_max_score();
-  // void getpos_champion();
+
   std::string get_max_user();
+
   void update_champion();
 
   bool isOpenFile(){
