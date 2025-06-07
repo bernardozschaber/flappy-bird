@@ -50,6 +50,12 @@
         - Adicionados mais sprites para UI
 
 07-06-2025
+
+    Pedro(Makefile, src)
+        - Atualização do makefile com a inclusão de novos objetos
+        - Atualização do registration para que o programa rode mesmo sem o arquivo .txt
+
+07-06-2025
     Sam (main.cpp, game_loop, moving_button)
         - Adicionadas funcionalidades para o moving_button:
             - Método para setar o estado de pressionado
