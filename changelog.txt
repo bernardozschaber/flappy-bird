@@ -48,3 +48,9 @@
 
     Sam (assets):
         - Adicionados mais sprites para UI
+
+07-06-2025
+
+    Pedro(Makefile, src)
+        - Atualização do makefile com a inclusão de novos objetos
+        - Atualização do registration para que o programa rode mesmo sem o arquivo .txt

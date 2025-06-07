@@ -4,7 +4,7 @@
 
 registration::registration(std::string file){
     this->file = file;
-    users.open(file, std::ios::in | std::ios::out);
+    users.open(file, std::ios::in | std::ios::out | std::ios::app);
     if(users.is_open()){
         openfile_check = 1;
     }
