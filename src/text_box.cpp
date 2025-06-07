@@ -2,9 +2,9 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
 
-text_box::text_box(int x, int y, int width, int height, int max_length)
+text_box::text_box(int x, int y, int width, int height, int max_length, ALLEGRO_SAMPLE* sample_key)
     : ui_object(x, y, width, height), text(""), is_active(false), masked(false),
-      max_length(max_length) {}
+      max_length(max_length), sample_key(sample_key) {}
 
 void text_box::handle_event(const ALLEGRO_EVENT &ev) {
   // Só processa teclado se estiver ativo (focado)
@@ -15,12 +15,19 @@ void text_box::handle_event(const ALLEGRO_EVENT &ev) {
     if (ev.keyboard.keycode == ALLEGRO_KEY_BACKSPACE) {
       if (!text.empty()) {
         text.pop_back();
+        if (sample_key) {
+          al_play_sample(sample_key, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, nullptr);
+        }
       }
     } else {
       // Adiciona caractere imprimível (ASCII simples)
       if (ev.keyboard.unichar > 0 && ev.keyboard.unichar < 128) {
-        if (static_cast<int>(text.size()) < max_length)
+        if (static_cast<int>(text.size()) < max_length) {
           text.push_back(static_cast<char>(ev.keyboard.unichar));
+          if (sample_key) {
+            al_play_sample(sample_key, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, nullptr);
+          }
+        }
       }
     }
   }

@@ -8,7 +8,7 @@
 
 class register_screen {
 public:
-  register_screen(int screen_w, int screen_h, registration &data_ref);
+  register_screen(int screen_w, int screen_h, registration &data_ref, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s);
 
   // Trata eventos (mouse/teclado) e repassa para componentes
   void handle_event(const ALLEGRO_EVENT &ev);

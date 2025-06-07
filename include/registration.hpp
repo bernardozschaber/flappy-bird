@@ -32,9 +32,6 @@ private:
   //Função auxiliar para ordenação dos usernames em ordem alfabética
   static bool compare_username(const player& r1, const player& r2);
   
-  //Atualiza o novo campeão
-  void update_champion();
-
   //Retorna a linha do jogador correspondente do .txt
   int getline_number(std::string user);
 
@@ -64,6 +61,9 @@ public:
 
   //Obtém o username do campeão
   std::string get_max_user();
+
+  //Atualiza o novo campeão
+  void update_champion();
 
   //Verifica se o arquivo está aberto
   bool isOpenFile(){

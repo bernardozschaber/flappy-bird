@@ -2,11 +2,12 @@
 #define TEXT_BOX_HPP
 
 #include "ui_object.hpp"
+#include <allegro5/allegro_audio.h>
 #include <string>
 
 class text_box : public ui_object {
 public:
-  text_box(int x, int y, int width, int height, int max_length);
+  text_box(int x, int y, int width, int height, int max_length, ALLEGRO_SAMPLE* key_s);
 
   // Ativa/Desativa máscara de caracteres (para senhas)
   void set_mask(bool mask_enabled);
@@ -30,6 +31,7 @@ private:
   bool is_active; // true quando clicado/focado
   bool masked;    // true para exibir '*' em vez de caracteres
   int max_length;
+  ALLEGRO_SAMPLE* sample_key;
 };
 
 #endif // TEXT_BOX_HPP
