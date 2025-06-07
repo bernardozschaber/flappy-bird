@@ -51,3 +51,8 @@
 
 07-06-2025
     Sam (main.cpp, game_loop, moving_button)
+        - Adicionadas funcionalidades para o moving_button:
+            - Método para setar o estado de pressionado
+            - Método para ler o estado de pressionado
+        - Corrigido um mal funcionamento do método contains_click do moving_button
+        - Adicionado um botão de pause funcional
