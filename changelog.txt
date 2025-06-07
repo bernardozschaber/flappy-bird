@@ -24,25 +24,25 @@
         - Atualizado sprite dos canos
         - Levemente aumentada a velocidade de movimento da grama
     
-    Pedro(registration.cpp, registration.hpp)
+    Pedro (registration.cpp, registration.hpp):
         - Adicionadas funcionalidades para registro do player
         - Adicionadas funcões de manipulação do arquivo de armazenamento dos players
         - Adicionada função que obtém infos(username, score, games) de cada player
 
 05-06-2025
 
-    Matsura(src,include)
+    Matsura (src, include):
         - Inicio da integração da interface de login com a manipulação de arquivos
         - Adição de mensagens de erro de login
         - Inicio da implementação de tela de registro separada do login
 
 06-06-2025
 
-    Matsura(src,include)
+    Matsura (src, include):
         - Integração da manipulação de arquivos e interface de login concluída
         - Criação de tela de registro com confirmação de senha concluído
 
-    Matsura(Makefile, src, include)
+    Matsura (Makefile, src, include):
         -Menu de login e registro concluído
         -Nova Makefile com o main incluindo o menu
 
@@ -51,12 +51,11 @@
 
 07-06-2025
 
-    Pedro(Makefile, src)
+    Pedro (Makefile, src):
         - Atualização do makefile com a inclusão de novos objetos
         - Atualização do registration para que o programa rode mesmo sem o arquivo .txt
 
-07-06-2025
-    Sam (main.cpp, game_loop, moving_button)
+    Sam (main.cpp, game_loop, moving_button):
         - Adicionadas funcionalidades para o moving_button:
             - Método para setar o estado de pressionado
             - Método para ler o estado de pressionado
