@@ -22,7 +22,7 @@ const char * SETTINGS_BUTTON_SPRITE = "assets/UI/settings_button.png";          
 const char * INSTRUÇÕES_SPRITE = "assets/UI/instruções.png";                                                         // caminho das instruções
 const char * SCORE_SPRITE = "assets/UI/score_text.png";                                                                   // caminho da tela de morte
 const char * HOME_SPRITE= "assets/UI/home_button.png";                                                                      // caminho do sprite de home
-const char * BACKGROUND = "assets/background.png";                                                                          // caminho do sprite do fundo
+const char * BACKGROUND = "assets/scenario/background.png";                                                                          // caminho do sprite do fundo
 const char * NUMBERS_SPRITES[10] = {"assets/UI/num_0.png", "assets/UI/num_1.png", "assets/UI/num_2.png", "assets/UI/num_3.png",  
                                     "assets/UI/num_4.png", "assets/UI/num_5.png", "assets/UI/num_6.png", "assets/UI/num_7.png", 
                                     "assets/UI/num_8.png", "assets/UI/num_9.png"};                                                              // caminho dos números 

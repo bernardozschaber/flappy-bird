@@ -45,3 +45,6 @@
     Matsura(Makefile, src, include)
         -Menu de login e registro concluído
         -Nova Makefile com o main incluindo o menu
+
+    Sam (assets):
+        - Adicionados mais sprites para UI
