@@ -61,3 +61,9 @@
             - Método para ler o estado de pressionado
         - Corrigido um mal funcionamento do método contains_click do moving_button
         - Adicionado um botão de pause funcional
+    
+    Pedro (registration):
+        - Atualização do método get_all para retornar a lista dos players em ordem alfabética
+        - Criação do método que compara os usernames dos usuários para utilização como parâmetro na função de ordenação.
+        - Adicionado comentários no contrato e na implementação da classe
+        - Corrigida a visibilidade de alguns métodos da classe
