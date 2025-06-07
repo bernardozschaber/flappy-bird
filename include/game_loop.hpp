@@ -26,7 +26,7 @@ extern const char * HOME_SPRITE;                                // caminho do sp
 extern const char * BACKGROUND;                                 // caminho do sprite do fundo
 extern const char * NUMBERS_SPRITES[10];                        // caminho dos números 
 extern const char * SOUND_BUTTON_SPRITE[2];                     // caminho do botão de som ligado/desligado
-extern const char * PAUSE_BUTTON_SPRITE[2];                     // caminho do botão de pause/despause
+extern const char * PAUSE_BUTTON_SPRITE[4];                     // caminho do botão de pause/despause
 
 // CONSTANTES DE PROPRIEDADE PARA OBJETOS DO CENÁRIO
 extern const int SCREEN_H;    // altura da tela
@@ -72,7 +72,7 @@ class game_loop {
         ALLEGRO_BITMAP* background;                           // Bitmap do fundo
         ALLEGRO_BITMAP* numbers_sprites[10];                  // Bitmap dos números de 0 a 9 
         ALLEGRO_BITMAP* sound_button_sprite[2];               // Vetor de bitmaps do botão de som ligado/desligado
-        ALLEGRO_BITMAP* pause_button_sprite[2];               // Vetor de bitmaps do botão de pause/despause
+        ALLEGRO_BITMAP* pause_button_sprite[4];               // Vetor de bitmaps do botão de pause/despause
 
         //Fontes do jogo
         ALLEGRO_FONT *pixel_sans;
@@ -86,11 +86,12 @@ class game_loop {
         bool death_menu = false;
         bool paused = false;
         bool sound = true; 
+        bool debug_mode = true;
 
     public:
         game_loop();               // Construtor
         ~game_loop();              // Destrutor
-        void commands(unsigned char key[], bool mouse_is_down, bool mouse_just_released);
+        void commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y);
         void update(bool update);  // Método que atualiza o estado dos objetos do jogo
         void draw();               // Método que desenha os objetos do jogo na tela
         void reset_game();         // Método que reseta o jogo, recriando os objetos e o cenário

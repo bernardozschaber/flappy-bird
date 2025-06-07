@@ -21,9 +21,18 @@ class moving_button : public ui_object {
 
     void set_acceleration(float ax, float ay);
     
-    void set_bitmap(ALLEGRO_BITMAP* bitmap);
+    void set_bitmap(ALLEGRO_BITMAP* bitmap);            // Seta o bitmap para o parâmetro
 
-    bool contains_click(float mouse_x, float mouse_y);
+    bool contains_click(float mouse_x, float mouse_y);  // Retorna true se as posições passadas de parâmetro estão dentro do botão
+
+    void set_pressed(bool pressed);                     // Seta a variável is_being_pressed para o parâmetro
+
+    bool is_pressed();                                  // Retorna is_being_pressed
+
+    // Overrides inúteis só pra não ser abstrata (problema futuro)
+    void handle_event(const ALLEGRO_EVENT &ev);
+
+    void draw(ALLEGRO_FONT *font);
 };
 
 #endif

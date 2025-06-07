@@ -48,3 +48,6 @@
 
     Sam (assets):
         - Adicionados mais sprites para UI
+
+07-06-2025
+    Sam (main.cpp, game_loop, moving_button)

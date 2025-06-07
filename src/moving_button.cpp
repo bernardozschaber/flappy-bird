@@ -14,7 +14,9 @@ void moving_button::set_acceleration(float ax, float ay) {
 }
 
 bool moving_button::contains_click(float mouse_x, float mouse_y) {
-    return contains(mouse_x, mouse_y);
+    bool is_within_x = (mouse_x >= this->x - this->width/2) && (mouse_x <= this->x + this->width/2);
+    bool is_within_y = (mouse_y >= this->y - this->height/2) && (mouse_y <= this->y + this->height/2);
+    return is_within_x && is_within_y;
 }
 
 void moving_button::set_bitmap(ALLEGRO_BITMAP* bitmap) {
@@ -24,10 +26,22 @@ void moving_button::set_bitmap(ALLEGRO_BITMAP* bitmap) {
 }
 
 void moving_button::draw() {
-    if (is_being_pressed) {
-        al_draw_scaled_rotated_bitmap(this->sprite,width/2,height/2,x,y,0.8,0.8,0,0);
-    } else {
-        al_draw_scaled_rotated_bitmap(this->sprite,width/2,height/2,x,y,1,1,0,0);
-    }
+    // al_draw_scaled_rotated_bitmap(this->sprite,width/2,height/2,x,y,0.8,0.8,0,0);
+    al_draw_scaled_rotated_bitmap(this->sprite,width/2,height/2,x,y,1,1,0,0);
 }
 
+bool moving_button::is_pressed() {
+    return this->is_being_pressed;
+}
+
+void moving_button::set_pressed(bool pressed) {
+    this->is_being_pressed = pressed;
+}
+
+void moving_button::handle_event(const ALLEGRO_EVENT &ev) {
+    return;
+}
+
+void moving_button::draw(ALLEGRO_FONT* font) {
+    return;
+}

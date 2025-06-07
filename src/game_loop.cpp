@@ -4,6 +4,7 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_ttf.h>
 #include <iostream>
+#include <fstream>  // Pra debug
 
 
 // CONSTANTES DE PATH 
@@ -27,7 +28,8 @@ const char * NUMBERS_SPRITES[10] = {"assets/UI/num_0.png", "assets/UI/num_1.png"
                                     "assets/UI/num_4.png", "assets/UI/num_5.png", "assets/UI/num_6.png", "assets/UI/num_7.png", 
                                     "assets/UI/num_8.png", "assets/UI/num_9.png"};                                                              // caminho dos números 
 const char * SOUND_BUTTON_SPRITE[2] = {"assets/UI/sound_on.png", "assets/UI/sound_off.png"};                            // caminho do botão de som ligado/desligado
-const char * PAUSE_BUTTON_SPRITE[2] = {"assets/UI/pause_button.png", "assets/UI/resume_button.png"};                    // caminho do botão de pause/despause
+const char * PAUSE_BUTTON_SPRITE[4] = {"assets/UI/pause_button.png", "assets/UI/resume_button.png", "assets/UI/pause_button_pressed.png", "assets/UI/resume_button_pressed.png"};                    // caminho do botão de pause/despause
+
 
 // CONSTANTES DE PROPRIEDADE PARA OBJETOS DO CENÁRIO
 const int SCREEN_H = 600;    // altura da tela
@@ -73,9 +75,10 @@ std::uniform_int_distribution<> dis(0, 384);
         for (int i = 0; i < 5; i++)
             bird_animation_sprite[i] = al_load_bitmap(BIRD_SPRITE[i]);
         sound_button_sprite[0] = al_load_bitmap(SOUND_BUTTON_SPRITE[0]);
-        pause_button_sprite[0] = al_load_bitmap(PAUSE_BUTTON_SPRITE[0]);
         sound_button_sprite[1] = al_load_bitmap(SOUND_BUTTON_SPRITE[1]);
-        pause_button_sprite[1] = al_load_bitmap(PAUSE_BUTTON_SPRITE[1]);
+        for (int i = 0; i < 4; i++)
+            pause_button_sprite[i] = al_load_bitmap(PAUSE_BUTTON_SPRITE[i]);
+        
 
         // Criação do pássaro e inserção no vetor de objetos
         game_objects.push_back(new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 
@@ -102,7 +105,9 @@ std::uniform_int_distribution<> dis(0, 384);
         background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*3/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
         background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*5/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
         background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*7/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
-        //criar os botões aq                                                                               
+        
+        // Criação dos botões
+
     };               
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -127,8 +132,8 @@ std::uniform_int_distribution<> dis(0, 384);
             al_destroy_bitmap(bird_animation_sprite[i]);
         al_destroy_bitmap(sound_button_sprite[0]);
         al_destroy_bitmap(sound_button_sprite[1]);
-        al_destroy_bitmap(pause_button_sprite[0]);
-        al_destroy_bitmap(pause_button_sprite[1]);
+        for (int i = 0; i < 4; i++)
+            al_destroy_bitmap(pause_button_sprite[i]);
 
         // Deletar os objetos do jogo
         for (game_object* obj : game_objects) {
@@ -161,12 +166,53 @@ std::uniform_int_distribution<> dis(0, 384);
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    void game_loop::commands(unsigned char key[], bool mouse_is_down, bool mouse_just_released){
+    void game_loop::commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y) {
+        // Processamento do botão de pause (tecla ESC ou mouse)
+        if(buttons.size() > 0) {
+            if(mouse_just_released) {
+                if(buttons.at(0)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(0)->is_pressed()) {
+                    paused = !paused;   // Alterna o estado de pausa
+                }
+            }
+
+            if(mouse_is_down) {
+                if(buttons.at(0)->contains_click(mouse_update_x, mouse_update_y)) {
+                    buttons.at(0)->set_pressed(true);
+                    switch(paused) {
+                        case true: {
+                            buttons.at(0)->set_bitmap(pause_button_sprite[3]);
+                            break;
+                        }
+                        case false: {
+                            buttons.at(0)->set_bitmap(pause_button_sprite[2]);
+                            break;
+                        }
+                    }
+                }
+            }
+            else {
+                switch(paused) {
+                    case true: {
+                        buttons.at(0)->set_bitmap(pause_button_sprite[1]);
+                        break;
+                    }
+                    case false: {
+                        buttons.at(0)->set_bitmap(pause_button_sprite[0]);
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Processamento das teclas
         if(key[ALLEGRO_KEY_SPACE] == 3) { 
             if(!paused){
                 if(!playing && !dead) {                        // Se o jogo não está em andamento e não está morto
                     playing = true;                            // Inicia o jogo
                     game_objects.at(0)->Set_y_acelleration(2); // Define a aceleração da gravidade
+
+                    //buttons.push_back(new moving_button(SCREEN_W - al_get_bitmap_width(pause_button_sprite[0]), SCREEN_W - al_get_bitmap_height(pause_button_sprite[0]), pause_button_sprite[0])); // Cria o botão de pause
+                    buttons.push_back(new moving_button(736, 64, pause_button_sprite[0])); // Cria o botão de pause
                 } 
                 if(playing && !dead) {                         // Se o jogo está em andamento e não está morto
                     game_objects.at(0)->Jump();                // Faz o pássaro pular
@@ -178,17 +224,22 @@ std::uniform_int_distribution<> dis(0, 384);
                 }
                 //if()
             }
-            key[ALLEGRO_KEY_SPACE] = 0;
-        }else if(key[ALLEGRO_KEY_ESCAPE] == 3) { // Se a tecla ESC foi pressionada
-            if(playing&&!dead){
-                paused=!paused; // Alterna o estado de pausa
-            }
-            key[ALLEGRO_KEY_ESCAPE] =0;
         }
-        
+        else if(key[ALLEGRO_KEY_ESCAPE] == 3) {
+            if(playing && !dead) {
+                paused = !paused;   // Alterna o estado de pausa
+            }
+        }
+
+
         //dps criar botões aqui
-        if(mouse_just_released){
+        if(mouse_just_released) {
             mouse_just_released = false; // Reseta o mouse just released
+        }
+
+        // "Marca" que as teclas apertadas já foram vistas
+        for (int i = 0; i < ALLEGRO_KEY_MAX; i++) {
+            key[i] &= 1;
         }
     }
     
@@ -271,6 +322,9 @@ std::uniform_int_distribution<> dis(0, 384);
             dead = true;
             game_objects.at(0)->Jump();
             game_objects.at(0)->Set_x_speed(1.5*game_objects.at(1)->Get_x_speed());
+            for (moving_button* btn : buttons) 
+                delete btn;
+            buttons.clear();    // Deleta todos os botões
         }
 
         // Verifica se o pássaro bateu em algum cano
@@ -280,6 +334,9 @@ std::uniform_int_distribution<> dis(0, 384);
                     dead = true;
                     game_objects.at(0)->Jump();
                     game_objects.at(0)->Set_x_speed(1.7*game_objects.at(1)->Get_x_speed());
+                    for (moving_button* btn : buttons) 
+                        delete btn;
+                    buttons.clear();    // Deleta todos os botões
                     break;
                 }
             }

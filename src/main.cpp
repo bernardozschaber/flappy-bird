@@ -25,13 +25,22 @@
 
 // DECLARANDO A STATIC VELOCIDADE DO CANO
 float pipe_object::vel_x = -5;                                          
-int main(int argc, char **argv){
+int main(int argc, char **argv) {
+    
+    // Arquivo para debug (just in case)
+    std::ofstream debug("debug_log.txt");
+    if (!debug.is_open()) {
+        std::cout << "Debug file didn't open";
+    }
+
+    // Variáveis
     int max_score = 0;                                                      // Armazena a pontuação máxima do jogador
     int score = 0;                                                          // Armazena a pontuação do jogador
     int mouse_click_pos_x;                                                  // Armazena a posição X do clique do mouse
     int mouse_click_pos_y;                                                  // Armazena a posição Y do clique do mouse
     bool mouse_is_down = false;                                            // Armazena se o mouse está pressionado ou não
     bool mouse_just_released = false;                                      // Armazena se o mouse foi solto nesse momento ou não
+
     // ROTINAS DO SISTEMA, ADDONS E EXTENSÕES
     /*
     Essa parte talvez seja difícil de entender o que está acontecendo, então é básicamente assim:
@@ -140,9 +149,8 @@ int main(int argc, char **argv){
                 break;
 
             // Key Up - registra uma tecla que foi solta em key (... 0 0 1 0)
-            // Essa parte talvez não funcione ainda, vou dar uma olhada depois
             case ALLEGRO_EVENT_KEY_UP:
-                key[event.keyboard.keycode] &= RELEASED;
+                key[event.keyboard.keycode] = 2;
                 break;
 
             // Mouse Button Down - registra as coordenadas do clique do mouse
@@ -175,7 +183,7 @@ int main(int argc, char **argv){
         }
         */
         if(game_loop_screen){
-            main_game_loop.commands(key, mouse_is_down, mouse_just_released); // Processa os comandos causados pelas teclas/mouse
+            main_game_loop.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y); // Processa os comandos causados pelas teclas/mouse
             main_game_loop.update(is_updating); // Atualiza o estado do jogo
             is_updating = false;
             main_game_loop.draw(); // Desenha o jogo na tela
@@ -190,4 +198,7 @@ int main(int argc, char **argv){
         */
         
     }
+
+    debug.close();
+    return 0;
 }
