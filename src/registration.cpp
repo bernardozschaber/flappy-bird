@@ -90,6 +90,7 @@ bool registration::compare_username(const player& p1, const player& p2){
 
 std::vector<player> registration::get_all(){
     users.clear();
+    players.clear();
     users.seekg(0, std::ios::beg);
     int score, games;
     std::string username, line, trash;

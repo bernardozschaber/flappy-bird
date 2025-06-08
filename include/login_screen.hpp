@@ -34,6 +34,7 @@ private:
   int screen_width, screen_height;
 
   bool valid_login;
+  bool empty_field;
   bool done;
 
   std::string logged_user;

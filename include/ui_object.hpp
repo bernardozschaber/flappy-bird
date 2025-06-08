@@ -20,6 +20,10 @@ public:
 
   void set_y(float y);
 
+  int get_width();
+
+  int get_height();
+
   bool contains(int mx, int my) const;
 
 protected:

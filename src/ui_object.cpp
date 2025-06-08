@@ -9,16 +9,24 @@ bool ui_object::contains(int mx, int my) const {
 
 int ui_object::get_x(){
   return x;
-};
+}
 
 int ui_object::get_y(){
   return y;
-};
+}
+
+int ui_object::get_width(){
+  return width;
+}
+
+int ui_object::get_height(){
+  return height;
+}
 
 void ui_object::set_y(float posy){
   this->y=posy;
-};
+}
 
 void ui_object::set_x(float posx){
   this->x=posx;
-};
+}

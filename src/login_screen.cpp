@@ -8,7 +8,7 @@ login_screen::login_screen(int screen_w, int screen_h, registration &data_ref, A
       register_button(415, 336, 120, 40, "Registrar", button_s),
       view_players_button(275, 396, 180, 40, "Ver Jogadores", button_s),
       valid_login(true), go_to_list(false), go_to_register(false),
-      done(false), data(data_ref), logged_user("") {
+      done(false), data(data_ref), logged_user(""), empty_field(false) {
   password_box.set_mask(true);
   username_box.set_active(false);
   password_box.set_active(false);
@@ -42,9 +42,12 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
       login_button.reset_clicked();
       std::string nome = username_box.get_text();
       std::string senha = password_box.get_text();
-
+      if (nome == "" || senha == ""){
+        empty_field = true;
+        valid_login = true;
+      } else {
       std::string aux = data.get_stats(nome);
-
+      empty_field = false;
       if (aux == "") {
         valid_login = false;
         username_box.set_text("");
@@ -67,6 +70,7 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
         }
       }
     }
+  }
 
     if (register_button.was_clicked()) {
       register_button.reset_clicked();
@@ -96,6 +100,15 @@ void login_screen::draw(ALLEGRO_FONT *font) {
   login_button.draw(font);
   register_button.draw(font);
   view_players_button.draw(font);
+
+  if (empty_field) {
+    std::string erro = "Há campos vazios!";
+    int erro_w = al_get_text_width(font, erro.c_str());
+    int x_erro = 275;
+    int y_erro = 310;
+    al_draw_text(font, al_map_rgb(252, 23, 35), x_erro, y_erro, 0,
+                 erro.c_str());
+  }
 
   if (!valid_login) {
     std::string erro = "usuário e/ou senha inválidos";
@@ -135,4 +148,5 @@ void login_screen::reset() {
   go_to_register = false;
   valid_login = true;
   done = false;
+  empty_field = false;
 }

@@ -21,7 +21,7 @@ void text_box::handle_event(const ALLEGRO_EVENT &ev) {
       }
     } else {
       // Adiciona caractere imprimível (ASCII simples)
-      if (ev.keyboard.unichar > 0 && ev.keyboard.unichar < 128) {
+      if (ev.keyboard.unichar > 32 && ev.keyboard.unichar < 127) {
         if (static_cast<int>(text.size()) < max_length) {
           text.push_back(static_cast<char>(ev.keyboard.unichar));
           if (sample_key) {

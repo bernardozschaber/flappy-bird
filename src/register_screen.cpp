@@ -1,13 +1,13 @@
 #include "register_screen.hpp"
 #include <allegro5/allegro_primitives.h>
 
-register_screen::register_screen(int screen_w, int screen_h, registration &data_ref, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s)
+register_screen::register_screen(int screen_w, int screen_h, registration &data_ref, std::vector<player> &vector, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s)
     : screen_width(screen_w), screen_height(screen_h),
       username_box(275, 200, 250, 40, 18, key_s), password_box(275, 270, 250, 40, 18, key_s),
       confirm_box(275, 340, 250, 40, 18, key_s),
       confirm_button(275, 400, 120, 40, "Confirmar", button_s),
-      cancel_button(415, 400, 120, 40, "Cancelar", button_s), reg_complete(false),
-      go_to_login(false), password_mismatch(false), existing_user(false), data(data_ref) {
+      cancel_button(415, 400, 120, 40, "Cancelar", button_s), reg_complete(false), vector(vector),
+      go_to_login(false), password_mismatch(false), existing_user(false), data(data_ref), empty_field(false) {
   password_box.set_mask(true);
   confirm_box.set_mask(true);
   username_box.set_active(false);
@@ -50,14 +50,12 @@ void register_screen::handle_event(const ALLEGRO_EVENT &ev) {
 
       if (nome.empty() || senha.empty() || conf.empty()) {
         // Não permitir registro com campos vazios
-        password_mismatch = true;
+        empty_field = true;
+        password_mismatch = false;
         existing_user = false; //evitar textos de erro se sobrepor
-        username_box.set_text("");
-        password_box.set_text("");
-        confirm_box.set_text("");
       } else if (senha != conf) {
-        // Senhas diferentes: erro
         password_mismatch = true;
+        empty_field = false;
         existing_user = false;
         username_box.set_text("");
         password_box.set_text("");
@@ -66,12 +64,15 @@ void register_screen::handle_event(const ALLEGRO_EVENT &ev) {
         std::string aux = data.get_stats(nome);
         if (aux != "") {
           existing_user = true;
+          empty_field = false;
           password_mismatch = false; //evitar textos de erro se sobrepor
           username_box.set_text("");
           password_box.set_text("");
           confirm_box.set_text("");
         } else {
           data.new_user(nome, senha, 0, 0);
+          vector.clear();
+          vector = data.get_all();
           reg_complete = true;
         }
       }
@@ -97,7 +98,7 @@ void register_screen::handle_event(const ALLEGRO_EVENT &ev) {
 
 void register_screen::draw(ALLEGRO_FONT *font) {
   // Desenha rótulos fixos acima de cada campo
-  al_draw_text(font, al_map_rgb(255, 255, 255), 275, 170, 0, "Usuario:");
+  al_draw_text(font, al_map_rgb(255, 255, 255), 275, 170, 0, "Usuário:");
   al_draw_text(font, al_map_rgb(255, 255, 255), 275, 240, 0, "Senha:");
   al_draw_text(font, al_map_rgb(255, 255, 255), 275, 310, 0,
                "Confirmar Senha:");
@@ -113,9 +114,9 @@ void register_screen::draw(ALLEGRO_FONT *font) {
   confirm_button.draw(font);
   cancel_button.draw(font);
 
-  // Se houve erro de confirmação de senha ou campo vazio, exibe mensagem
+  // Mensagens de erro de registro
   if (password_mismatch) {
-    std::string msg = "Senhas diferem ou campos vazios!";
+    std::string msg = "As senhas diferem!";
     int text_w = al_get_text_width(font, msg.c_str());
     int x = (screen_width - text_w) / 2;
     int y = 450;
@@ -123,6 +124,13 @@ void register_screen::draw(ALLEGRO_FONT *font) {
   }
   if (existing_user) {
     std::string msg = "O usuário já existe!";
+    int text_w = al_get_text_width(font, msg.c_str());
+    int x = (screen_width - text_w) / 2;
+    int y = 450;
+    al_draw_text(font, al_map_rgb(252, 23, 35), x, y, 0, msg.c_str());
+  }
+  if (empty_field) {
+    std::string msg = "Há campos vazios!";
     int text_w = al_get_text_width(font, msg.c_str());
     int x = (screen_width - text_w) / 2;
     int y = 450;
@@ -141,4 +149,5 @@ void register_screen::reset() {
   go_to_login = false;
   password_mismatch = false;
   existing_user = false;
+  empty_field = false;
 }
