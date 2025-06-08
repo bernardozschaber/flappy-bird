@@ -4,6 +4,7 @@
 #include "background_object.hpp"
 #include "pipe_object.hpp"
 #include "moving_button.hpp"
+#include "image.hpp"
 #include <vector>
 #include <random>
 
@@ -27,6 +28,8 @@ extern const char * BACKGROUND;                                 // caminho do sp
 extern const char * NUMBERS_SPRITES[10];                        // caminho dos números 
 extern const char * SOUND_BUTTON_SPRITE[4];                     // caminho do botão de som ligado/desligado
 extern const char * PAUSE_BUTTON_SPRITE[4];                     // caminho do botão de pause/despause
+extern const char * DEATH_SCREEN_FRAME;                         // caminho do frame da tela de morte
+extern const char * TRY_AGAIN_BUTTON_SPRITE[2];                 // caminho do botão de tentar de novo
 
 // CONSTANTES DE PROPRIEDADE PARA OBJETOS DO CENÁRIO
 extern const int SCREEN_H;    // altura da tela
@@ -65,6 +68,7 @@ class game_loop {
         std::vector<background_object*> background_objects_1; // Vetor que armazena as montanhas (1)
         std::vector<background_object*> background_objects_2; // Vetor que armazena as montanhas (2)
         std::vector<background_object*> background_objects_3; // Vetor que armazena as montanhas (3)
+        std::vector<image*> images;                           // Vetor que armazena imagens
 
         //Bitmaps dos objetos do jogo
         ALLEGRO_BITMAP* bird_animation_sprite[5];             // Vetor de bitmaps do pássaro
@@ -84,6 +88,8 @@ class game_loop {
         ALLEGRO_BITMAP* numbers_sprites[10];                  // Bitmap dos números de 0 a 9 
         ALLEGRO_BITMAP* sound_button_sprite[4];               // Vetor de bitmaps do botão de som ligado/desligado
         ALLEGRO_BITMAP* pause_button_sprite[4];               // Vetor de bitmaps do botão de pause/despause
+        ALLEGRO_BITMAP* death_screen_frame;                   // Bitmap do frame da tela de morte
+        ALLEGRO_BITMAP* tryagain_sprite[2];                   // Vetor de bitmaps do botão de tentar de novo
 
         //Fontes do jogo
         ALLEGRO_FONT *pixel_sans;

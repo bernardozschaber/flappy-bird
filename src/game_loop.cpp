@@ -29,6 +29,8 @@ const char * NUMBERS_SPRITES[10] = {"assets/UI/num_0.png", "assets/UI/num_1.png"
                                     "assets/UI/num_8.png", "assets/UI/num_9.png"};                                                              // caminho dos números 
 const char * SOUND_BUTTON_SPRITE[4] = {"assets/UI/sound_on.png", "assets/UI/sound_off.png", "assets/UI/sound_on_pressed.png", "assets/UI/sound_off_pressed.png"};                            // caminho do botão de som ligado/desligado
 const char * PAUSE_BUTTON_SPRITE[4] = {"assets/UI/pause_button.png", "assets/UI/resume_button.png", "assets/UI/pause_button_pressed.png", "assets/UI/resume_button_pressed.png"};                    // caminho do botão de pause/despause
+const char * DEATH_SCREEN_FRAME = "assets/UI/death_screen_frame.png";   // caminho do frame da tela de morte
+const char * TRY_AGAIN_BUTTON_SPRITE[2] = {"assets/UI/de_novo_button.png","assets/UI/de_novo_button_pressed.png"};  // caminho do botão de jogar de novo
 
 
 // CONSTANTES DE PROPRIEDADE PARA OBJETOS DO CENÁRIO
@@ -53,6 +55,8 @@ std::uniform_int_distribution<> dis(0, 384);
     int BIRD_JUMP_VEL = -15;                                                // Velocidade do pulo do pássaro
     int BIRD_MAX_UP_VEL = -25;                                              // Velocidade máxima de subida do pássaro
     int BIRD_MAX_DOWN_VEL = 20;                                             // Velocidade máxima de descida do pássaro
+    bool death_screen_animation = false;                                    // Bool que controla se o menu de morte está em animação
+    bool points_animation = false;                                          // Bool que controla se a pontuação está em animação
 
     // Construtor
     game_loop::game_loop(){ 
@@ -68,6 +72,7 @@ std::uniform_int_distribution<> dis(0, 384);
         instruções_sprite = al_load_bitmap(INSTRUÇÕES_SPRITE);
         score_sprite = al_load_bitmap(SCORE_SPRITE);
         background = al_load_bitmap(BACKGROUND);
+        death_screen_frame = al_load_bitmap(DEATH_SCREEN_FRAME);
         for (int i = 0; i < 2; i++)
             achievements_button_sprite[i] = al_load_bitmap(ACHIEVEMENTS_BUTTON_SPRITE[i]);
         for (int i = 0; i < 2; i++)
@@ -84,6 +89,8 @@ std::uniform_int_distribution<> dis(0, 384);
             sound_button_sprite[i] = al_load_bitmap(SOUND_BUTTON_SPRITE[i]);
         for (int i = 0; i < 4; i++)
             pause_button_sprite[i] = al_load_bitmap(PAUSE_BUTTON_SPRITE[i]);
+        for (int i = 0; i < 2; i++)
+            tryagain_sprite[i] = al_load_bitmap(TRY_AGAIN_BUTTON_SPRITE[i]);
 
         // Criação do pássaro e inserção no vetor de objetos
         game_objects.push_back(new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 
@@ -110,6 +117,9 @@ std::uniform_int_distribution<> dis(0, 384);
         background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*3/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
         background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*5/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
         background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*7/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
+
+        // Criação das imagens
+        images.push_back(new image(death_screen_frame, SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
         
         // Criação dos botões
         buttons.push_back(new moving_button(SCREEN_W-64, -40, pause_button_sprite[0]));     
@@ -135,6 +145,7 @@ std::uniform_int_distribution<> dis(0, 384);
         al_destroy_bitmap(grass_sprite);
         al_destroy_bitmap(instruções_sprite);
         al_destroy_bitmap(score_sprite);
+        al_destroy_bitmap(death_screen_frame);
         for (int i = 0; i < 2; i++) 
             al_destroy_bitmap(achievements_button_sprite[i]);
         for (int i = 0; i < 2; i++) 
@@ -149,6 +160,8 @@ std::uniform_int_distribution<> dis(0, 384);
             al_destroy_bitmap(sound_button_sprite[i]);
         for (int i = 0; i < 4; i++)
             al_destroy_bitmap(pause_button_sprite[i]);
+        for (int i = 0; i < 2; i++)
+            al_destroy_bitmap(tryagain_sprite[i]);
 
         // Deletar os objetos do jogo
         for (game_object* obj : game_objects) {
@@ -182,8 +195,8 @@ std::uniform_int_distribution<> dis(0, 384);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void game_loop::commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y, states* state) {
-        // Processamento do botão de pause (tecla ESC ou mouse)
-        
+
+        // Processamento dos botões
         if(buttons.size() > 0) {
             if(mouse_just_released) {
                 if(!dead){
@@ -240,11 +253,11 @@ std::uniform_int_distribution<> dis(0, 384);
                         buttons.at(2)->set_pressed(true);
                         switch(sound){
                             case true:
-                            buttons.at(2)->set_bitmap(sound_button_sprite[2]);
-                            break;
+                                buttons.at(2)->set_bitmap(sound_button_sprite[2]);
+                                break;
                             case false:
-                            buttons.at(2)->set_bitmap(sound_button_sprite[3]);
-                            break;
+                                buttons.at(2)->set_bitmap(sound_button_sprite[3]);
+                                break;
                         }
                     }
                     if(buttons.at(3)->contains_click(mouse_update_x, mouse_update_y)) {
@@ -272,11 +285,11 @@ std::uniform_int_distribution<> dis(0, 384);
                 buttons.at(1)->set_bitmap(settings_button_sprite[0]);
                 switch(sound){
                     case true:
-                    buttons.at(2)->set_bitmap(sound_button_sprite[0]);
-                    break;
+                        buttons.at(2)->set_bitmap(sound_button_sprite[0]);
+                        break;
                     case false:
-                    buttons.at(2)->set_bitmap(sound_button_sprite[1]);
-                    break;
+                        buttons.at(2)->set_bitmap(sound_button_sprite[1]);
+                        break;
                 }
                 buttons.at(3)->set_bitmap(achievements_button_sprite[0]);
                 buttons.at(4)->set_bitmap(home_sprite[0]);
@@ -293,7 +306,7 @@ std::uniform_int_distribution<> dis(0, 384);
                 if(playing && !dead) {                         // Se o jogo está em andamento e não está morto
                     game_objects.at(0)->Jump();                // Faz o pássaro pular
                 }
-                if(!playing && death_menu){
+                if(!playing && death_menu && !death_screen_animation){
                     dead = false;
                     death_menu = false;
                     this->reset_game();
@@ -414,6 +427,7 @@ std::uniform_int_distribution<> dis(0, 384);
         if(game_objects.at(0)->Get_position()->y>SCREEN_H+50&&dead){
             death_menu = true;
             playing = false;
+            death_screen_animation = true;
         }
 
 
@@ -457,6 +471,26 @@ std::uniform_int_distribution<> dis(0, 384);
             }else{
             buttons.at(i)->set_acceleration(0,0);
             buttons.at(i)->set_velocity(0,0);
+            }
+        }
+
+        //////////MENU DE MORTE///////////////
+        if(death_menu && images.size() > 0) {
+            //Updates
+            images.at(0)->Update();
+
+            if(death_screen_animation) {
+                float vel = (SCREEN_H/2 - images.at(0)->get_y())/10 - 5;
+                images.at(0)->set_velocity_y(vel);
+
+                if(images.at(0)->get_y() <= SCREEN_H/2)     // Frame da tela de morte chegou/passou do meio da tela
+                {
+                    death_screen_animation = false;
+                    points_animation = true;
+                    images.at(0)->set_acceleration_y(0);
+                    images.at(0)->set_velocity_y(0);
+                    images.at(0)->set_y(SCREEN_H/2);
+                }
             }
         }
 
@@ -545,6 +579,11 @@ std::uniform_int_distribution<> dis(0, 384);
         buttons.at(5)->draw(0.22+dif);
         }
 
+        //////////MENU DE MORTE///////////////
+        if(death_menu && images.size() > 0) {
+            images.at(0)->Draw();
+        }
+
         //Desenhar o score
         //al_draw_textf(pixel_sans, black, 10, 10, 0, "Score: %d", score);
         al_flip_display();
@@ -585,13 +624,31 @@ std::uniform_int_distribution<> dis(0, 384);
         background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*5/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));                   
         background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*7/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));                   
         
+        images.clear();
+        /*
+        0 -> Frame da tela de morte
+        */
+        images.push_back(new image(death_screen_frame, SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
+        death_screen_animation = false;
+        points_animation = false;
+
         buttons.clear();
+        /*
+        0 -> Pause
+        1 -> Settings
+        2 -> Sound
+        3 -> Achievements
+        4 -> Home
+        5 -> Instruções (???)
+        6 -> Play Again
+        */
         buttons.push_back(new moving_button(SCREEN_W-64, 60, pause_button_sprite[0]));
         buttons.push_back(new moving_button(SCREEN_W/2-126, 60, settings_button_sprite[0]));
         buttons.push_back(new moving_button(SCREEN_W/2-42, 60, sound_button_sprite[0]));
         buttons.push_back(new moving_button(SCREEN_W/2+42, 60, achievements_button_sprite[0]));
         buttons.push_back(new moving_button(SCREEN_W/2+126, 60, home_sprite[0]));  
         buttons.push_back(new moving_button(SCREEN_W/2,SCREEN_H/2+80, instruções_sprite));
+        buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H+128, tryagain_sprite[0]));
         dif=0;
         going_up=true;
     } 
