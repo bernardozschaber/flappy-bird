@@ -17,17 +17,17 @@ const char * MOUNTAIN_SPRITE_1 = "assets/scenario/mountains_1.png";             
 const char * MOUNTAIN_SPRITE_2 = "assets/scenario/mountains_2.png";                                                        // caminho das montanhas (do meio)
 const char * MOUNTAIN_SPRITE_3 = "assets/scenario/mountains_3.png";                                                        // caminho das montanhas (de trás)
 const char * GRASS_SPRITE = "assets/scenario/grama.png";                                                                   // caminho da grama
-const char * ACHIEVEMENTS_BUTTON_SPRITE = "assets/UI/achievements_button.png";                                       // caminho do botão de conquistas
-const char * BACK_BUTTON_SPRITE = "assets/UI/back_button.png";                                                       // caminho do botão de voltar
-const char * SETTINGS_BUTTON_SPRITE = "assets/UI/settings_button.png";                                               // caminho do botão de configurações
+const char * ACHIEVEMENTS_BUTTON_SPRITE[2] = {"assets/UI/achievements_button.png","assets/UI/achievements_button_pressed.png"};                                       // caminho do botão de conquistas
+const char * BACK_BUTTON_SPRITE[2] = {"assets/UI/back_button.png","assets/UI/back_button_pressed.png"};                                                       // caminho do botão de voltar
+const char * SETTINGS_BUTTON_SPRITE[2] = {"assets/UI/settings_button.png","assets/UI/settings_button_pressed.png"};                                               // caminho do botão de configurações
 const char * INSTRUÇÕES_SPRITE = "assets/UI/instruções.png";                                                         // caminho das instruções
 const char * SCORE_SPRITE = "assets/UI/score_text.png";                                                                   // caminho da tela de morte
-const char * HOME_SPRITE= "assets/UI/home_button.png";                                                                      // caminho do sprite de home
+const char * HOME_SPRITE[2]= {"assets/UI/home_button.png","assets/UI/home_button_pressed.png"};                                                                      // caminho do sprite de home
 const char * BACKGROUND = "assets/scenario/background.png";                                                                          // caminho do sprite do fundo
 const char * NUMBERS_SPRITES[10] = {"assets/UI/num_0.png", "assets/UI/num_1.png", "assets/UI/num_2.png", "assets/UI/num_3.png",  
                                     "assets/UI/num_4.png", "assets/UI/num_5.png", "assets/UI/num_6.png", "assets/UI/num_7.png", 
                                     "assets/UI/num_8.png", "assets/UI/num_9.png"};                                                              // caminho dos números 
-const char * SOUND_BUTTON_SPRITE[2] = {"assets/UI/sound_on.png", "assets/UI/sound_off.png"};                            // caminho do botão de som ligado/desligado
+const char * SOUND_BUTTON_SPRITE[4] = {"assets/UI/sound_on.png", "assets/UI/sound_off.png", "assets/UI/sound_on_pressed.png", "assets/UI/sound_off_pressed.png"};                            // caminho do botão de som ligado/desligado
 const char * PAUSE_BUTTON_SPRITE[4] = {"assets/UI/pause_button.png", "assets/UI/resume_button.png", "assets/UI/pause_button_pressed.png", "assets/UI/resume_button_pressed.png"};                    // caminho do botão de pause/despause
 
 
@@ -44,6 +44,8 @@ std::uniform_int_distribution<> dis(0, 384);
 // VARIÁVEIS EXTRAS
     int random_offset;                                                      // Offset do cano a ser spawnado
     float score;
+    float dif;                                                              // Float que faz as instruções variarem de tamanho
+    bool going_up;                                                          // Bool que controla se o dif aumenta ou diminui
     int PIPE_SPACE = 160;                                                   // Espaçamento entre os canos
     float PIPE_INITIAL_SPEED = -5;                                          // Velocidade atual dos canos
     float PIPE_SPEED_MAX = -10;                                             // Velocidade máxima dos canos
@@ -63,22 +65,25 @@ std::uniform_int_distribution<> dis(0, 384);
         mountain_sprite_2 = al_load_bitmap(MOUNTAIN_SPRITE_2);
         mountain_sprite_3 = al_load_bitmap(MOUNTAIN_SPRITE_3);
         grass_sprite = al_load_bitmap(GRASS_SPRITE);
-        achievements_button_sprite = al_load_bitmap(ACHIEVEMENTS_BUTTON_SPRITE);
-        back_button_sprite = al_load_bitmap(BACK_BUTTON_SPRITE);
-        settings_button_sprite = al_load_bitmap(SETTINGS_BUTTON_SPRITE);
         instruções_sprite = al_load_bitmap(INSTRUÇÕES_SPRITE);
         score_sprite = al_load_bitmap(SCORE_SPRITE);
-        home_sprite = al_load_bitmap(HOME_SPRITE);
         background = al_load_bitmap(BACKGROUND);
+        for (int i = 0; i < 2; i++)
+            achievements_button_sprite[i] = al_load_bitmap(ACHIEVEMENTS_BUTTON_SPRITE[i]);
+        for (int i = 0; i < 2; i++)
+            back_button_sprite[i] = al_load_bitmap(BACK_BUTTON_SPRITE[i]);
+        for (int i = 0; i < 2; i++)
+            settings_button_sprite[i] = al_load_bitmap(SETTINGS_BUTTON_SPRITE[i]);
+        for (int i = 0; i < 2; i++)
+            home_sprite[i] = al_load_bitmap(HOME_SPRITE[i]);
         for (int i = 0; i < 10; i++)
             numbers_sprites[i] = al_load_bitmap(NUMBERS_SPRITES[i]);
         for (int i = 0; i < 5; i++)
             bird_animation_sprite[i] = al_load_bitmap(BIRD_SPRITE[i]);
-        sound_button_sprite[0] = al_load_bitmap(SOUND_BUTTON_SPRITE[0]);
-        sound_button_sprite[1] = al_load_bitmap(SOUND_BUTTON_SPRITE[1]);
+        for (int i = 0; i < 4; i++)
+            sound_button_sprite[i] = al_load_bitmap(SOUND_BUTTON_SPRITE[i]);
         for (int i = 0; i < 4; i++)
             pause_button_sprite[i] = al_load_bitmap(PAUSE_BUTTON_SPRITE[i]);
-        
 
         // Criação do pássaro e inserção no vetor de objetos
         game_objects.push_back(new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 
@@ -107,7 +112,14 @@ std::uniform_int_distribution<> dis(0, 384);
         background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*7/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
         
         // Criação dos botões
-
+        buttons.push_back(new moving_button(SCREEN_W-64, -40, pause_button_sprite[0]));     
+        buttons.push_back(new moving_button(SCREEN_W/2-126, 60, settings_button_sprite[0]));
+        buttons.push_back(new moving_button(SCREEN_W/2-42, 60, sound_button_sprite[0]));
+        buttons.push_back(new moving_button(SCREEN_W/2+42, 60, achievements_button_sprite[0]));
+        buttons.push_back(new moving_button(SCREEN_W/2+126, 60, home_sprite[0]));  
+        buttons.push_back(new moving_button(SCREEN_W/2,SCREEN_H/2+80, instruções_sprite));
+        dif = 0;
+        going_up=true;
     };               
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -121,17 +133,20 @@ std::uniform_int_distribution<> dis(0, 384);
         al_destroy_bitmap(mountain_sprite_2);
         al_destroy_bitmap(mountain_sprite_3);
         al_destroy_bitmap(grass_sprite);
-        al_destroy_bitmap(achievements_button_sprite);
-        al_destroy_bitmap(back_button_sprite);
-        al_destroy_bitmap(settings_button_sprite);
         al_destroy_bitmap(instruções_sprite);
         al_destroy_bitmap(score_sprite);
+        for (int i = 0; i < 2; i++) 
+            al_destroy_bitmap(achievements_button_sprite[i]);
+        for (int i = 0; i < 2; i++) 
+            al_destroy_bitmap(back_button_sprite[i]);
+            for (int i = 0; i < 2; i++) 
+            al_destroy_bitmap(settings_button_sprite[i]);
         for (int i = 0; i < 9; i++) 
             al_destroy_bitmap(numbers_sprites[i]);
         for (int i = 0; i < 4; i++) 
             al_destroy_bitmap(bird_animation_sprite[i]);
-        al_destroy_bitmap(sound_button_sprite[0]);
-        al_destroy_bitmap(sound_button_sprite[1]);
+        for (int i = 0; i < 4; i++) 
+            al_destroy_bitmap(sound_button_sprite[i]);
         for (int i = 0; i < 4; i++)
             al_destroy_bitmap(pause_button_sprite[i]);
 
@@ -166,13 +181,40 @@ std::uniform_int_distribution<> dis(0, 384);
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    void game_loop::commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y) {
+    void game_loop::commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y, states* state) {
         // Processamento do botão de pause (tecla ESC ou mouse)
+        
         if(buttons.size() > 0) {
             if(mouse_just_released) {
-                if(buttons.at(0)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(0)->is_pressed()) {
-                    paused = !paused;   // Alterna o estado de pausa
+                if(!dead){
+                    if(buttons.at(0)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(0)->is_pressed()) {
+                        paused = !paused;   // Alterna o estado de pausa
+                        for(int i=1; i<5; i++)
+                            buttons.at(i)->set_velocity(0,0);
+                        buttons.at(0)->set_pressed(false);
+                    }
                 }
+                if(paused||death_menu||!playing){
+                    if(buttons.at(1)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(1)->is_pressed()) {
+                        buttons.at(1)->set_pressed(false);
+                    }
+                    if(buttons.at(2)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(2)->is_pressed()) {
+                        sound = !sound;
+                        buttons.at(2)->set_pressed(false);
+                    }
+                    if(buttons.at(3)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(3)->is_pressed()) {
+                        buttons.at(3)->set_pressed(false);
+                    }
+                    if(buttons.at(4)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(4)->is_pressed()) {
+                        buttons.at(4)->set_pressed(false);
+                    }
+                }
+                /*if(buttons.at(5)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(5)->is_pressed()) {
+                    buttons.at(5)->set_pressed(false);
+                }
+                if(buttons.at(6)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(6)->is_pressed()) {
+                    buttons.at(6)->set_pressed(false);
+                }*/
             }
 
             if(mouse_is_down) {
@@ -189,6 +231,32 @@ std::uniform_int_distribution<> dis(0, 384);
                         }
                     }
                 }
+                if(paused||death_menu||!playing){
+                    if(buttons.at(1)->contains_click(mouse_update_x, mouse_update_y)) {
+                        buttons.at(1)->set_pressed(true);
+                        buttons.at(1)->set_bitmap(settings_button_sprite[1]);
+                    }
+                    if(buttons.at(2)->contains_click(mouse_update_x, mouse_update_y)) {
+                        buttons.at(2)->set_pressed(true);
+                        switch(sound){
+                            case true:
+                            buttons.at(2)->set_bitmap(sound_button_sprite[2]);
+                            break;
+                            case false:
+                            buttons.at(2)->set_bitmap(sound_button_sprite[3]);
+                            break;
+                        }
+                    }
+                    if(buttons.at(3)->contains_click(mouse_update_x, mouse_update_y)) {
+                        buttons.at(3)->set_pressed(true);
+                        buttons.at(3)->set_bitmap(achievements_button_sprite[1]);
+                    }
+                    if(buttons.at(4)->contains_click(mouse_update_x, mouse_update_y)) {
+                        buttons.at(4)->set_pressed(true);
+                        buttons.at(4)->set_bitmap(home_sprite[1]);
+                    }
+                }
+                
             }
             else {
                 switch(paused) {
@@ -201,6 +269,17 @@ std::uniform_int_distribution<> dis(0, 384);
                         break;
                     }
                 }
+                buttons.at(1)->set_bitmap(settings_button_sprite[0]);
+                switch(sound){
+                    case true:
+                    buttons.at(2)->set_bitmap(sound_button_sprite[0]);
+                    break;
+                    case false:
+                    buttons.at(2)->set_bitmap(sound_button_sprite[1]);
+                    break;
+                }
+                buttons.at(3)->set_bitmap(achievements_button_sprite[0]);
+                buttons.at(4)->set_bitmap(home_sprite[0]);
             }
         }
 
@@ -210,10 +289,7 @@ std::uniform_int_distribution<> dis(0, 384);
                 if(!playing && !dead) {                        // Se o jogo não está em andamento e não está morto
                     playing = true;                            // Inicia o jogo
                     game_objects.at(0)->Set_y_acelleration(2); // Define a aceleração da gravidade
-
-                    //buttons.push_back(new moving_button(SCREEN_W - al_get_bitmap_width(pause_button_sprite[0]), SCREEN_W - al_get_bitmap_height(pause_button_sprite[0]), pause_button_sprite[0])); // Cria o botão de pause
-                    buttons.push_back(new moving_button(736, 64, pause_button_sprite[0])); // Cria o botão de pause
-                } 
+                    } 
                 if(playing && !dead) {                         // Se o jogo está em andamento e não está morto
                     game_objects.at(0)->Jump();                // Faz o pássaro pular
                 }
@@ -231,8 +307,6 @@ std::uniform_int_distribution<> dis(0, 384);
             }
         }
 
-
-        //dps criar botões aqui
         if(mouse_just_released) {
             mouse_just_released = false; // Reseta o mouse just released
         }
@@ -245,10 +319,7 @@ std::uniform_int_distribution<> dis(0, 384);
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    void game_loop::update(bool update){
-        if(!update){
-            return;
-        }
+    void game_loop::update(){
         ////////////////////////////////////////
         //Ver posições e criar/deletar objetos//
         ////////////////////////////////////////
@@ -320,23 +391,20 @@ std::uniform_int_distribution<> dis(0, 384);
         // Verifica se o pássaro caiu no chão
         if(game_objects.at(0)->Get_position()->y>SCREEN_H&&!dead){
             dead = true;
+            paused = false;
             game_objects.at(0)->Jump();
             game_objects.at(0)->Set_x_speed(1.5*game_objects.at(1)->Get_x_speed());
-            for (moving_button* btn : buttons) 
-                delete btn;
-            buttons.clear();    // Deleta todos os botões
         }
 
         // Verifica se o pássaro bateu em algum cano
         if(!dead){
             for (int i = game_objects.size() - 1; i >= 1; i--) {
+                
                 if(game_objects.at(0)->is_colliding(game_objects.at(i))){
                     dead = true;
+                    paused = false;
                     game_objects.at(0)->Jump();
                     game_objects.at(0)->Set_x_speed(1.7*game_objects.at(1)->Get_x_speed());
-                    for (moving_button* btn : buttons) 
-                        delete btn;
-                    buttons.clear();    // Deleta todos os botões
                     break;
                 }
             }
@@ -348,10 +416,65 @@ std::uniform_int_distribution<> dis(0, 384);
             playing = false;
         }
 
+
+        //////////BOTÕES///////////////
+        //Pause//
+        if(buttons.at(0)->get_velocity_y()+buttons.at(0)->get_y()>=60){             //Delimitadores de posição
+            buttons.at(0)->set_y(60);
+            buttons.at(0)->set_acceleration(0,0);
+            buttons.at(0)->set_velocity(0,0);
+        }
+        if(buttons.at(0)->get_velocity_y()+buttons.at(0)->get_y()<=-100){
+            buttons.at(0)->set_y(-100);
+            buttons.at(0)->set_acceleration(0,0);
+            buttons.at(0)->set_velocity(0,0);
+        }
+        if(playing&&!dead&&buttons.at(0)->get_y()<60){                               //Movimentando o botão
+            buttons.at(0)->set_acceleration(0,3);   
+        }else if(dead&&buttons.at(0)->get_y()>-100){
+            buttons.at(0)->set_acceleration(0,-3);
+        }else{
+            buttons.at(0)->set_acceleration(0,0);
+            buttons.at(0)->set_velocity(0,0);
+        }
+
+        //Carregando os botões do pause//
+        for(int i=1; i<5; i++){
+            if(buttons.at(i)->get_velocity_y()+buttons.at(i)->get_y()>=60){             //Delimitadores de posição
+                buttons.at(i)->set_y(60);
+                buttons.at(i)->set_acceleration(0,0);
+                buttons.at(i)->set_velocity(0,0);
+            }
+            if(buttons.at(i)->get_velocity_y()+buttons.at(i)->get_y()<=-100){
+                buttons.at(i)->set_y(-40);
+                buttons.at(i)->set_acceleration(0,0);
+                buttons.at(i)->set_velocity(0,0);
+            }
+            if((paused||(!playing&&!dead))&&buttons.at(i)->get_y()<60){                                    //Movimentando o botão
+                buttons.at(i)->set_acceleration(0,5);
+            }else if((!paused&&(playing||dead))&&buttons.at(i)->get_y()>-40){
+                buttons.at(i)->set_acceleration(0,-4);
+            }else{
+            buttons.at(i)->set_acceleration(0,0);
+            buttons.at(i)->set_velocity(0,0);
+            }
+        }
+
+        //Instruções//
+        if (going_up) {
+        dif += 0.001;
+        if (dif >= 0.03) going_up = false;
+        } else {
+        dif -= 0.001;
+        if (dif <= 0.01) going_up = true;
+        }
+
+        
+
         ////////////////////////////////////////
         //////Atualiza os objetos do jogo///////
         ////////////////////////////////////////
-        if (update&&!paused&&!death_menu) {
+        if (!paused&&!death_menu) {
             game_objects.at(0)->Update(SCREEN_W, SCREEN_H); // Atualiza o pássaro
             if(!dead){
                 for (int i = game_objects.size() - 1; i >= 1; i--) {
@@ -371,11 +494,16 @@ std::uniform_int_distribution<> dis(0, 384);
                 for (background_object* bgo_0 : background_objects_0) {
                     bgo_0->Update(SCREEN_W, SCREEN_H, 0.4); // Atualiza a grama
                 }
+            
+        
             }
         }
+        for(moving_button* bt : buttons){
+            bt->Update();
+        }
+        
         //If menu
         //If death_menu
-
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -401,15 +529,20 @@ std::uniform_int_distribution<> dis(0, 384);
         for (int i = game_objects.size() - 1; i >= 1; i--) {
             game_objects.at(i)->Draw(1);
         }
-        if(dead){
+        if(dead&&!paused){
             game_objects.at(0)->Draw_spin(0.1*game_objects.at(1)->Get_x_speed());
+        }else if(dead&&paused){
+            game_objects.at(0)->Draw_spin(0);
         }else{
             game_objects.at(0)->Draw(1);
         }
 
         // Desenha os botões
-        for (moving_button* btn : buttons) {
-            btn->draw();
+        for (int i=0; i<5; i++) {
+            buttons.at(i)->draw();
+        }
+        if(!playing&&!death_menu&&!dead){
+        buttons.at(5)->draw(0.22+dif);
         }
 
         //Desenhar o score
@@ -453,5 +586,12 @@ std::uniform_int_distribution<> dis(0, 384);
         background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*7/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));                   
         
         buttons.clear();
-        
+        buttons.push_back(new moving_button(SCREEN_W-64, 60, pause_button_sprite[0]));
+        buttons.push_back(new moving_button(SCREEN_W/2-126, 60, settings_button_sprite[0]));
+        buttons.push_back(new moving_button(SCREEN_W/2-42, 60, sound_button_sprite[0]));
+        buttons.push_back(new moving_button(SCREEN_W/2+42, 60, achievements_button_sprite[0]));
+        buttons.push_back(new moving_button(SCREEN_W/2+126, 60, home_sprite[0]));  
+        buttons.push_back(new moving_button(SCREEN_W/2,SCREEN_H/2+80, instruções_sprite));
+        dif=0;
+        going_up=true;
     } 

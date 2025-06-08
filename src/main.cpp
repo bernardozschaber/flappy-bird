@@ -24,7 +24,8 @@
 
 
 // DECLARANDO A STATIC VELOCIDADE DO CANO
-float pipe_object::vel_x = -5;                                          
+float pipe_object::vel_x = -5;    
+
 int main(int argc, char **argv) {
     
     // Arquivo para debug (just in case)
@@ -77,9 +78,10 @@ int main(int argc, char **argv) {
         return -1;
     }
 
-    delete sys_install;
     delete prim_install;
     delete font_install;
+    delete ttf_install;
+    delete img_install;
     delete keyboard_install;
     delete mouse_install;
 
@@ -116,17 +118,12 @@ int main(int argc, char **argv) {
     al_register_event_source(queue, al_get_mouse_event_source());           // Eventos do mouse
     al_start_timer(timer);
 
-    // VARIÁVEIS DE ESTADO DA EXECUÇÃO
-    bool open = true;                  // Jogo está aberto
-    bool is_updating = false;          // O jogo deve atualizar o estado
-    bool registration_screen = true;   // Tela de registro está aberta
-    bool settings_screen = false;      // Tela de configurações está aberta
-    bool game_loop_screen = true;     // O jogo está no loop de jogo
-    bool achievements_screen = false;  // Tela de conquistas está aberta
   
-    // CRIAÇÃO DAS TELAS DO JOGO
+    // CRIAÇÃO DAS TELAS DO JOGO E OS ESTADOS DE CONTROLE
+    states state;
     game_loop main_game_loop; // Criação do loop de jogo
-    while(open){
+
+    while(state.open){
         // ESPERA O EVENTO
         al_wait_for_event(queue, &event);
 
@@ -135,12 +132,12 @@ int main(int argc, char **argv) {
         {
             // Fechamento do display - sai do loop principal
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
-                open = false;
+                state.open = false;
                 break;
 
             // Timer - "chama" o loop de update
             case ALLEGRO_EVENT_TIMER:
-                is_updating = true;
+                state.is_updating = true;
                 break;
 
             // Key Down - registra uma tecla pressionada em key (... 0 0 1 1)
@@ -182,11 +179,13 @@ int main(int argc, char **argv) {
         if(home_screen){
         }
         */
-        if(game_loop_screen){
-            main_game_loop.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y); // Processa os comandos causados pelas teclas/mouse
-            main_game_loop.update(is_updating); // Atualiza o estado do jogo
-            is_updating = false;
+        if(state.game_loop_screen){
+            main_game_loop.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, &state); // Processa os comandos causados pelas teclas/mouse
+            if(state.is_updating){
+            main_game_loop.update(); // Atualiza o estado do jogo
             main_game_loop.draw(); // Desenha o jogo na tela
+            state.is_updating = false;
+            }
         }
         /*
         if(settings_screen){
@@ -198,7 +197,10 @@ int main(int argc, char **argv) {
         */
         
     }
-
+    // Libera recursos Allegro
+    al_destroy_display(display);
+    al_destroy_event_queue(queue);
+    al_destroy_timer(timer);
     debug.close();
     return 0;
 }

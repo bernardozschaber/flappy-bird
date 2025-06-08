@@ -18,6 +18,10 @@ public:
   bool was_clicked() const { return clicked; }
   void reset_clicked() { clicked = false; }
 
+  //Gets
+  int get_x();
+  int get_y();
+
 private:
   std::string label;
   bool clicked;

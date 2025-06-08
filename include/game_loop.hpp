@@ -17,15 +17,15 @@ extern const char * MOUNTAIN_SPRITE_1;                          // caminho das m
 extern const char * MOUNTAIN_SPRITE_2;                          // caminho das montanhas (do meio)
 extern const char * MOUNTAIN_SPRITE_3;                          // caminho das montanhas (de trás)
 extern const char * GRASS_SPRITE;                               // caminho da grama
-extern const char * ACHIEVEMENTS_BUTTON_SPRITE;                 // caminho do botão de conquistas
-extern const char * BACK_BUTTON_SPRITE;                         // caminho do botão de voltar
-extern const char * SETTINGS_BUTTON_SPRITE;                     // caminho do botão de configurações
+extern const char * ACHIEVEMENTS_BUTTON_SPRITE[2];                 // caminho do botão de conquistas
+extern const char * BACK_BUTTON_SPRITE[2];                         // caminho do botão de voltar
+extern const char * SETTINGS_BUTTON_SPRITE[2];                     // caminho do botão de configurações
 extern const char * INSTRUÇÕES_SPRITE;                          // caminho das instruções
 extern const char * SCORE_SPRITE;                               // caminho da tela de morte
-extern const char * HOME_SPRITE;                                // caminho do sprite de home
+extern const char * HOME_SPRITE[2];                                // caminho do sprite de home
 extern const char * BACKGROUND;                                 // caminho do sprite do fundo
 extern const char * NUMBERS_SPRITES[10];                        // caminho dos números 
-extern const char * SOUND_BUTTON_SPRITE[2];                     // caminho do botão de som ligado/desligado
+extern const char * SOUND_BUTTON_SPRITE[4];                     // caminho do botão de som ligado/desligado
 extern const char * PAUSE_BUTTON_SPRITE[4];                     // caminho do botão de pause/despause
 
 // CONSTANTES DE PROPRIEDADE PARA OBJETOS DO CENÁRIO
@@ -45,6 +45,17 @@ extern const int HEIGHT_REFFERENCE;
     extern int BIRD_MAX_UP_VEL;                                             // Velocidade máxima de subida do pássaro
     extern int BIRD_MAX_DOWN_VEL;                                           // Velocidade máxima de descida do pássaro
 
+// STRUCT PARA CONTROLAR OS ESTADOS DO JOGO
+struct states{
+    bool open = true;                  // Jogo está aberto
+    bool is_updating = false;          // O jogo deve atualizar o estado
+    bool registration_screen = true;   // Tela de registro está aberta
+    bool settings_screen = false;      // Tela de configurações está aberta
+    bool game_loop_screen = true;     // O jogo está no loop de jogo
+    bool achievements_screen = false;  // Tela de conquistas está aberta
+    bool home_screen = false;          // Tela inicial esta aberta
+};
+
 class game_loop {
     private:
         //Vetores dos objetos do jogo
@@ -63,15 +74,15 @@ class game_loop {
         ALLEGRO_BITMAP* mountain_sprite_2;                    // Bitmap da montanha (do meio)
         ALLEGRO_BITMAP* mountain_sprite_3;                    // Bitmap da montanha (de trás)
         ALLEGRO_BITMAP* grass_sprite;                         // Bitmap da grama 
-        ALLEGRO_BITMAP* achievements_button_sprite;           // Bitmap do botão de conquistas
-        ALLEGRO_BITMAP* back_button_sprite;                   // Bitmap do botão de voltar
-        ALLEGRO_BITMAP* settings_button_sprite;               // Bitmap do botão de configurações
+        ALLEGRO_BITMAP* achievements_button_sprite[2];           // Bitmap do botão de conquistas
+        ALLEGRO_BITMAP* back_button_sprite[2];                   // Bitmap do botão de voltar
+        ALLEGRO_BITMAP* settings_button_sprite[2];               // Bitmap do botão de configurações
         ALLEGRO_BITMAP* instruções_sprite;                    // Bitmap das instruções
         ALLEGRO_BITMAP* score_sprite;                         // Bitmap da tela de morte
-        ALLEGRO_BITMAP* home_sprite;                          // Bitmap do botão de home
+        ALLEGRO_BITMAP* home_sprite[2];                          // Bitmap do botão de home
         ALLEGRO_BITMAP* background;                           // Bitmap do fundo
         ALLEGRO_BITMAP* numbers_sprites[10];                  // Bitmap dos números de 0 a 9 
-        ALLEGRO_BITMAP* sound_button_sprite[2];               // Vetor de bitmaps do botão de som ligado/desligado
+        ALLEGRO_BITMAP* sound_button_sprite[4];               // Vetor de bitmaps do botão de som ligado/desligado
         ALLEGRO_BITMAP* pause_button_sprite[4];               // Vetor de bitmaps do botão de pause/despause
 
         //Fontes do jogo
@@ -91,8 +102,8 @@ class game_loop {
     public:
         game_loop();               // Construtor
         ~game_loop();              // Destrutor
-        void commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y);
-        void update(bool update);  // Método que atualiza o estado dos objetos do jogo
+        void commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y,states* state);
+        void update();  // Método que atualiza o estado dos objetos do jogo
         void draw();               // Método que desenha os objetos do jogo na tela
         void reset_game();         // Método que reseta o jogo, recriando os objetos e o cenário
 };
