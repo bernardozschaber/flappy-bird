@@ -3,3 +3,18 @@
 26 Bernardo 123 12
 56 Pedro 123 67
 34 Mateus 123 11
+21 Luiz 123 11
+10 Fernando 123 2
+8 Paulo 123 7
+24 Julia 123 9
+15 Maria Vitoria 123 18
+31 Ana Leticia 123 38
+26 Bruna 123 27
+9 Marcela 123 18
+8 Isabela 123 21
+12 Hector 123 43
+29 Gabriel 123 22
+3 Carla 123 6
+5 Maria Clara 123 9
+2 Rafael 123 5
+10 Bianca 123 9

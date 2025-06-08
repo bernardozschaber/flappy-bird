@@ -77,3 +77,9 @@
     Matsura (src, include):
         -Maior robustez nos testes de entradas inválidas no login
         -Correções visuais no login
+
+08-06-2025
+
+    Matsura (src, include, jogadores.txt)
+        -Aumento do número de exemplos no arquivo para testar listagem longa
+        -Melhoria visual da listagem de usuários

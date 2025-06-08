@@ -6,7 +6,7 @@
 
 class player_list_screen {
 public:
-  player_list_screen(int screen_w, int screen_h, registration &data_ref, ALLEGRO_SAMPLE* button_s);
+  player_list_screen(int screen_w, int screen_h, ALLEGRO_SAMPLE* button_s, const std::vector<player> &vect);
 
   // Trata eventos (mouse) e avança/página ou retorna ao menu
   void handle_event(const ALLEGRO_EVENT &ev);
@@ -29,8 +29,7 @@ private:
   button back_button;
   button main_menu_button;
 
-  registration &data;
-  std::vector<player> players;
+  const std::vector<player> &players;
 
   bool go_to_menu;
 };

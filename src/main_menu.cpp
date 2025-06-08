@@ -92,13 +92,14 @@ int main(int argc, char **argv) {
 
     // Inicia objeto que manipula os arquivos
     registration data("jogadores.txt");
+    std::vector<player> vector = data.get_all();
 
     al_start_timer(timer);
 
     // Inicializa as telas da interface
     login_screen login_scr(SCREEN_W, SCREEN_H, data, sample_key, sample_button);
-    register_screen register_scr(SCREEN_W, SCREEN_H, data, sample_key, sample_button);
-    player_list_screen list_scr(SCREEN_W, SCREEN_H, data, sample_button);
+    register_screen register_scr(SCREEN_W, SCREEN_H, data, vector, sample_key, sample_button);
+    player_list_screen list_scr(SCREEN_W, SCREEN_H, sample_button, vector);
 
     enum screen_type { SCREEN_LOGIN, SCREEN_REGISTER, SCREEN_LIST };
     

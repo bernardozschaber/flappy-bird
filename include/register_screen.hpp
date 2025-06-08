@@ -8,7 +8,7 @@
 
 class register_screen {
 public:
-  register_screen(int screen_w, int screen_h, registration &data_ref, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s);
+  register_screen(int screen_w, int screen_h, registration &data_ref, std::vector<player> &vector, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s);
 
   // Trata eventos (mouse/teclado) e repassa para componentes
   void handle_event(const ALLEGRO_EVENT &ev);
@@ -29,6 +29,7 @@ private:
   int screen_width, screen_height;
 
   registration &data;
+  std::vector<player> &vector;
 
   // Campos de texto
   text_box username_box;
@@ -42,8 +43,8 @@ private:
   // Flags internas
   bool reg_complete;      // true após cadastro bem-sucedido
   bool go_to_login;       // true se cancelou ou terminou
-  bool password_mismatch; // true para exibir mensagem de erro de senhas
-                          // diferentes
+  bool password_mismatch; // true para exibir mensagem de erro de senhas diferentes
+  bool empty_field; // true para exibir erro de campo vazio
   bool existing_user; // true para exibir mensagem de erro de usuário existente
 };
 
