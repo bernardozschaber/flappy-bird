@@ -8,7 +8,7 @@
 
 class login_screen {
 public:
-  login_screen(int screen_w, int screen_h, registration &data_ref);
+  login_screen(int screen_w, int screen_h, registration &data_ref, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s);
 
   // Trata eventos (mouse/teclado) e repassa aos componentes
   void handle_event(const ALLEGRO_EVENT &ev);

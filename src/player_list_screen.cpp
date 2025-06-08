@@ -1,13 +1,12 @@
 #include "player_list_screen.hpp"
 #include <allegro5/allegro_font.h>
 
-player_list_screen::player_list_screen(int screen_w, int screen_h,
-                                       registration &data_ref)
+player_list_screen::player_list_screen(int screen_w, int screen_h, registration &data_ref, ALLEGRO_SAMPLE* button_s)
     : screen_width(screen_w), screen_height(screen_h), current_page(0),
       players_per_page(15), // 15 por página mantém boa visibilidade
-      next_button(650, 550, 100, 30, "Próximo"),
-      back_button(50, 550, 100, 30, "Voltar"),
-      main_menu_button(350, 550, 100, 30, "Menu"), go_to_menu(false),
+      next_button(650, 540, 120, 40, "Próximo", button_s),
+      back_button(50, 540, 120, 40, "Voltar", button_s),
+      main_menu_button(340, 540, 120, 40, "Menu", button_s), go_to_menu(false),
       data(data_ref) {
   players = data.get_all();
 }

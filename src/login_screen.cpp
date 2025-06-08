@@ -1,14 +1,14 @@
 #include "login_screen.hpp"
 #include <sstream>
 
-login_screen::login_screen(int screen_w, int screen_h, registration &data_ref)
+login_screen::login_screen(int screen_w, int screen_h, registration &data_ref, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s)
     : screen_width(screen_w), screen_height(screen_h),
-      username_box(300, 200, 200, 30, 20), password_box(300, 250, 200, 30, 20),
-      login_button(300, 300, 100, 30, "Login"),
-      register_button(410, 300, 100, 30, "Registrar"),
-      view_players_button(300, 350, 150, 30, "Ver Jogadores"),
+      username_box(275, 200, 250, 40, 18, key_s), password_box(275, 270, 250, 40, 18, key_s),
+      login_button(275, 336, 120, 40, "Login", button_s),
+      register_button(415, 336, 120, 40, "Registrar", button_s),
+      view_players_button(275, 396, 180, 40, "Ver Jogadores", button_s),
       valid_login(true), go_to_list(false), go_to_register(false),
-      done(false), data(data_ref) {
+      done(false), data(data_ref), logged_user("") {
   password_box.set_mask(true);
   username_box.set_active(false);
   password_box.set_active(false);
@@ -88,8 +88,8 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
 }
 
 void login_screen::draw(ALLEGRO_FONT *font) {
-  al_draw_text(font, al_map_rgb(255, 255, 255), 300, 180, 0, "Usuário:");
-  al_draw_text(font, al_map_rgb(255, 255, 255), 300, 230, 0, "Senha:");
+  al_draw_text(font, al_map_rgb(255, 255, 255), 275, 170, 0, "Usuário:");
+  al_draw_text(font, al_map_rgb(255, 255, 255), 275, 240, 0, "Senha:");
 
   username_box.draw(font);
   password_box.draw(font);
@@ -100,13 +100,14 @@ void login_screen::draw(ALLEGRO_FONT *font) {
   if (!valid_login) {
     std::string erro = "usuário e/ou senha inválidos";
     int erro_w = al_get_text_width(font, erro.c_str());
-    int x_erro = 300;
-    int y_erro = 270;
+    int x_erro = 275;
+    int y_erro = 310;
     al_draw_text(font, al_map_rgb(252, 23, 35), x_erro, y_erro, 0,
                  erro.c_str());
   }
 
   // Desenha nome e recorde do maior pontuador no canto superior direito
+  data.update_champion();
   std::string top = data.get_max_user();
   int top_score = data.get_max_score();
   std::string texto = "Campeão: " + top + " - " + std::to_string(top_score);
@@ -129,6 +130,7 @@ void login_screen::reset() {
   password_box.set_text("");
   username_box.set_active(false);
   password_box.set_active(false);
+  logged_user = "";
   go_to_list = false;
   go_to_register = false;
   valid_login = true;

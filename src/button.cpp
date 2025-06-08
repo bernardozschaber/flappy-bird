@@ -2,8 +2,8 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
 
-button::button(int x, int y, int width, int height, const std::string &label)
-    : ui_object(x, y, width, height), label(label), clicked(false) {}
+button::button(int x, int y, int width, int height, const std::string &label, ALLEGRO_SAMPLE* sample_button)
+    : ui_object(x, y, width, height), label(label), clicked(false), sample_button(sample_button) {}
 
 void button::handle_event(const ALLEGRO_EVENT &ev) {
   if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN && ev.mouse.button == 1) {
@@ -11,6 +11,9 @@ void button::handle_event(const ALLEGRO_EVENT &ev) {
     int my = ev.mouse.y;
     if (contains(mx, my)) {
       clicked = true;
+      if (sample_button) {
+        al_play_sample(sample_button, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, nullptr);
+      }
     }
   }
 }

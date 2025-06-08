@@ -1,4 +1,4 @@
-all: main
+all: main main_menu
 
 obj:
 	mkdir -p obj
@@ -51,5 +51,5 @@ obj/moving_button.o: include/moving_button.hpp src/moving_button.cpp
 main: obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o obj/game_loop.o obj/moving_button.o obj/ui_object.o
 	g++ obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o obj/game_loop.o obj/moving_button.o obj/ui_object.o -o main `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
 
-main_menu: obj/main_menu.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/player_list_screen.o obj/registration.o obj/game_loop.o obj/moving_button.o
-	g++ obj/main_menu.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/player_list_screen.o obj/registration.o obj/game_loop.o obj/moving_button.o -o main_menu `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
+main_menu: obj/main_menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/player_list_screen.o obj/registration.o
+	g++ obj/main_menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/player_list_screen.o obj/registration.o -o main_menu `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
