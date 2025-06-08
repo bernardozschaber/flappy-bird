@@ -83,3 +83,20 @@
     Matsura (src, include, jogadores.txt)
         -Aumento do número de exemplos no arquivo para testar listagem longa
         -Melhoria visual da listagem de usuários
+
+    Laercio (game_loop.cpp, main.cpp, moving_button.cpp, game_loop.hpp, moving_button.hpp, ui_object.hpp, ui_object.cpp)
+        -Adição e criação dos const char e bitmaps dos novos sprites
+        -Criação e aplicação da struct de estados para controlar o codigo
+        -Adição de transparencia como um atributo de moving_buttons
+        -Mudança dos atributos de posição de ui_object de int para float
+        -Adição dos destroys para recursos do Allegro (Tinha esquecido de pegar eles do old_main)
+        -Adição de Getters, Setters, Draw com scale e transparencia e Update no moving_button 
+        -Adicionados botões com reações, mas sem funcionalidade para o game_loop
+
+    Sam (game_loop.cpp, game_loop.hpp):
+        - Adicionada uma nova classe de imagem que pode se mover pelo display
+            - Não herda de nenhuma outra classe
+            - Não tem colisão nem detecção de clique
+        - Iniciada a programação da tela de morte
+            - Ainda não tem quase nada pronto, mas já tem uma tela em branco que sobe
+        - Adicionados mais alguns sprites para UI
