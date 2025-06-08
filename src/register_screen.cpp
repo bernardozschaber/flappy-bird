@@ -97,7 +97,7 @@ void register_screen::handle_event(const ALLEGRO_EVENT &ev) {
 
 void register_screen::draw(ALLEGRO_FONT *font) {
   // Desenha rótulos fixos acima de cada campo
-  al_draw_text(font, al_map_rgb(255, 255, 255), 275, 170, 0, "Usuario:");
+  al_draw_text(font, al_map_rgb(255, 255, 255), 275, 170, 0, "Usuário:");
   al_draw_text(font, al_map_rgb(255, 255, 255), 275, 240, 0, "Senha:");
   al_draw_text(font, al_map_rgb(255, 255, 255), 275, 310, 0,
                "Confirmar Senha:");

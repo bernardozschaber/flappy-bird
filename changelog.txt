@@ -68,8 +68,12 @@
         - Adicionado comentários no contrato e na implementação da classe
         - Corrigida a visibilidade de alguns métodos da classe
 
-    Matsura (src, include, Makefile, assets, jogadores.txt)
+    Matsura (src, include, Makefile, assets, jogadores.txt):
         -Criação de um arquivo de jogadores para teste da interface
         -Implementação de som na interface do menu
         -Reorganização da interface de menu
-        -Separação do jogo do menu em mains diferentes e independentes
+         -Separação do jogo do menu em mains diferentes e independentes
+
+    Matsura (src, include):
+        -Maior robustez nos testes de entradas inválidas no login
+        -Correções visuais no login
