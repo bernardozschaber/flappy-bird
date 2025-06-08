@@ -43,15 +43,16 @@ void player_list_screen::handle_event(const ALLEGRO_EVENT &ev) {
 void player_list_screen::draw(ALLEGRO_FONT *font) {
   int line_h = al_get_font_line_height(font);
   int start_y = 50;
-  int start_x = 100;
 
   for (int i = 0; i < players_per_page; ++i) {
     int idx = current_page * players_per_page + i;
-    if (idx >= static_cast<int>(players.size()))
+    if (idx >= static_cast<int>(players.size())) //Condição de parada da última página
       break;
     player p = players[idx];
     std::string line = p.username + " - " + std::to_string(p.score);
     int y = start_y + i * (line_h + 5);
+    int line_w = al_get_text_width(font,line.c_str());
+    int start_x = (screen_width - line_w) / 2;
     al_draw_text(font, al_map_rgb(255, 255, 255), start_x, y, 0, line.c_str());
   }
 
@@ -66,7 +67,7 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
   std::string page_text = "Página " + std::to_string(current_page + 1) + " / " +
                           std::to_string(total_pages);
   int text_w = al_get_text_width(font, page_text.c_str());
-  al_draw_text(font, al_map_rgb(200, 200, 200), (screen_width - text_w) / 2, 20,
+  al_draw_text(font, al_map_rgb(200, 200, 0), (screen_width - text_w) / 2, 20,
                0, page_text.c_str());
 }
 
