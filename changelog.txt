@@ -100,3 +100,9 @@
         - Iniciada a programação da tela de morte
             - Ainda não tem quase nada pronto, mas já tem uma tela em branco que sobe
         - Adicionados mais alguns sprites para UI
+
+11-06-2025
+
+    Pedro (registration) :
+        - Troca do container vector para set ao retornar os players registrados
+        - Sobrecarga do operador < para ordenar os jogadores por ordem alfabética dentro do set

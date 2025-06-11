@@ -2,12 +2,17 @@
 #define REGISTRATION_HPP
 #include <fstream>
 #include <string>
-#include <vector>
+#include <set>
 
 //Struct com informações dos jogadores para auxiliar na lista de retorno  
 struct player{
   std::string username;
   int score, games;
+
+  //Sobrecarga no operador < para colocar os nomes em ordem alfabética dentro do container set
+  bool operator < (const player& otherplayer) const{
+    return username < otherplayer.username;
+  }
 };
 
 class registration {
@@ -27,10 +32,7 @@ private:
   int score_champion = 0;
 
   //Armazena informações dos jogadores registrados
-  std::vector<player> players;
-  
-  //Função auxiliar para ordenação dos usernames em ordem alfabética
-  static bool compare_username(const player& r1, const player& r2);
+  std::set<player> players;
   
   //Retorna a linha do jogador correspondente do .txt
   int getline_number(std::string user);
@@ -48,7 +50,7 @@ public:
   std::string get_stats(std::string name);
 
   //Resgata as informações de todos os jogadores, exceto senha
-  std::vector<player> get_all();
+  std::set<player> get_all();
 
   //Atualiza o score do jogador
   void update(std::string user, int score);

@@ -1,6 +1,7 @@
 #include "registration.hpp"
 #include <sstream>
 #include <algorithm>
+#include <vector>
 
 
 registration::registration(std::string file){
@@ -83,31 +84,24 @@ std::string registration::get_stats(std::string name){
 
 }
 
-bool registration::compare_username(const player& p1, const player& p2){
-    //Compara o username para ordenação
-    return p1.username < p2.username;
-}
-
-std::vector<player> registration::get_all(){
+std::set<player> registration::get_all(){
     users.clear();
     players.clear();
     users.seekg(0, std::ios::beg);
     int score, games;
     std::string username, line, trash;
 
-    //Adiciona todos os usuários em um vector
+    //Adiciona todos os usuários em um set
     while(users.peek() != EOF){
         users >> score;
         users >> username;
         users >> trash;
         users >> games;
         player p = {username, score, games};
-        players.push_back(p);
+        players.insert(p);
         getline(users, line);
     }
-
-    //Ordena em ordem alfabética
-    std::sort(players.begin(), players.end(), compare_username);
+    //Retorna a estrutura com os players ordenados pelo nome
     return players;
 }
 
