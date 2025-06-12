@@ -106,3 +106,9 @@
     Pedro (registration) :
         - Troca do container vector para set na função de retorno dos players registrados(get_all())
         - Sobrecarga do operador < para ordenar os jogadores por ordem alfabética dentro do set
+
+12-06-2025
+
+    Pedro (registration) :
+        - Troca do set para multiset para permitir ordenação pelo score
+        - Pequenas mudanças de tipo de retorno e verificações para deixar menos propício a falhas

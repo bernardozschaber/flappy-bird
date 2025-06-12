@@ -31,6 +31,10 @@ bool registration::isFileEmpty(){
     return users.tellg() == 0;
 }
 
+bool registration::isOpenFile(){
+    return openfile_check;
+}
+
 void registration::new_user(std::string name, std::string password, int score, int games){
     //Insere o novo usuário no final do arquivo
     users.clear();
@@ -84,7 +88,7 @@ std::string registration::get_stats(std::string name){
 
 }
 
-std::set<player> registration::get_all(){
+std::multiset<player> registration::get_all(){
     users.clear();
     players.clear();
     users.seekg(0, std::ios::beg);
@@ -112,7 +116,11 @@ void registration::update(std::string user, int score){
     std::string password;
 
     //Recebe a linha correspondente ao jogador
-    std::string line = get_stats(user); 
+    std::string line = get_stats(user);
+    //Caso não encontre o jogador 
+    if(line == ""){
+        return;
+    }
 
     //Cria uma stringstream para possibilitar a leitura de dados
     std::stringstream line_user(line);
@@ -169,13 +177,16 @@ void registration::update(std::string user, int score){
     }
 }
 
-void registration::delete_user(std::string user){
+int registration::delete_user(std::string user){
     std::vector<std::string> lines;
     std::string line;
     int currentLine = 0;
     //Localizar a linha que deseja remover
     int targetLine = getline_number(user);
-
+    //Caso não encontre o jogador
+    if(line == ""){
+        return 0;
+    }
     // Lê todas as linhas do arquivo
     users.clear();
     users.seekg(0, std::ios::beg);
@@ -199,6 +210,7 @@ void registration::delete_user(std::string user){
     users.open(file, std::ios::in | std::ios::out);
 
     update_champion();
+    return 1;
 }
 
 int registration::get_max_score(){

@@ -11,7 +11,7 @@ struct player{
 
   //Sobrecarga no operador < para colocar os nomes em ordem alfabética dentro do container set
   bool operator < (const player& otherplayer) const{
-    return username < otherplayer.username;
+    return score < otherplayer.score;
   }
 };
 
@@ -32,7 +32,7 @@ private:
   int score_champion = 0;
 
   //Armazena informações dos jogadores registrados
-  std::set<player> players;
+  std::multiset<player> players;
   
   //Retorna a linha do jogador correspondente do .txt
   int getline_number(std::string user);
@@ -50,13 +50,13 @@ public:
   std::string get_stats(std::string name);
 
   //Resgata as informações de todos os jogadores, exceto senha
-  std::set<player> get_all();
+  std::multiset<player> get_all();
 
   //Atualiza o score do jogador
   void update(std::string user, int score);
 
   //Deleta o jogador
-  void delete_user(std::string user);
+  int delete_user(std::string user);
 
   //Obtém o maior score do jogo
   int get_max_score();
@@ -68,9 +68,7 @@ public:
   void update_champion();
 
   //Verifica se o arquivo está aberto
-  bool isOpenFile(){
-    return openfile_check;
-  }
+  bool isOpenFile();
 
   //Destrutor da classe
   ~registration();
