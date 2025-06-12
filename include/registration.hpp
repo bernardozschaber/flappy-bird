@@ -9,9 +9,9 @@ struct player{
   std::string username;
   int score, games;
 
-  //Sobrecarga no operador < para colocar os nomes em ordem alfabética dentro do container set
+  //Sobrecarga no operador < para colocar em ordem descrescente de score dentro do container multiset
   bool operator < (const player& otherplayer) const{
-    return score < otherplayer.score;
+    return score > otherplayer.score;
   }
 };
 
