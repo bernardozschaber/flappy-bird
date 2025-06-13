@@ -8,7 +8,7 @@
 
 class register_screen {
 public:
-  register_screen(int screen_w, int screen_h, registration &data_ref, std::vector<player> &vector, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s);
+  register_screen(int screen_w, int screen_h, registration &data_ref, std::multiset<player> &set, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s);
 
   // Trata eventos (mouse/teclado) e repassa para componentes
   void handle_event(const ALLEGRO_EVENT &ev);
@@ -26,10 +26,12 @@ public:
   void reset();
 
 private:
+  // Tamanho da tela
   int screen_width, screen_height;
 
+  // Atributos com as informações do arquivo de jogadores
   registration &data;
-  std::vector<player> &vector;
+  std::multiset<player> &players;
 
   // Campos de texto
   text_box username_box;

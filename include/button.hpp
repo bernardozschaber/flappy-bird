@@ -16,12 +16,15 @@ public:
   void draw(ALLEGRO_FONT *font) override;
 
   // Indica se foi clicado desde o último reset
-  bool was_clicked() const { return clicked; }
-  void reset_clicked() { clicked = false; }
+  bool was_clicked() const;
+  void reset_clicked();
 
-  //Gets
+  // Gets
   int get_x();
   int get_y();
+
+  // Seta estado de clique
+  void set_clicked(const bool set);
 
 private:
   std::string label;

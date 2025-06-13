@@ -88,18 +88,18 @@ int main(int argc, char **argv) {
     al_register_event_source(queue, al_get_mouse_event_source());           // Eventos do mouse
 
     // Carrega background do menu
-    ALLEGRO_BITMAP* background_menu = al_load_bitmap("assets/backgroundmenu.png");
+    ALLEGRO_BITMAP* background_menu = al_load_bitmap("assets/scenario/background_login.png");
 
     // Inicia objeto que manipula os arquivos
     registration data("jogadores.txt");
-    std::vector<player> vector = data.get_all();
+    std::multiset<player> players = data.get_all();
 
     al_start_timer(timer);
 
     // Inicializa as telas da interface
     login_screen login_scr(SCREEN_W, SCREEN_H, data, sample_key, sample_button);
-    register_screen register_scr(SCREEN_W, SCREEN_H, data, vector, sample_key, sample_button);
-    player_list_screen list_scr(SCREEN_W, SCREEN_H, sample_button, vector);
+    register_screen register_scr(SCREEN_W, SCREEN_H, data, players, sample_key, sample_button);
+    player_list_screen list_scr(SCREEN_W, SCREEN_H, sample_button, players);
 
     enum screen_type { SCREEN_LOGIN, SCREEN_REGISTER, SCREEN_LIST };
     
@@ -114,14 +114,18 @@ int main(int argc, char **argv) {
         while(!login_scr.login_done()){
             al_wait_for_event(queue, &event);
 
-            if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE ||
-                (event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_ESCAPE)) {
+            if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
                 is_open = false;
                 break;
             }
 
             // Encaminha evento de acordo com a tela atual
             if (current == SCREEN_LOGIN) {
+                // ESC no menu fecha o programa
+                if (event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+                    is_open = false;
+                    break;
+                }
                 login_scr.handle_event(event);
 
                 // Se usuário clicou em "Registrar" → vai para tela de registro

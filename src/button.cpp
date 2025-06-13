@@ -39,3 +39,15 @@ int button::get_x(){
 int button::get_y(){
   return y;
 }
+
+bool button::was_clicked() const {
+  return clicked; 
+}
+
+void button::reset_clicked() { 
+  clicked = false; 
+}
+
+void button::set_clicked(const bool set) {
+  clicked = set;
+}

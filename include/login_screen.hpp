@@ -25,19 +25,22 @@ public:
   // Indica se o login foi finalizado
   bool login_done() const;
 
-  std::string get_logged_user();
+  // Indica o usuário que está logado
+  player get_logged_user();
 
   // Reseta caixas e flags
   void reset();
 
 private:
+  // Tamanho da tela
   int screen_width, screen_height;
 
-  bool valid_login;
-  bool empty_field;
-  bool done;
+  // Flags internas
+  bool valid_login; // Mensagem de erro em tentativa de login inválida
+  bool empty_field; // Mensagem de erro de campos vazios
+  bool done; // Indica conclusão do login
 
-  std::string logged_user;
+  player logged_user;
 
   // Componentes de UI
   text_box username_box;

@@ -2,12 +2,12 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
 
-player_list_screen::player_list_screen(int screen_w, int screen_h, ALLEGRO_SAMPLE* button_s, const std::vector<player> &vect)
+player_list_screen::player_list_screen(int screen_w, int screen_h, ALLEGRO_SAMPLE* button_s, const std::multiset<player> &set)
     : screen_width(screen_w), screen_height(screen_h), current_page(0),
       players_per_page(14), // 14 por página mantém boa visibilidade
       next_button(650, 540, 120, 40, "Próximo", button_s),
       back_button(50, 540, 120, 40, "Voltar", button_s),
-      main_menu_button(340, 540, 120, 40, "Menu", button_s), go_to_menu(false), players(vect) {}
+      main_menu_button(340, 540, 120, 40, "Menu", button_s), go_to_menu(false), players(set) {}
 
 void player_list_screen::handle_event(const ALLEGRO_EVENT &ev) {
   if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN && ev.mouse.button == 1) {
@@ -37,6 +37,7 @@ void player_list_screen::handle_event(const ALLEGRO_EVENT &ev) {
       go_to_menu = true;
     }
   }
+  if (ev.type == ALLEGRO_EVENT_KEY_UP && ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE) go_to_menu = true;
 }
 
 void player_list_screen::draw(ALLEGRO_FONT *font) {
@@ -52,23 +53,25 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
   al_draw_text(font, al_map_rgb(200,200,0), col2_x, start_y, 0, "RECORDE");
   al_draw_text(font, al_map_rgb(200,200,0), col3_x, start_y, 0, "PARTIDAS JOGADAS");
 
-  // Linhas de dados (14 por página)
-  for (int i = 0; i < players_per_page; ++i) {
-    int idx = current_page * players_per_page + i;
-      if (idx >= (int)players.size()) break; //Condição de parada na última página
-      const auto& p = players[idx];
-      int y = start_y + (i+1) * (line_h + 5);
-      al_draw_text(font, al_map_rgb(255,255,255), col1_x, y, 0, p.username.c_str());
-      al_draw_text(font, al_map_rgb(255,255,255), col2_x, y, 0, std::to_string(p.score).c_str());
-      al_draw_text(font, al_map_rgb(255,255,255), col3_x, y, 0, std::to_string(p.games).c_str());
-  }
+  auto it = players.begin(); // Iterator para percorrer o multiset
+  std::advance(it, current_page * players_per_page); // Move o iterator para a página atual
+
+  // Exibe até 14 jogadores
+  // it define parada para última página e i define parada para páginas completas com 14 jogadores
+  for (int i = 0; i < players_per_page && it != players.end(); ++i, ++it) {
+        int y = start_y + (i+1) * (line_h + 5);
+        const auto& p = *it;
+        al_draw_text(font, al_map_rgb(255,255,255), col1_x, y, 0, p.username.c_str());
+        al_draw_text(font, al_map_rgb(255,255,255), col2_x, y, 0, std::to_string(p.score).c_str());
+        al_draw_text(font, al_map_rgb(255,255,255), col3_x, y, 0, std::to_string(p.games).c_str());
+    }
 
   // Botões na base
-  // Back
+  // Desenha o botão de página anterior
   if (current_page > 0) {
       back_button.draw(font);
   } else {
-      // desenha desativado
+      // Botão Desativado
       al_draw_filled_rectangle(back_button.get_x(), back_button.get_y(),
                                 back_button.get_x() + back_button.get_width(),
                                 back_button.get_y() + back_button.get_height(),
@@ -84,11 +87,12 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
                     0, "Voltar");
   }
 
-  // Next
+  // Desenha o botão de próxima página
   int max_page = (players.size() - 1) / players_per_page;
   if (current_page < max_page) {
       next_button.draw(font);
   } else {
+      // Botão Desativado
       al_draw_filled_rectangle(next_button.get_x(), next_button.get_y(),
                                 next_button.get_x() + next_button.get_width(),
                                 next_button.get_y() + next_button.get_height(),
@@ -104,7 +108,7 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
                     0, "Próximo");
   }
 
-  // Menu (sempre ativo)
+  // Desenha botão para voltar para o menu (sempre ativo)
   main_menu_button.draw(font);
 
   // Indicação de página no topo

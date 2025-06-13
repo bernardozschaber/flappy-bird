@@ -6,7 +6,7 @@
 
 class player_list_screen {
 public:
-  player_list_screen(int screen_w, int screen_h, ALLEGRO_SAMPLE* button_s, const std::vector<player> &vect);
+  player_list_screen(int screen_w, int screen_h, ALLEGRO_SAMPLE* button_s, const std::multiset<player> &set);
 
   // Trata eventos (mouse) e avança/página ou retorna ao menu
   void handle_event(const ALLEGRO_EVENT &ev);
@@ -21,15 +21,18 @@ public:
   void reset();
 
 private:
+  // Atributos básicos da tela de listagem
   int screen_width, screen_height;
   int current_page;
   int players_per_page;
 
+  // Declaração dos botões com composição de classes
   button next_button;
   button back_button;
   button main_menu_button;
 
-  const std::vector<player> &players;
+  // Multiset com todos os jogadores recebido do objeto do tipo registration
+  const std::multiset<player> &players;
 
   bool go_to_menu;
 };

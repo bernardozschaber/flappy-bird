@@ -112,3 +112,10 @@
     Pedro (registration) :
         - Troca do set para multiset para permitir ordenação pelo score
         - Pequenas mudanças de tipo de retorno e verificações para deixar menos propício a falhas
+
+13-06-2025
+
+    Matsura (src, include) :
+        - Melhora visual do menu de login
+        - Substituição do vector por multiset nas telas
+        - Implementação de atalhos: TAB para alternar campos e ENTER para confirmar

@@ -1,13 +1,11 @@
 #include "register_screen.hpp"
 #include <allegro5/allegro_primitives.h>
 
-register_screen::register_screen(int screen_w, int screen_h, registration &data_ref, std::vector<player> &vector, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s)
-    : screen_width(screen_w), screen_height(screen_h),
-      username_box(275, 200, 250, 40, 18, key_s), password_box(275, 270, 250, 40, 18, key_s),
-      confirm_box(275, 340, 250, 40, 18, key_s),
-      confirm_button(275, 400, 120, 40, "Confirmar", button_s),
-      cancel_button(415, 400, 120, 40, "Cancelar", button_s), reg_complete(false), vector(vector),
-      go_to_login(false), password_mismatch(false), existing_user(false), data(data_ref), empty_field(false) {
+register_screen::register_screen(int screen_w, int screen_h, registration &data_ref, std::multiset<player> &set, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s):
+      screen_width(screen_w), screen_height(screen_h),
+      username_box(275, 200, 250, 40, 18, key_s), password_box(275, 270, 250, 40, 18, key_s), confirm_box(275, 340, 250, 40, 18, key_s),
+      confirm_button(275, 400, 120, 40, "Confirmar", button_s), cancel_button(415, 400, 120, 40, "Cancelar", button_s),
+      reg_complete(false), players(set), go_to_login(false), password_mismatch(false), existing_user(false), data(data_ref), empty_field(false) {
   password_box.set_mask(true);
   confirm_box.set_mask(true);
   username_box.set_active(false);
@@ -71,8 +69,8 @@ void register_screen::handle_event(const ALLEGRO_EVENT &ev) {
           confirm_box.set_text("");
         } else {
           data.new_user(nome, senha, 0, 0);
-          vector.clear();
-          vector = data.get_all();
+          players.clear();
+          players = data.get_all();
           reg_complete = true;
         }
       }
@@ -84,8 +82,69 @@ void register_screen::handle_event(const ALLEGRO_EVENT &ev) {
       go_to_login = true;
     }
   }
+
+  // Atalhos de Enter e TAB
+  if (ev.type == ALLEGRO_EVENT_KEY_UP) {
+    switch (ev.keyboard.keycode) {
+      case ALLEGRO_KEY_TAB:
+          // ciclo de foco: user -> pass -> confirm -> user
+          if (username_box.is_active_box()) {
+              username_box.set_active(false);
+              password_box.set_active(true);
+          } else if (password_box.is_active_box()) {
+              password_box.set_active(false);
+              confirm_box.set_active(true);
+          } else {
+              confirm_box.set_active(false);
+              username_box.set_active(true);
+          }
+          break;
+      case ALLEGRO_KEY_ENTER:
+          if (username_box.is_active_box() || password_box.is_active_box() || confirm_box.is_active_box()) {
+            confirm_button.reset_clicked();
+            std::string nome = username_box.get_text();
+            std::string senha = password_box.get_text();
+            std::string conf = confirm_box.get_text();
+
+            if (nome.empty() || senha.empty() || conf.empty()) {
+              // Não permitir registro com campos vazios
+              empty_field = true;
+              password_mismatch = false;
+              existing_user = false; //evitar textos de erro se sobrepor
+            } else if (senha != conf) {
+              password_mismatch = true;
+              empty_field = false;
+              existing_user = false;
+              username_box.set_text("");
+              password_box.set_text("");
+              confirm_box.set_text("");
+            } else {
+              std::string aux = data.get_stats(nome);
+              if (aux != "") {
+                existing_user = true;
+                empty_field = false;
+                password_mismatch = false; //evitar textos de erro se sobrepor
+                username_box.set_text("");
+                password_box.set_text("");
+                confirm_box.set_text("");
+              } else {
+                data.new_user(nome, senha, 0, 0);
+                players.clear();
+                players = data.get_all();
+                reg_complete = true;
+              }
+            }
+          } 
+          break;
+      case ALLEGRO_KEY_ESCAPE:
+          go_to_login = true;  // volta ao login
+          break;
+      default: break;
+    }
+  } 
+
   // Evento de teclado: apenas para text_box que estiver ativa
-  else if (ev.type == ALLEGRO_EVENT_KEY_CHAR) {
+  if (ev.type == ALLEGRO_EVENT_KEY_CHAR) {
     if (username_box.is_active_box()) {
       username_box.handle_event(ev);
     } else if (password_box.is_active_box()) {
