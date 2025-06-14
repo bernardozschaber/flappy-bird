@@ -117,6 +117,7 @@ void registration::update(std::string user, int score){
 
     //Recebe a linha correspondente ao jogador
     std::string line = get_stats(user);
+
     //Caso não encontre o jogador 
     if(line == ""){
         return;
@@ -181,12 +182,10 @@ int registration::delete_user(std::string user){
     std::vector<std::string> lines;
     std::string line;
     int currentLine = 0;
+
     //Localizar a linha que deseja remover
     int targetLine = getline_number(user);
-    //Caso não encontre o jogador
-    if(line == ""){
-        return 0;
-    }
+
     // Lê todas as linhas do arquivo
     users.clear();
     users.seekg(0, std::ios::beg);

@@ -136,3 +136,7 @@
     Matsura (src, include) :
         -Implementação da tela de remoção de usuário (ainda não funcional)
 
+14-06-2025
+
+    Pedro(registration)
+        - Correção de um bug que não removia o usuário do arquivo .txt
