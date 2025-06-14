@@ -570,6 +570,14 @@ std::uniform_int_distribution<> dis(0, 384);
 
             // Animação mostrando os pontos
             else if(points_animation) {
+
+                if (score_displayed == score)   // Pontuação mostrada chegou na pontuação de fato, pare a animação
+                {
+                    points_animation = false;
+                    for (int i = 1; i <= 3; i++) {
+                        images.at(i)->set_position_y(SCREEN_H/2);
+                    }
+                }
                 
                 if(frame_count == frames_per_point) {
                     u++;
@@ -589,14 +597,6 @@ std::uniform_int_distribution<> dis(0, 384);
                     images.at(3)->set_bitmap(numbers_sprites[u]);
 
                     score_displayed++;
-
-                    if (score_displayed == score)   // Pontuação mostrada chegou na pontuação de fato, pare a animação
-                    {
-                        points_animation = false;
-                        for (int i = 1; i <= 3; i++) {
-                            images.at(i)->set_position_y(SCREEN_H/2);
-                        }
-                    }
 
                     frame_count = 0;
                 }
