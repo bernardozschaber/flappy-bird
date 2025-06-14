@@ -45,13 +45,14 @@ std::uniform_int_distribution<> dis(0, 384);
 
 // VARIÁVEIS EXTRAS
     int random_offset;                                                      // Offset do cano a ser spawnado
+    bool golden_factor;                                                     // Característica se o cano é dourado ou não
     float score;
     float dif;                                                              // Float que faz as instruções variarem de tamanho
     bool going_up;                                                          // Bool que controla se o dif aumenta ou diminui
     int PIPE_SPACE = 160;                                                   // Espaçamento entre os canos
     float PIPE_INITIAL_SPEED = -5;                                          // Velocidade atual dos canos
-    float PIPE_SPEED_MAX = -10;                                             // Velocidade máxima dos canos
-    float PIPE_SPEED_INCREASE = 0.01;                                       // Aumento da velocidade dos canos a cada 10 pontos
+    float PIPE_SPEED_MAX = -12;                                             // Velocidade máxima dos canos
+    float PIPE_SPEED_INCREASE = 0.02;                                       // Aumento da velocidade dos canos a cada 10 pontos
     int BIRD_JUMP_VEL = -15;                                                // Velocidade do pulo do pássaro
     int BIRD_MAX_UP_VEL = -25;                                              // Velocidade máxima de subida do pássaro
     int BIRD_MAX_DOWN_VEL = 20;                                             // Velocidade máxima de descida do pássaro
@@ -379,13 +380,22 @@ std::uniform_int_distribution<> dis(0, 384);
         //Criando os canos//
         if (playing &&(game_objects.size()==1 || game_objects.at(game_objects.size()-1)->Get_position()->x<SCREEN_W-100)){    // Adiciona o primeiro cano se não houver nenhum ou se o último cano estiver à distância adequada (100 + 250)
             random_offset = dis(gen);                               // Determina o offset do cano a ser spawnado
+            golden_factor = dis(gen) <= 3;
             int spawn_x = SCREEN_W + 250;                           // Coordenada X de spawn dos canos (fora da tela)
             int spawn_y = (SCREEN_H / 2) - 108 - random_offset;     // Coordenada Y de referência para spawn dos canos
 
-            game_objects.push_back(new pipe_object(spawn_x, spawn_y, al_get_bitmap_width(pipe_sprite), 
-            al_get_bitmap_height(pipe_sprite), pipe_sprite));                                           // Instanciação do cano superior
-            game_objects.push_back(new pipe_object(spawn_x, spawn_y+al_get_bitmap_height(pipe_sprite)+PIPE_SPACE, 
-            al_get_bitmap_width(pipe_sprite), al_get_bitmap_height(pipe_sprite), pipe_sprite));         // Instanciação do cano inferior
+            if (!golden_factor) {
+                game_objects.push_back(new pipe_object(spawn_x, spawn_y, al_get_bitmap_width(pipe_sprite), 
+                al_get_bitmap_height(pipe_sprite), pipe_sprite, false));                                           // Instanciação do cano superior
+                game_objects.push_back(new pipe_object(spawn_x, spawn_y+al_get_bitmap_height(pipe_sprite)+PIPE_SPACE, 
+                al_get_bitmap_width(pipe_sprite), al_get_bitmap_height(pipe_sprite), pipe_sprite, false));         // Instanciação do cano inferior
+            }
+            else {
+                game_objects.push_back(new pipe_object(spawn_x, spawn_y, al_get_bitmap_width(pipe_sprite), 
+                al_get_bitmap_height(pipe_sprite), golden_pipe_sprite, true));                                           // Instanciação do cano superior
+                game_objects.push_back(new pipe_object(spawn_x, spawn_y+al_get_bitmap_height(pipe_sprite)+PIPE_SPACE, 
+                al_get_bitmap_width(pipe_sprite), al_get_bitmap_height(pipe_sprite), golden_pipe_sprite, true));         // Instanciação do cano inferior
+            }
                     
             if (game_objects.at(1)->Get_x_speed() > PIPE_SPEED_MAX) {
                 game_objects.at(1)->Set_x_speed(game_objects.at(1)->Get_x_speed()-0.1);     // Se a velocidade do cano for maior que o máximo, reduza ela
@@ -404,8 +414,14 @@ std::uniform_int_distribution<> dis(0, 384);
         //Verificando pontuação//
         for (int i = 1; i < game_objects.size() - 1; i++) {
             if(game_objects.at(i)->Get_position()->x<=SCREEN_W/2){
-                if(!game_objects.at(i)->is_scored()){
-                    score=score+0.5;
+                if(!game_objects.at(i)->is_scored()) {
+                    // Veririficação se é dourado (cano dourado vale 3)
+                    if(game_objects.at(i)->is_golden()) {
+                        score=score+1.5;
+                    }
+                    else {
+                        score=score+0.5;
+                    }
                     game_objects.at(i)->Set_score(true);
                 }
             }else break;
@@ -476,7 +492,6 @@ std::uniform_int_distribution<> dis(0, 384);
             // Calculando qual vai ser a velocidade da animação dos pontos
             frames_per_point = ceil(5/ceil((score+1)/20));
             frame_count = frames_per_point - 1;
-            std::cout << score << std::endl;
         }
 
 
@@ -757,9 +772,9 @@ std::uniform_int_distribution<> dis(0, 384);
         images.clear();
         /*
         0 -> Frame da tela de morte
-        1 -> Centenas da pontuação
-        2 -> Dezenas da pontuação
-        3 -> Unidades da pontuação
+        1 -> Centenas da pontuação (morte)
+        2 -> Dezenas da pontuação (morte)
+        3 -> Unidades da pontuação (morte)
         */
         images.push_back(new image(death_screen_frame, SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));  
         images.push_back(new image(numbers_sprites[0], SCREEN_W/2-80, SCREEN_H+al_get_bitmap_height(death_screen_frame)));

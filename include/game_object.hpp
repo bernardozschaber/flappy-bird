@@ -39,6 +39,7 @@ class game_object {
         virtual void Draw_spin(float spin_speed) {};
         virtual float Get_x_speed() {return 0;}
         virtual bool is_scored() {return false;}
+        virtual bool is_golden() {return false;}
 };
 
 #endif // GAME_OBJECT_HPP

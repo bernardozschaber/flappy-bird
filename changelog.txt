@@ -149,3 +149,6 @@
         - Inserção do arquivo de testes da classe "registration"
         - Mudança no makefile para compilar o teste de unidade
         - Inserção da biblioteca doctest.h no diretório "tests"
+
+    Sam (game_loop, pipe_object)
+        - Implementados os canos dourados

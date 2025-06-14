@@ -1,7 +1,7 @@
 #include "game_object.hpp"
 #include "pipe_object.hpp"
 
-pipe_object::pipe_object(float a, float b, int c, int d, ALLEGRO_BITMAP *Bitmap) : game_object(a, b, c, d, Bitmap), vel_y(0), scored(false) {};
+pipe_object::pipe_object(float a, float b, int c, int d, ALLEGRO_BITMAP *Bitmap, bool is_golden) : game_object(a, b, c, d, Bitmap), vel_y(0), scored(false), golden(is_golden) {};
     
 void pipe_object::Draw(float scale){
     abs_pos* drw_pos = this->Get_position();
@@ -27,6 +27,10 @@ void pipe_object::Set_score(bool a){
 
 bool pipe_object::is_scored(){
     return scored;
+}
+
+bool pipe_object::is_golden() {
+    return golden;
 }
 
 float pipe_object::Get_x_speed(){
