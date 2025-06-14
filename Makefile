@@ -42,6 +42,9 @@ obj/register_screen.o: include/register_screen.hpp src/register_screen.cpp
 obj/player_list_screen.o: include/player_list_screen.hpp src/player_list_screen.cpp
 	g++ -o obj/player_list_screen.o -c src/player_list_screen.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
 
+obj/remove_user_screen.o: include/remove_user_screen.hpp src/remove_user_screen.cpp
+	g++ -o obj/remove_user_screen.o -c src/remove_user_screen.cpp -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+
 obj/registration.o: include/registration.hpp src/registration.cpp
 	g++ -o obj/registration.o -c src/registration.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
 
@@ -54,5 +57,5 @@ obj/image.o: include/image.hpp src/image.cpp
 main: obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o obj/game_loop.o obj/moving_button.o obj/ui_object.o obj/image.o
 	g++ obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o obj/game_loop.o obj/moving_button.o obj/ui_object.o obj/image.o -o main `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
 
-main_menu: obj/main_menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/player_list_screen.o obj/registration.o
-	g++ obj/main_menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/player_list_screen.o obj/registration.o -o main_menu `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
+main_menu: obj/main_menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/player_list_screen.o obj/remove_user_screen.o obj/registration.o
+	g++ obj/main_menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/remove_user_screen.o obj/player_list_screen.o obj/registration.o -o main_menu `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`

@@ -22,6 +22,9 @@ public:
   // Indica se deve trocar para a tela de registro
   bool go_to_register_screen() const;
 
+  // Indica se deve trocar para a tela de remoção de usuário
+  bool go_to_remove_screen() const;
+
   // Indica se o login foi finalizado
   bool login_done() const;
 
@@ -48,12 +51,14 @@ private:
   button login_button;
   button register_button;
   button view_players_button;
+  button remove_user_button;
 
   // registro de jogadores
   registration &data;
 
   bool go_to_list;
   bool go_to_register;
+  bool go_to_remove;
 };
 
 #endif // LOGIN_SCREEN_HPP

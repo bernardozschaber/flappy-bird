@@ -4,10 +4,11 @@
 login_screen::login_screen(int screen_w, int screen_h, registration &data_ref, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s)
     : screen_width(screen_w), screen_height(screen_h),
       username_box(275, 200, 250, 40, 18, key_s), password_box(275, 270, 250, 40, 18, key_s),
-      login_button(275, 336, 120, 40, "Login", button_s),
-      register_button(415, 336, 120, 40, "Registrar", button_s),
-      view_players_button(275, 396, 180, 40, "Ver Jogadores", button_s),
-      valid_login(true), go_to_list(false), go_to_register(false), done(false), data(data_ref), empty_field(false) {
+      login_button(270, 340, 120, 40, "Login", button_s),
+      register_button(410, 340, 120, 40, "Registrar", button_s),
+      view_players_button(210, 400, 180, 40, "Ver Jogadores", button_s),
+      remove_user_button(410, 400, 180, 40, "Remover Usuário", button_s),
+      valid_login(true), go_to_list(false), go_to_register(false), go_to_remove(false), done(false), data(data_ref), empty_field(false) {
   password_box.set_mask(true);
   username_box.set_active(false);
   password_box.set_active(false);
@@ -38,6 +39,7 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
     login_button.handle_event(ev);
     register_button.handle_event(ev);
     view_players_button.handle_event(ev);
+    remove_user_button.handle_event(ev);
 
     // Ações de cada botão
     if (login_button.was_clicked()) {
@@ -84,6 +86,10 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
     if (view_players_button.was_clicked()) {
       view_players_button.reset_clicked();
       go_to_list = true;
+    }
+    if (remove_user_button.was_clicked()) {
+      remove_user_button.reset_clicked();
+      go_to_remove = true;
     }
   }
 
@@ -161,6 +167,7 @@ void login_screen::draw(ALLEGRO_FONT *font) {
   login_button.draw(font);
   register_button.draw(font);
   view_players_button.draw(font);
+  remove_user_button.draw(font);
 
   if (empty_field) {
     std::string erro = "Há campos vazios!";
@@ -194,6 +201,8 @@ bool login_screen::go_to_player_list() const { return go_to_list; }
 
 bool login_screen::go_to_register_screen() const { return go_to_register; }
 
+bool login_screen::go_to_remove_screen() const { return go_to_remove; }
+
 bool login_screen::login_done() const { return done; }
 
 player login_screen::get_logged_user() { return logged_user; }
@@ -208,6 +217,7 @@ void login_screen::reset() {
   logged_user.games = 0;
   go_to_list = false;
   go_to_register = false;
+  go_to_remove = false;
   valid_login = true;
   done = false;
   empty_field = false;

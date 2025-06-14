@@ -9,6 +9,7 @@
 #include "login_screen.hpp"
 #include "register_screen.hpp"
 #include "player_list_screen.hpp"
+#include "remove_user_screen.hpp"
 
 #include <iostream>
 
@@ -103,8 +104,9 @@ int main(int argc, char **argv) {
     login_screen login_scr(SCREEN_W, SCREEN_H, data, sample_key, sample_button);
     register_screen register_scr(SCREEN_W, SCREEN_H, data, players, sample_key, sample_button);
     player_list_screen list_scr(SCREEN_W, SCREEN_H, sample_button, crown, players, data);
+    remove_user_screen rm_scr(SCREEN_W, SCREEN_H, data, sample_key, sample_button);
 
-    enum screen_type { SCREEN_LOGIN, SCREEN_REGISTER, SCREEN_LIST };
+    enum screen_type { SCREEN_LOGIN, SCREEN_REGISTER, SCREEN_LIST, SCREEN_REMOVE };
     
     bool is_open = true;
     ALLEGRO_FONT *pixel_sans = al_load_ttf_font("assets/fonts/pixelify_sans.ttf", 20, 0);
@@ -114,6 +116,7 @@ int main(int argc, char **argv) {
         login_scr.reset();
         register_scr.reset();
         list_scr.reset();
+        rm_scr.reset();
         while(!login_scr.login_done()){
             al_wait_for_event(queue, &event);
 
@@ -141,6 +144,11 @@ int main(int argc, char **argv) {
                     current = SCREEN_LIST;
                     login_scr.reset();
                 }
+                // Se usuário clicou em "Remover Usuário" → vai para tela de remoção de jogador
+                else if (login_scr.go_to_remove_screen()) {
+                    current = SCREEN_REMOVE;
+                    login_scr.reset();
+                }
             }
             else if (current == SCREEN_REGISTER) {
                 register_scr.handle_event(event);
@@ -165,6 +173,14 @@ int main(int argc, char **argv) {
                     current = SCREEN_LOGIN;
                 }
             }
+            else if (current == SCREEN_REMOVE) {
+                rm_scr.handle_event(event);
+
+                if (rm_scr.go_to_main_menu()) {
+                    rm_scr.reset();
+                    current = SCREEN_LOGIN;
+                }
+            }
 
             // A cada tick do timer, redesenha tudo
             if (event.type == ALLEGRO_EVENT_TIMER) {
@@ -186,6 +202,9 @@ int main(int argc, char **argv) {
                 else if (current == SCREEN_LIST) {
                     list_scr.draw(pixel_sans);
                 }
+                else if (current == SCREEN_REMOVE) {
+                    rm_scr.draw(pixel_sans);
+                }
                 al_flip_display(); 
             }
         }
@@ -195,6 +214,7 @@ int main(int argc, char **argv) {
     al_destroy_sample(sample_key);
     al_destroy_sample(sample_button);
     al_destroy_bitmap(background_menu);
+    al_destroy_bitmap(crown);
     al_destroy_font(pixel_sans);
     al_destroy_timer(timer);
     al_destroy_event_queue(queue);
