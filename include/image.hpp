@@ -29,13 +29,11 @@ class image {
         float get_velocity_y();                     // retorna a velocidade Y
 
         //Setters
-        void set_x(float new_x);                        // seta a posição X
-        void set_y(float new_y);                        // seta a posição Y
-        void set_velocity_x(float new_vel_x);           // seta a velocidade X
-        void set_velocity_y(float new_vel_y);           // seta a velocidade Y
-        void set_acceleration_x(float new_accel_x);     // seta a aceleração X
-        void set_acceleration_y(float new_accel_y);     // seta a aceleração Y
-        void set_bitmap(ALLEGRO_BITMAP* new_sprite);    // seta um novo sprite
+        void set_position_x(float new_x);                               // seta a posição X
+        void set_position_y(float new_y);                               // seta a posição Y
+        void set_velocity(float new_vel_x, float new_vel_y);            // seta a velocidade
+        void set_acceleration(float new_accel_x, float new_accel_y);    // seta a aceleração
+        void set_bitmap(ALLEGRO_BITMAP* new_sprite);                    // seta um novo sprite
 };
 
 #endif

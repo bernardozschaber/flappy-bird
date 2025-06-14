@@ -2,7 +2,6 @@
 
 moving_button::moving_button(float x, float y, ALLEGRO_BITMAP* Bitmap) 
 : sprite(Bitmap), ui_object(x,y,al_get_bitmap_width(Bitmap),al_get_bitmap_height(Bitmap)){};
-
 void moving_button::set_velocity(float vx, float vy) {
     this->vel_x = vx;
     this->vel_y = vy;

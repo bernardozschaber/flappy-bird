@@ -120,6 +120,10 @@ std::uniform_int_distribution<> dis(0, 384);
 
         // Criação das imagens
         images.push_back(new image(death_screen_frame, SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
+        images.push_back(new image(numbers_sprites[0], SCREEN_W/2-80, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
+        images.push_back(new image(numbers_sprites[0], SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
+        images.push_back(new image(numbers_sprites[0], SCREEN_W/2+80, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
+
         
         // Criação dos botões
         buttons.push_back(new moving_button(SCREEN_W-64, -40, pause_button_sprite[0]));     
@@ -128,6 +132,8 @@ std::uniform_int_distribution<> dis(0, 384);
         buttons.push_back(new moving_button(SCREEN_W/2+42, 60, achievements_button_sprite[0]));
         buttons.push_back(new moving_button(SCREEN_W/2+126, 60, home_sprite[0]));  
         buttons.push_back(new moving_button(SCREEN_W/2,SCREEN_H/2+80, instruções_sprite));
+        buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)+168, tryagain_sprite[0]));
+
         dif = 0;
         going_up=true;
     };               
@@ -184,11 +190,18 @@ std::uniform_int_distribution<> dis(0, 384);
             delete bgo; // Deleta cada objeto de background
         }
         background_objects_3.clear(); // Limpa o vetor de objetos de background
+
         // Deletar os botões
         for (moving_button* btn : buttons) {
             delete btn; // Deleta cada botão
         }
         buttons.clear(); // Limpa o vetor de botões
+
+        // Deletar as imagens
+        for (image* img : images) {
+            delete img;
+        }
+        images.clear();
     }
 
     
@@ -428,6 +441,12 @@ std::uniform_int_distribution<> dis(0, 384);
             death_menu = true;
             playing = false;
             death_screen_animation = true;
+
+            // Movendo os botões de achievements (3) e home (4) para a tela de morte
+            buttons.at(3)->set_x(SCREEN_W/2 + 115);
+            buttons.at(3)->set_y(SCREEN_H+al_get_bitmap_height(death_screen_frame)+168);
+            buttons.at(4)->set_x(SCREEN_W/2 - 115);
+            buttons.at(4)->set_y(SCREEN_H+al_get_bitmap_height(death_screen_frame)+168);
         }
 
 
@@ -453,44 +472,63 @@ std::uniform_int_distribution<> dis(0, 384);
         }
 
         //Carregando os botões do pause//
-        for(int i=1; i<5; i++){
-            if(buttons.at(i)->get_velocity_y()+buttons.at(i)->get_y()>=60){             //Delimitadores de posição
-                buttons.at(i)->set_y(60);
+        if(!death_menu){
+            for(int i=1; i<5; i++){
+                if(buttons.at(i)->get_velocity_y()+buttons.at(i)->get_y()>=60){             //Delimitadores de posição
+                    buttons.at(i)->set_y(60);
+                    buttons.at(i)->set_acceleration(0,0);
+                    buttons.at(i)->set_velocity(0,0);
+                }
+                if(buttons.at(i)->get_velocity_y()+buttons.at(i)->get_y()<=-100){
+                    buttons.at(i)->set_y(-40);
+                    buttons.at(i)->set_acceleration(0,0);
+                    buttons.at(i)->set_velocity(0,0);
+                }
+                if((paused||(!playing&&!dead))&&buttons.at(i)->get_y()<60){                                    //Movimentando o botão
+                    buttons.at(i)->set_acceleration(0,5);
+                }else if((!paused&&(playing||dead))&&buttons.at(i)->get_y()>-40){
+                    buttons.at(i)->set_acceleration(0,-4);
+                }else{
                 buttons.at(i)->set_acceleration(0,0);
                 buttons.at(i)->set_velocity(0,0);
-            }
-            if(buttons.at(i)->get_velocity_y()+buttons.at(i)->get_y()<=-100){
-                buttons.at(i)->set_y(-40);
-                buttons.at(i)->set_acceleration(0,0);
-                buttons.at(i)->set_velocity(0,0);
-            }
-            if((paused||(!playing&&!dead))&&buttons.at(i)->get_y()<60){                                    //Movimentando o botão
-                buttons.at(i)->set_acceleration(0,5);
-            }else if((!paused&&(playing||dead))&&buttons.at(i)->get_y()>-40){
-                buttons.at(i)->set_acceleration(0,-4);
-            }else{
-            buttons.at(i)->set_acceleration(0,0);
-            buttons.at(i)->set_velocity(0,0);
+                }
             }
         }
 
         //////////MENU DE MORTE///////////////
         if(death_menu && images.size() > 0) {
-            //Updates
-            images.at(0)->Update();
-
             if(death_screen_animation) {
+                // Velocidade padrão para todos os objetos da tela de morte
                 float vel = (SCREEN_H/2 - images.at(0)->get_y())/10 - 5;
-                images.at(0)->set_velocity_y(vel);
+                for (int i = 0; i <= 3; i++) {
+                    images.at(i)->set_velocity(0, vel);
+                }
+                buttons.at(3)->set_velocity(0, vel);
+                buttons.at(4)->set_velocity(0, vel);
+                buttons.at(6)->set_velocity(0, vel);
 
                 if(images.at(0)->get_y() <= SCREEN_H/2)     // Frame da tela de morte chegou/passou do meio da tela
                 {
                     death_screen_animation = false;
                     points_animation = true;
-                    images.at(0)->set_acceleration_y(0);
-                    images.at(0)->set_velocity_y(0);
-                    images.at(0)->set_y(SCREEN_H/2);
+
+                    for (int j = 0; j <= 3; j++) {
+                        images.at(j)->set_acceleration(0, 0);
+                        images.at(j)->set_velocity(0, 0);
+                        images.at(j)->set_position_y(SCREEN_H/2);
+                    }
+
+                    buttons.at(3)->set_velocity(0, 0);
+                    buttons.at(3)->set_y(SCREEN_H/2+168);
+                    buttons.at(4)->set_velocity(0, 0);
+                    buttons.at(4)->set_y(SCREEN_H/2+168);
+                    buttons.at(6)->set_velocity(0, 0);
+                    buttons.at(6)->set_y(SCREEN_H/2+168);
                 }
+            }
+
+            if(points_animation) {
+
             }
         }
 
@@ -532,12 +570,15 @@ std::uniform_int_distribution<> dis(0, 384);
         
             }
         }
-        for(moving_button* bt : buttons){
-            bt->Update();
+        for(moving_button* btn : buttons){
+            btn->Update();
+        }
+
+        for(image* img : images) {
+            img->Update();
         }
         
         //If menu
-        //If death_menu
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -571,18 +612,30 @@ std::uniform_int_distribution<> dis(0, 384);
             game_objects.at(0)->Draw(1);
         }
 
-        // Desenha os botões
-        for (int i=0; i<5; i++) {
-            buttons.at(i)->draw();
-        }
-        if(!playing&&!death_menu&&!dead){
-        buttons.at(5)->draw(0.22+dif);
+        // Desenha as imagens
+        if(death_menu && images.size() > 0) {
+            // Frame
+            images.at(0)->Draw();
+            // Pontos
+            for (int i = 1; i <= 3; i++) {
+                images.at(i)->Draw(2);
+            }
+            // Botões
+            buttons.at(3)->draw();
+            buttons.at(4)->draw();
+            buttons.at(6)->draw();
         }
 
-        //////////MENU DE MORTE///////////////
-        if(death_menu && images.size() > 0) {
-            images.at(0)->Draw();
+        // Desenha os botões
+        if(!death_menu) {
+            for (int i = 0; i <= 4; i++) {
+                buttons.at(i)->draw();
+            }
+            if(!playing&&!dead) {
+                buttons.at(5)->draw(0.22+dif);
+            }
         }
+        
 
         //Desenhar o score
         //al_draw_textf(pixel_sans, black, 10, 10, 0, "Score: %d", score);
@@ -627,8 +680,15 @@ std::uniform_int_distribution<> dis(0, 384);
         images.clear();
         /*
         0 -> Frame da tela de morte
+        1 -> Centenas da pontuação
+        2 -> Dezenas da pontuação
+        3 -> Unidades da pontuação
         */
-        images.push_back(new image(death_screen_frame, SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
+        images.push_back(new image(death_screen_frame, SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));  
+        images.push_back(new image(numbers_sprites[0], SCREEN_W/2-80, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
+        images.push_back(new image(numbers_sprites[0], SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
+        images.push_back(new image(numbers_sprites[0], SCREEN_W/2+80, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
+
         death_screen_animation = false;
         points_animation = false;
 
@@ -648,7 +708,7 @@ std::uniform_int_distribution<> dis(0, 384);
         buttons.push_back(new moving_button(SCREEN_W/2+42, 60, achievements_button_sprite[0]));
         buttons.push_back(new moving_button(SCREEN_W/2+126, 60, home_sprite[0]));  
         buttons.push_back(new moving_button(SCREEN_W/2,SCREEN_H/2+80, instruções_sprite));
-        buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H+128, tryagain_sprite[0]));
+        buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)+168, tryagain_sprite[0]));
         dif=0;
         going_up=true;
     } 

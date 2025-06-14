@@ -28,27 +28,21 @@ float image::get_velocity_y() {
     return this->vel_y;
 }
 
-void image::set_x(float new_x) {
+void image::set_position_x(float new_x) {
     this->x = new_x;
 }
 
-void image::set_y(float new_y) {
+void image::set_position_y(float new_y) {
     this->y = new_y;
 }
 
-void image::set_velocity_x(float new_velocity_x) {
+void image::set_velocity(float new_velocity_x, float new_velocity_y) {
     this->vel_x = new_velocity_x;
-}
-
-void image::set_velocity_y(float new_velocity_y) {
     this->vel_y = new_velocity_y;
 }
 
-void image::set_acceleration_x(float new_acceleration_x) {
+void image::set_acceleration(float new_acceleration_x, float new_acceleration_y) {
     this->acel_x = new_acceleration_x;
-}
-
-void image::set_acceleration_y(float new_acceleration_y) {
     this->acel_y = new_acceleration_y;
 }
 
@@ -58,6 +52,10 @@ void image::set_bitmap(ALLEGRO_BITMAP* new_sprite) {
 
 void image::Draw() {
     al_draw_tinted_scaled_rotated_bitmap(this->bitmap, al_map_rgba_f(1, 1, 1, 1), width/2, height/2, x, y, 1, 1, 0, 0);
+}
+
+void image::Draw(float scale) {
+    al_draw_tinted_scaled_rotated_bitmap(this->bitmap, al_map_rgba_f(1, 1, 1, 1), width/2, height/2, x, y, scale, scale, 0, 0);
 }
 
 void image::Update() {

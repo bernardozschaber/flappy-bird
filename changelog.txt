@@ -124,3 +124,11 @@
         - Bitmap de coroa para indicar jogadores com o maior score
         - Reorganização visual da localização dos textos com o novo fundo
         - Correção de bug de segmentation fault
+
+    Sam (image, game_loop):
+        - Padronizados os metodos de set do TAD image (exceto posição)
+        - Adicionado um draw com scale para o image (tinha esquecido de implementar)
+        - Mais algumas adições ao menu de morte
+            - Layout dos pontos está pronto, só falta mostrar a pontuação
+            - Botão de jogar de novo ja aparece junto com a tela de morte, mas ainda não responde ao clique
+            - Botões de home e achievements não estão se movendo junto com a tela de morte como era esperado (ainda vai ser corrigido)
