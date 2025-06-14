@@ -186,6 +186,10 @@ int registration::delete_user(std::string user){
     //Localizar a linha que deseja remover
     int targetLine = getline_number(user);
 
+    //Caso não encontre o usuário
+    if(targetLine == 0)
+            return 0;
+
     // Lê todas as linhas do arquivo
     users.clear();
     users.seekg(0, std::ios::beg);

@@ -144,3 +144,8 @@
     Sam (game_loop)
         - Finalmente a tela de morte está funcionando e mostrando a pontuação
             - Ainda falta mostrar se é recorde ou não, mas aí precisa do max score do jogador
+
+    Pedro(registration.cpp, testregistration.cpp, Makefile, doctest.h)
+        - Inserção do arquivo de testes da classe "registration"
+        - Mudança no makefile para compilar o teste de unidade
+        - Inserção da biblioteca doctest.h no diretório "tests"

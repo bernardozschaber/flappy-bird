@@ -59,3 +59,12 @@ main: obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/backg
 
 main_menu: obj/main_menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/player_list_screen.o obj/remove_user_screen.o obj/registration.o
 	g++ obj/main_menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/remove_user_screen.o obj/player_list_screen.o obj/registration.o -o main_menu `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
+
+# PARTE DE TESTES
+
+# CLASSE DE REGISTRO
+obj/testregistration.o: tests/testregistration.cpp include/registration.hpp
+	g++ -c tests/testregistration.cpp -Iinclude -o obj/testregistration.o 
+
+testregistration: obj/registration.o obj/testregistration.o
+	g++ obj/registration.o obj/testregistration.o -o testregistration
