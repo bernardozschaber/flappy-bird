@@ -119,3 +119,8 @@
         - Melhora visual do menu de login
         - Substituição do vector por multiset nas telas
         - Implementação de atalhos: TAB para alternar campos e ENTER para confirmar
+
+    Matsura (src, include) :
+        - Bitmap de coroa para indicar jogadores com o maior score
+        - Reorganização visual da localização dos textos com o novo fundo
+        - Correção de bug de segmentation fault

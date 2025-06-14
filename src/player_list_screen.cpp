@@ -2,12 +2,12 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
 
-player_list_screen::player_list_screen(int screen_w, int screen_h, ALLEGRO_SAMPLE* button_s, const std::multiset<player> &set)
-    : screen_width(screen_w), screen_height(screen_h), current_page(0),
+player_list_screen::player_list_screen(int screen_w, int screen_h, ALLEGRO_SAMPLE* button_s, ALLEGRO_BITMAP* crown, const std::multiset<player> &set, registration& data_ref):
+      screen_width(screen_w), screen_height(screen_h), current_page(0),
       players_per_page(14), // 14 por página mantém boa visibilidade
       next_button(650, 540, 120, 40, "Próximo", button_s),
       back_button(50, 540, 120, 40, "Voltar", button_s),
-      main_menu_button(340, 540, 120, 40, "Menu", button_s), go_to_menu(false), players(set) {}
+      main_menu_button(340, 540, 120, 40, "Menu", button_s), go_to_menu(false), players(set), data(data_ref), crown(crown) {}
 
 void player_list_screen::handle_event(const ALLEGRO_EVENT &ev) {
   if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN && ev.mouse.button == 1) {
@@ -46,12 +46,14 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
   int start_y = 50;
   int col1_x = 100;
   int col2_x = screen_width/2 - 50;
-  int col3_x = screen_width - 200;
+  int col3_x = screen_width - 220;
 
   // Cabeçalho
-  al_draw_text(font, al_map_rgb(200,200,0), col1_x, start_y, 0, "USUÁRIO");
-  al_draw_text(font, al_map_rgb(200,200,0), col2_x, start_y, 0, "RECORDE");
-  al_draw_text(font, al_map_rgb(200,200,0), col3_x, start_y, 0, "PARTIDAS JOGADAS");
+  al_draw_text(font, al_map_rgb(255,255,0), col1_x, start_y, 0, "USUÁRIO");
+  al_draw_text(font, al_map_rgb(255,255,0), col2_x, start_y, 0, "RECORDE");
+  al_draw_text(font, al_map_rgb(255,255,0), col3_x, start_y, 0, "PARTIDAS JOGADAS");
+
+  int max_score = data.get_max_score();
 
   auto it = players.begin(); // Iterator para percorrer o multiset
   std::advance(it, current_page * players_per_page); // Move o iterator para a página atual
@@ -62,6 +64,12 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
         int y = start_y + (i+1) * (line_h + 5);
         const auto& p = *it;
         al_draw_text(font, al_map_rgb(255,255,255), col1_x, y, 0, p.username.c_str());
+        // Indicador de coroa caso possua o recorde
+        if (p.score == max_score && crown) {
+            int tw = al_get_text_width(font, p.username.c_str());
+            al_draw_scaled_bitmap(crown,0,0, al_get_bitmap_width(crown), al_get_bitmap_height(crown), col1_x + tw + 8, y + 2, 16, 16, 0);
+        }     
+
         al_draw_text(font, al_map_rgb(255,255,255), col2_x, y, 0, std::to_string(p.score).c_str());
         al_draw_text(font, al_map_rgb(255,255,255), col3_x, y, 0, std::to_string(p.games).c_str());
     }
@@ -115,7 +123,7 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
   int total_pages = max_page + 1;
   std::string page_text = "Página " + std::to_string(current_page+1) + " / " + std::to_string(total_pages);
   int pw = al_get_text_width(font, page_text.c_str());
-  al_draw_text(font, al_map_rgb(128,128,128), (screen_width - pw)/2, start_y - (line_h+5), 0, page_text.c_str());
+  al_draw_text(font, al_map_rgb(100,100,100), (screen_width - pw)/2, start_y - (2*(line_h)), 0, page_text.c_str());
 }
 
 bool player_list_screen::go_to_main_menu() const { return go_to_menu; }

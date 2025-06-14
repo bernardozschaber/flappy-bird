@@ -90,6 +90,9 @@ int main(int argc, char **argv) {
     // Carrega background do menu
     ALLEGRO_BITMAP* background_menu = al_load_bitmap("assets/scenario/background_login.png");
 
+    // Carrega imagem da coroa do leaderboard
+    ALLEGRO_BITMAP *crown = al_load_bitmap("assets/UI/crown-2.png");
+
     // Inicia objeto que manipula os arquivos
     registration data("jogadores.txt");
     std::multiset<player> players = data.get_all();
@@ -99,7 +102,7 @@ int main(int argc, char **argv) {
     // Inicializa as telas da interface
     login_screen login_scr(SCREEN_W, SCREEN_H, data, sample_key, sample_button);
     register_screen register_scr(SCREEN_W, SCREEN_H, data, players, sample_key, sample_button);
-    player_list_screen list_scr(SCREEN_W, SCREEN_H, sample_button, players);
+    player_list_screen list_scr(SCREEN_W, SCREEN_H, sample_button, crown, players, data);
 
     enum screen_type { SCREEN_LOGIN, SCREEN_REGISTER, SCREEN_LIST };
     

@@ -1,5 +1,5 @@
 21 Laercio 123 6
-43 Sam 123 8
+66 Sam 123 8
 26 Bernardo 123 12
 66 Pedro 123 67
 34 Mateus 123 11

@@ -6,7 +6,7 @@
 
 class player_list_screen {
 public:
-  player_list_screen(int screen_w, int screen_h, ALLEGRO_SAMPLE* button_s, const std::multiset<player> &set);
+  player_list_screen(int screen_w, int screen_h, ALLEGRO_SAMPLE* button_s, ALLEGRO_BITMAP* crown, const std::multiset<player> &set, registration& data_ref);
 
   // Trata eventos (mouse) e avança/página ou retorna ao menu
   void handle_event(const ALLEGRO_EVENT &ev);
@@ -33,6 +33,12 @@ private:
 
   // Multiset com todos os jogadores recebido do objeto do tipo registration
   const std::multiset<player> &players;
+
+  // Imagem da coroa que indica jogadores com o maior score
+  ALLEGRO_BITMAP* crown;
+  
+  // Objeto do tipo que manipula os arquivos
+  registration& data;
 
   bool go_to_menu;
 };
