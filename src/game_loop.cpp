@@ -57,6 +57,10 @@ std::uniform_int_distribution<> dis(0, 384);
     int BIRD_MAX_DOWN_VEL = 20;                                             // Velocidade máxima de descida do pássaro
     bool death_screen_animation = false;                                    // Bool que controla se o menu de morte está em animação
     bool points_animation = false;                                          // Bool que controla se a pontuação está em animação
+    int frames_per_point;                                                   // Define a velocidade da animação de pontos
+    int frame_count;                                                        // Contagem de frames para a animação dos pontos
+    int score_displayed = 0;                                                // Monitora a pontuação que está sendo mostrada
+    int c = 0, d = 0, u = 0;                                                // Índices para o sprite da pontuação
 
     // Construtor
     game_loop::game_loop(){ 
@@ -211,6 +215,7 @@ std::uniform_int_distribution<> dis(0, 384);
 
         // Processamento dos botões
         if(buttons.size() > 0) {
+            // Mouse acabou de ser solto
             if(mouse_just_released) {
                 if(!dead){
                     if(buttons.at(0)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(0)->is_pressed()) {
@@ -238,12 +243,19 @@ std::uniform_int_distribution<> dis(0, 384);
                 /*if(buttons.at(5)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(5)->is_pressed()) {
                     buttons.at(5)->set_pressed(false);
                 }
+                */ 
                 if(buttons.at(6)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(6)->is_pressed()) {
                     buttons.at(6)->set_pressed(false);
-                }*/
+                    // Reinicia o jogo
+                    dead = false;
+                    death_menu = false;
+                    this->reset_game();
+                }
             }
-
+            
+            // Mouse está pressionado
             if(mouse_is_down) {
+                // Botão de pause
                 if(buttons.at(0)->contains_click(mouse_update_x, mouse_update_y)) {
                     buttons.at(0)->set_pressed(true);
                     switch(paused) {
@@ -257,6 +269,16 @@ std::uniform_int_distribution<> dis(0, 384);
                         }
                     }
                 }
+
+                // Botão de play again do death menu
+                if (death_menu) {
+                    if(buttons.at(6)->contains_click(mouse_update_x, mouse_update_y)) {
+                        buttons.at(6)->set_pressed(true);
+                        buttons.at(6)->set_bitmap(tryagain_sprite[1]);
+                    }
+                }
+
+                // Outros botões do menu
                 if(paused||death_menu||!playing){
                     if(buttons.at(1)->contains_click(mouse_update_x, mouse_update_y)) {
                         buttons.at(1)->set_pressed(true);
@@ -284,6 +306,8 @@ std::uniform_int_distribution<> dis(0, 384);
                 }
                 
             }
+
+            // Botão do mouse está solto
             else {
                 switch(paused) {
                     case true: {
@@ -306,6 +330,7 @@ std::uniform_int_distribution<> dis(0, 384);
                 }
                 buttons.at(3)->set_bitmap(achievements_button_sprite[0]);
                 buttons.at(4)->set_bitmap(home_sprite[0]);
+                buttons.at(6)->set_bitmap(tryagain_sprite[0]);
             }
         }
 
@@ -437,7 +462,7 @@ std::uniform_int_distribution<> dis(0, 384);
         }
 
         // Setando death_menu para true caso ele caia de verdade
-        if(game_objects.at(0)->Get_position()->y>SCREEN_H+50&&dead){
+        if(game_objects.at(0)->Get_position()->y>SCREEN_H+50 && dead && !death_menu){
             death_menu = true;
             playing = false;
             death_screen_animation = true;
@@ -447,32 +472,42 @@ std::uniform_int_distribution<> dis(0, 384);
             buttons.at(3)->set_y(SCREEN_H+al_get_bitmap_height(death_screen_frame)+168);
             buttons.at(4)->set_x(SCREEN_W/2 - 115);
             buttons.at(4)->set_y(SCREEN_H+al_get_bitmap_height(death_screen_frame)+168);
+
+            // Calculando qual vai ser a velocidade da animação dos pontos
+            frames_per_point = ceil(5/ceil((score+1)/20));
+            frame_count = frames_per_point - 1;
+            std::cout << score << std::endl;
         }
 
 
         //////////BOTÕES///////////////
         //Pause//
-        if(buttons.at(0)->get_velocity_y()+buttons.at(0)->get_y()>=60){             //Delimitadores de posição
-            buttons.at(0)->set_y(60);
-            buttons.at(0)->set_acceleration(0,0);
-            buttons.at(0)->set_velocity(0,0);
+        if (!death_menu) {
+            if (buttons.at(0)->get_velocity_y()+buttons.at(0)->get_y()>=60) {             //Delimitadores de posição
+                buttons.at(0)->set_y(60);
+                buttons.at(0)->set_acceleration(0,0);
+                buttons.at(0)->set_velocity(0,0);
+            }
+            if (buttons.at(0)->get_velocity_y()+buttons.at(0)->get_y()<=-100) {
+                buttons.at(0)->set_y(-100);
+                buttons.at(0)->set_acceleration(0,0);
+                buttons.at(0)->set_velocity(0,0);
+            }
+            if (playing&&!dead&&buttons.at(0)->get_y()<60) {                               //Movimentando o botão
+                buttons.at(0)->set_acceleration(0,3);   
+            }
+            else if (dead&&buttons.at(0)->get_y()>-100) {
+                buttons.at(0)->set_acceleration(0,-3);
+            }
+            else {
+                buttons.at(0)->set_acceleration(0,0);
+                buttons.at(0)->set_velocity(0,0);
+            }
         }
-        if(buttons.at(0)->get_velocity_y()+buttons.at(0)->get_y()<=-100){
-            buttons.at(0)->set_y(-100);
-            buttons.at(0)->set_acceleration(0,0);
-            buttons.at(0)->set_velocity(0,0);
-        }
-        if(playing&&!dead&&buttons.at(0)->get_y()<60){                               //Movimentando o botão
-            buttons.at(0)->set_acceleration(0,3);   
-        }else if(dead&&buttons.at(0)->get_y()>-100){
-            buttons.at(0)->set_acceleration(0,-3);
-        }else{
-            buttons.at(0)->set_acceleration(0,0);
-            buttons.at(0)->set_velocity(0,0);
-        }
+        
 
         //Carregando os botões do pause//
-        if(!death_menu){
+        if(!death_menu) {
             for(int i=1; i<5; i++){
                 if(buttons.at(i)->get_velocity_y()+buttons.at(i)->get_y()>=60){             //Delimitadores de posição
                     buttons.at(i)->set_y(60);
@@ -497,12 +532,18 @@ std::uniform_int_distribution<> dis(0, 384);
 
         //////////MENU DE MORTE///////////////
         if(death_menu && images.size() > 0) {
+            // Animação da tela de morte subindo
             if(death_screen_animation) {
                 // Velocidade padrão para todos os objetos da tela de morte
                 float vel = (SCREEN_H/2 - images.at(0)->get_y())/10 - 5;
                 for (int i = 0; i <= 3; i++) {
                     images.at(i)->set_velocity(0, vel);
                 }
+
+                for(moving_button* btn : buttons) {
+                    btn->set_acceleration(0, 0);
+                }
+
                 buttons.at(3)->set_velocity(0, vel);
                 buttons.at(4)->set_velocity(0, vel);
                 buttons.at(6)->set_velocity(0, vel);
@@ -527,7 +568,43 @@ std::uniform_int_distribution<> dis(0, 384);
                 }
             }
 
-            if(points_animation) {
+            // Animação mostrando os pontos
+            else if(points_animation) {
+                
+                if(frame_count == frames_per_point) {
+                    u++;
+                    if (u == 10) {
+                        u = 0;
+                        d++;
+                    }
+                    if (d == 10) {
+                        d = 0;
+                        c++;
+                    }
+                    if (c == 10) {
+                        c = 0;
+                    }
+                    images.at(1)->set_bitmap(numbers_sprites[c]);
+                    images.at(2)->set_bitmap(numbers_sprites[d]);
+                    images.at(3)->set_bitmap(numbers_sprites[u]);
+
+                    score_displayed++;
+
+                    if (score_displayed == score)   // Pontuação mostrada chegou na pontuação de fato, pare a animação
+                    {
+                        points_animation = false;
+                        for (int i = 1; i <= 3; i++) {
+                            images.at(i)->set_position_y(SCREEN_H/2);
+                        }
+                    }
+
+                    frame_count = 0;
+                }
+                
+                frame_count++;
+            }
+
+            else {
 
             }
         }
@@ -612,7 +689,7 @@ std::uniform_int_distribution<> dis(0, 384);
             game_objects.at(0)->Draw(1);
         }
 
-        // Desenha as imagens
+        // Desenha o menu de morte
         if(death_menu && images.size() > 0) {
             // Frame
             images.at(0)->Draw();
@@ -638,7 +715,7 @@ std::uniform_int_distribution<> dis(0, 384);
         
 
         //Desenhar o score
-        //al_draw_textf(pixel_sans, black, 10, 10, 0, "Score: %d", score);
+        //al_draw_textf(pixel_sans, black, 10, 10, 0, "Score: %f", score);
         al_flip_display();
     }      
 
@@ -711,4 +788,10 @@ std::uniform_int_distribution<> dis(0, 384);
         buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)+168, tryagain_sprite[0]));
         dif=0;
         going_up=true;
+
+        // Reset das variáveis da animação de pontuação na tela de morte
+        score_displayed = 0;
+        c = 0;
+        d = 0;
+        u = 0;
     } 

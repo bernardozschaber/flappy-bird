@@ -140,3 +140,7 @@
 
     Pedro(registration)
         - Correção de um bug que não removia o usuário do arquivo .txt
+
+    Sam (game_loop)
+        - Finalmente a tela de morte está funcionando e mostrando a pontuação
+            - Ainda falta mostrar se é recorde ou não, mas aí precisa do max score do jogador
