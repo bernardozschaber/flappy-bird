@@ -152,3 +152,9 @@
 
     Sam (game_loop, pipe_object)
         - Implementados os canos dourados
+
+18-06-2025
+
+    Sam (assets, home_screen):
+        - Adicionados os sprites para os achievements
+        - Iniciada a programação da home screen (nada pronto ainda)

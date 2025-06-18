@@ -173,10 +173,12 @@ int main(int argc, char **argv) {
 
         /*
         if(registration_screen){
+
         }
         */
         /*
-        if(home_screen){
+        if(state.home_screen) {
+
         }
         */
         if(state.game_loop_screen){

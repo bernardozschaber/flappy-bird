@@ -4,8 +4,6 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_ttf.h>
 #include <iostream>
-#include <fstream>  // Pra debug
-
 
 // CONSTANTES DE PATH 
 const char * ARIAL_FONT_FILEPATH = "assets/fonts/arial.ttf";                                                            // caminho para a fonte arial

@@ -57,6 +57,16 @@
         "ratio": "cpp",
         "iomanip": "cpp",
         "fstream": "cpp",
-        "main_menu_real": "cpp"
+        "main_menu_real": "cpp",
+        "condition_variable": "cpp",
+        "csignal": "cpp",
+        "cstring": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "unordered_set": "cpp",
+        "mutex": "cpp",
+        "semaphore": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp"
     }
 }

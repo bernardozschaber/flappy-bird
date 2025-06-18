@@ -108,8 +108,8 @@ class game_loop {
     public:
         game_loop();               // Construtor
         ~game_loop();              // Destrutor
-        void commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y,states* state);
-        void update();  // Método que atualiza o estado dos objetos do jogo
+        void commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y, states* state);
+        void update();             // Método que atualiza o estado dos objetos do jogo
         void draw();               // Método que desenha os objetos do jogo na tela
         void reset_game();         // Método que reseta o jogo, recriando os objetos e o cenário
 };
