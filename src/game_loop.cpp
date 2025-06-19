@@ -1,4 +1,4 @@
-#include "Game_Loop.hpp"
+#include "game_loop.hpp"
 #include "bird_object.hpp"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -65,7 +65,7 @@ std::uniform_int_distribution<> dis(0, 384);
     Game_Loop::Game_Loop(){ 
         // Inicialização dos bitmaps dos objetos do jogo
         ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
-        ALLEGRO_FONT *pixel_sans = al_load_ttf_font(PSANS_FONT_FILEPATH, 20, 0);   
+        ALLEGRO_FONT *pixel_sans = al_load_ttf_font(PSANS_FONT_FILEPATH, 20, 0);
         pipe_sprite = al_load_bitmap(PIPE_SPRITE);
         golden_pipe_sprite = al_load_bitmap(GOLDEN_PIPE_SPRITE);
         mountain_sprite_1 = al_load_bitmap(MOUNTAIN_SPRITE_1);
@@ -675,6 +675,7 @@ std::uniform_int_distribution<> dis(0, 384);
 
     // Método que desenha os objetos do jogo na tela
     void Game_Loop::draw(){
+        ALLEGRO_FONT *pixel_sans_score = al_load_ttf_font(PSANS_FONT_FILEPATH, 80, 0);   
         al_draw_bitmap(background, 0, 0, 0);
         // Desenha os objetos de background
         for (background_object* bgo_3 : background_objects_3) {
@@ -728,14 +729,17 @@ std::uniform_int_distribution<> dis(0, 384);
         
 
         //Desenhar o score
-        //al_draw_textf(pixel_sans, black, 10, 10, 0, "Score: %f", score);
+        if(!death_menu) {
+            al_draw_textf(pixel_sans_score, al_map_rgb(255, 255, 255), SCREEN_W / 2, SCREEN_H / 2 - 200, ALLEGRO_ALIGN_CENTRE, "%d", score_displayed); 
+        }
+        
         al_flip_display();
     }      
 
     // Método que reseta o jogo, recriando os objetos e o cenário
     void Game_Loop::reset_game()
     {   if(game_objects.size()>1)
-        score = 0;
+        score = 0.0;
         game_objects.at(1)->Set_x_speed(-5);
         game_objects.clear();
         game_objects.push_back(new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 

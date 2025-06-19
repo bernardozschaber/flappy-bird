@@ -36,8 +36,8 @@ int main(int argc, char **argv) {
     }
 
     // Variáveis
-    int max_score = 0;                                                      // Armazena a pontuação máxima do jogador
-    int score = 0;                                                          // Armazena a pontuação do jogador
+    int max_score;                                                          // Armazena a pontuação máxima do jogador
+    int score;                                                             // Armazena a pontuação do jogador
     int mouse_click_pos_x;                                                  // Armazena a posição X do clique do mouse
     int mouse_click_pos_y;                                                  // Armazena a posição Y do clique do mouse
     bool mouse_is_down = false;                                            // Armazena se o mouse está pressionado ou não
@@ -123,7 +123,7 @@ int main(int argc, char **argv) {
     // CRIAÇÃO DAS TELAS DO JOGO E OS ESTADOS DE CONTROLE
     states state;
     Game_Loop main_game_loop;       // Criação do loop de jogo
-    Home_Screen main_home_screen;   // Criação da home screen
+    // Home_Screen main_home_screen;   // Criação da home screen
 
     while(state.open){
         // ESPERA O EVENTO
