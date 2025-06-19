@@ -44,7 +44,7 @@ std::uniform_int_distribution<> dis(0, 384);
 // VARIÁVEIS EXTRAS
     int random_offset;                                                      // Offset do cano a ser spawnado
     bool golden_factor;                                                     // Característica se o cano é dourado ou não
-    float score;
+    float current_score;
     float dif;                                                              // Float que faz as instruções variarem de tamanho
     bool going_up;                                                          // Bool que controla se o dif aumenta ou diminui
     int PIPE_SPACE = 160;                                                   // Espaçamento entre os canos
@@ -415,10 +415,10 @@ std::uniform_int_distribution<> dis(0, 384);
                 if(!game_objects.at(i)->is_scored()) {
                     // Veririficação se é dourado (cano dourado vale 3)
                     if(game_objects.at(i)->is_golden()) {
-                        score=score+1.5;
+                        current_score=current_score+1.5;
                     }
                     else {
-                        score=score+0.5;
+                        current_score=current_score+0.5;
                     }
                     game_objects.at(i)->Set_score(true);
                 }
@@ -488,7 +488,7 @@ std::uniform_int_distribution<> dis(0, 384);
             buttons.at(4)->set_y(SCREEN_H+al_get_bitmap_height(death_screen_frame)+168);
 
             // Calculando qual vai ser a velocidade da animação dos pontos
-            frames_per_point = ceil(5/ceil((score+1)/20));
+            frames_per_point = ceil(5/ceil((current_score+1)/20));
             frame_count = frames_per_point - 1;
         }
 
@@ -584,7 +584,7 @@ std::uniform_int_distribution<> dis(0, 384);
             // Animação mostrando os pontos
             else if(points_animation) {
 
-                if (score_displayed == score)   // Pontuação mostrada chegou na pontuação de fato, pare a animação
+                if (score_displayed == current_score)   // Pontuação mostrada chegou na pontuação de fato, pare a animação
                 {
                     points_animation = false;
                     for (int i = 1; i <= 3; i++) {
@@ -656,8 +656,6 @@ std::uniform_int_distribution<> dis(0, 384);
                 for (background_object* bgo_0 : background_objects_0) {
                     bgo_0->Update(SCREEN_W, SCREEN_H, 0.4); // Atualiza a grama
                 }
-            
-        
             }
         }
         for(moving_button* btn : buttons){
@@ -669,13 +667,14 @@ std::uniform_int_distribution<> dis(0, 384);
         }
         
         //If menu
+
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Método que desenha os objetos do jogo na tela
     void Game_Loop::draw(){
-        ALLEGRO_FONT *pixel_sans_score = al_load_ttf_font(PSANS_FONT_FILEPATH, 80, 0);   
+        ALLEGRO_FONT *pixel_sans_score = al_load_ttf_font(PSANS_FONT_FILEPATH, 80, 0);  
         al_draw_bitmap(background, 0, 0, 0);
         // Desenha os objetos de background
         for (background_object* bgo_3 : background_objects_3) {
@@ -726,20 +725,16 @@ std::uniform_int_distribution<> dis(0, 384);
                 buttons.at(5)->draw(0.22+dif);
             }
         }
-        
-
-        //Desenhar o score
-        if(!death_menu) {
-            al_draw_textf(pixel_sans_score, al_map_rgb(255, 255, 255), SCREEN_W / 2, SCREEN_H / 2 - 200, ALLEGRO_ALIGN_CENTRE, "%d", score_displayed); 
+        if(playing) {
+            al_draw_textf(pixel_sans_score, al_map_rgb(255, 255, 255), SCREEN_W / 2, SCREEN_H / 2 - 200, ALLEGRO_ALIGN_CENTRE, "%d", current_score); 
         }
-        
         al_flip_display();
     }      
 
     // Método que reseta o jogo, recriando os objetos e o cenário
     void Game_Loop::reset_game()
     {   if(game_objects.size()>1)
-        score = 0.0;
+        current_score = 0.0;
         game_objects.at(1)->Set_x_speed(-5);
         game_objects.clear();
         game_objects.push_back(new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 

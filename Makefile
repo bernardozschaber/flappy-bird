@@ -54,11 +54,16 @@ obj/moving_button.o: include/moving_button.hpp src/moving_button.cpp
 obj/image.o: include/image.hpp src/image.cpp
 	g++ -o obj/image.o -c src/image.cpp -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
 
-main: obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o obj/game_loop.o obj/moving_button.o obj/ui_object.o obj/image.o
-	g++ obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o obj/game_loop.o obj/moving_button.o obj/ui_object.o obj/image.o -o main `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
+obj/score.o: include/score.hpp src/score.cpp
+	g++ -o obj/score.o -c src/score.cpp -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
 
-main_menu: obj/main_menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/player_list_screen.o obj/remove_user_screen.o obj/registration.o
-	g++ obj/main_menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/remove_user_screen.o obj/player_list_screen.o obj/registration.o -o main_menu `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
+main: obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o obj/game_loop.o obj/moving_button.o obj/ui_object.o obj/image.o obj/score.o
+	g++ obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o obj/game_loop.o obj/moving_button.o obj/ui_object.o obj/image.o obj/score.o -o main `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
+
+
+main_menu: obj/main_menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/remove_user_screen.o obj/player_list_screen.o obj/registration.o obj/score.o
+	g++ obj/main_menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/remove_user_screen.o obj/player_list_screen.o obj/registration.o obj/score.o -o main_menu `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
+
 
 # PARTE DE TESTES
 
