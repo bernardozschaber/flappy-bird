@@ -5,9 +5,10 @@
 #include "background_object.hpp"
 #include "moving_button.hpp"
 #include "image.hpp"
+#include "game_loop.hpp"
 #include <vector>
 
-class home_screen {
+class Home_Screen {
     private:
         std::vector<moving_button*> buttons;                  // Vetor que armazena os botões do jogo
         std::vector<background_object*> background_objects_0; // Vetor que armazena os tiles de grama
@@ -27,10 +28,10 @@ class home_screen {
         ALLEGRO_BITMAP* play_button_sprite[2];                // Bitmap do botão de jogar
 
     public:
-        home_screen();      // Construtor
-        ~home_screen();     // Destrutor
+        Home_Screen();      // Construtor
+        ~Home_Screen();     // Destrutor
 
-        void commands();    // Método que processa os comandos 
+        void commands(unsigned char key[], bool& mouse_is_down, bool& mouse_just_released, int mouse_update_x, int mouse_update_y, states& state);     // Método que processa os comandos 
         void update();      // Método que atualiza o estado dos objetos
         void draw();        // Método que desenha os objetos
 };

@@ -59,7 +59,7 @@ struct states{
     bool home_screen = false;          // Tela inicial esta aberta
 };
 
-class game_loop {
+class Game_Loop {
     private:
         //Vetores dos objetos do jogo
         std::vector<game_object*> game_objects;               // Vetor que armazena os objetos do jogo
@@ -106,8 +106,8 @@ class game_loop {
         bool debug_mode = true;
 
     public:
-        game_loop();               // Construtor
-        ~game_loop();              // Destrutor
+        Game_Loop();               // Construtor
+        ~Game_Loop();              // Destrutor
         void commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y, states* state);
         void update();             // Método que atualiza o estado dos objetos do jogo
         void draw();               // Método que desenha os objetos do jogo na tela

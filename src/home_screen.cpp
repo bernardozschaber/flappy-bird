@@ -12,3 +12,12 @@ const char * GRASS_SPRITE = "assets/scenario/grama.png";            // caminho d
 const char * BACKGROUND_SPRITE = "assets/scenario/background.png";  // caminho do background
 const char * ACHIEVEMENTS_BUTTON_SPRITE[2] = {"assets/UI/achievements_button.png","assets/UI/achievements_button_pressed.png"}; // caminho do botão de conquistas
 const char * SETTINGS_BUTTON_SPRITE[2] = {"assets/UI/settings_button.png","assets/UI/settings_button_pressed.png"};             // caminho do botão de configurações
+const char * TITLE_SPRITE = {"assets/UI/title_text.png"};           // caminho para o título do jogo
+
+Home_Screen::Home_Screen() {
+
+}
+
+Home_Screen::~Home_Screen() {
+
+}

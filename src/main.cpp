@@ -7,6 +7,7 @@
 #include "pipe_object.hpp"
 #include "background_object.hpp"
 #include "game_loop.hpp"
+#include "home_screen.hpp"
 
 #include <math.h>
 #include <vector>
@@ -121,7 +122,8 @@ int main(int argc, char **argv) {
   
     // CRIAÇÃO DAS TELAS DO JOGO E OS ESTADOS DE CONTROLE
     states state;
-    game_loop main_game_loop; // Criação do loop de jogo
+    Game_Loop main_game_loop;       // Criação do loop de jogo
+    Home_Screen main_home_screen;   // Criação da home screen
 
     while(state.open){
         // ESPERA O EVENTO
