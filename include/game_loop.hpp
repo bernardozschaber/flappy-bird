@@ -5,6 +5,7 @@
 #include "pipe_object.hpp"
 #include "moving_button.hpp"
 #include "image.hpp"
+#include "score.hpp"
 #include <vector>
 #include <random>
 
@@ -104,6 +105,8 @@ class Game_Loop {
         bool paused = false;
         bool sound = true; 
         bool debug_mode = true;
+
+        Score game_score;
 
     public:
         Game_Loop();               // Construtor

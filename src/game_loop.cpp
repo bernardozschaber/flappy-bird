@@ -44,7 +44,6 @@ std::uniform_int_distribution<> dis(0, 384);
 // VARIÁVEIS EXTRAS
     int random_offset;                                                      // Offset do cano a ser spawnado
     bool golden_factor;                                                     // Característica se o cano é dourado ou não
-    float current_score;
     float dif;                                                              // Float que faz as instruções variarem de tamanho
     bool going_up;                                                          // Bool que controla se o dif aumenta ou diminui
     int PIPE_SPACE = 160;                                                   // Espaçamento entre os canos
@@ -415,10 +414,10 @@ std::uniform_int_distribution<> dis(0, 384);
                 if(!game_objects.at(i)->is_scored()) {
                     // Veririficação se é dourado (cano dourado vale 3)
                     if(game_objects.at(i)->is_golden()) {
-                        current_score=current_score+1.5;
+                        game_score.increment_score_golden_pipe();
                     }
                     else {
-                        current_score=current_score+0.5;
+                        game_score.increment_score_standard_pipe();
                     }
                     game_objects.at(i)->Set_score(true);
                 }
@@ -488,7 +487,7 @@ std::uniform_int_distribution<> dis(0, 384);
             buttons.at(4)->set_y(SCREEN_H+al_get_bitmap_height(death_screen_frame)+168);
 
             // Calculando qual vai ser a velocidade da animação dos pontos
-            frames_per_point = ceil(5/ceil((current_score+1)/20));
+            frames_per_point = ceil(5/ceil((game_score.get_score()+1)/20));
             frame_count = frames_per_point - 1;
         }
 
@@ -584,7 +583,7 @@ std::uniform_int_distribution<> dis(0, 384);
             // Animação mostrando os pontos
             else if(points_animation) {
 
-                if (score_displayed == current_score)   // Pontuação mostrada chegou na pontuação de fato, pare a animação
+                if (score_displayed == game_score.get_score())   // Pontuação mostrada chegou na pontuação de fato, pare a animação
                 {
                     points_animation = false;
                     for (int i = 1; i <= 3; i++) {
@@ -726,13 +725,13 @@ std::uniform_int_distribution<> dis(0, 384);
         }
         if(playing) {            
             // Cálculo dos dígitos
-            int unidades = (int)current_score % 10;
-            int dezenas = (int)(current_score / 10) % 10;
-            int centenas = (int)(current_score / 100) % 10;
+            int unidades = (int)game_score.get_score() % 10;
+            int dezenas = (int)(game_score.get_score() / 10) % 10;
+            int centenas = (int)(game_score.get_score() / 100) % 10;
 
             // Parâmetros de layout
             int digit_width = al_get_bitmap_width(numbers_sprites[0]); // Largura de cada número
-            int total_digits = (current_score >= 100) ? 3 : (current_score >= 10) ? 2 : 1;
+            int total_digits = (game_score.get_score() >= 100) ? 3 : (game_score.get_score() >= 10) ? 2 : 1;
             int total_width = digit_width * total_digits;
 
             int start_x = (SCREEN_W / 2) - (total_width / 2); // Centraliza no meio da tela
@@ -759,7 +758,7 @@ std::uniform_int_distribution<> dis(0, 384);
     // Método que reseta o jogo, recriando os objetos e o cenário
     void Game_Loop::reset_game()
     {   if(game_objects.size()>1)
-        current_score = 0.0;
+        game_score.reset_score();
         game_objects.at(1)->Set_x_speed(-5);
         game_objects.clear();
         game_objects.push_back(new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 
