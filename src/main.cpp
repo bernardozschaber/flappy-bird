@@ -17,7 +17,7 @@
 #include <fstream>
 
 // CONSTANTES PARA CONFIGURAÇÕES GERAIS DO JOGO
-#define FPS 30          // frames por segundo 
+#define FPS 60          // frames por segundo 
 #define SCREEN_W 800    // comprimento da tela
 #define SCREEN_H 600    // altura da tela
 #define SEEN 1          // importante para detecção de teclas
@@ -178,11 +178,16 @@ int main(int argc, char **argv) {
 
         }
         */
-        /*
+        
         if(state.home_screen) {
-
+            main_home_screen.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, state);
+            if(state.is_updating && state.home_screen) {
+                main_home_screen.update();
+                main_home_screen.draw();
+                state.is_updating = false;
+            }
         }
-        */
+        
         if(state.game_loop_screen){
             main_game_loop.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, &state); // Processa os comandos causados pelas teclas/mouse
             if(state.is_updating){

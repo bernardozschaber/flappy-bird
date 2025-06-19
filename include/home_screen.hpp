@@ -10,22 +10,29 @@
 
 class Home_Screen {
     private:
+        // Vetores de objetos
         std::vector<moving_button*> buttons;                  // Vetor que armazena os botões do jogo
+        std::vector<image*> images;
         std::vector<background_object*> background_objects_0; // Vetor que armazena os tiles de grama
         std::vector<background_object*> background_objects_1; // Vetor que armazena as montanhas (1)
         std::vector<background_object*> background_objects_2; // Vetor que armazena as montanhas (2)
         std::vector<background_object*> background_objects_3; // Vetor que armazena as montanhas (3)
 
+        // Bitmaps
         ALLEGRO_BITMAP* mountain_sprite_1;                    // Bitmap da montanha (da frente)
         ALLEGRO_BITMAP* mountain_sprite_2;                    // Bitmap da montanha (do meio)
         ALLEGRO_BITMAP* mountain_sprite_3;                    // Bitmap da montanha (de trás)
         ALLEGRO_BITMAP* grass_sprite;                         // Bitmap da grama 
-        ALLEGRO_BITMAP* background;                           // Bitmap do fundo
-        ALLEGRO_BITMAP* home_screen_frame;                    // Bitmap do quadro da tela de início
+        ALLEGRO_BITMAP* background_sprite;                    // Bitmap do fundo
+        ALLEGRO_BITMAP* home_screen_frame_sprite;             // Bitmap do quadro da tela de início
         ALLEGRO_BITMAP* title_sprite;                         // Bitmap do título do jogo
         ALLEGRO_BITMAP* achievements_button_sprite[2];        // Bitmap do botão de achievements
         ALLEGRO_BITMAP* settings_button_sprite[2];            // Bitmap do botão de configurações
         ALLEGRO_BITMAP* play_button_sprite[2];                // Bitmap do botão de jogar
+        ALLEGRO_BITMAP* statistics_button_sprite[2];          // Bitmap do botão de estatísticas (stats)
+
+        // Fonte principal do jogo
+        ALLEGRO_FONT* pixel_sans;                             // Fonte principal do jogo
 
     public:
         Home_Screen();      // Construtor
