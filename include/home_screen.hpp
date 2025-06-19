@@ -12,7 +12,7 @@ class Home_Screen {
     private:
         // Vetores de objetos
         std::vector<moving_button*> buttons;                  // Vetor que armazena os botões do jogo
-        std::vector<image*> images;
+        std::vector<image*> images;                           // Vetor que armazena as imagens
         std::vector<background_object*> background_objects_0; // Vetor que armazena os tiles de grama
         std::vector<background_object*> background_objects_1; // Vetor que armazena as montanhas (1)
         std::vector<background_object*> background_objects_2; // Vetor que armazena as montanhas (2)
