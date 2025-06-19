@@ -123,7 +123,7 @@ int main(int argc, char **argv) {
     // CRIAÇÃO DAS TELAS DO JOGO E OS ESTADOS DE CONTROLE
     states state;
     Game_Loop main_game_loop;       // Criação do loop de jogo
-    // Home_Screen main_home_screen;   // Criação da home screen
+    Home_Screen main_home_screen;   // Criação da home screen
 
     while(state.open){
         // ESPERA O EVENTO
