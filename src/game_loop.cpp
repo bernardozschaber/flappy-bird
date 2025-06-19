@@ -674,7 +674,6 @@ std::uniform_int_distribution<> dis(0, 384);
 
     // Método que desenha os objetos do jogo na tela
     void Game_Loop::draw(){
-        ALLEGRO_FONT *pixel_sans_score = al_load_ttf_font(PSANS_FONT_FILEPATH, 80, 0);  
         al_draw_bitmap(background, 0, 0, 0);
         // Desenha os objetos de background
         for (background_object* bgo_3 : background_objects_3) {
@@ -725,8 +724,34 @@ std::uniform_int_distribution<> dis(0, 384);
                 buttons.at(5)->draw(0.22+dif);
             }
         }
-        if(playing) {
-            al_draw_textf(pixel_sans_score, al_map_rgb(255, 255, 255), SCREEN_W / 2, SCREEN_H / 2 - 200, ALLEGRO_ALIGN_CENTRE, "%d", current_score); 
+        if(playing) {            
+            // Cálculo dos dígitos
+            int unidades = (int)current_score % 10;
+            int dezenas = (int)(current_score / 10) % 10;
+            int centenas = (int)(current_score / 100) % 10;
+
+            // Parâmetros de layout
+            int digit_width = al_get_bitmap_width(numbers_sprites[0]); // Largura de cada número
+            int total_digits = (current_score >= 100) ? 3 : (current_score >= 10) ? 2 : 1;
+            int total_width = digit_width * total_digits;
+
+            int start_x = (SCREEN_W / 2) - (total_width / 2); // Centraliza no meio da tela
+            int y = SCREEN_H / 2 - 225; // Mesma altura que você estava usando para o texto
+
+            // Desenha os dígitos corretamente posicionados
+            if (total_digits == 3) {
+                al_draw_bitmap(numbers_sprites[centenas], start_x, y, 0);
+                al_draw_bitmap(numbers_sprites[dezenas], start_x + digit_width, y, 0);
+                al_draw_bitmap(numbers_sprites[unidades], start_x + 2 * digit_width, y, 0);
+            }
+            else if (total_digits == 2) {
+                al_draw_bitmap(numbers_sprites[dezenas], start_x, y, 0);
+                al_draw_bitmap(numbers_sprites[unidades], start_x + digit_width, y, 0);
+            }
+            else {
+                al_draw_bitmap(numbers_sprites[unidades], start_x, y, 0);
+            }
+
         }
         al_flip_display();
     }      
