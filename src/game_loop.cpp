@@ -1,4 +1,4 @@
-#include "game_loop.hpp"
+#include "Game_Loop.hpp"
 #include "bird_object.hpp"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -62,7 +62,7 @@ std::uniform_int_distribution<> dis(0, 384);
     int c = 0, d = 0, u = 0;                                                // Índices para o sprite da pontuação
 
     // Construtor
-    game_loop::game_loop(){ 
+    Game_Loop::Game_Loop(){ 
         // Inicialização dos bitmaps dos objetos do jogo
         ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
         ALLEGRO_FONT *pixel_sans = al_load_ttf_font(PSANS_FONT_FILEPATH, 20, 0);   
@@ -143,7 +143,7 @@ std::uniform_int_distribution<> dis(0, 384);
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Destrutor
-    game_loop::~game_loop() {
+    Game_Loop::~Game_Loop() {
         // Deletar os bitmaps dos objetos do jogo
         al_destroy_font(pixel_sans);
         al_destroy_bitmap(pipe_sprite);
@@ -210,7 +210,7 @@ std::uniform_int_distribution<> dis(0, 384);
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    void game_loop::commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y, states* state) {
+    void Game_Loop::commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y, states* state) {
 
         // Processamento dos botões
         if(buttons.size() > 0) {
@@ -369,7 +369,7 @@ std::uniform_int_distribution<> dis(0, 384);
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    void game_loop::update(){
+    void Game_Loop::update(){
         ////////////////////////////////////////
         //Ver posições e criar/deletar objetos//
         ////////////////////////////////////////
@@ -674,7 +674,7 @@ std::uniform_int_distribution<> dis(0, 384);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Método que desenha os objetos do jogo na tela
-    void game_loop::draw(){
+    void Game_Loop::draw(){
         al_draw_bitmap(background, 0, 0, 0);
         // Desenha os objetos de background
         for (background_object* bgo_3 : background_objects_3) {
@@ -733,7 +733,7 @@ std::uniform_int_distribution<> dis(0, 384);
     }      
 
     // Método que reseta o jogo, recriando os objetos e o cenário
-    void game_loop::reset_game()
+    void Game_Loop::reset_game()
     {   if(game_objects.size()>1)
         score = 0;
         game_objects.at(1)->Set_x_speed(-5);
