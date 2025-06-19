@@ -1,8 +1,5 @@
 #include "registration.hpp"
 #include <sstream>
-#include <algorithm>
-#include <vector>
-
 
 registration::registration(std::string file){
     this->file = file;
@@ -11,11 +8,12 @@ registration::registration(std::string file){
     users.open(file, std::ios::in | std::ios::out | std::ios::app);
 
     //Verifica se foi aberto com sucesso
-    if(users.is_open()){
-        openfile_check = 1;
+    if(!users.is_open()){
+        throw std::runtime_error("Erro na abertura do arquivo/Arquivo não existe");
+    }else{
+        openfile_check = true;
     }
 }
-
 
 registration::~registration(){
     //Fecha o arquivo caso ele esteja aberto
@@ -36,12 +34,13 @@ bool registration::isOpenFile(){
 }
 
 void registration::new_user(std::string name, std::string password, int score, int games){
+    std::string standard_achievements = " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
     //Insere o novo usuário no final do arquivo
     users.clear();
     users.seekp(0, std::ios::end);
 
     //Escreve as informações do player no arquivo
-    users << score << " " << name << " " << password << " " << games << "\n";
+    users << score << " " << name << " " << password << " " << games << standard_achievements << "\n";
 
     //Verifica a possibilidade de atualizar o campeão
     if(score > get_max_score()){
@@ -49,7 +48,7 @@ void registration::new_user(std::string name, std::string password, int score, i
     }
 }
 
-std::string registration::get_stats(std::string name){
+std::string registration::get_stats(const std::string& name){
     std::string word, line;
     std::streampos pos;
     int counter = 0;
@@ -88,6 +87,56 @@ std::string registration::get_stats(std::string name){
 
 }
 
+player registration::get_player(const std::string& name){
+    player player;
+    std::string word, line;
+    std::streampos pos;
+    int counter = 0;
+
+    //Retorna uma ponteiro optional caso o arquivo esteja vazio
+    if(isFileEmpty()){
+        return player;
+    }
+
+    //Reposiciona o ponteiro de leitura para o início do arquivo
+    users.seekg(0, std::ios::beg);
+
+    //Loop para percorrer todo o arquivo
+    while(!users.eof()){
+        counter = 0;
+        pos = users.tellg();
+
+        //Captura o username do usuário
+        while(counter <= 1){
+            users >> word;
+            counter++;
+        }
+
+        //Tenta localizar o username passado como parametro no arquivo
+        //Em caso positivo, pega as informações do player e insere no objeto
+        if(word == name){
+            bool achievement;
+            std::string trash;
+            
+            users.seekg(pos);
+            users >> player.score;
+            users >> player.username;
+            users >> trash;
+            users >> player.games;
+            for(int i = 0; i < 16; i++){
+                users >> achievement;
+                player.achievements.push_back(achievement);
+            }
+            return player;
+        }
+        std::getline(users, line);
+    }
+
+    //Retorna um ponteiro optional caso não encontre o jogador
+    return player;
+
+}
+
 std::multiset<player> registration::get_all(){
     users.clear();
     players.clear();
@@ -105,18 +154,17 @@ std::multiset<player> registration::get_all(){
         players.insert(p);
         getline(users, line);
     }
-    //Retorna a estrutura com os players ordenados pelo nome
+    
     return players;
 }
 
-void registration::update(std::string user, int score){
+void registration::update(player& player_stats){
     std::vector<std::string> lines;
     int counter = 0;
-    int games, new_score;
     std::string password;
 
     //Recebe a linha correspondente ao jogador
-    std::string line = get_stats(user);
+    std::string line = get_stats(player_stats.username);
 
     //Caso não encontre o jogador 
     if(line == ""){
@@ -126,28 +174,17 @@ void registration::update(std::string user, int score){
     //Cria uma stringstream para possibilitar a leitura de dados
     std::stringstream line_user(line);
 
-    //Obtém as informações do jogador
+    //Obtém a senha do jogador
     while(counter < 4){
         counter++;
-        if(counter == 1){
-            line_user >> new_score;
-        }else if(counter == 4){
-            line_user >> games;
-        }else if(counter == 3){
+        if(counter == 3){
             line_user >> password;
-        }else{
-            line_user >> line;
         }
     }
 
-    //Atualiza a pontuação
-    new_score = score;
-    //Incrementa a quantidade de jogos do jogador
-    games++;
-
     int currentLine = 0;
     //Localizar a linha que deseja mudar
-    int targetLine = getline_number(user);
+    int targetLine = getline_number(player_stats.username);
 
     // Lê todas as linhas do arquivo
     users.clear();
@@ -156,7 +193,10 @@ void registration::update(std::string user, int score){
     while (std::getline(users, line)) {
         if (currentLine == targetLine - 1) {
             // Altere a linha conforme necessário
-            line = std::to_string(new_score) + " " + user + " " + password + " " + std::to_string(games);
+            line = std::to_string(player_stats.score) + " " + player_stats.username + " " + password + " " + std::to_string(player_stats.games);
+            for(bool achievement : player_stats.achievements){
+                line += " " + std::to_string(achievement);
+            }
         }
         lines.push_back(line);
         currentLine++;
@@ -172,8 +212,9 @@ void registration::update(std::string user, int score){
     users.close();
     //Reabre o arquivo
     users.open(file, std::ios::in | std::ios::out);
+
     //Verifica a possibilidade de atualizar o campeão
-    if(score > get_max_score()){
+    if(player_stats.score > get_max_score()){
         update_champion();
     }
 }

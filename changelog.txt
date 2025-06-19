@@ -162,3 +162,12 @@
     Sam (assets, home_screen, main):
         - Modificados alguns sprites de UI
         - Finalizada a home screen
+
+19-06-2025
+
+    Pedro(registration):
+        (Atualizações por conta da nova funcionalidade de conquistas)
+            - Criação de um vector booleano que armazena as conquistas do jogadores
+            - Atualização dos métodos update, new_user para comportar as conquistas dos jogadores
+            - Inserção de um novo método "get_player" que retorna as informações do player contida no objeto
+        - Lançada exceção caso o arquivo não seja aberto por alguma razão
