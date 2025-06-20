@@ -258,7 +258,11 @@ std::uniform_int_distribution<> dis(0, 384);
                         buttons.at(3)->set_pressed(false);
                     }
                     if(buttons.at(4)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(4)->is_pressed()) {
+                        state->game_loop_screen=false;
+                        state->home_screen=true;
                         buttons.at(4)->set_pressed(false);
+                        this->reset_game();
+                        return;
                     }
                 }
                 /*if(buttons.at(5)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(5)->is_pressed()) {
@@ -268,8 +272,6 @@ std::uniform_int_distribution<> dis(0, 384);
                 if(buttons.at(6)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(6)->is_pressed()) {
                     buttons.at(6)->set_pressed(false);
                     // Reinicia o jogo
-                    dead = false;
-                    death_menu = false;
                     this->reset_game();
                 }
             }
@@ -851,15 +853,16 @@ std::uniform_int_distribution<> dis(0, 384);
                 buttons.at(5)->draw(0.22+dif);
             }
         }
+        /*             SE FOR USAR ESSE É SO TIRAR O COMENTARIO E BOTAR COMENTARIO NO OUTRO
         if(playing) {            
             // Cálculo dos dígitos
-            int unidades = (int)game_score.get_score() % 10;
-            int dezenas = (int)(game_score.get_score() / 10) % 10;
-            int centenas = (int)(game_score.get_score() / 100) % 10;
+            int unidades = (int)score % 10;
+            int dezenas = (int)(score / 10) % 10;
+            int centenas = (int)(score / 100) % 10;
 
             // Parâmetros de layout
             int digit_width = al_get_bitmap_width(numbers_sprites[0]); // Largura de cada número
-            int total_digits = (game_score.get_score() >= 100) ? 3 : (game_score.get_score() >= 10) ? 2 : 1;
+            int total_digits = (score >= 100) ? 3 : (score >= 10) ? 2 : 1;
             int total_width = digit_width * total_digits;
 
             int start_x = (SCREEN_W / 2) - (total_width / 2); // Centraliza no meio da tela
@@ -878,8 +881,8 @@ std::uniform_int_distribution<> dis(0, 384);
             else {
                 al_draw_bitmap(numbers_sprites[unidades], start_x, y, 0);
             }
-
-        }
+            
+        }*/
         al_flip_display();
     }      
 
@@ -964,10 +967,16 @@ std::uniform_int_distribution<> dis(0, 384);
         dif=0;
         going_up=true;
 
+        //Resetando variaveis de controle
+        playing = false;
+        dead = false;
+        death_menu = false;
+        paused = false;
 
         // Reset das variáveis da animação de pontuação na tela de morte
         score_displayed = 0;
         c = 0;
         d = 0;
         u = 0;
+        
     } 

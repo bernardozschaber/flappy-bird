@@ -119,7 +119,7 @@ class Game_Loop {
         bool sound = true; 
         bool debug_mode = true;
 
-        Score game_score;
+        //Score game_score;
 
     public:
         Game_Loop();               // Construtor

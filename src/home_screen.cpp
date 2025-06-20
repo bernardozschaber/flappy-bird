@@ -12,7 +12,7 @@ const char * TITLE_SPRITE = {"assets/UI/title_text.png"};                       
 
 // CONSTRUTOR
 Home_Screen::Home_Screen() {
-    std::cout << "Created Home Screen.\n\n";
+    //std::cout << "Created Home Screen.\n\n";
     // Carregamento de spites
     mountain_sprite_1 = al_load_bitmap(MOUNTAIN_SPRITE_1);
     mountain_sprite_2 = al_load_bitmap(MOUNTAIN_SPRITE_2);
@@ -65,12 +65,12 @@ Home_Screen::Home_Screen() {
     buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H/2+168, statistics_button_sprite[0]));
     buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H/2+64, play_button_sprite[0]));
 
-    std::cout << "Sizes of vectors:\n\tbackground_objects_0: " << background_objects_0.size() << " (expected 4)\n\tbackground_objects_1: " << background_objects_1.size() << " (expected 4)\n\tbackground_objects_2: " << background_objects_2.size() << " (expected 4)\n\tbackground_objects_3: " << background_objects_3.size() << " (expected 4)\n\timages: " << images.size() << " (expected 2)\n\n";
+    //std::cout << "Sizes of vectors:\n\tbackground_objects_0: " << background_objects_0.size() << " (expected 4)\n\tbackground_objects_1: " << background_objects_1.size() << " (expected 4)\n\tbackground_objects_2: " << background_objects_2.size() << " (expected 4)\n\tbackground_objects_3: " << background_objects_3.size() << " (expected 4)\n\timages: " << images.size() << " (expected 2)\n\n";
 }
 
 // DESTRUTOR
 Home_Screen::~Home_Screen() {
-    std::cout << "Destroyed Home Screen.\n\n";
+    //std::cout << "Destroyed Home Screen.\n\n";
     // Destruição dos bitmaps
     al_destroy_bitmap(mountain_sprite_1);
     al_destroy_bitmap(mountain_sprite_2);

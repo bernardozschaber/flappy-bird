@@ -25,7 +25,7 @@
 
 
 // DECLARANDO A STATIC VELOCIDADE DO CANO
-float pipe_object::vel_x = -5;    
+float pipe_object::vel_x = -2.5;    
 
 int main(int argc, char **argv) {
     
