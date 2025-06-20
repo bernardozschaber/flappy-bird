@@ -178,3 +178,6 @@
         - Criação de classe para manipular o audio do menu
         - Adaptação dos novos métodos de registration para suportar os achievements
         - Comentários dos códigos do menu
+    
+    Pedro(testregistration.cpp):
+        - Atualização dos testes de unidade do registro após modificações na classe
