@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
     ALLEGRO_BITMAP *ico_off_press = al_load_bitmap("assets/UI/sound_off_pressed.png");
 
     // Incializa objeto que controla o áudio do menu
-    menu_audio audio_ctrl(ico_on,ico_off,ico_on_press,ico_off_press,sample_key,sample_button,35, 35, al_get_bitmap_width(ico_on), al_get_bitmap_height(ico_on));
+    menu_audio audio_ctrl(ico_on,ico_off,ico_on_press,ico_off_press,sample_key,sample_button,40, 40, al_get_bitmap_width(ico_on), al_get_bitmap_height(ico_on));
 
     // Inicia objeto que manipula os arquivos
     registration data("jogadores.txt");
@@ -165,7 +165,7 @@ int main(int argc, char **argv) {
                 
                 // Atualiza fontes de audio e posição do botão de mute
                 audio_ctrl.set_sources(login_scr.get_text_boxes(),login_scr.get_buttons());
-                audio_ctrl.set_position(35,35);
+                audio_ctrl.set_position(40,40);
             }
             else if (current == SCREEN_REGISTER) {
                 register_scr.handle_event(event);
@@ -183,7 +183,7 @@ int main(int argc, char **argv) {
 
                 // Atualiza fontes de audio e posição do botão de mute
                 audio_ctrl.set_sources(register_scr.get_text_boxes(),register_scr.get_buttons());
-                audio_ctrl.set_position(35,35);
+                audio_ctrl.set_position(40,40);
             } 
             else if (current == SCREEN_LIST) {
                 list_scr.handle_event(event);
@@ -196,7 +196,7 @@ int main(int argc, char **argv) {
                 // Atualiza fontes de audio e posição do botão de mute
                 std::vector<text_box*> null = {}; // Tela de listagem não possui caixas de texto
                 audio_ctrl.set_sources(null,list_scr.get_buttons());
-                audio_ctrl.set_position(265,525);
+                audio_ctrl.set_position(265,510);
             }
             else if (current == SCREEN_REMOVE) {
                 rm_scr.handle_event(event);
@@ -207,7 +207,7 @@ int main(int argc, char **argv) {
                 }
                 // Atualiza fontes de audio e posição do botão de mute
                 audio_ctrl.set_sources(rm_scr.get_text_boxes(),rm_scr.get_buttons());
-                audio_ctrl.set_position(35,35);
+                audio_ctrl.set_position(40,40);
             }
             
             // Manipula o áudio
