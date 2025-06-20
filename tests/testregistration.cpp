@@ -33,29 +33,56 @@ TEST_CASE("testing if return of get_stats is correct"){
     CHECK(registro.get_stats("Maria") == "");
 
     //Adicionando um nome diferente de Maria
-    registro.new_user("Carlos", "flappybird", 0, 0);
+    registro.new_user("Carlos", "flappybird", 24, 2);
     //Verifica se retorna string vazia quando não encontra Maria
     CHECK(registro.get_stats("Maria") == "");
 
     //Adicionando Maria
-    registro.new_user("Maria", "flappybird1", 0, 0);
+    registro.new_user("Maria", "flappybird1", 15, 1);
     //Verifica se retorna a string com as informações dela quando a encontra
-    CHECK(registro.get_stats("Maria") == "0 Maria flappybird1 0");
-    CHECK(registro.get_stats("Carlos") == "0 Carlos flappybird 0");
+    CHECK(registro.get_stats("Maria") == "15 Maria flappybird1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
+    CHECK(registro.get_stats("Carlos") == "24 Carlos flappybird 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
+}
+
+TEST_CASE("testing if return of get_player is correct"){
+    player p;
+
+    //Jogador não está cadastrado
+    p = registro.get_player("Renato");
+    CHECK(p.username == "");
+
+    //Tentando buscar um jogador que está cadastrado
+    p = registro.get_player("Carlos");
+    //Retorna as informações do jogador
+    CHECK(p.username == "Carlos");
+    CHECK(p.score == 24);
+    CHECK(p.password == "flappybird");
+    CHECK(p.games == 2);
 }
 
 TEST_CASE("update method is working correctly?"){
+    player p;
+
     //Tentativa de atualizar um player inexistente
-    registro.update("Sofia", 20);
+    p.username = "Sofia";
+    p.score = 20;
+    registro.update(p);
     CHECK(registro.get_stats("Sofia") == "");
 
     //Atualiza o jogador Carlos
-    registro.update("Carlos", 20);
-    CHECK(registro.get_stats("Carlos") == "20 Carlos flappybird 1");
+    p = registro.get_player("Carlos");
+    p.score = 30;
+    p.achievements[1] = true;
+    registro.update(p);
+    CHECK(registro.get_stats("Carlos") == "30 Carlos flappybird 3 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
 
-    //Atualiza o jogador Maria
-    registro.update("Maria", 45);
-    CHECK(registro.get_stats("Maria") == "45 Maria flappybird1 1");
+    //Atualiza a jogadora Maria
+    p = registro.get_player("Maria");
+    p.score = 45;
+    p.achievements[5] = true;
+    p.achievements[12] = true;
+    registro.update(p);
+    CHECK(registro.get_stats("Maria") == "45 Maria flappybird1 2 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0");
 }
 
 TEST_CASE("delete_user method is working correctly?"){
@@ -65,12 +92,14 @@ TEST_CASE("delete_user method is working correctly?"){
     CHECK(registro.delete_user("Sofia") == 0);
 
     //Verifica se a captura da linha está sendo da forma correta
-    CHECK(registro.get_stats("Carlos") == "20 Carlos flappybird 1");
+    CHECK(registro.get_stats("Carlos") == "30 Carlos flappybird 3 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
     CHECK(registro.delete_user("Carlos") == 1);
     CHECK(registro.get_stats("Carlos") == "");
 }
 
-TEST_CASE("method of best player(get_max_user() e get_max_score()"){
+TEST_CASE("method of best player(get_max_user() e get_max_score())"){
+    player p;
+    
     //Adiciona um novo jogador
     registro.new_user("Luiz", "flappybird2", 30, 2);
     //Verifica se a Maria é a jogadora com maior score
@@ -94,7 +123,9 @@ TEST_CASE("method of best player(get_max_user() e get_max_score()"){
     CHECK(registro.get_max_score() == 110);
 
     //Atualiza o jogador Rodney
-    registro.update("Rodney", 130);
+    p = registro.get_player("Rodney");
+    p.score = 130;
+    registro.update(p);
     //Ele deve ser o jogador com maior score
     CHECK(registro.get_max_user() == "Rodney");
     CHECK(registro.get_max_score() == 130);

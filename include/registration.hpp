@@ -7,6 +7,7 @@
 
 //Struct com informações dos jogadores para auxiliar na lista de retorno  
 struct player{
+  
   std::string username = "";
   std::string password = "";
   int score = 0, games = 0;

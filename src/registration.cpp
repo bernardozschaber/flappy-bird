@@ -116,8 +116,6 @@ player registration::get_player(const std::string& name){
         //Em caso positivo, pega as informações do player e insere no objeto
         if(word == name){
             bool achievement;
-            std::string trash;
-            
             users.seekg(pos);
             users >> player.score;
             users >> player.username;
@@ -170,6 +168,8 @@ void registration::update(player& player_stats){
         return;
     }
 
+    player_stats.games++;
+    
     int currentLine = 0;
     //Localizar a linha que deseja mudar
     int targetLine = getline_number(player_stats.username);
