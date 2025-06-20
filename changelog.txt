@@ -181,3 +181,6 @@
     
     Pedro(testregistration.cpp):
         - Atualização dos testes de unidade do registro após modificações na classe
+
+    Pedro(registration):
+        - Alteração do modificador de acesso para private no atributo de senha

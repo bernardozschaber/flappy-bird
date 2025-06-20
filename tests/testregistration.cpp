@@ -56,7 +56,7 @@ TEST_CASE("testing if return of get_player is correct"){
     //Retorna as informações do jogador
     CHECK(p.username == "Carlos");
     CHECK(p.score == 24);
-    CHECK(p.password == "flappybird");
+    CHECK(p.get_password() == "flappybird");
     CHECK(p.games == 2);
 }
 
@@ -143,14 +143,17 @@ TEST_CASE("show all players registered sorting by score"){
     CHECK(it->username == "Rodney");
     CHECK(it->score == 130);
     CHECK(it->games == 15);
+    CHECK(it->get_password() == "flappybird4");
     it++;
     CHECK(it->username == "Fabio");
     CHECK(it->score == 110);
     CHECK(it->games == 21);
+    CHECK(it->get_password() == "flappybird3");
     it++;
     CHECK(it->username == "Luiz");
     CHECK(it->score == 30);
     CHECK(it->games == 2);
+    CHECK(it->get_password() == "flappybird2");
 
     registro.new_user("Héctor", "flappybird5", 72, 2);
     players.clear();

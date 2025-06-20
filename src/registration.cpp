@@ -116,11 +116,13 @@ player registration::get_player(const std::string& name){
         //Em caso positivo, pega as informações do player e insere no objeto
         if(word == name){
             bool achievement;
+            std::string password;
             users.seekg(pos);
             users >> player.score;
             users >> player.username;
-            users >> player.password;
+            users >> password;
             users >> player.games;
+            player.set_password(password);
             for(int i = 0; i < 16; i++){
                 users >> achievement;
                 player.achievements.push_back(achievement);
@@ -139,16 +141,16 @@ std::multiset<player> registration::get_all(){
     users.clear();
     players.clear();
     users.seekg(0, std::ios::beg);
-    int score, games;
-    std::string username, line, password;
+    std::string line, password;
 
     //Adiciona todos os usuários em um set
     while(users.peek() != EOF){
-        users >> score;
-        users >> username;
+        player p;
+        users >> p.score;
+        users >> p.username;
         users >> password;
-        users >> games;
-        player p = {username, password, score, games};
+        users >> p.games;
+        p.set_password(password);
         players.insert(p);
         getline(users, line);
     }
@@ -181,7 +183,7 @@ void registration::update(player& player_stats){
     while (std::getline(users, line)) {
         if (currentLine == targetLine - 1) {
             // Altere a linha conforme necessário
-            line = std::to_string(player_stats.score) + " " + player_stats.username + " " + player_stats.password + " " + std::to_string(player_stats.games);
+            line = std::to_string(player_stats.score) + " " + player_stats.username + " " + player_stats.get_password() + " " + std::to_string(player_stats.games);
             for(bool achievement : player_stats.achievements){
                 line += " " + std::to_string(achievement);
             }
