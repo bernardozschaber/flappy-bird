@@ -2,6 +2,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_audio.h>
 
 #include "bird_object.hpp"
 #include "pipe_object.hpp"
@@ -23,12 +24,10 @@
 #define SEEN 1          // importante para detecção de teclas
 #define RELEASED 2      // importante para detecção de teclas
 
-
 // DECLARANDO A STATIC VELOCIDADE DO CANO
 float pipe_object::vel_x = -2.5;    
 
 int main(int argc, char **argv) {
-    
     // Arquivo para debug (just in case)
     std::ofstream debug("debug_log.txt");
     if (!debug.is_open()) {
@@ -52,6 +51,8 @@ int main(int argc, char **argv) {
         4- Apagamos a memória alocada dinamicamente
     */
 
+    debug << "Iniciando Allegro..." << std::endl;
+
     bool* sys_install = new bool;
     bool* prim_install = new bool;
     bool* font_install = new bool;
@@ -59,6 +60,7 @@ int main(int argc, char **argv) {
     bool* img_install = new bool;
     bool* keyboard_install = new bool;
     bool* mouse_install = new bool;
+    bool* audio_install = new bool;
 
     *sys_install = al_init();                   // Instalação principal
     *prim_install = al_init_primitives_addon(); // Instalação dos primitivos
@@ -67,66 +69,85 @@ int main(int argc, char **argv) {
     *img_install = al_init_image_addon();       // Instalação do addon de imagem
     *keyboard_install = al_install_keyboard();  // Instalação do teclado
     *mouse_install = al_install_mouse();        // Instalação do mouse
+    *audio_install = al_install_audio();        // Instalação do áudio
 
-    if(!(*sys_install && *prim_install && *font_install && *ttf_install && *img_install && *keyboard_install && *mouse_install)) {
-        std::cout << "Falha na instalação." << std::endl;
-        std::cout << "SYS: " << sys_install << std::endl;
-        std::cout << "PRIMITIVES: " << prim_install << std::endl;
-        std::cout << "FONT: " << font_install << std::endl;
-        std::cout << "KEYBOARD: " << keyboard_install << std::endl;
-        std::cout << "MOUSE: " << mouse_install << std::endl;
+    if(!(*sys_install && *prim_install && *font_install && *ttf_install && *img_install && *keyboard_install && *mouse_install && *audio_install)) {
+        debug << "Falha na instalação." << std::endl;
+        debug << "SYS: " << *sys_install << std::endl;
+        debug << "PRIMITIVES: " << *prim_install << std::endl;
+        debug << "FONT: " << *font_install << std::endl;
+        debug << "KEYBOARD: " << *keyboard_install << std::endl;
+        debug << "MOUSE: " << *mouse_install << std::endl;
+        debug << "AUDIO: " << *audio_install << std::endl;
         system("pause");
         return -1;
     }
 
+    delete sys_install;
     delete prim_install;
     delete font_install;
     delete ttf_install;
     delete img_install;
     delete keyboard_install;
     delete mouse_install;
+    delete audio_install;
+
+    debug << "Allegro iniciado com sucesso." << std::endl;
+
+    debug << "Preparando para o início do jogo..." << std::endl;
 
     // VARIÁVEIS INICIAIS ALLEGRO
+    debug << "\tCriando display, fila de eventos e timer..." << std::endl;
     ALLEGRO_DISPLAY *display = al_create_display(SCREEN_W, SCREEN_H);           // Inicialização do display
     ALLEGRO_EVENT_QUEUE *queue = al_create_event_queue();                       // Inicialização da fila de eventos
     ALLEGRO_TIMER *timer = al_create_timer(1.0 / FPS);                          // Inicialização do timer
     ALLEGRO_EVENT event; 
     // VERIFICAÇÃO DE INICIALIZAÇÃO CORRETA DOS PONTEIROS
     if (display == NULL) {
-        std::cout << "Display nao foi criado com sucesso.\n";
+        debug << "Display nao foi criado com sucesso.\n";
         system("pause");
         return 1;
     }
     if (queue == NULL) {
-        std::cout << "Fila de eventos nao foi criada com sucesso.\n";
+        debug << "Fila de eventos nao foi criada com sucesso.\n";
         system("pause");
         return 2;
     }
     if (timer == NULL) {
-        std::cout << "Timer nao foi criado com sucesso.\n";
+        debug << "Timer nao foi criado com sucesso.\n";
         system("pause");
         return 3;
     }
+    debug << "\tDisplay, fila de eventos e timer criados com sucesso." << std::endl;
 
     // VETOR PARA LEITURA DE TECLA PRESSIONADA
+    debug << "\tCriando vetor de teclas..." << std::endl;
     unsigned char key[ALLEGRO_KEY_MAX];     // Cria um vetor com a quantidade de teclas que podem ser detectadas
     memset(key, 0, sizeof(key));            // Inicializa todas os elementos do vetor como 0
+    debug << "\tVetor de teclas criado com sucesso." << std::endl;
     
     // REGISTRO DA ORIGEM DOS EVENTOS NA FILA DE EVENTOS
+    debug << "\tRegistrando fontes de eventos..." << std::endl;
     al_register_event_source(queue, al_get_display_event_source(display));  // Eventos do display
     al_register_event_source(queue, al_get_timer_event_source(timer));      // Eventos do timer
     al_register_event_source(queue, al_get_keyboard_event_source());        // Eventos do teclado
     al_register_event_source(queue, al_get_mouse_event_source());           // Eventos do mouse
+    debug << "\tFontes de eventos registradas com sucesso. \n\tIniciando timer..." << std::endl;
     al_start_timer(timer);
-
+    debug << "\tTimer iniciado com sucesso." << std::endl;
   
     // CRIAÇÃO DAS TELAS DO JOGO E OS ESTADOS DE CONTROLE
+    debug << "\tCriando telas do jogo..." << std::endl;
     states state;
     Game_Loop main_game_loop;       // Criação do loop de jogo
     Home_Screen main_home_screen;   // Criação da home screen
+    debug << "\tTelas criadas com sucesso." << std::endl;
+
+    debug << "\tJogo iniciando...\n" << std::endl;
 
     while(state.open){
         // ESPERA O EVENTO
+        // debug << "Esperando por eventos..." << std::endl;
         al_wait_for_event(queue, &event);
 
         // LEITURA DO EVENTO
@@ -179,7 +200,9 @@ int main(int argc, char **argv) {
         }
         */
         
+        // debug << "Processando comandos..." << std::endl;
         if(state.home_screen) {
+            // debug << "Home Screen ativa." << std::endl;
             main_home_screen.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, state);
             if(state.is_updating && state.home_screen) {
                 main_home_screen.update();
@@ -189,6 +212,7 @@ int main(int argc, char **argv) {
         }
         
         if(state.game_loop_screen){
+            // debug << "Game Loop Screen ativa." << std::endl;
             main_game_loop.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, &state); // Processa os comandos causados pelas teclas/mouse
             if(state.is_updating){
             main_game_loop.update(); // Atualiza o estado do jogo
@@ -207,6 +231,7 @@ int main(int argc, char **argv) {
         
     }
     // Libera recursos Allegro
+    debug << "Fim da execução. Fechando Allegro..." << std::endl;
     al_destroy_display(display);
     al_destroy_event_queue(queue);
     al_destroy_timer(timer);

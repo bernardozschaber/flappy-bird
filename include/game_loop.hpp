@@ -7,6 +7,7 @@
 #include "bird_object.hpp"
 #include "image.hpp"
 #include "score.hpp"
+#include <allegro5/allegro_audio.h>
 #include <vector>
 #include <random>
 
@@ -110,6 +111,14 @@ class Game_Loop {
 
         //Cores do jogo
         ALLEGRO_COLOR black;
+
+        //Controle de áudio
+        ALLEGRO_MIXER* audio_mixer;                 // Mixer de áudio para os efeitos sonoros do jogo
+        ALLEGRO_SAMPLE* flap_sound;                 // Som do pulo do pássaro
+        ALLEGRO_SAMPLE* score_sound;                // Som de pontuação
+        ALLEGRO_SAMPLE* golden_score_sound;         // Som de pontuação quando o pássaro passa pelo cano dourado
+        ALLEGRO_SAMPLE* death_sound;                // Som de morte do pássaro
+        ALLEGRO_SAMPLE* death_screen_point_sound;   // Som de pontuação na tela de morte
 
         //Váriáveis de estado do game_loop
         bool playing = false;

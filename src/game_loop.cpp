@@ -107,6 +107,9 @@ std::uniform_int_distribution<> dis(0, 384);
             pause_button_sprite[i] = al_load_bitmap(PAUSE_BUTTON_SPRITE[i]);
         for (int i = 0; i < 2; i++)
             tryagain_sprite[i] = al_load_bitmap(TRY_AGAIN_BUTTON_SPRITE[i]);
+
+        // Inicialização do mixer de áudio e carregamento dos sons
+        // ...
             
         // Criação do pássaro e inserção no vetor de objetos
         birdo=new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 
