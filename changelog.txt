@@ -184,3 +184,5 @@
 
     Pedro(registration):
         - Alteração do modificador de acesso para private no atributo de senha
+        - Correção de bugs relacionados ao multiset após modificações
+        - Remoção do set_password que não faria sentido

@@ -88,14 +88,15 @@ std::string registration::get_stats(const std::string& name){
 }
 
 player registration::get_player(const std::string& name){
-    player player;
     std::string word, line;
     std::streampos pos;
     int counter = 0;
 
+    player p;
+
     //Retorna uma ponteiro optional caso o arquivo esteja vazio
     if(isFileEmpty()){
-        return player;
+        return p;
     }
 
     //Reposiciona o ponteiro de leitura para o início do arquivo
@@ -116,13 +117,14 @@ player registration::get_player(const std::string& name){
         //Em caso positivo, pega as informações do player e insere no objeto
         if(word == name){
             bool achievement;
-            std::string password;
+            std::string password, username;
+            int score, games;
             users.seekg(pos);
-            users >> player.score;
-            users >> player.username;
+            users >> score;
+            users >> username;
             users >> password;
-            users >> player.games;
-            player.set_password(password);
+            users >> games;
+            player player(username, password, score, games);
             for(int i = 0; i < 16; i++){
                 users >> achievement;
                 player.achievements.push_back(achievement);
@@ -131,26 +133,24 @@ player registration::get_player(const std::string& name){
         }
         std::getline(users, line);
     }
-
+    
     //Retorna um ponteiro optional caso não encontre o jogador
-    return player;
+    return p;
 
 }
 
 std::multiset<player> registration::get_all(){
     users.clear();
-    players.clear();
     users.seekg(0, std::ios::beg);
-    std::string line, password;
+    
+    std::string line, password, username;
+    int score, games;
+
+    std::multiset<player> players;
 
     //Adiciona todos os usuários em um set
-    while(users.peek() != EOF){
-        player p;
-        users >> p.score;
-        users >> p.username;
-        users >> password;
-        users >> p.games;
-        p.set_password(password);
+    while(users >> score >> username >> password >> games){
+        player p(username, password, score, games);
         players.insert(p);
         getline(users, line);
     }

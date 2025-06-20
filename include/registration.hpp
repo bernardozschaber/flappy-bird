@@ -10,31 +10,26 @@ struct player{
 
 private: 
   std::string password = "";
-  //Variável para verificar se já houve atribuição da senha
-  bool password_filled = false;
   
 public:
   std::string username = "";
   int score = 0, games = 0;
   std::vector<bool> achievements;
   
+  //Construtor padrão
+  player(){}
+
+  //Construtor para inicializar os atributos
+  player(const std::string& username, const std::string& password, int score, int games) : username(username), score(score), games(games), password(password) {}
+
   //Sobrecarga no operador < para colocar em ordem descrescente de score dentro do container multiset
   bool operator < (const player& otherplayer) const{
     return score > otherplayer.score;
   }
 
-  //Getter e Setter da senha
+  //Função get da senha
   std::string get_password() const{
     return password;
-  }
-
-  void set_password(const std::string& password){
-    if(!password_filled){
-      this->password = password;
-      password_filled = true;
-    }else{
-      return;
-    }
   }
   
 };
@@ -54,9 +49,6 @@ private:
 
   //Maior score do jogo
   int score_champion = 0;
-
-  //Armazena informações dos jogadores registrados
-  std::multiset<player> players;
   
   //Retorna a linha do jogador correspondente do .txt
   int getline_number(std::string user);
