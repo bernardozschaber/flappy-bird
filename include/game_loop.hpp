@@ -4,6 +4,7 @@
 #include "background_object.hpp"
 #include "pipe_object.hpp"
 #include "moving_button.hpp"
+#include "bird_object.hpp"
 #include "image.hpp"
 #include <vector>
 #include <random>
@@ -18,18 +19,23 @@ extern const char * MOUNTAIN_SPRITE_1;                          // caminho das m
 extern const char * MOUNTAIN_SPRITE_2;                          // caminho das montanhas (do meio)
 extern const char * MOUNTAIN_SPRITE_3;                          // caminho das montanhas (de trás)
 extern const char * GRASS_SPRITE;                               // caminho da grama
-extern const char * ACHIEVEMENTS_BUTTON_SPRITE[2];                 // caminho do botão de conquistas
-extern const char * BACK_BUTTON_SPRITE[2];                         // caminho do botão de voltar
-extern const char * SETTINGS_BUTTON_SPRITE[2];                     // caminho do botão de configurações
+extern const char * ACHIEVEMENTS_BUTTON_SPRITE[2];              // caminho do botão de conquistas
+extern const char * BACK_BUTTON_SPRITE[2];                      // caminho do botão de voltar
+extern const char * SETTINGS_BUTTON_SPRITE[2];                  // caminho do botão de configurações
 extern const char * INSTRUÇÕES_SPRITE;                          // caminho das instruções
 extern const char * SCORE_SPRITE;                               // caminho da tela de morte
-extern const char * HOME_SPRITE[2];                                // caminho do sprite de home
+extern const char * HOME_SPRITE[2];                             // caminho do sprite de home
 extern const char * BACKGROUND;                                 // caminho do sprite do fundo
 extern const char * NUMBERS_SPRITES[10];                        // caminho dos números 
 extern const char * SOUND_BUTTON_SPRITE[4];                     // caminho do botão de som ligado/desligado
 extern const char * PAUSE_BUTTON_SPRITE[4];                     // caminho do botão de pause/despause
 extern const char * DEATH_SCREEN_FRAME;                         // caminho do frame da tela de morte
 extern const char * TRY_AGAIN_BUTTON_SPRITE[2];                 // caminho do botão de tentar de novo
+extern const char * SCORE_NOW;                                  // caminho do sprite do score da jogatina
+extern const char * MAX_SCORE;                                  // caminho do sprite do max score
+extern const char * PAUSED;                                     // caminho do sprite do texto de pause
+extern const char * SCORE_BOX_1;                                // caminho da caixa de score
+extern const char * SCORE_BOX_2;                                // caminho da caixa de score
 
 // CONSTANTES DE PROPRIEDADE PARA OBJETOS DO CENÁRIO
 extern const int SCREEN_H;    // altura da tela
@@ -40,6 +46,7 @@ extern const int HEIGHT_REFFERENCE;
 // VARIÁVEIS EXTRAS
     extern int random_offset;                                                      // Offset do cano a ser spawnado
     extern float score;
+    extern float max_score;
     extern int PIPE_SPACE;                                                  // Espaçamento entre os canos
     extern float PIPE_INITIAL_SPEED;                                        // Velocidade atual dos canos
     extern float PIPE_SPEED_MAX;                                            // Velocidade máxima dos canos
@@ -62,7 +69,8 @@ struct states{
 class Game_Loop {
     private:
         //Vetores dos objetos do jogo
-        std::vector<game_object*> game_objects;               // Vetor que armazena os objetos do jogo
+        bird_object* birdo;
+        std::vector<pipe_object*> pipe_objects;               // Vetor que armazena os objetos do jogo
         std::vector<moving_button*> buttons;                  // Vetor que armazena os botões do jogo
         std::vector<background_object*> background_objects_0; // Vetor que armazena os tiles de grama
         std::vector<background_object*> background_objects_1; // Vetor que armazena as montanhas (1)
@@ -90,7 +98,12 @@ class Game_Loop {
         ALLEGRO_BITMAP* pause_button_sprite[4];               // Vetor de bitmaps do botão de pause/despause
         ALLEGRO_BITMAP* death_screen_frame;                   // Bitmap do frame da tela de morte
         ALLEGRO_BITMAP* tryagain_sprite[2];                   // Vetor de bitmaps do botão de tentar de novo
-
+        ALLEGRO_BITMAP* max_score;                            // Bitmap do max score
+        ALLEGRO_BITMAP* score_now;                            // Bitmap do score na partida atual
+        ALLEGRO_BITMAP* paused_text;                          // Bitmap do texto de pause
+        ALLEGRO_BITMAP* score_box_1;                          // Bitmap da caixa de score
+        ALLEGRO_BITMAP* score_box_2;                          // Bitmap da caixa de score
+        
         //Fontes do jogo
         ALLEGRO_FONT *pixel_sans;
 

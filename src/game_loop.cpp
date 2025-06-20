@@ -1,5 +1,4 @@
 #include "Game_Loop.hpp"
-#include "bird_object.hpp"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_ttf.h>
@@ -29,6 +28,11 @@ const char * SOUND_BUTTON_SPRITE[4] = {"assets/UI/sound_on.png", "assets/UI/soun
 const char * PAUSE_BUTTON_SPRITE[4] = {"assets/UI/pause_button.png", "assets/UI/resume_button.png", "assets/UI/pause_button_pressed.png", "assets/UI/resume_button_pressed.png"};                    // caminho do botão de pause/despause
 const char * DEATH_SCREEN_FRAME = "assets/UI/death_screen_frame.png";   // caminho do frame da tela de morte
 const char * TRY_AGAIN_BUTTON_SPRITE[2] = {"assets/UI/de_novo_button.png","assets/UI/de_novo_button_pressed.png"};  // caminho do botão de jogar de novo
+const char * SCORE_NOW = "assets/UI/score_text.png";
+const char * MAX_SCORE = "assets/UI/max_score_text.png";
+const char * PAUSED = "assets/UI/paused_text.png";
+const char * SCORE_BOX_1 = "assets/UI/score_box_1.png";
+const char * SCORE_BOX_2 = "assets/UI/score_box_2.png";
 
 
 // CONSTANTES DE PROPRIEDADE PARA OBJETOS DO CENÁRIO
@@ -45,17 +49,21 @@ std::uniform_int_distribution<> dis(0, 384);
     int random_offset;                                                      // Offset do cano a ser spawnado
     bool golden_factor;                                                     // Característica se o cano é dourado ou não
     float score;
+    float maxscore = 0;
     float dif;                                                              // Float que faz as instruções variarem de tamanho
     bool going_up;                                                          // Bool que controla se o dif aumenta ou diminui
     int PIPE_SPACE = 160;                                                   // Espaçamento entre os canos
-    float PIPE_INITIAL_SPEED = -5;                                          // Velocidade atual dos canos
-    float PIPE_SPEED_MAX = -12;                                             // Velocidade máxima dos canos
-    float PIPE_SPEED_INCREASE = 0.02;                                       // Aumento da velocidade dos canos a cada 10 pontos
-    int BIRD_JUMP_VEL = -15;                                                // Velocidade do pulo do pássaro
-    int BIRD_MAX_UP_VEL = -25;                                              // Velocidade máxima de subida do pássaro
-    int BIRD_MAX_DOWN_VEL = 20;                                             // Velocidade máxima de descida do pássaro
+    float PIPE_INITIAL_SPEED = -2.5;                                        // Velocidade atual dos canos
+    float PIPE_SPEED_MAX = -8;                                             // Velocidade máxima dos canos
+    float PIPE_SPEED_INCREASE = -0.02;                                       // Aumento da velocidade dos canos a cada 10 pontos
+    int BIRD_JUMP_VEL = -10;                                                // Velocidade do pulo do pássaro
+    int BIRD_MAX_UP_VEL = -16;                                              // Velocidade máxima de subida do pássaro
+    int BIRD_MAX_DOWN_VEL = 15;                                             // Velocidade máxima de descida do pássaro
     bool death_screen_animation = false;                                    // Bool que controla se o menu de morte está em animação
     bool points_animation = false;                                          // Bool que controla se a pontuação está em animação
+    bool bird_animation = false;                                            // Bool que controla se o passaro está em animação
+    float animation_speed=0;                                                // Float que define quando tem que passar o frame de animação
+    int sprite_now=0;                                                       // Int que guarda em que sprite o passaro esta
     int frames_per_point;                                                   // Define a velocidade da animação de pontos
     int frame_count;                                                        // Contagem de frames para a animação dos pontos
     int score_displayed = 0;                                                // Monitora a pontuação que está sendo mostrada
@@ -76,6 +84,11 @@ std::uniform_int_distribution<> dis(0, 384);
         score_sprite = al_load_bitmap(SCORE_SPRITE);
         background = al_load_bitmap(BACKGROUND);
         death_screen_frame = al_load_bitmap(DEATH_SCREEN_FRAME);
+        max_score = al_load_bitmap(MAX_SCORE);                 
+        score_now = al_load_bitmap(SCORE_NOW);                 
+        paused_text = al_load_bitmap(PAUSED);
+        score_box_1 = al_load_bitmap(SCORE_BOX_1);
+        score_box_2 = al_load_bitmap(SCORE_BOX_2);
         for (int i = 0; i < 2; i++)
             achievements_button_sprite[i] = al_load_bitmap(ACHIEVEMENTS_BUTTON_SPRITE[i]);
         for (int i = 0; i < 2; i++)
@@ -94,40 +107,48 @@ std::uniform_int_distribution<> dis(0, 384);
             pause_button_sprite[i] = al_load_bitmap(PAUSE_BUTTON_SPRITE[i]);
         for (int i = 0; i < 2; i++)
             tryagain_sprite[i] = al_load_bitmap(TRY_AGAIN_BUTTON_SPRITE[i]);
-
+            
         // Criação do pássaro e inserção no vetor de objetos
-        game_objects.push_back(new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 
+        birdo=new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 
         al_get_bitmap_height(bird_animation_sprite[0]), bird_animation_sprite[0], BIRD_MAX_UP_VEL,
-        BIRD_MAX_DOWN_VEL, BIRD_JUMP_VEL));     
-        
+        BIRD_MAX_DOWN_VEL, BIRD_JUMP_VEL); 
+
         //Criação das montanhas
         background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
-        background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*3/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
-        background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*5/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
-        background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*7/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
+        background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*3/2-1, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
+        background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*5/2-2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
+        background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*7/2-3, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
         
         background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)/2, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
-        background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)*3/2, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
-        background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)*5/2, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
-        background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)*7/2, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
+        background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)*3/2-1, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
+        background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)*5/2-2, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
+        background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)*7/2-3, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
         
         background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)/2, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
-        background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)*3/2, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
-        background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)*5/2, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
-        background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)*7/2, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
+        background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)*3/2-1, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
+        background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)*5/2-2, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
+        background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)*7/2-3, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
         
         background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
-        background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*3/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
-        background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*5/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
-        background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*7/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
-
+        background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*3/2-1, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
+        background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*5/2-2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
+        background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*7/2-3, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
+    
         // Criação das imagens
         images.push_back(new image(death_screen_frame, SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
         images.push_back(new image(numbers_sprites[0], SCREEN_W/2-80, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
         images.push_back(new image(numbers_sprites[0], SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
         images.push_back(new image(numbers_sprites[0], SCREEN_W/2+80, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
+        images.push_back(new image(numbers_sprites[0],0,SCREEN_H+100));
+        images.push_back(new image(numbers_sprites[0],0,SCREEN_H+100));
+        images.push_back(new image(numbers_sprites[0],0,SCREEN_H+100));
+        images.push_back(new image(numbers_sprites[0],0,0));
+        images.push_back(new image(numbers_sprites[0],0,0));
+        images.push_back(new image(numbers_sprites[0],0,0));
+        images.push_back(new image(paused_text,SCREEN_W/2,SCREEN_H/2));
+        images.push_back(new image(score_box_1,al_get_bitmap_width(score_box_1)*0.66/2+7,SCREEN_H-al_get_bitmap_height(max_score)+5));
+        images.push_back(new image(score_box_2,SCREEN_W-(al_get_bitmap_width(score_box_2)*0.66/2+7),SCREEN_H+100));
 
-        
         // Criação dos botões
         buttons.push_back(new moving_button(SCREEN_W-64, -40, pause_button_sprite[0]));     
         buttons.push_back(new moving_button(SCREEN_W/2-126, 60, settings_button_sprite[0]));
@@ -136,7 +157,7 @@ std::uniform_int_distribution<> dis(0, 384);
         buttons.push_back(new moving_button(SCREEN_W/2+126, 60, home_sprite[0]));  
         buttons.push_back(new moving_button(SCREEN_W/2,SCREEN_H/2+80, instruções_sprite));
         buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)+168, tryagain_sprite[0]));
-
+        
         dif = 0;
         going_up=true;
     };               
@@ -173,10 +194,11 @@ std::uniform_int_distribution<> dis(0, 384);
             al_destroy_bitmap(tryagain_sprite[i]);
 
         // Deletar os objetos do jogo
-        for (game_object* obj : game_objects) {
+        delete birdo;
+        for (pipe_object* obj : pipe_objects) {
             delete obj; // Deleta cada objeto do jogo
         }
-        game_objects.clear(); // Limpa o vetor de objetos do jogo
+        pipe_objects.clear(); // Limpa o vetor de objetos do jogo
         for (background_object* bgo : background_objects_0) {
             delete bgo; // Deleta cada objeto de background
         }
@@ -338,10 +360,12 @@ std::uniform_int_distribution<> dis(0, 384);
             if(!paused){
                 if(!playing && !dead) {                        // Se o jogo não está em andamento e não está morto
                     playing = true;                            // Inicia o jogo
-                    game_objects.at(0)->Set_y_acelleration(2); // Define a aceleração da gravidade
+                    birdo->Set_y_acelleration(0.7); // Define a aceleração da gravidade
                     } 
                 if(playing && !dead) {                         // Se o jogo está em andamento e não está morto
-                    game_objects.at(0)->Jump();                // Faz o pássaro pular
+                    birdo->Jump();                // Faz o pássaro pular
+                    sprite_now=0;
+                    bird_animation = true;
                 }
                 if(!playing && death_menu && !death_screen_animation){
                     dead = false;
@@ -376,72 +400,75 @@ std::uniform_int_distribution<> dis(0, 384);
 
         ///////CANOS////////
         //Criando os canos//
-        if (playing &&(game_objects.size()==1 || game_objects.at(game_objects.size()-1)->Get_position()->x<SCREEN_W-100)){    // Adiciona o primeiro cano se não houver nenhum ou se o último cano estiver à distância adequada (100 + 250)
+        if (playing &&(pipe_objects.size()==0 || pipe_objects.at(pipe_objects.size()-1)->Get_position()->x<SCREEN_W-100)){    // Adiciona o primeiro cano se não houver nenhum ou se o último cano estiver à distância adequada (100 + 250)
             random_offset = dis(gen);                               // Determina o offset do cano a ser spawnado
             golden_factor = dis(gen) <= 3;
             int spawn_x = SCREEN_W + 250;                           // Coordenada X de spawn dos canos (fora da tela)
             int spawn_y = (SCREEN_H / 2) - 108 - random_offset;     // Coordenada Y de referência para spawn dos canos
 
             if (!golden_factor) {
-                game_objects.push_back(new pipe_object(spawn_x, spawn_y, al_get_bitmap_width(pipe_sprite), 
+                pipe_objects.push_back(new pipe_object(spawn_x, spawn_y, al_get_bitmap_width(pipe_sprite), 
                 al_get_bitmap_height(pipe_sprite), pipe_sprite, false));                                           // Instanciação do cano superior
-                game_objects.push_back(new pipe_object(spawn_x, spawn_y+al_get_bitmap_height(pipe_sprite)+PIPE_SPACE, 
+                pipe_objects.push_back(new pipe_object(spawn_x, spawn_y+al_get_bitmap_height(pipe_sprite)+PIPE_SPACE, 
                 al_get_bitmap_width(pipe_sprite), al_get_bitmap_height(pipe_sprite), pipe_sprite, false));         // Instanciação do cano inferior
             }
             else {
-                game_objects.push_back(new pipe_object(spawn_x, spawn_y, al_get_bitmap_width(pipe_sprite), 
+                pipe_objects.push_back(new pipe_object(spawn_x, spawn_y, al_get_bitmap_width(pipe_sprite), 
                 al_get_bitmap_height(pipe_sprite), golden_pipe_sprite, true));                                           // Instanciação do cano superior
-                game_objects.push_back(new pipe_object(spawn_x, spawn_y+al_get_bitmap_height(pipe_sprite)+PIPE_SPACE, 
+                pipe_objects.push_back(new pipe_object(spawn_x, spawn_y+al_get_bitmap_height(pipe_sprite)+PIPE_SPACE, 
                 al_get_bitmap_width(pipe_sprite), al_get_bitmap_height(pipe_sprite), golden_pipe_sprite, true));         // Instanciação do cano inferior
             }
                     
-            if (game_objects.at(1)->Get_x_speed() > PIPE_SPEED_MAX) {
-                game_objects.at(1)->Set_x_speed(game_objects.at(1)->Get_x_speed()-0.1);     // Se a velocidade do cano for maior que o máximo, reduza ela
+            if (pipe_objects.at(1)->Get_x_speed() > PIPE_SPEED_MAX) {
+                pipe_objects.at(1)->Set_x_speed(pipe_objects.at(1)->Get_x_speed()+PIPE_SPEED_INCREASE);     // Se a velocidade do cano for maior que o máximo, reduza ela
             }
-            int PIPE_SPEED=game_objects.at(1)->Get_x_speed();
+            int PIPE_SPEED=pipe_objects.at(1)->Get_x_speed();
         }    
         
         //Deletando os canos//
-        for (int i = game_objects.size() - 1; i >= 1; i--) {
-            if(game_objects.at(i)->Get_position()->x < -75) { // Se o cano estiver fora da tela
-                delete game_objects.at(i); // Deleta o cano
-                game_objects.erase(game_objects.begin() + i); // Remove o cano do vetor
+        for (int i = 0; i < pipe_objects.size(); i++) {
+            if(pipe_objects.at(i)->Get_position()->x < -75) { // Se o cano estiver fora da tela
+                delete pipe_objects.at(i); // Deleta o cano
+                pipe_objects.erase(pipe_objects.begin() + i); // Remove o cano do vetor
+                i--;
             }
         }
 
         //Verificando pontuação//
-        for (int i = 1; i < game_objects.size() - 1; i++) {
-            if(game_objects.at(i)->Get_position()->x<=SCREEN_W/2){
-                if(!game_objects.at(i)->is_scored()) {
+        for (int i = 0; i < pipe_objects.size(); i++) {
+            if(pipe_objects.at(i)->Get_position()->x<=SCREEN_W/2){
+                if(!pipe_objects.at(i)->is_scored()) {
                     // Veririficação se é dourado (cano dourado vale 3)
-                    if(game_objects.at(i)->is_golden()) {
+                    if(pipe_objects.at(i)->is_golden()) {
                         score=score+1.5;
                     }
                     else {
                         score=score+0.5;
                     }
-                    game_objects.at(i)->Set_score(true);
+                    pipe_objects.at(i)->Set_score(true);
                 }
             }else break;
         }
+        if(score>maxscore)
+        maxscore=score;
         
         ///////Montanhas////////
         //Deletando e Criando as montanhas//
         if (background_objects_1.at(0)->Get_position()->x<-al_get_bitmap_width(mountain_sprite_1)/2){
             delete background_objects_1.at(0); 
             background_objects_1.erase(background_objects_1.begin());   
-            background_objects_1.push_back(new background_object(background_objects_1.back()->Get_position()->x+al_get_bitmap_width(mountain_sprite_1), HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
+            background_objects_1.push_back(new background_object(background_objects_1.back()->Get_position()->x+al_get_bitmap_width(mountain_sprite_1)-1, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
         }
         if (background_objects_2.at(0)->Get_position()->x<-al_get_bitmap_width(mountain_sprite_2)/2){
             delete background_objects_2.at(0); 
             background_objects_2.erase(background_objects_2.begin());
-            background_objects_2.push_back(new background_object(background_objects_2.back()->Get_position()->x+al_get_bitmap_width(mountain_sprite_2), HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
+            background_objects_2.push_back(new background_object(background_objects_2.back()->Get_position()->x+al_get_bitmap_width(mountain_sprite_2)-1, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
         
         }
         if (background_objects_3.at(0)->Get_position()->x<-al_get_bitmap_width(mountain_sprite_3)/2){
             delete background_objects_3.at(0); 
             background_objects_3.erase(background_objects_3.begin());
-            background_objects_3.push_back(new background_object(background_objects_3.back()->Get_position()->x+al_get_bitmap_width(mountain_sprite_3), HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));
+            background_objects_3.push_back(new background_object(background_objects_3.back()->Get_position()->x+al_get_bitmap_width(mountain_sprite_3)-1, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));
         } 
 
         ////////GRAMA///////////
@@ -449,34 +476,33 @@ std::uniform_int_distribution<> dis(0, 384);
         if (background_objects_0.at(0)->Get_position()->x<-al_get_bitmap_width(grass_sprite)/2){
             delete background_objects_0.at(0); 
             background_objects_0.erase(background_objects_0.begin());
-            background_objects_0.push_back(new background_object(background_objects_0.back()->Get_position()->x+al_get_bitmap_width(grass_sprite), SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
+            background_objects_0.push_back(new background_object(background_objects_0.back()->Get_position()->x+al_get_bitmap_width(grass_sprite)-1, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
         }
 
         ///////PASSARINHO////////
         // Verifica se o pássaro caiu no chão
-        if(game_objects.at(0)->Get_position()->y>SCREEN_H&&!dead){
+        if(birdo->Get_position()->y>SCREEN_H&&!dead){
             dead = true;
             paused = false;
-            game_objects.at(0)->Jump();
-            game_objects.at(0)->Set_x_speed(1.5*game_objects.at(1)->Get_x_speed());
+            birdo->Jump();
+            birdo->Set_x_speed(1.5*pipe_objects.at(0)->Get_x_speed());
         }
 
         // Verifica se o pássaro bateu em algum cano
         if(!dead){
-            for (int i = game_objects.size() - 1; i >= 1; i--) {
-                
-                if(game_objects.at(0)->is_colliding(game_objects.at(i))){
+            for (int i = 0; i < pipe_objects.size(); i++) {
+                if(birdo->is_colliding(pipe_objects.at(i))){
                     dead = true;
                     paused = false;
-                    game_objects.at(0)->Jump();
-                    game_objects.at(0)->Set_x_speed(1.7*game_objects.at(1)->Get_x_speed());
+                    birdo->Jump();
+                    birdo->Set_x_speed(1.7*pipe_objects.at(0)->Get_x_speed());
                     break;
                 }
             }
         }
 
         // Setando death_menu para true caso ele caia de verdade
-        if(game_objects.at(0)->Get_position()->y>SCREEN_H+50 && dead && !death_menu){
+        if(birdo->Get_position()->y>SCREEN_H+50 && dead && !death_menu){
             death_menu = true;
             playing = false;
             death_screen_animation = true;
@@ -490,6 +516,23 @@ std::uniform_int_distribution<> dis(0, 384);
             // Calculando qual vai ser a velocidade da animação dos pontos
             frames_per_point = ceil(5/ceil((score+1)/20));
             frame_count = frames_per_point - 1;
+        }
+
+        //Animação passarinho
+        if(bird_animation){
+            if(animation_speed>=3){
+                if(sprite_now==4){
+                    sprite_now=0;
+                    birdo->set_bitmap(bird_animation_sprite[sprite_now]);
+                    bird_animation = false;
+                }else{
+                    sprite_now++;
+                    birdo->set_bitmap(bird_animation_sprite[sprite_now]);
+                }
+                animation_speed=0;
+            }else{
+                animation_speed++;
+            }
         }
 
 
@@ -624,26 +667,50 @@ std::uniform_int_distribution<> dis(0, 384);
 
         //Instruções//
         if (going_up) {
-        dif += 0.001;
+        dif += 0.0008;
         if (dif >= 0.03) going_up = false;
         } else {
-        dif -= 0.001;
+        dif -= 0.0008;
         if (dif <= 0.01) going_up = true;
         }
 
+        /////////////////Score////////////////
+        //Movimentando e Tirando score da tela//
+        if(playing&&!dead&&images.at(12)->get_y()>SCREEN_H-al_get_bitmap_height(max_score)+5){
+            images.at(12)->set_acceleration(0,-3);
+            if(images.at(12)->get_y()+images.at(12)->get_velocity_y()<SCREEN_H-al_get_bitmap_height(max_score)+5)
+                images.at(12)->set_position_y(SCREEN_H-al_get_bitmap_height(max_score)/2+5);
+        }else if(dead&&images.at(12)->get_y()<SCREEN_H+100){
+            images.at(12)->set_acceleration(0,3);
+            if(images.at(12)->get_y()+images.at(12)->get_velocity_y()>SCREEN_H+100)
+                images.at(12)->set_position_y(SCREEN_H+100);
+        }else{
+            images.at(12)->set_velocity(0,0);
+            images.at(12)->set_acceleration(0,0);
+        }
+
+        //Tirando o max score da tela//
+        if(playing&&images.at(11)->get_y()<SCREEN_H+100){
+            images.at(11)->set_acceleration(0,3);
+            if(images.at(11)->get_y()+images.at(11)->get_velocity_y()>SCREEN_H+100)
+                images.at(11)->set_position_y(SCREEN_H+100);
+        }else{
+            images.at(11)->set_velocity(0,0);
+            images.at(11)->set_acceleration(0,0);
+        }
         
 
         ////////////////////////////////////////
         //////Atualiza os objetos do jogo///////
         ////////////////////////////////////////
         if (!paused&&!death_menu) {
-            game_objects.at(0)->Update(SCREEN_W, SCREEN_H); // Atualiza o pássaro
+            birdo->Update(SCREEN_W, SCREEN_H); // Atualiza o pássaro
             if(!dead){
-                for (int i = game_objects.size() - 1; i >= 1; i--) {
-                    game_objects.at(i)->Update(SCREEN_W, SCREEN_H);
+                for (int i = 0; i < pipe_objects.size(); i++){
+                    pipe_objects.at(i)->Update(SCREEN_W, SCREEN_H);
                 }
                 if(playing&&!dead)
-                background_objects_1.at(0)->Set_standard_speed(game_objects.at(1)->Get_x_speed());
+                background_objects_1.at(0)->Set_standard_speed(pipe_objects.at(1)->Get_x_speed());
                 for (background_object* bgo_3 : background_objects_3) {
                     bgo_3->Update(SCREEN_W, SCREEN_H, 0.1); // Atualiza as montanhas de trás
                 }
@@ -691,15 +758,15 @@ std::uniform_int_distribution<> dis(0, 384);
         }
 
         // Desenha os objetos do jogo
-        for (int i = game_objects.size() - 1; i >= 1; i--) {
-            game_objects.at(i)->Draw(1);
+        for (int i = 0; i < pipe_objects.size(); i++) {
+            pipe_objects.at(i)->Draw(1);
         }
         if(dead&&!paused){
-            game_objects.at(0)->Draw_spin(0.1*game_objects.at(1)->Get_x_speed());
+            birdo->Draw_spin(0.1*pipe_objects.at(0)->Get_x_speed());
         }else if(dead&&paused){
-            game_objects.at(0)->Draw_spin(0);
+            birdo->Draw_spin(0);
         }else{
-            game_objects.at(0)->Draw(1);
+            birdo->Draw(1);
         }
 
         // Desenha o menu de morte
@@ -715,6 +782,66 @@ std::uniform_int_distribution<> dis(0, 384);
             buttons.at(4)->draw();
             buttons.at(6)->draw();
         }
+
+        // Desenha os Scores
+        images.at(11)->Draw(0.666);
+        images.at(12)->Draw(0.666);
+        if(score>999)
+        score=999;
+        for (int a = 4; a<7 ;a++)
+            images.at(a)->set_position_y(images.at(12)->get_y());
+        if((int)score/100==0&&(int)score/10==0){
+            images.at(6)->set_bitmap(numbers_sprites[(int)score]);
+            images.at(6)->set_position_x(images.at(12)->get_x()+50);
+            images.at(6)->Draw(0.5);
+        }else if((int)score/100==0&&(int)score/10!=0){
+            images.at(5)->set_bitmap(numbers_sprites[(int)score/10]);
+            images.at(5)->set_position_x(images.at(12)->get_x()+40);
+            images.at(5)->Draw(0.5);
+            images.at(6)->set_bitmap(numbers_sprites[(int)score%10]);
+            images.at(6)->set_position_x(images.at(12)->get_x()+60);
+            images.at(6)->Draw(0.5);
+        }else{
+            images.at(4)->set_bitmap(numbers_sprites[(int)score/100]);
+            images.at(4)->set_position_x(images.at(12)->get_x()+30);
+            images.at(4)->Draw(0.5);
+            images.at(5)->set_bitmap(numbers_sprites[(int)score%100/10]);
+            images.at(5)->set_position_x(images.at(12)->get_x()+50);
+            images.at(5)->Draw(0.5);
+            images.at(6)->set_bitmap(numbers_sprites[(int)score%10]);
+            images.at(6)->set_position_x(images.at(12)->get_x()+70);
+            images.at(6)->Draw(0.5);
+        }
+    
+        for (int a = 7; a<10 ;a++)
+            images.at(a)->set_position_y(images.at(11)->get_y());
+        if((int)maxscore/100==0&&(int)maxscore/10==0){
+            images.at(9)->set_bitmap(numbers_sprites[(int)maxscore]);
+            images.at(9)->set_position_x(images.at(11)->get_x()+85);
+            images.at(9)->Draw(0.5);
+        }else if((int)maxscore/100==0&&(int)maxscore/10!=0){
+            images.at(8)->set_bitmap(numbers_sprites[(int)maxscore/10]);
+            images.at(8)->set_position_x(images.at(11)->get_x()+75);
+            images.at(8)->Draw(0.5);
+            images.at(9)->set_bitmap(numbers_sprites[(int)maxscore%10]);
+            images.at(9)->set_position_x(images.at(11)->get_x()+95);
+            images.at(9)->Draw(0.5);
+        }else{
+            images.at(7)->set_bitmap(numbers_sprites[(int)maxscore/100]);
+            images.at(7)->set_position_x(images.at(11)->get_x()+65);
+            images.at(7)->Draw(0.5);
+            images.at(8)->set_bitmap(numbers_sprites[(int)maxscore%100/10]);
+            images.at(8)->set_position_x(images.at(11)->get_x()+85);
+            images.at(8)->Draw(0.5);
+            images.at(9)->set_bitmap(numbers_sprites[(int)maxscore%10]);
+            images.at(9)->set_position_x(images.at(11)->get_x()+105);
+            images.at(9)->Draw(0.5);
+        }
+        
+
+        // Desenha o texto de pause
+        if(paused)
+        images.at(10)->Draw();
 
         // Desenha os botões
         if(!death_menu) {
@@ -734,38 +861,38 @@ std::uniform_int_distribution<> dis(0, 384);
 
     // Método que reseta o jogo, recriando os objetos e o cenário
     void Game_Loop::reset_game()
-    {   if(game_objects.size()>1)
-        score = 0;
-        game_objects.at(1)->Set_x_speed(-5);
-        game_objects.clear();
-        game_objects.push_back(new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 
+    {   score = 0;
+        if(pipe_objects.size()>0)
+        pipe_objects.at(0)->Set_x_speed(-2.5);
+        pipe_objects.clear();
+        birdo = new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 
         al_get_bitmap_height(bird_animation_sprite[0]), bird_animation_sprite[0], BIRD_MAX_UP_VEL,
-        BIRD_MAX_DOWN_VEL, BIRD_JUMP_VEL));
+        BIRD_MAX_DOWN_VEL, BIRD_JUMP_VEL);
         
         background_objects_0.clear();
         background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
-        background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*3/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
-        background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*5/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
-        background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*7/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
+        background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*3/2-1, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
+        background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*5/2-2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
+        background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*7/2-3, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
         background_objects_0.at(0)->Set_standard_speed(0);
         
         background_objects_1.clear();
         background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)/2, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
-        background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)*3/2, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
-        background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)*5/2, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
-        background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)*7/2, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
+        background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)*3/2-1, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
+        background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)*5/2-2, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
+        background_objects_1.push_back(new background_object(al_get_bitmap_width(mountain_sprite_1)*7/2-3, HEIGHT_REFFERENCE, al_get_bitmap_width(mountain_sprite_1), al_get_bitmap_height(mountain_sprite_1), mountain_sprite_1));              
 
         background_objects_2.clear();
         background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)/2, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
-        background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)*3/2, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
-        background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)*5/2, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
-        background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)*7/2, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
+        background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)*3/2-1, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
+        background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)*5/2-2, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
+        background_objects_2.push_back(new background_object(al_get_bitmap_width(mountain_sprite_2)*7/2-3, HEIGHT_REFFERENCE - 103.5, al_get_bitmap_width(mountain_sprite_2), al_get_bitmap_height(mountain_sprite_2), mountain_sprite_2));              
         
         background_objects_3.clear();
         background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
-        background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*3/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
-        background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*5/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));                   
-        background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*7/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));                   
+        background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*3/2-1, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
+        background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*5/2-2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));                   
+        background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*7/2-3, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));                   
         
         images.clear();
         /*
@@ -774,10 +901,21 @@ std::uniform_int_distribution<> dis(0, 384);
         2 -> Dezenas da pontuação (morte)
         3 -> Unidades da pontuação (morte)
         */
-        images.push_back(new image(death_screen_frame, SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));  
+        images.push_back(new image(death_screen_frame, SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
         images.push_back(new image(numbers_sprites[0], SCREEN_W/2-80, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
         images.push_back(new image(numbers_sprites[0], SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
         images.push_back(new image(numbers_sprites[0], SCREEN_W/2+80, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
+        images.push_back(new image(numbers_sprites[0],0,SCREEN_H+100));
+        images.push_back(new image(numbers_sprites[0],0,SCREEN_H+100));
+        images.push_back(new image(numbers_sprites[0],0,SCREEN_H+100));
+        images.push_back(new image(numbers_sprites[0],0,0));
+        images.push_back(new image(numbers_sprites[0],0,0));
+        images.push_back(new image(numbers_sprites[0],0,0));
+        images.push_back(new image(paused_text,SCREEN_W/2,SCREEN_H/2));
+        images.push_back(new image(score_box_1,al_get_bitmap_width(score_box_1)*0.66/2+7,SCREEN_H-al_get_bitmap_height(max_score)+5));
+        images.push_back(new image(score_box_2,SCREEN_W-(al_get_bitmap_width(score_box_2)*0.66/2+7),SCREEN_H+100));
+
+        
 
         death_screen_animation = false;
         points_animation = false;
@@ -792,7 +930,7 @@ std::uniform_int_distribution<> dis(0, 384);
         5 -> Instruções (???)
         6 -> Play Again
         */
-        buttons.push_back(new moving_button(SCREEN_W-64, 60, pause_button_sprite[0]));
+        buttons.push_back(new moving_button(SCREEN_W-64, -40, pause_button_sprite[0]));
         buttons.push_back(new moving_button(SCREEN_W/2-126, 60, settings_button_sprite[0]));
         buttons.push_back(new moving_button(SCREEN_W/2-42, 60, sound_button_sprite[0]));
         buttons.push_back(new moving_button(SCREEN_W/2+42, 60, achievements_button_sprite[0]));
@@ -801,6 +939,7 @@ std::uniform_int_distribution<> dis(0, 384);
         buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)+168, tryagain_sprite[0]));
         dif=0;
         going_up=true;
+
 
         // Reset das variáveis da animação de pontuação na tela de morte
         score_displayed = 0;

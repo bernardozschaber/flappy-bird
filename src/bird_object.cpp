@@ -79,6 +79,6 @@
         this->vel_y=a;
     };
 
-    void bird_object::Set_y_acelleration(int a){
+    void bird_object::Set_y_acelleration(float a){
         this->acel_y=a;
     };

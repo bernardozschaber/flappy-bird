@@ -8,9 +8,9 @@
 class bird_object : public game_object{
     private:
         int vel_x;    
-        int vel_y;
+        float vel_y;
         int acel_x;
-        int acel_y;
+        float acel_y;
         int VEL_MAX;
         int VEL_MIN;
         int JUMP_VEL;
@@ -23,12 +23,12 @@ class bird_object : public game_object{
         //Override
         void Draw(float a);
         void Draw(float a, ALLEGRO_BITMAP* bitmap);
-        void Update(const int SCREEN_W,const int SCREEN_H);
+        void Update(int SCREEN_W, int SCREEN_H);
         void Jump();
         void Set_x_speed(float a);
         void Set_x_acelleration(int a);
         void Set_y_speed(float a);
-        void Set_y_acelleration(int a);
+        void Set_y_acelleration(float a);
         void Draw_spin(float SPIN_SPEED);
 };
 
