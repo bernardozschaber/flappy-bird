@@ -4,7 +4,6 @@
 #include <string>
 #include <set>
 #include <vector>
-#include <optional>
 
 //Struct com informações dos jogadores para auxiliar na lista de retorno  
 struct player{
