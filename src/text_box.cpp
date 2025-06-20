@@ -14,6 +14,7 @@ void text_box::handle_event(const ALLEGRO_EVENT &ev) {
   if (ev.type == ALLEGRO_EVENT_KEY_CHAR) {
     if (ev.keyboard.keycode == ALLEGRO_KEY_BACKSPACE) {
       if (!text.empty()) {
+        // Deleta um caractere
         text.pop_back();
         if (sample_key) {
           al_play_sample(sample_key, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, nullptr);
@@ -49,8 +50,7 @@ void text_box::draw(ALLEGRO_FONT *font) {
   int text_h = al_get_font_line_height(font);
   int text_x = x + (width - text_w) / 2;
   int text_y = y + (height - text_h) / 2;
-  al_draw_text(font, al_map_rgb(255, 255, 255), text_x, text_y, 0,
-               display_text.c_str());
+  al_draw_text(font, al_map_rgb(255, 255, 255), text_x, text_y, 0,display_text.c_str());
 
   // Se ativo, desenha contorno em amarelo para indicar foco
   if (is_active) {
@@ -63,3 +63,4 @@ void text_box::set_active(bool active) { is_active = active; }
 bool text_box::is_active_box() const { return is_active; }
 std::string text_box::get_text() const { return text; }
 void text_box::set_text(const std::string &t) { text = t; }
+void text_box::set_sample(ALLEGRO_SAMPLE* s) { sample_key = s; }

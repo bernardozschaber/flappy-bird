@@ -11,6 +11,10 @@ register_screen::register_screen(int screen_w, int screen_h, registration &data_
   username_box.set_active(false);
   password_box.set_active(false);
   confirm_box.set_active(false);
+
+  // Preenche os vetores para menu_audio
+  text_boxes = { &username_box, &password_box, &confirm_box };
+  buttons = { &confirm_button, &cancel_button };
 }
 
 void register_screen::handle_event(const ALLEGRO_EVENT &ev) {
@@ -49,28 +53,39 @@ void register_screen::handle_event(const ALLEGRO_EVENT &ev) {
       if (nome.empty() || senha.empty() || conf.empty()) {
         // Não permitir registro com campos vazios
         empty_field = true;
+
+        // Evitar textos de erro se sobrepor
         password_mismatch = false;
-        existing_user = false; //evitar textos de erro se sobrepor
+        existing_user = false; 
       } else if (senha != conf) {
+        // Senhas diferem
         password_mismatch = true;
+
+        // Evitar textos de erro se sobrepor
         empty_field = false;
         existing_user = false;
+
         username_box.set_text("");
         password_box.set_text("");
         confirm_box.set_text("");
       } else {
-        std::string aux = data.get_stats(nome);
-        if (aux != "") {
+        player aux = data.get_player(nome);
+        if (aux.username != "") {
+          // Usuário já existe
           existing_user = true;
+
+          // Evitar textos de erro se sobrepor
           empty_field = false;
-          password_mismatch = false; //evitar textos de erro se sobrepor
+          password_mismatch = false; 
+
           username_box.set_text("");
           password_box.set_text("");
           confirm_box.set_text("");
         } else {
+          // Registro concluído com sucesso
           data.new_user(nome, senha, 0, 0);
           players.clear();
-          players = data.get_all();
+          players = data.get_all(); // Atualiza a lista de usuários com o novo jogador registrado
           reg_complete = true;
         }
       }
@@ -99,7 +114,7 @@ void register_screen::handle_event(const ALLEGRO_EVENT &ev) {
               username_box.set_active(true);
           }
           break;
-      case ALLEGRO_KEY_ENTER:
+      case ALLEGRO_KEY_ENTER: // Equivalente ao clique no botão de confirmação
           if (username_box.is_active_box() || password_box.is_active_box() || confirm_box.is_active_box()) {
             confirm_button.reset_clicked();
             std::string nome = username_box.get_text();
@@ -109,28 +124,39 @@ void register_screen::handle_event(const ALLEGRO_EVENT &ev) {
             if (nome.empty() || senha.empty() || conf.empty()) {
               // Não permitir registro com campos vazios
               empty_field = true;
+
+              // Evitar textos de erro se sobrepor
               password_mismatch = false;
-              existing_user = false; //evitar textos de erro se sobrepor
+              existing_user = false; 
             } else if (senha != conf) {
+              // Senhas diferem
               password_mismatch = true;
+
+              // Evitar textos de erro se sobrepor
               empty_field = false;
               existing_user = false;
+
               username_box.set_text("");
               password_box.set_text("");
               confirm_box.set_text("");
             } else {
               std::string aux = data.get_stats(nome);
               if (aux != "") {
+                // Usuário já existe
                 existing_user = true;
+
+                // Evitar textos de erro se sobrepor
                 empty_field = false;
-                password_mismatch = false; //evitar textos de erro se sobrepor
+                password_mismatch = false; 
+
                 username_box.set_text("");
                 password_box.set_text("");
                 confirm_box.set_text("");
               } else {
+                // Registro concluído com sucesso
                 data.new_user(nome, senha, 0, 0);
                 players.clear();
-                players = data.get_all();
+                players = data.get_all(); // Atualiza a lista de usuários com o novo jogador registrado
                 reg_complete = true;
               }
             }
@@ -159,8 +185,9 @@ void register_screen::draw(ALLEGRO_FONT *font) {
   // Desenha rótulos fixos acima de cada campo
   al_draw_text(font, al_map_rgb(255, 255, 255), 275, 170, 0, "Usuário:");
   al_draw_text(font, al_map_rgb(255, 255, 255), 275, 240, 0, "Senha:");
-  al_draw_text(font, al_map_rgb(255, 255, 255), 275, 310, 0,
-               "Confirmar Senha:");
+  al_draw_text(font, al_map_rgb(255, 255, 255), 275, 310, 0,"Confirmar Senha:");
+
+  // Desenha aviso de número máximo de caracteres aceitos
   std::string max_char_text = "(Máx. 18 caracteres)";
   int max_text_w = al_get_text_width(font, max_char_text.c_str());
   int x_max = (screen_width - max_text_w) / 2;
@@ -196,6 +223,13 @@ void register_screen::draw(ALLEGRO_FONT *font) {
     al_draw_text(font, al_map_rgb(252, 23, 35), x, y, 0, msg.c_str());
   }
 }
+
+bool register_screen::registration_complete() const { return reg_complete; }
+
+bool register_screen::go_to_login_screen() const { return go_to_login; }
+
+const std::vector<text_box*>& register_screen::get_text_boxes() const { return text_boxes; }
+const std::vector<button*>&  register_screen::get_buttons() const { return buttons; }
 
 void register_screen::reset() {
   username_box.set_text("");

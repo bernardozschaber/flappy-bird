@@ -158,3 +158,23 @@
     Sam (assets, home_screen):
         - Adicionados os sprites para os achievements
         - Iniciada a programação da home screen (nada pronto ainda)
+
+    Sam (assets, home_screen, main):
+        - Modificados alguns sprites de UI
+        - Finalizada a home screen
+
+19-06-2025
+
+    Pedro(registration):
+        (Atualizações por conta da nova funcionalidade de conquistas)
+            - Criação de um vector booleano que armazena as conquistas do jogadores
+            - Atualização dos métodos update, new_user para comportar as conquistas dos jogadores
+            - Inserção de um novo método "get_player" que retorna as informações do player contida no objeto
+        - Lançada exceção caso o arquivo não seja aberto por alguma razão
+
+20-06-2025
+
+    Matsura(src,include,Makefile)
+        - Criação de classe para manipular o audio do menu
+        - Adaptação dos novos métodos de registration para suportar os achievements
+        - Comentários dos códigos do menu

@@ -6,6 +6,7 @@
 #include "moving_button.hpp"
 #include "bird_object.hpp"
 #include "image.hpp"
+#include "score.hpp"
 #include <vector>
 #include <random>
 
@@ -61,9 +62,9 @@ struct states{
     bool is_updating = false;          // O jogo deve atualizar o estado
     bool registration_screen = true;   // Tela de registro está aberta
     bool settings_screen = false;      // Tela de configurações está aberta
-    bool game_loop_screen = true;     // O jogo está no loop de jogo
+    bool game_loop_screen = false;     // O jogo está no loop de jogo
     bool achievements_screen = false;  // Tela de conquistas está aberta
-    bool home_screen = false;          // Tela inicial esta aberta
+    bool home_screen = true;          // Tela inicial esta aberta
 };
 
 class Game_Loop {
@@ -117,6 +118,8 @@ class Game_Loop {
         bool paused = false;
         bool sound = true; 
         bool debug_mode = true;
+
+        Score game_score;
 
     public:
         Game_Loop();               // Construtor
