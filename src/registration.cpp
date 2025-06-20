@@ -121,7 +121,7 @@ player registration::get_player(const std::string& name){
             users.seekg(pos);
             users >> player.score;
             users >> player.username;
-            users >> trash;
+            users >> player.password;
             users >> player.games;
             for(int i = 0; i < 16; i++){
                 users >> achievement;
@@ -142,15 +142,15 @@ std::multiset<player> registration::get_all(){
     players.clear();
     users.seekg(0, std::ios::beg);
     int score, games;
-    std::string username, line, trash;
+    std::string username, line, password;
 
     //Adiciona todos os usuários em um set
     while(users.peek() != EOF){
         users >> score;
         users >> username;
-        users >> trash;
+        users >> password;
         users >> games;
-        player p = {username, score, games};
+        player p = {username, password, score, games};
         players.insert(p);
         getline(users, line);
     }
@@ -161,7 +161,6 @@ std::multiset<player> registration::get_all(){
 void registration::update(player& player_stats){
     std::vector<std::string> lines;
     int counter = 0;
-    std::string password;
 
     //Recebe a linha correspondente ao jogador
     std::string line = get_stats(player_stats.username);
@@ -169,17 +168,6 @@ void registration::update(player& player_stats){
     //Caso não encontre o jogador 
     if(line == ""){
         return;
-    }
-
-    //Cria uma stringstream para possibilitar a leitura de dados
-    std::stringstream line_user(line);
-
-    //Obtém a senha do jogador
-    while(counter < 4){
-        counter++;
-        if(counter == 3){
-            line_user >> password;
-        }
     }
 
     int currentLine = 0;
@@ -193,7 +181,7 @@ void registration::update(player& player_stats){
     while (std::getline(users, line)) {
         if (currentLine == targetLine - 1) {
             // Altere a linha conforme necessário
-            line = std::to_string(player_stats.score) + " " + player_stats.username + " " + password + " " + std::to_string(player_stats.games);
+            line = std::to_string(player_stats.score) + " " + player_stats.username + " " + player_stats.password + " " + std::to_string(player_stats.games);
             for(bool achievement : player_stats.achievements){
                 line += " " + std::to_string(achievement);
             }
@@ -229,7 +217,7 @@ int registration::delete_user(std::string user){
 
     //Caso não encontre o usuário
     if(targetLine == 0)
-            return 0;
+        return 0;
 
     // Lê todas as linhas do arquivo
     users.clear();
