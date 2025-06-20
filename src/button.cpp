@@ -28,8 +28,7 @@ void button::draw(ALLEGRO_FONT *font) {
   int text_h = al_get_font_line_height(font);
   int text_x = x + (width - text_w) / 2;
   int text_y = y + (height - text_h) / 2;
-  al_draw_text(font, al_map_rgb(255, 255, 255), text_x, text_y, 0,
-               label.c_str());
+  al_draw_text(font, al_map_rgb(255, 255, 255), text_x, text_y, 0,label.c_str());
 }
 
 int button::get_x(){
@@ -50,4 +49,8 @@ void button::reset_clicked() {
 
 void button::set_clicked(const bool set) {
   clicked = set;
+}
+
+void button::set_sample(ALLEGRO_SAMPLE* s) {
+  sample_button = s;
 }

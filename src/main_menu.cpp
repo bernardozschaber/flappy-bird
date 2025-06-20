@@ -10,6 +10,7 @@
 #include "register_screen.hpp"
 #include "player_list_screen.hpp"
 #include "remove_user_screen.hpp"
+#include "menu_audio.hpp"
 
 #include <iostream>
 
@@ -74,6 +75,7 @@ int main(int argc, char **argv) {
         return 3;
     }
 
+    // Seta o título da janela
     al_set_window_title(display, "Flappy Bird - Cadastro/Login");
     
     al_install_audio(); // instala subsistema de áudio
@@ -94,22 +96,33 @@ int main(int argc, char **argv) {
     // Carrega imagem da coroa do leaderboard
     ALLEGRO_BITMAP *crown = al_load_bitmap("assets/UI/crown-2.png");
 
+    // Carrega ícones do botão de áudio
+    ALLEGRO_BITMAP *ico_on = al_load_bitmap("assets/UI/sound_on.png");
+    ALLEGRO_BITMAP *ico_off = al_load_bitmap("assets/UI/sound_off.png");
+    ALLEGRO_BITMAP *ico_on_press = al_load_bitmap("assets/UI/sound_on_pressed.png");
+    ALLEGRO_BITMAP *ico_off_press = al_load_bitmap("assets/UI/sound_off_pressed.png");
+
+    // Incializa objeto que controla o áudio do menu
+    menu_audio audio_ctrl(ico_on,ico_off,ico_on_press,ico_off_press,sample_key,sample_button,35, 35, al_get_bitmap_width(ico_on), al_get_bitmap_height(ico_on));
+
     // Inicia objeto que manipula os arquivos
     registration data("jogadores.txt");
     std::multiset<player> players = data.get_all();
-
-    al_start_timer(timer);
 
     // Inicializa as telas da interface
     login_screen login_scr(SCREEN_W, SCREEN_H, data, sample_key, sample_button);
     register_screen register_scr(SCREEN_W, SCREEN_H, data, players, sample_key, sample_button);
     player_list_screen list_scr(SCREEN_W, SCREEN_H, sample_button, crown, players, data);
-    remove_user_screen rm_scr(SCREEN_W, SCREEN_H, data, sample_key, sample_button);
+    remove_user_screen rm_scr(SCREEN_W, SCREEN_H, data, players,sample_key, sample_button);
 
     enum screen_type { SCREEN_LOGIN, SCREEN_REGISTER, SCREEN_LIST, SCREEN_REMOVE };
     
-    bool is_open = true;
+    // Carrega a fonte utilizada
     ALLEGRO_FONT *pixel_sans = al_load_ttf_font("assets/fonts/pixelify_sans.ttf", 20, 0);
+
+    al_start_timer(timer);
+
+    bool is_open = true;
 
     while(is_open){
         screen_type current = SCREEN_LOGIN;
@@ -149,6 +162,10 @@ int main(int argc, char **argv) {
                     current = SCREEN_REMOVE;
                     login_scr.reset();
                 }
+                
+                // Atualiza fontes de audio e posição do botão de mute
+                audio_ctrl.set_sources(login_scr.get_text_boxes(),login_scr.get_buttons());
+                audio_ctrl.set_position(35,35);
             }
             else if (current == SCREEN_REGISTER) {
                 register_scr.handle_event(event);
@@ -163,6 +180,10 @@ int main(int argc, char **argv) {
                     register_scr.reset();
                     current = SCREEN_LOGIN;
                 }
+
+                // Atualiza fontes de audio e posição do botão de mute
+                audio_ctrl.set_sources(register_scr.get_text_boxes(),register_scr.get_buttons());
+                audio_ctrl.set_position(35,35);
             } 
             else if (current == SCREEN_LIST) {
                 list_scr.handle_event(event);
@@ -172,6 +193,10 @@ int main(int argc, char **argv) {
                     list_scr.reset();
                     current = SCREEN_LOGIN;
                 }
+                // Atualiza fontes de audio e posição do botão de mute
+                std::vector<text_box*> null = {}; // Tela de listagem não possui caixas de texto
+                audio_ctrl.set_sources(null,list_scr.get_buttons());
+                audio_ctrl.set_position(265,525);
             }
             else if (current == SCREEN_REMOVE) {
                 rm_scr.handle_event(event);
@@ -180,7 +205,13 @@ int main(int argc, char **argv) {
                     rm_scr.reset();
                     current = SCREEN_LOGIN;
                 }
+                // Atualiza fontes de audio e posição do botão de mute
+                audio_ctrl.set_sources(rm_scr.get_text_boxes(),rm_scr.get_buttons());
+                audio_ctrl.set_position(35,35);
             }
+            
+            // Manipula o áudio
+            audio_ctrl.handle_event(event);
 
             // A cada tick do timer, redesenha tudo
             if (event.type == ALLEGRO_EVENT_TIMER) {
@@ -205,6 +236,9 @@ int main(int argc, char **argv) {
                 else if (current == SCREEN_REMOVE) {
                     rm_scr.draw(pixel_sans);
                 }
+                // Desenho do botão de mute
+                audio_ctrl.draw();
+
                 al_flip_display(); 
             }
         }

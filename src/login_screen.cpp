@@ -1,5 +1,4 @@
 #include "login_screen.hpp"
-#include <sstream>
 
 login_screen::login_screen(int screen_w, int screen_h, registration &data_ref, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s)
     : screen_width(screen_w), screen_height(screen_h),
@@ -13,8 +12,12 @@ login_screen::login_screen(int screen_w, int screen_h, registration &data_ref, A
   username_box.set_active(false);
   password_box.set_active(false);
   logged_user.username = "";
+  logged_user.password = "";
   logged_user.score = 0;
   logged_user.games = 0;
+  // Preenche os vetores para menu_audio:
+  text_boxes = { &username_box, &password_box };
+  buttons = {&login_button,&register_button,&view_players_button,&remove_user_button};
 }
 
 void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
@@ -41,7 +44,7 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
     view_players_button.handle_event(ev);
     remove_user_button.handle_event(ev);
 
-    // Ações de cada botão
+    // Ação do botão de login
     if (login_button.was_clicked()) {
       login_button.reset_clicked();
       std::string nome = username_box.get_text();
@@ -50,35 +53,29 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
         empty_field = true;
         valid_login = true; // Evita sobrepor mensagens de erro
       } else {
-      std::string aux = data.get_stats(nome);
+      player aux = data.get_player(nome);
       empty_field = false; // Evita sobrepor mensagens de erro
-      if (aux == "") {
+      if (aux.username == "") {
+        // Usuário não existe
         valid_login = false;
         username_box.set_text("");
         password_box.set_text("");
       } else {
-        std::istringstream iss(aux);
-        int aux_score, aux_games;
-        std::string aux_nome, aux_senha;
-        iss >> aux_score;
-        iss >> aux_nome;
-        iss >> aux_senha;
-        iss >> aux_games;
-
-        if (aux_senha != senha) {
+        if (aux.password != senha) {
+          // Senha incorreta
           valid_login = false;
           username_box.set_text("");
           password_box.set_text("");
         } else {
+          // Login realizado com sucesso
           done = true;
-          logged_user.username = aux_nome;
-          logged_user.score = aux_score;
-          logged_user.games = aux_games;
+          logged_user = aux;
         }
       }
     }
   }
 
+    // Botões para trocar de telas
     if (register_button.was_clicked()) {
       register_button.reset_clicked();
       go_to_register = true;
@@ -106,39 +103,32 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
           username_box.set_active(true);
       }
       break;
-    case ALLEGRO_KEY_ENTER:
+    case ALLEGRO_KEY_ENTER: // Equivalente ao botão de confirmar
       if (username_box.is_active_box() || password_box.is_active_box()) {
-        login_button.reset_clicked();
-        std::string nome = username_box.get_text();
-        std::string senha = password_box.get_text();
-        if (nome == "" || senha == ""){
-          empty_field = true;
-          valid_login = true; // Evita sobrepor mensagens de erro
-        } else {
-        std::string aux = data.get_stats(nome);
-        empty_field = false; // Evita sobrepor mensagens de erro
-        if (aux == "") {
-          valid_login = false;
-          username_box.set_text("");
-          password_box.set_text("");
-        } else {
-          std::istringstream iss(aux);
-          int aux_score, aux_games;
-          std::string aux_nome, aux_senha;
-          iss >> aux_score;
-          iss >> aux_nome;
-          iss >> aux_senha;
-          iss >> aux_games;
-
-          if (aux_senha != senha) {
+          login_button.reset_clicked();
+          std::string nome = username_box.get_text();
+          std::string senha = password_box.get_text();
+          if (nome == "" || senha == ""){
+            empty_field = true;
+            valid_login = true; // Evita sobrepor mensagens de erro
+          } else {
+          player aux = data.get_player(nome);
+          empty_field = false; // Evita sobrepor mensagens de erro
+          if (aux.username == "") {
+            // Usuário não existe
             valid_login = false;
             username_box.set_text("");
             password_box.set_text("");
           } else {
-            done = true;
-            logged_user.username = aux_nome;
-            logged_user.score = aux_score;
-            logged_user.games = aux_games;
+            if (aux.password != senha) {
+              // Senha incorreta
+              valid_login = false;
+              username_box.set_text("");
+              password_box.set_text("");
+            } else {
+              // Login realizado com sucesso
+              done = true;
+              logged_user = aux;
             }
           }
         }
@@ -148,7 +138,7 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
   }
 }
 
-  // Se for evento de teclado
+  // Se for evento de teclado, direciona apenas para caixa de texto ativa
   if (ev.type == ALLEGRO_EVENT_KEY_CHAR) {
     if (username_box.is_active_box()) {
       username_box.handle_event(ev);
@@ -159,9 +149,11 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
 }
 
 void login_screen::draw(ALLEGRO_FONT *font) {
+  // Desenha título das caixas de texto
   al_draw_text(font, al_map_rgb(255, 255, 255), 275, 170, 0, "Usuário:");
   al_draw_text(font, al_map_rgb(255, 255, 255), 275, 240, 0, "Senha:");
 
+  // Desenha botões e caixas de texto
   username_box.draw(font);
   password_box.draw(font);
   login_button.draw(font);
@@ -169,6 +161,7 @@ void login_screen::draw(ALLEGRO_FONT *font) {
   view_players_button.draw(font);
   remove_user_button.draw(font);
 
+  // Desenha mensagens de erro de login
   if (empty_field) {
     std::string erro = "Há campos vazios!";
     int erro_w = al_get_text_width(font, erro.c_str());
@@ -177,7 +170,6 @@ void login_screen::draw(ALLEGRO_FONT *font) {
     al_draw_text(font, al_map_rgb(252, 23, 35), x_erro, y_erro, 0,
                  erro.c_str());
   }
-
   if (!valid_login) {
     std::string erro = "usuário e/ou senha inválidos";
     int erro_w = al_get_text_width(font, erro.c_str());
@@ -207,14 +199,19 @@ bool login_screen::login_done() const { return done; }
 
 player login_screen::get_logged_user() { return logged_user; }
 
+const std::vector<text_box*>& login_screen::get_text_boxes() const { return text_boxes; }
+const std::vector<button*>&  login_screen::get_buttons() const { return buttons; }
+
 void login_screen::reset() {
   username_box.set_text("");
   password_box.set_text("");
   username_box.set_active(false);
   password_box.set_active(false);
   logged_user.username = "";
+  logged_user.password = "";
   logged_user.score = 0;
   logged_user.games = 0;
+  logged_user.achievements.clear();
   go_to_list = false;
   go_to_register = false;
   go_to_remove = false;

@@ -7,14 +7,20 @@ player_list_screen::player_list_screen(int screen_w, int screen_h, ALLEGRO_SAMPL
       players_per_page(14), // 14 por página mantém boa visibilidade
       next_button(650, 540, 120, 40, "Próximo", button_s),
       back_button(50, 540, 120, 40, "Voltar", button_s),
-      main_menu_button(340, 540, 120, 40, "Menu", button_s), go_to_menu(false), players(set), data(data_ref), crown(crown) {}
+      main_menu_button(340, 540, 120, 40, "Menu", button_s), go_to_menu(false), players(set), data(data_ref), crown(crown) {
+      // Preenche o vetor para menu_audio
+      buttons = { &back_button, &next_button, &main_menu_button };   
+}
 
 void player_list_screen::handle_event(const ALLEGRO_EVENT &ev) {
+  // Processa eventos do mouse apenas
   if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN && ev.mouse.button == 1) {
     int mx = ev.mouse.x;
     int my = ev.mouse.y;
     
     int max_pages = (players.size() - 1) / players_per_page;
+
+    // Processa o botão de passar de página se não estiver na última
     if (current_page < max_pages){
     next_button.handle_event(ev);
     if (next_button.was_clicked()){
@@ -23,6 +29,7 @@ void player_list_screen::handle_event(const ALLEGRO_EVENT &ev) {
       }
     }
 
+    // Processa o botão de voltar página se não estiver na primeira
     if (current_page > 0) {
     back_button.handle_event(ev);
     if (back_button.was_clicked()) {
@@ -31,28 +38,31 @@ void player_list_screen::handle_event(const ALLEGRO_EVENT &ev) {
       }
     }
 
+    // Botão de voltar ao menu sempre ativo
     main_menu_button.handle_event(ev);
     if (main_menu_button.was_clicked()) {
       main_menu_button.reset_clicked();
       go_to_menu = true;
     }
   }
+  // ESC volta para o login
   if (ev.type == ALLEGRO_EVENT_KEY_UP && ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE) go_to_menu = true;
 }
 
 void player_list_screen::draw(ALLEGRO_FONT *font) {
-
+  // Posições de referência inicial de linha e coluna
   int line_h = al_get_font_line_height(font);
   int start_y = 50;
   int col1_x = 100;
   int col2_x = screen_width/2 - 50;
   int col3_x = screen_width - 220;
 
-  // Cabeçalho
+  // Desenha cabeçalho
   al_draw_text(font, al_map_rgb(255,255,0), col1_x, start_y, 0, "USUÁRIO");
   al_draw_text(font, al_map_rgb(255,255,0), col2_x, start_y, 0, "RECORDE");
   al_draw_text(font, al_map_rgb(255,255,0), col3_x, start_y, 0, "PARTIDAS JOGADAS");
 
+  // Recorde máximo 
   int max_score = data.get_max_score();
 
   auto it = players.begin(); // Iterator para percorrer o multiset
@@ -79,7 +89,7 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
   if (current_page > 0) {
       back_button.draw(font);
   } else {
-      // Botão Desativado
+      // Botão desativado se estiver na primeira página
       al_draw_filled_rectangle(back_button.get_x(), back_button.get_y(),
                                 back_button.get_x() + back_button.get_width(),
                                 back_button.get_y() + back_button.get_height(),
@@ -100,7 +110,7 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
   if (current_page < max_page) {
       next_button.draw(font);
   } else {
-      // Botão Desativado
+      // Botão desativado se estiver na última página
       al_draw_filled_rectangle(next_button.get_x(), next_button.get_y(),
                                 next_button.get_x() + next_button.get_width(),
                                 next_button.get_y() + next_button.get_height(),
@@ -127,6 +137,8 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
 }
 
 bool player_list_screen::go_to_main_menu() const { return go_to_menu; }
+
+const std::vector<button*>& player_list_screen::get_buttons() const { return buttons; }
 
 void player_list_screen::reset() {
   current_page = 0;

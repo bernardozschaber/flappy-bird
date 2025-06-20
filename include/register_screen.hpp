@@ -6,8 +6,13 @@
 #include "text_box.hpp"
 #include <allegro5/allegro_font.h>
 
+/*
+  * - Processa e valida tentativas de registro
+  * - Atualiza novos usuários no arquivo em caso de registros válidos
+*/
 class register_screen {
 public:
+  // Construtor
   register_screen(int screen_w, int screen_h, registration &data_ref, std::multiset<player> &set, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s);
 
   // Trata eventos (mouse/teclado) e repassa para componentes
@@ -17,10 +22,14 @@ public:
   void draw(ALLEGRO_FONT *font);
 
   // Indica se o registro foi concluído com sucesso (para voltar ao login)
-  bool registration_complete() const { return reg_complete; }
+  bool registration_complete() const;
 
   // Indica se o usuário clicou em "Cancelar" para voltar ao login
-  bool go_to_login_screen() const { return go_to_login; }
+  bool go_to_login_screen() const;
+
+  // Getters dos vetores dos elementos de UI para manipulação de audio
+  const std::vector<text_box*>& get_text_boxes() const;
+  const std::vector<button*>&  get_buttons() const;
 
   // Reseta campos e flags para nova exibição
   void reset();
@@ -42,9 +51,13 @@ private:
   button confirm_button;
   button cancel_button;
 
+  // Vetores dos elementos de UI para manipulação de audio
+  std::vector<text_box*> text_boxes;
+  std::vector<button*>  buttons;
+
   // Flags internas
-  bool reg_complete;      // true após cadastro bem-sucedido
-  bool go_to_login;       // true se cancelou ou terminou
+  bool reg_complete; // true após cadastro bem-sucedido
+  bool go_to_login; // true se cancelou ou terminou
   bool password_mismatch; // true para exibir mensagem de erro de senhas diferentes
   bool empty_field; // true para exibir erro de campo vazio
   bool existing_user; // true para exibir mensagem de erro de usuário existente
