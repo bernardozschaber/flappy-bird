@@ -13,7 +13,7 @@
 // CONSTANTES DE PATH 
 extern const char * ARIAL_FONT_FILEPATH;                        // caminho para a fonte arial
 extern const char * PSANS_FONT_FILEPATH;                        // caminho para a fonte pixelify sans
-extern const char * BIRD_SPRITE[5];                             // bitmap do sprite do pássaro
+extern const char * BIRD_SPRITE[6];                             // bitmap do sprite do pássaro
 extern const char * PIPE_SPRITE;                                // caminho do sprite do cano
 extern const char * GOLDEN_PIPE_SPRITE;                         // caminho do sprite do cano dourado
 extern const char * MOUNTAIN_SPRITE_1;                          // caminho das montanhas (da frente)
@@ -80,7 +80,7 @@ class Game_Loop {
         std::vector<image*> images;                           // Vetor que armazena imagens
 
         //Bitmaps dos objetos do jogo
-        ALLEGRO_BITMAP* bird_animation_sprite[5];             // Vetor de bitmaps do pássaro
+        ALLEGRO_BITMAP* bird_animation_sprite[6];             // Vetor de bitmaps do pássaro
         ALLEGRO_BITMAP* pipe_sprite;                          // Bitmap do cano 
         ALLEGRO_BITMAP* golden_pipe_sprite;                   // Bitmap do cano dourado
         ALLEGRO_BITMAP* mountain_sprite_1;                    // Bitmap da montanha (da frente)
@@ -120,7 +120,7 @@ class Game_Loop {
         bool debug_mode = true;
 
         //Score game_score;
-
+ 
     public:
         Game_Loop();               // Construtor
         ~Game_Loop();              // Destrutor

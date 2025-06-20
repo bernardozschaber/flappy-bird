@@ -7,7 +7,7 @@
 // CONSTANTES DE PATH 
 const char * ARIAL_FONT_FILEPATH = "assets/fonts/arial.ttf";                                                            // caminho para a fonte arial
 const char * PSANS_FONT_FILEPATH = "assets/fonts/pixelify_sans.ttf";                                                    // caminho para a fonte pixelify sans
-const char * BIRD_SPRITE[5] = {"assets/bird-1.png","assets/bird-2.png","assets/bird-3.png","assets/bird-2.png","assets/bird-1.png"};                      // bitmap do sprite do pássaro
+const char * BIRD_SPRITE[6] = {"assets/bird-1.png","assets/bird-2.png","assets/bird-3.png","assets/bird-4.png","assets/bird-3.png","assets/bird-2.png"};  // bitmap do sprite do pássaro
 const char * PIPE_SPRITE = "assets/pipe.png";                                                                     // caminho do sprite do cano
 const char * GOLDEN_PIPE_SPRITE = "assets/pipe_golden.png";                                                       // caminho do sprite do cano dourado
 const char * MOUNTAIN_SPRITE_1 = "assets/scenario/mountains_1.png";                                                        // caminho das montanhas (da frente)
@@ -99,7 +99,7 @@ std::uniform_int_distribution<> dis(0, 384);
             home_sprite[i] = al_load_bitmap(HOME_SPRITE[i]);
         for (int i = 0; i < 10; i++)
             numbers_sprites[i] = al_load_bitmap(NUMBERS_SPRITES[i]);
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
             bird_animation_sprite[i] = al_load_bitmap(BIRD_SPRITE[i]);
         for (int i = 0; i < 4; i++)
             sound_button_sprite[i] = al_load_bitmap(SOUND_BUTTON_SPRITE[i]);
@@ -521,9 +521,9 @@ std::uniform_int_distribution<> dis(0, 384);
         }
 
         //Animação passarinho
-        if(bird_animation){
+        if(bird_animation&&!paused){
             if(animation_speed>=3){
-                if(sprite_now==4){
+                if(sprite_now==5){
                     sprite_now=0;
                     birdo->set_bitmap(bird_animation_sprite[sprite_now]);
                     bird_animation = false;
@@ -892,6 +892,7 @@ std::uniform_int_distribution<> dis(0, 384);
         if(pipe_objects.size()>0)
         pipe_objects.at(0)->Set_x_speed(-2.5);
         pipe_objects.clear();
+        delete birdo;
         birdo = new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 
         al_get_bitmap_height(bird_animation_sprite[0]), bird_animation_sprite[0], BIRD_MAX_UP_VEL,
         BIRD_MAX_DOWN_VEL, BIRD_JUMP_VEL);
