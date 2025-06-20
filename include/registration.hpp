@@ -7,16 +7,36 @@
 
 //Struct com informações dos jogadores para auxiliar na lista de retorno  
 struct player{
-  
-  std::string username = "";
+
+private: 
   std::string password = "";
+  //Variável para verificar se já houve atribuição da senha
+  bool password_filled = false;
+  
+public:
+  std::string username = "";
   int score = 0, games = 0;
   std::vector<bool> achievements;
-
+  
   //Sobrecarga no operador < para colocar em ordem descrescente de score dentro do container multiset
   bool operator < (const player& otherplayer) const{
     return score > otherplayer.score;
   }
+
+  //Getter e Setter da senha
+  std::string get_password() const{
+    return password;
+  }
+
+  void set_password(const std::string& password){
+    if(!password_filled){
+      this->password = password;
+      password_filled = true;
+    }else{
+      return;
+    }
+  }
+  
 };
 
 class registration {
