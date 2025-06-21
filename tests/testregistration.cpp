@@ -132,7 +132,7 @@ TEST_CASE("method of best player(get_max_user() e get_max_score())"){
     CHECK(registro.get_max_user() == "Maria");
     CHECK(registro.get_max_score() == 45);
 
-    //Deleta Maria(O jogador com maior score deve ser o Carlos)
+    //Deleta Maria(O jogador com maior score deve ser o Roberto)
     registro.delete_user("Maria");
     CHECK(registro.get_max_user() == "Roberto");
     CHECK(registro.get_max_score() == 41);
@@ -163,7 +163,7 @@ TEST_CASE("show all players registered sorting by score"){
     //Recebe todos os jogadores
     players = registro.get_all();
     auto it = players.begin();
-    //Checa se o tamanho é igual a 3
+    //Checa se o tamanho é igual a 4
     CHECK(players.size() == 4);
     //Jogador da primeira posição
     CHECK(it->username == "Rodney");
