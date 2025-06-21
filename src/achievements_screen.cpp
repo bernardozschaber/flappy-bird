@@ -7,6 +7,8 @@
 // CONSTANTES DE PATH
 
 const char * ACHIEVEMENTS_SCREEN_FRAME = {"assets/UI/achievements/achievements_screen_frame.png"}; // caminho do frame da tela de achievements
+const char * ACHIEVEMENTS_BADGES[3] = {"assets/UI/achievements/badge_0.png", "assets/UI/achievements/badge_2.png"}; // caminho dos badges de conquistas
+
 
 // CONSTRUTOR
 Achievements_Screen::Achievements_Screen() {
@@ -22,8 +24,14 @@ Achievements_Screen::Achievements_Screen() {
         settings_button_sprite[i] = al_load_bitmap(SETTINGS_BUTTON_SPRITE[i]);
     for (int i = 0; i < 2; i++)
         home_sprite[i] = al_load_bitmap(HOME_SPRITE[i]);
-    for (int i =0; i < 2; i++)
+    for (int i = 0; i < 2; i++)
         statistics_button_sprite[i] = al_load_bitmap(STATISTICS_BUTTON_SPRITE[i]);
+
+    achievements_badges[0] = al_load_bitmap(ACHIEVEMENTS_BADGES[0]);
+    achievements_badges[1] = al_load_bitmap(ACHIEVEMENTS_BADGES[1]);
+
+    
+    
 
     // Carregamento da fonte
     ALLEGRO_FONT *pixel_sans = al_load_ttf_font(PSANS_FONT_FILEPATH, 20, 0);   
@@ -51,11 +59,12 @@ Achievements_Screen::Achievements_Screen() {
 
     // Criação de  elementos de UI (imagens)
     images.push_back(new image(achievements_screen_frame_sprite, SCREEN_W/2, SCREEN_H/2));
+    buttons.push_back(new moving_button(SCREEN_W/2-115, SCREEN_H/2+240, settings_button_sprite[0]));
+    buttons.push_back(new moving_button(SCREEN_W/2+115, SCREEN_H/2+240, home_sprite[0])); 
+    buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H/2+240, statistics_button_sprite[0]));
 
-    // Criação de  elementos de UI (imagens)   
-    buttons.push_back(new moving_button(SCREEN_W/2-115, SCREEN_H/2+168, settings_button_sprite[0]));
-    buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H/2+168, statistics_button_sprite[0]));
-    buttons.push_back(new moving_button(SCREEN_W/2+126, 60, home_sprite[0])); 
+    images.push_back(new image(achievements_badges[0], SCREEN_W/2-200, SCREEN_H/2-100));
+    images.push_back(new image(achievements_badges[1], SCREEN_W/2-100, SCREEN_H/2-100));
 
 
     //std::cout << "Sizes of vectors:\n\tbackground_objects_0: " << background_objects_0.size() << " (expected 4)\n\tbackground_objects_1: " << background_objects_1.size() << " (expected 4)\n\tbackground_objects_2: " << background_objects_2.size() << " (expected 4)\n\tbackground_objects_3: " << background_objects_3.size() << " (expected 4)\n\timages: " << images.size() << " (expected 2)\n\n";
@@ -73,9 +82,12 @@ Achievements_Screen::~Achievements_Screen() {
     al_destroy_bitmap(achievements_screen_frame_sprite);
     for (int i = 0; i < 2; i++) {
         al_destroy_bitmap(settings_button_sprite[i]);
-         al_destroy_bitmap(home_sprite[i]);
+        al_destroy_bitmap(home_sprite[i]);
         al_destroy_bitmap(statistics_button_sprite[i]);
     }
+    al_destroy_bitmap(achievements_badges[0]);
+    al_destroy_bitmap(achievements_badges[1]);
+
 
     // Destruição da fonte
     al_destroy_font(pixel_sans);
@@ -240,8 +252,11 @@ void Achievements_Screen::draw() {
         bgo->Draw(1);
 
     // Desenho da UI
-    images.at(0)->Draw();
+    for (size_t i = 0; i < images.size(); i++) {
+        images[i]->Draw();  // Primeira imagem: tamanho original, colorida
+        }
 
+    // Desenho dos botões
     for (moving_button* btn : buttons) {
         btn->draw();
     }
