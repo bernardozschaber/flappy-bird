@@ -59,10 +59,7 @@ Achievements_Screen::Achievements_Screen() {
     achievements_badges[12] = al_load_bitmap(ACHIEVEMENTS_BADGES[12]);
     achievements_badges[13] = al_load_bitmap(ACHIEVEMENTS_BADGES[13]);
     achievements_badges[14] = al_load_bitmap(ACHIEVEMENTS_BADGES[14]);
-    achievements_badges[15] = al_load_bitmap(ACHIEVEMENTS_BADGES[15]);
-
-    
-    
+    achievements_badges[15] = al_load_bitmap(ACHIEVEMENTS_BADGES[15]);   
 
     // Carregamento da fonte
     ALLEGRO_FONT *pixel_sans = al_load_ttf_font(PSANS_FONT_FILEPATH, 20, 0);   
@@ -90,28 +87,39 @@ Achievements_Screen::Achievements_Screen() {
 
     // Criação de  elementos de UI (imagens)
     images.push_back(new image(achievements_screen_frame_sprite, SCREEN_W/2, SCREEN_H/2));
-    buttons.push_back(new moving_button(SCREEN_W/2-115, SCREEN_H/2+240, settings_button_sprite[0]));
-    buttons.push_back(new moving_button(SCREEN_W/2+115, SCREEN_H/2+240, home_sprite[0])); 
-    buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H/2+240, statistics_button_sprite[0]));
 
-    images.push_back(new image(achievements_badges[0], SCREEN_W/2-200, SCREEN_H/2-100));
-    images.push_back(new image(achievements_badges[1], SCREEN_W/2-100, SCREEN_H/2-100));
-    images.push_back(new image(achievements_badges[2], SCREEN_W/2, SCREEN_H/2-100));    
-    images.push_back(new image(achievements_badges[3], SCREEN_W/2+100, SCREEN_H/2-100));
-    images.push_back(new image(achievements_badges[4], SCREEN_W/2-200, SCREEN_H/2));
-    images.push_back(new image(achievements_badges[5], SCREEN_W/2-100, SCREEN_H/2));
-    images.push_back(new image(achievements_badges[6], SCREEN_W/2, SCREEN_H/2));
-    images.push_back(new image(achievements_badges[7], SCREEN_W/2+100, SCREEN_H/2));
-    images.push_back(new image(achievements_badges[8], SCREEN_W/2-200, SCREEN_H/2+100));
-    images.push_back(new image(achievements_badges[9], SCREEN_W/2-100, SCREEN_H/2+100));
-    images.push_back(new image(achievements_badges[10], SCREEN_W/2, SCREEN_H/2+100));
-    images.push_back(new image(achievements_badges[11], SCREEN_W/2+100, SCREEN_H/2+100));
-    images.push_back(new image(achievements_badges[12], SCREEN_W/2-200, SCREEN_H/2+200));
-    images.push_back(new image(achievements_badges[13], SCREEN_W/2-100, SCREEN_H/2+200));
-    images.push_back(new image(achievements_badges[14], SCREEN_W/2, SCREEN_H/2+200));
-    images.push_back(new image(achievements_badges[15], SCREEN_W/2+100, SCREEN_H/2+200));
+    // Criação de  elementos de UI (botões)
+    buttons.push_back(new moving_button(SCREEN_W/2-115, SCREEN_H/2+225, settings_button_sprite[0])); // BOTÃO 0
+    buttons.push_back(new moving_button(SCREEN_W/2+115, SCREEN_H/2+225, home_sprite[0]));            // BOTÃO 1
+    buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H/2+225, statistics_button_sprite[0]));   // BOTÃO 2
 
+    int img_size = 128 * 0.8;   // 102 pixels
+    int spacing_x = 48;         // espaçamento horizontal
+    int spacing_y = 2;          // espaçamento vertical
+    int text_space = 10;        // espaço para texto abaixo
 
+    int columns = 4;
+    int rows = 4;
+
+    // Altura útil da tela (considerando um menu inferior)
+    int usable_height = 500;
+
+    int total_width = columns * img_size + (columns - 1) * spacing_x;
+    int total_height = rows * (img_size + spacing_y + text_space);
+
+    int start_x = (800 - total_width) / 2 + img_size / 2;
+    int start_y = (usable_height - total_height) / 2 + img_size / 2;
+
+    // ✅ Adiciona +10 na coordenada Y para descer tudo
+    for (int i = 0; i < 16; i++) {
+        int col = i % columns;
+        int row = i / columns;
+
+        int x = start_x + col * (img_size + spacing_x);
+        int y = start_y + row * (img_size + spacing_y + text_space) + 10; 
+
+        images.push_back(new image(achievements_badges[i], x, y));
+    }
 
     //std::cout << "Sizes of vectors:\n\tbackground_objects_0: " << background_objects_0.size() << " (expected 4)\n\tbackground_objects_1: " << background_objects_1.size() << " (expected 4)\n\tbackground_objects_2: " << background_objects_2.size() << " (expected 4)\n\tbackground_objects_3: " << background_objects_3.size() << " (expected 4)\n\timages: " << images.size() << " (expected 2)\n\n";
 }
@@ -192,11 +200,6 @@ void Achievements_Screen::commands(unsigned char key[], bool& mouse_is_down, boo
                 
             }
 
-            if(buttons.at(2)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(2)->is_pressed()) 
-            {
-                buttons.at(2)->set_bitmap(statistics_button_sprite[0]);
-            }
-
             if(buttons.at(1)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(1)->is_pressed()) 
             {
                 buttons.at(1)->set_bitmap(home_sprite[0]);
@@ -205,6 +208,12 @@ void Achievements_Screen::commands(unsigned char key[], bool& mouse_is_down, boo
                 state.home_screen = true;
                 state.achievements_screen = false;
             }
+
+            if(buttons.at(2)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(2)->is_pressed()) 
+            {
+                buttons.at(2)->set_bitmap(statistics_button_sprite[0]);
+            }
+            
         }
         if (mouse_is_down) 
         {
@@ -230,8 +239,8 @@ void Achievements_Screen::commands(unsigned char key[], bool& mouse_is_down, boo
         else 
         {
             buttons.at(0)->set_bitmap(settings_button_sprite[0]);
+            buttons.at(1)->set_bitmap(home_sprite[0]);
             buttons.at(2)->set_bitmap(statistics_button_sprite[0]);
-             buttons.at(1)->set_bitmap(home_sprite[0]);
         }
     }
 
@@ -312,8 +321,9 @@ void Achievements_Screen::draw() {
         bgo->Draw(1);
 
     // Desenho da UI
-    for (size_t i = 0; i < images.size(); i++) {
-        images[i]->Draw();  // Primeira imagem: tamanho original, colorida
+    images[0]->Draw(); // Desenha o frame da tela de achievements
+    for (size_t i = 1; i < images.size(); i++) {
+        images[i]->Draw(0.8);  
         }
 
     // Desenho dos botões
