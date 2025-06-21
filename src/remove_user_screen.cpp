@@ -11,7 +11,7 @@ remove_user_screen::remove_user_screen(int sw, int sh, registration& data_ref, s
     password_box.set_mask(true);
     password_box.set_active(false);
     user_box.set_active(false);
-    // Preenche vetores para menu_audio
+    // Preenche vetores para menu_audio e testes
     text_boxes = { &user_box, &password_box };
     buttons = {&remove_button,&cancel_button,&confirm_button,&cancel_confirm_button};
 }

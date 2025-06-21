@@ -8,7 +8,7 @@ player_list_screen::player_list_screen(int screen_w, int screen_h, ALLEGRO_SAMPL
       next_button(630, 525, 120, 40, "Próximo", button_s),
       back_button(50, 525, 120, 40, "Voltar", button_s),
       main_menu_button(340, 525, 120, 40, "Menu", button_s), go_to_menu(false), players(set), data(data_ref), crown(crown) {
-      // Preenche o vetor para menu_audio
+      // Preenche o vetor para menu_audio e testes
       buttons = { &back_button, &next_button, &main_menu_button };   
 }
 

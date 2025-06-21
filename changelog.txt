@@ -186,3 +186,9 @@
         - Alteração do modificador de acesso para private no atributo de senha
         - Correção de bugs relacionados ao multiset após modificações
         - Remoção do set_password que não faria sentido
+
+21-06-2025
+
+    Matsura(src,include,Makefile)
+        - Adaptação da interface para mudanças na struct de jogador
+        - Nova classe de menu geral para unificar o main e deixar mais limpo
