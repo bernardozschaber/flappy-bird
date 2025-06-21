@@ -60,6 +60,7 @@ void remove_user_screen::handle_event(const ALLEGRO_EVENT& ev) {
                             exist_user = true;
                             // Vai para fase 2
                             in_confirmation = true;
+                            to_remove_password = aux.get_password();
                             password_box.set_text("");
                             password_box.set_active(true);
                         }
@@ -91,7 +92,7 @@ void remove_user_screen::handle_event(const ALLEGRO_EVENT& ev) {
                         exist_user = true;
                         // Vai para fase 2
                         in_confirmation = true;
-                        to_remove_password = aux.password;
+                        to_remove_password = aux.get_password();
                         password_box.set_text("");
                         password_box.set_active(true);
                     }

@@ -12,7 +12,6 @@ login_screen::login_screen(int screen_w, int screen_h, registration &data_ref, A
   username_box.set_active(false);
   password_box.set_active(false);
   logged_user.username = "";
-  logged_user.password = "";
   logged_user.score = 0;
   logged_user.games = 0;
   // Preenche os vetores para menu_audio:
@@ -61,7 +60,7 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
         username_box.set_text("");
         password_box.set_text("");
       } else {
-        if (aux.password != senha) {
+        if (aux.get_password() != senha) {
           // Senha incorreta
           valid_login = false;
           username_box.set_text("");
@@ -120,7 +119,7 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
             username_box.set_text("");
             password_box.set_text("");
           } else {
-            if (aux.password != senha) {
+            if (aux.get_password() != senha) {
               // Senha incorreta
               valid_login = false;
               username_box.set_text("");
@@ -208,7 +207,6 @@ void login_screen::reset() {
   username_box.set_active(false);
   password_box.set_active(false);
   logged_user.username = "";
-  logged_user.password = "";
   logged_user.score = 0;
   logged_user.games = 0;
   logged_user.achievements.clear();
