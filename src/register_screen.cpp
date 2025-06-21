@@ -12,7 +12,7 @@ register_screen::register_screen(int screen_w, int screen_h, registration &data_
   password_box.set_active(false);
   confirm_box.set_active(false);
 
-  // Preenche os vetores para menu_audio
+  // Preenche os vetores para menu_audio e testes
   text_boxes = { &username_box, &password_box, &confirm_box };
   buttons = { &confirm_button, &cancel_button };
 }

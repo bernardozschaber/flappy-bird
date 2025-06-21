@@ -11,10 +11,7 @@ login_screen::login_screen(int screen_w, int screen_h, registration &data_ref, A
   password_box.set_mask(true);
   username_box.set_active(false);
   password_box.set_active(false);
-  logged_user.username = "";
-  logged_user.score = 0;
-  logged_user.games = 0;
-  // Preenche os vetores para menu_audio:
+  // Preenche os vetores para menu_audio e testes:
   text_boxes = { &username_box, &password_box };
   buttons = {&login_button,&register_button,&view_players_button,&remove_user_button};
 }
@@ -206,10 +203,6 @@ void login_screen::reset() {
   password_box.set_text("");
   username_box.set_active(false);
   password_box.set_active(false);
-  logged_user.username = "";
-  logged_user.score = 0;
-  logged_user.games = 0;
-  logged_user.achievements.clear();
   go_to_list = false;
   go_to_register = false;
   go_to_remove = false;
