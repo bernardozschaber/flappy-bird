@@ -101,7 +101,6 @@ Achievements_Screen::Achievements_Screen() {
     int columns = 4;
     int rows = 4;
 
-    // Altura útil da tela (considerando um menu inferior)
     int usable_height = 500;
 
     int total_width = columns * img_size + (columns - 1) * spacing_x;
@@ -110,7 +109,6 @@ Achievements_Screen::Achievements_Screen() {
     int start_x = (800 - total_width) / 2 + img_size / 2;
     int start_y = (usable_height - total_height) / 2 + img_size / 2;
 
-    // ✅ Adiciona +10 na coordenada Y para descer tudo
     for (int i = 0; i < 16; i++) {
         int col = i % columns;
         int row = i / columns;
