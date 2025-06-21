@@ -264,6 +264,8 @@ std::uniform_int_distribution<> dis(0, 384);
                         state->game_loop_screen=false;
                         state->home_screen=true;
                         buttons.at(4)->set_pressed(false);
+                        birdo->set_bitmap(bird_animation_sprite[0]);
+                        bird_animation=false;
                         this->reset_game();
                         return;
                     }
