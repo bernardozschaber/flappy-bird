@@ -117,18 +117,12 @@ void Achievements_Screen::commands(unsigned char key[], bool& mouse_is_down, boo
             {
                 buttons.at(0)->set_bitmap(settings_button_sprite[0]);
                 buttons.at(0)->set_pressed(false);
-                // Volta para a tela de configurações se clicar no botão de configurações
-                state.settings_screen = true; 
-                state.achievements_screen = false;
+                
             }
 
             if(buttons.at(2)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(2)->is_pressed()) 
             {
                 buttons.at(2)->set_bitmap(statistics_button_sprite[0]);
-                buttons.at(2)->set_pressed(false);
-                // Volta para a tela de estatísticas se clicar no botão de estatísticas
-                // state.statistics_screen = true;
-                state.achievements_screen = false;
             }
 
             if(buttons.at(1)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(1)->is_pressed()) 
