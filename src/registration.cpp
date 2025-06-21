@@ -35,12 +35,13 @@ bool registration::isOpenFile(){
 
 void registration::new_user(std::string name, std::string password, int score, int games){
     std::string standard_achievements = " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0";
+    std::string standard_stats = " 0 0 0";
     //Insere o novo usuário no final do arquivo
     users.clear();
     users.seekp(0, std::ios::end);
 
     //Escreve as informações do player no arquivo
-    users << score << " " << name << " " << password << " " << games << standard_achievements << "\n";
+    users << score << " " << name << " " << password << " " << games << standard_stats << standard_achievements << "\n";
 
     //Verifica a possibilidade de atualizar o campeão
     if(score > get_max_score()){
@@ -118,13 +119,14 @@ player registration::get_player(const std::string& name){
         if(word == name){
             bool achievement;
             std::string password, username;
-            int score, games;
+            int score, games, jump_count, ground_deaths, pipe_deaths;
             users.seekg(pos);
             users >> score;
             users >> username;
             users >> password;
             users >> games;
-            player player(username, password, score, games);
+            users >> jump_count >> ground_deaths >> pipe_deaths;
+            player player(username, password, score, games, jump_count, ground_deaths, pipe_deaths);
             for(int i = 0; i < 16; i++){
                 users >> achievement;
                 player.achievements.push_back(achievement);
@@ -183,7 +185,9 @@ void registration::update(player& player_stats){
     while (std::getline(users, line)) {
         if (currentLine == targetLine - 1) {
             // Altere a linha conforme necessário
-            line = std::to_string(player_stats.score) + " " + player_stats.username + " " + player_stats.get_password() + " " + std::to_string(player_stats.games);
+            line = std::to_string(player_stats.score) + " " + player_stats.username + " " + player_stats.get_password() 
+            + " " + std::to_string(player_stats.games) + " " + std::to_string(player_stats.jump_count) + " " + std::to_string(player_stats.ground_deaths) 
+            + " " + std::to_string(player_stats.pipe_deaths);
             for(bool achievement : player_stats.achievements){
                 line += " " + std::to_string(achievement);
             }

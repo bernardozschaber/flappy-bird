@@ -15,12 +15,18 @@ public:
   std::string username = "";
   int score = 0, games = 0;
   std::vector<bool> achievements;
+
+  //Variáveis estatísticas para auxiliar nas conquistas
+  int jump_count = 0, ground_deaths = 0, pipe_deaths = 0;
   
   //Construtor padrão
   player(){}
 
-  //Construtor para inicializar os atributos
-  player(const std::string& username, const std::string& password, int score, int games) : username(username), score(score), games(games), password(password) {}
+  //Construtor para inicializar todos os atributos
+  player(const std::string& username, const std::string& password, int score, int games, int jump_count, int ground_deaths, int pipe_deaths) : username(username), score(score), games(games), password(password), jump_count(jump_count), ground_deaths(ground_deaths), pipe_deaths(pipe_deaths) {}
+
+  //Contrutor para inicializar alguns dos atributos
+  player(const std::string& username, const std::string& password, int score, int games) : username(username), password(password), score(score), games(games) {}
 
   //Sobrecarga no operador < para colocar em ordem descrescente de score dentro do container multiset
   bool operator < (const player& otherplayer) const{

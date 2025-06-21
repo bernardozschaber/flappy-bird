@@ -192,3 +192,6 @@
     Matsura(src,include,Makefile)
         - Adaptação da interface para mudanças na struct de jogador
         - Nova classe de menu geral para unificar o main e deixar mais limpo
+
+    Pedro(registration)
+        - Inserção de novos atributos estatísticos para auxiliar na funcionalidade de conquistas
