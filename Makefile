@@ -134,4 +134,6 @@ test_main_menu: $(TESTMM_OBJ) $(MENU_OBJS)
 # -------------------------------------------------------------------------
 clean:
 	rm -rf $(OBJ_DIR)
+	rm main
+	rm main_menu
 
