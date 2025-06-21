@@ -7,7 +7,24 @@
 // CONSTANTES DE PATH
 
 const char * ACHIEVEMENTS_SCREEN_FRAME = {"assets/UI/achievements/achievements_screen_frame.png"}; // caminho do frame da tela de achievements
-const char * ACHIEVEMENTS_BADGES[3] = {"assets/UI/achievements/badge_0.png", "assets/UI/achievements/badge_2.png"}; // caminho dos badges de conquistas
+const char * ACHIEVEMENTS_BADGES[16] = {
+    "assets/UI/achievements/achievements-01.png", 
+    "assets/UI/achievements/achievements-02.png", 
+    "assets/UI/achievements/achievements-03.png", 
+    "assets/UI/achievements/achievements-04.png",
+    "assets/UI/achievements/achievements-05.png",
+    "assets/UI/achievements/achievements-06.png",
+    "assets/UI/achievements/achievements-07.png",       
+    "assets/UI/achievements/achievements-08.png",
+    "assets/UI/achievements/achievements-09.png",
+    "assets/UI/achievements/achievements-10.png",
+    "assets/UI/achievements/achievements-11.png",
+    "assets/UI/achievements/achievements-12.png",
+    "assets/UI/achievements/achievements-13.png",
+    "assets/UI/achievements/achievements-14.png",
+    "assets/UI/achievements/achievements-15.png",
+    "assets/UI/achievements/achievements-16.png"
+};  // caminho dos badges de conquistas
 
 
 // CONSTRUTOR
@@ -29,6 +46,20 @@ Achievements_Screen::Achievements_Screen() {
 
     achievements_badges[0] = al_load_bitmap(ACHIEVEMENTS_BADGES[0]);
     achievements_badges[1] = al_load_bitmap(ACHIEVEMENTS_BADGES[1]);
+    achievements_badges[2] = al_load_bitmap(ACHIEVEMENTS_BADGES[2]);
+    achievements_badges[3] = al_load_bitmap(ACHIEVEMENTS_BADGES[3]);
+    achievements_badges[4] = al_load_bitmap(ACHIEVEMENTS_BADGES[4]);
+    achievements_badges[5] = al_load_bitmap(ACHIEVEMENTS_BADGES[5]);
+    achievements_badges[6] = al_load_bitmap(ACHIEVEMENTS_BADGES[6]);
+    achievements_badges[7] = al_load_bitmap(ACHIEVEMENTS_BADGES[7]);
+    achievements_badges[8] = al_load_bitmap(ACHIEVEMENTS_BADGES[8]);
+    achievements_badges[9] = al_load_bitmap(ACHIEVEMENTS_BADGES[9]);
+    achievements_badges[10] = al_load_bitmap(ACHIEVEMENTS_BADGES[10]);
+    achievements_badges[11] = al_load_bitmap(ACHIEVEMENTS_BADGES[11]);
+    achievements_badges[12] = al_load_bitmap(ACHIEVEMENTS_BADGES[12]);
+    achievements_badges[13] = al_load_bitmap(ACHIEVEMENTS_BADGES[13]);
+    achievements_badges[14] = al_load_bitmap(ACHIEVEMENTS_BADGES[14]);
+    achievements_badges[15] = al_load_bitmap(ACHIEVEMENTS_BADGES[15]);
 
     
     
@@ -65,6 +96,21 @@ Achievements_Screen::Achievements_Screen() {
 
     images.push_back(new image(achievements_badges[0], SCREEN_W/2-200, SCREEN_H/2-100));
     images.push_back(new image(achievements_badges[1], SCREEN_W/2-100, SCREEN_H/2-100));
+    images.push_back(new image(achievements_badges[2], SCREEN_W/2, SCREEN_H/2-100));    
+    images.push_back(new image(achievements_badges[3], SCREEN_W/2+100, SCREEN_H/2-100));
+    images.push_back(new image(achievements_badges[4], SCREEN_W/2-200, SCREEN_H/2));
+    images.push_back(new image(achievements_badges[5], SCREEN_W/2-100, SCREEN_H/2));
+    images.push_back(new image(achievements_badges[6], SCREEN_W/2, SCREEN_H/2));
+    images.push_back(new image(achievements_badges[7], SCREEN_W/2+100, SCREEN_H/2));
+    images.push_back(new image(achievements_badges[8], SCREEN_W/2-200, SCREEN_H/2+100));
+    images.push_back(new image(achievements_badges[9], SCREEN_W/2-100, SCREEN_H/2+100));
+    images.push_back(new image(achievements_badges[10], SCREEN_W/2, SCREEN_H/2+100));
+    images.push_back(new image(achievements_badges[11], SCREEN_W/2+100, SCREEN_H/2+100));
+    images.push_back(new image(achievements_badges[12], SCREEN_W/2-200, SCREEN_H/2+200));
+    images.push_back(new image(achievements_badges[13], SCREEN_W/2-100, SCREEN_H/2+200));
+    images.push_back(new image(achievements_badges[14], SCREEN_W/2, SCREEN_H/2+200));
+    images.push_back(new image(achievements_badges[15], SCREEN_W/2+100, SCREEN_H/2+200));
+
 
 
     //std::cout << "Sizes of vectors:\n\tbackground_objects_0: " << background_objects_0.size() << " (expected 4)\n\tbackground_objects_1: " << background_objects_1.size() << " (expected 4)\n\tbackground_objects_2: " << background_objects_2.size() << " (expected 4)\n\tbackground_objects_3: " << background_objects_3.size() << " (expected 4)\n\timages: " << images.size() << " (expected 2)\n\n";
@@ -87,6 +133,20 @@ Achievements_Screen::~Achievements_Screen() {
     }
     al_destroy_bitmap(achievements_badges[0]);
     al_destroy_bitmap(achievements_badges[1]);
+    al_destroy_bitmap(achievements_badges[2]);
+    al_destroy_bitmap(achievements_badges[3]);
+    al_destroy_bitmap(achievements_badges[4]);
+    al_destroy_bitmap(achievements_badges[5]);
+    al_destroy_bitmap(achievements_badges[6]);
+    al_destroy_bitmap(achievements_badges[7]);
+    al_destroy_bitmap(achievements_badges[8]);
+    al_destroy_bitmap(achievements_badges[9]);
+    al_destroy_bitmap(achievements_badges[10]);
+    al_destroy_bitmap(achievements_badges[11]);
+    al_destroy_bitmap(achievements_badges[12]);
+    al_destroy_bitmap(achievements_badges[13]);
+    al_destroy_bitmap(achievements_badges[14]);
+    al_destroy_bitmap(achievements_badges[15]);
 
 
     // Destruição da fonte
