@@ -7,7 +7,7 @@
 #include "button.hpp"
 #include "text_box.hpp"
 
-//Gerencia o estado de áudio do menu (mute/unmute), efeitos sonoros e música de fundo. 
+//Gerencia o estado de áudio dos efeitos sonoros do menu (mute/unmute)
 class menu_audio {
 public:
     // Construtor
@@ -22,6 +22,9 @@ public:
 
     // Lida com cliques do mouse no botão de mute/unmute
     void handle_event(const ALLEGRO_EVENT& ev);
+
+    // Verifica o estado de audio do menu
+    bool is_muted() const;
 
     // Desenha o botão na posição correta e com o bitmap correspondente
     void draw();

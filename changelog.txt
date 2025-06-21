@@ -195,3 +195,7 @@
 
     Pedro(registration)
         - Inserção de novos atributos estatísticos para auxiliar na funcionalidade de conquistas
+
+    Matsura(Makefile, tests)
+        - Criação do doctest para o menu (ainda não funcional)
+        - Correção da Makefile
