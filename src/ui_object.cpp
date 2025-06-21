@@ -7,11 +7,11 @@ bool ui_object::contains(int mx, int my) const {
   return (mx >= x && mx <= x + width && my >= y && my <= y + height);
 }
 
-int ui_object::get_x(){
+float ui_object::get_x(){
   return x;
 }
 
-int ui_object::get_y(){
+float ui_object::get_y(){
   return y;
 }
 

@@ -17,8 +17,8 @@ public:
   virtual void draw(ALLEGRO_FONT *font) = 0;
 
   // Gets
-  int get_x();
-  int get_y();
+  float get_x();
+  float get_y();
   int get_width();
   int get_height();
 

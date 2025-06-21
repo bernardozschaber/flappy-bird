@@ -259,14 +259,17 @@ std::uniform_int_distribution<> dis(0, 384);
                         buttons.at(2)->set_pressed(false);
                     }
                     if(buttons.at(3)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(3)->is_pressed()) {
+                        buttons.at(3)->set_bitmap(achievements_button_sprite[0]);
+                        // Vá para a tela de achievements se clicar em "Achievements"
+                        state->game_loop_screen = false;
+                        state->achievements_screen = true;
                         buttons.at(3)->set_pressed(false);
+                        this->reset_game();
                     }
                     if(buttons.at(4)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(4)->is_pressed()) {
                         state->game_loop_screen=false;
                         state->home_screen=true;
                         buttons.at(4)->set_pressed(false);
-                        birdo->set_bitmap(bird_animation_sprite[0]);
-                        bird_animation=false;
                         this->reset_game();
                         return;
                     }
@@ -950,7 +953,8 @@ std::uniform_int_distribution<> dis(0, 384);
         images.push_back(new image(score_box_2,SCREEN_W-(al_get_bitmap_width(score_box_2)*0.66/2+7),SCREEN_H+100));
 
         
-
+        birdo->set_bitmap(bird_animation_sprite[0]);
+        bird_animation=false;
         death_screen_animation = false;
         points_animation = false;
 
