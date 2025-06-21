@@ -33,6 +33,7 @@ const char * MAX_SCORE = "assets/UI/max_score_text.png";
 const char * PAUSED = "assets/UI/paused_text.png";
 const char * SCORE_BOX_1 = "assets/UI/score_box_1.png";
 const char * SCORE_BOX_2 = "assets/UI/score_box_2.png";
+const char * STATISTICS_BUTTON_SPRITE[2] = {"assets/UI/statistics_button.png", "assets/UI/statistics_button_pressed.png"}; // caminho do botão de achievements
 
 
 // CONSTANTES DE PROPRIEDADE PARA OBJETOS DO CENÁRIO

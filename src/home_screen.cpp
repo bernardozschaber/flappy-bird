@@ -6,14 +6,13 @@
 
 // CONSTANTES DE PATH
 const char * PLAY_BUTTON_SPRITE[2] = {"assets/UI/play_button.png", "assets/UI/play_button_pressed.png"}; // caminho do botão de jogar
-const char * STATISTICS_BUTTON_SPRITE[2] = {"assets/UI/statistics_button.png", "assets/UI/statistics_button_pressed.png"}; // caminho do botão de jogar
 const char * HOME_SCREEN_FRAME = {"assets/UI/title_screen_frame.png"};                            // caminho para o frame da tela de início
 const char * TITLE_SPRITE = {"assets/UI/title_text.png"};                                                // caminho para o título do jogo
 
 // CONSTRUTOR
 Home_Screen::Home_Screen() {
     //std::cout << "Created Home Screen.\n\n";
-    // Carregamento de spites
+    // Carregamento de sprites
     mountain_sprite_1 = al_load_bitmap(MOUNTAIN_SPRITE_1);
     mountain_sprite_2 = al_load_bitmap(MOUNTAIN_SPRITE_2);
     mountain_sprite_3 = al_load_bitmap(MOUNTAIN_SPRITE_3);
@@ -131,6 +130,11 @@ void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse
             {
                 buttons.at(1)->set_bitmap(achievements_button_sprite[0]);
                 buttons.at(1)->set_pressed(false);
+                // Vá para a tela de achievements se clicar em "Achievements"
+                state.home_screen = false;
+                state.achievements_screen = true;
+                // Reseta a velocidade padrão do cenário
+                background_objects_0.at(0)->Set_standard_speed(0);
             }
 
             if(buttons.at(2)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(2)->is_pressed()) 

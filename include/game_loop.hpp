@@ -38,6 +38,7 @@ extern const char * MAX_SCORE;                                  // caminho do sp
 extern const char * PAUSED;                                     // caminho do sprite do texto de pause
 extern const char * SCORE_BOX_1;                                // caminho da caixa de score
 extern const char * SCORE_BOX_2;                                // caminho da caixa de score
+extern const char * STATISTICS_BUTTON_SPRITE[2]; // caminho do botão de achievements
 
 // CONSTANTES DE PROPRIEDADE PARA OBJETOS DO CENÁRIO
 extern const int SCREEN_H;    // altura da tela

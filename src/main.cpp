@@ -9,6 +9,7 @@
 #include "background_object.hpp"
 #include "game_loop.hpp"
 #include "home_screen.hpp"
+#include "achievements_screen.hpp"
 
 #include <math.h>
 #include <vector>
@@ -141,6 +142,8 @@ int main(int argc, char **argv) {
     states state;
     Game_Loop main_game_loop;       // Criação do loop de jogo
     Home_Screen main_home_screen;   // Criação da home screen
+    Achievements_Screen main_achievements_screen; // Criação da tela de conquistas
+
     debug << "\tTelas criadas com sucesso." << std::endl;
 
     debug << "\tJogo iniciando...\n" << std::endl;
@@ -224,10 +227,15 @@ int main(int argc, char **argv) {
         if(settings_screen){
         }
         */
-        /*
-        if(achievements_screen){
+        if(state.achievements_screen) {
+            // debug << "Achievements Screen ativa." << std::endl;
+            main_achievements_screen.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, state);
+            if(state.is_updating && state.achievements_screen) {
+                main_achievements_screen.update();
+                main_achievements_screen.draw();
+                state.is_updating = false;
+            }
         }
-        */
         
     }
     // Libera recursos Allegro

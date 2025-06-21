@@ -25,6 +25,7 @@ class Home_Screen {
         ALLEGRO_BITMAP* grass_sprite;                         // Bitmap da grama 
         ALLEGRO_BITMAP* background_sprite;                    // Bitmap do fundo
         ALLEGRO_BITMAP* home_screen_frame_sprite;             // Bitmap do quadro da tela de início
+        ALLEGRO_BITMAP* achievements_screen_frame_sprite;     // Bitmap do quadro da tela de achievements
         ALLEGRO_BITMAP* title_sprite;                         // Bitmap do título do jogo
         ALLEGRO_BITMAP* achievements_button_sprite[2];        // Bitmap do botão de achievements
         ALLEGRO_BITMAP* settings_button_sprite[2];            // Bitmap do botão de configurações
