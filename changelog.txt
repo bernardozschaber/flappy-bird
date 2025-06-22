@@ -210,3 +210,6 @@
     Matsura (src,include,tests)
         - Correção de bugs da interface
         - Implementação completa do doctest da interface do menu
+
+    Sam (game_loop):
+        - Agora a tela de morte te mostra sua melhor pontuação caso não tenha feito um novo best

@@ -168,6 +168,10 @@ std::uniform_int_distribution<> dis(0, 384);
         images.push_back(new image(score_box_2,SCREEN_W-(al_get_bitmap_width(score_box_2)*0.66/2+7),SCREEN_H+100));
         images.push_back(new image(best_score_text, SCREEN_W/2, SCREEN_H/2));
         images.push_back(new image(new_best_text, SCREEN_W/2, SCREEN_H/2));
+        images.push_back(new image(numbers_sprites[0], SCREEN_W/2+56, SCREEN_H/2-150));
+        images.push_back(new image(numbers_sprites[0], SCREEN_W/2+96, SCREEN_H/2-150));
+        images.push_back(new image(numbers_sprites[0], SCREEN_W/2+136, SCREEN_H/2-150));
+
 
         // Criação dos botões
         buttons.push_back(new moving_button(SCREEN_W-64, -40, pause_button_sprite[0]));     
@@ -849,6 +853,24 @@ std::uniform_int_distribution<> dis(0, 384);
             }
             else if(best_score_animation && !new_best) {
                 images.at(13)->Draw(1.33);
+                if(maxscore < 10) {
+                    images.at(15)->set_bitmap(numbers_sprites[(int)maxscore]);
+                    images.at(15)->Draw(1);
+                }
+                else if(maxscore < 100) {
+                    images.at(15)->set_bitmap(numbers_sprites[(int)maxscore/10]);
+                    images.at(16)->set_bitmap(numbers_sprites[(int)maxscore%10]);
+                    images.at(15)->Draw(1);
+                    images.at(16)->Draw(1);
+                }
+                else {
+                    images.at(15)->set_bitmap(numbers_sprites[(int)maxscore%100]);
+                    images.at(16)->set_bitmap(numbers_sprites[(int)maxscore%100/10]);
+                    images.at(17)->set_bitmap(numbers_sprites[(int)maxscore%10]);
+                    images.at(15)->Draw(1);
+                    images.at(16)->Draw(1);
+                    images.at(17)->Draw(1);
+                }
             }
         }
 
@@ -1002,11 +1024,14 @@ std::uniform_int_distribution<> dis(0, 384);
         7 -> ?
         8 -> ?
         9 -> ?
-        10 -> ?
+        10 -> Texto de pause
         11 -> ?
         12 -> ?
         13 -> Text do best score na tela de morte
         14 -> Texto do new best na tela de morte
+        15 -> Dígito 1 da máxima pontuação (tela de morte)
+        16 -> Dígito 2 da máxima pontuação (tela de morte)
+        17 -> Dígito 3 da máxima pontuação (tela de morte)
         */
         images.push_back(new image(death_screen_frame, SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
         images.push_back(new image(numbers_sprites[0], SCREEN_W/2-80, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
@@ -1023,6 +1048,9 @@ std::uniform_int_distribution<> dis(0, 384);
         images.push_back(new image(score_box_2,SCREEN_W-(al_get_bitmap_width(score_box_2)*0.66/2+7),SCREEN_H+100));
         images.push_back(new image(best_score_text, SCREEN_W/2, SCREEN_H/2));
         images.push_back(new image(new_best_text, SCREEN_W/2, SCREEN_H/2));
+        images.push_back(new image(numbers_sprites[0], SCREEN_W/2+56, SCREEN_H/2-150));
+        images.push_back(new image(numbers_sprites[0], SCREEN_W/2+96, SCREEN_H/2-150));
+        images.push_back(new image(numbers_sprites[0], SCREEN_W/2+136, SCREEN_H/2-150));
 
         
         birdo->set_bitmap(bird_animation_sprite[0]);
