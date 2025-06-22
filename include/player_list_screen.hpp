@@ -22,6 +22,9 @@ public:
   // Getter do vetore de elementos de UI para manipulação de audio
   const std::vector<button*>&  get_buttons() const;
 
+  // Indica qual a página atual
+  int get_current_page() const;
+
   // Reseta estado (página, flag)
   void reset();
 

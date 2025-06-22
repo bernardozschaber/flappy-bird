@@ -264,6 +264,9 @@ bool remove_user_screen::go_to_main_menu() const { return to_menu; }
 const std::vector<text_box*>& remove_user_screen::get_text_boxes() const { return text_boxes; }
 const std::vector<button*>&  remove_user_screen::get_buttons() const { return buttons; }
 
+bool remove_user_screen::is_in_confirmation() const { return in_confirmation; }
+bool remove_user_screen::is_removal_done() const { return removal_done; }
+
 void remove_user_screen::reset() {
     in_confirmation = false;
     to_menu = false;

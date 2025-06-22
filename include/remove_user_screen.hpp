@@ -30,6 +30,12 @@ public:
     const std::vector<text_box*>& get_text_boxes() const;
     const std::vector<button*>&  get_buttons() const;
 
+    // Verifica qual fase de remoção a tela está
+    bool is_in_confirmation() const;
+
+    // Verifica se a remoção já foi concluída
+    bool is_removal_done() const;    
+
     // Reseta a tela para uso futuro
     void reset();
 

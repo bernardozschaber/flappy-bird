@@ -204,3 +204,9 @@
         - Sonorização do loop do jogo
         - Adicionados os textos de new best e best para a tela de morte
             - Ainda falta a tela de morte mostrar qual é a melhor pontuação caso não tenha sido novo recorde
+
+22-06-2025
+
+    Matsura (src,include,tests)
+        - Correção de bugs da interface
+        - Implementação completa do doctest da interface do menu

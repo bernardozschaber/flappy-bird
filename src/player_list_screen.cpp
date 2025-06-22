@@ -140,6 +140,8 @@ bool player_list_screen::go_to_main_menu() const { return go_to_menu; }
 
 const std::vector<button*>& player_list_screen::get_buttons() const { return buttons; }
 
+int player_list_screen::get_current_page() const { return current_page; }
+
 void player_list_screen::reset() {
   current_page = 0;
   go_to_menu = false;

@@ -1,6 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 
+#include <fstream>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
@@ -16,42 +17,20 @@
 #include "player_list_screen.hpp"
 
 // -----------------------------------------------------------------------------
-// DummyRegistration
-// Simula operações de login, registro, listagem e remoção sem I/O real.
+// Garante que "jogadores_teste.txt" exista com dados iniciais para login, registro e remoção.
+// Simula dados de jogadores para teste
 // -----------------------------------------------------------------------------
-struct DummyRegistration {
-    DummyRegistration(const std::string&) {}
-
-    bool verifica_login(const std::string& u, const std::string& p) {
-        return u == "user" && p == "pass";
+static struct EnsureDummyFile {
+    EnsureDummyFile() {
+        std::ofstream f("tests/jogadores_teste.txt", std::ios::trunc);
+        // usuário válido para login
+        f << "0 user pass 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n";
+        // usuário existente para registro falhar
+        f << "0 exists 123 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n";
+        // usuário para remoção
+        f << "0 del secret 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n";
     }
-
-    bool add_user(const std::string& u, const std::string&) {
-        return u != "exists";
-    }
-
-    player get_max() const {
-        return player("champ","pass",100,5);
-    }
-
-    std::multiset<player> get_all_multiset() const {
-        std::multiset<player> s;
-        for(int i = 0; i < 20; ++i)
-            s.insert(player("p"+std::to_string(i),"123", i, i*2));
-        return s;
-    }
-
-    bool verify_password(const std::string& u, const std::string& p) {
-        return u == "del" && p == "secret";
-    }
-
-    bool delete_user(const std::string&) {
-        deleted = true;
-        return true;
-    }
-
-    bool deleted = false;
-};
+} _ensure_dummy_file;
 
 // -----------------------------------------------------------------------------
 // AllegroInit
@@ -86,6 +65,13 @@ static ALLEGRO_EVENT make_key_down_event(int keycode) {
     return ev;
 }
 
+static ALLEGRO_EVENT make_key_up_event(int keycode) {
+    ALLEGRO_EVENT ev{};
+    ev.type               = ALLEGRO_EVENT_KEY_UP;
+    ev.keyboard.keycode   = keycode;
+    return ev;
+}
+
 static ALLEGRO_EVENT make_mouse_event(int type, int x, int y) {
     ALLEGRO_EVENT ev{};
     ev.type        = type;
@@ -99,6 +85,8 @@ static ALLEGRO_EVENT make_mouse_event(int type, int x, int y) {
 // TEST_CASES
 // -----------------------------------------------------------------------------
 
+registration reg("tests/jogadores_teste.txt");
+
 TEST_CASE("ui_object::contains() detecta corretamente pontos dentro/fora") {
     // Struct derivada de ui_object para viabilizar testes:
     // ui_object é abstrata, logo, não pode ser instanciada
@@ -110,11 +98,14 @@ TEST_CASE("ui_object::contains() detecta corretamente pontos dentro/fora") {
 
     // Pontos nos limites da área
     CHECK( d.contains(10,20) );
-    CHECK( d.contains(39,59) );
+    CHECK( d.contains(40,60) );
+
+    // Ponto no meio da área
+    CHECK( d.contains(20,30) );
 
     // Pontos fora da área
     CHECK_FALSE( d.contains(9,20) );
-    CHECK_FALSE( d.contains(10,60) );
+    CHECK_FALSE( d.contains(10,61) );
 }
 
 TEST_CASE("text_box: aceita só ASCII 33–127, respeita max_length e backspace") {
@@ -172,9 +163,9 @@ TEST_CASE("button: clicável apenas dentro da área e reset funciona") {
 }
 
 TEST_CASE("menu_audio: toggle mute/unmute e update_sources()") {
-    menu_audio ma(nullptr,nullptr,nullptr,nullptr,(ALLEGRO_SAMPLE*)1,(ALLEGRO_SAMPLE*)2,0,0,16,16);
-    text_box tb(0,0,50,20,5,(ALLEGRO_SAMPLE*)5);
-    button  bt(0,0,50,20,"X",(ALLEGRO_SAMPLE*)6);
+    menu_audio ma(nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,0,0,16,16);
+    text_box tb(0,0,50,20,5,nullptr);
+    button  bt(0,0,50,20,"X",nullptr);
 
     // Registrar fontes e checar flag inicial
     ma.set_sources({&tb},{&bt});
@@ -197,8 +188,7 @@ TEST_CASE("menu_audio: toggle mute/unmute e update_sources()") {
 }
 
 TEST_CASE("login_screen: fluxo de login, navegação e reset") {
-    DummyRegistration dr("dummy");
-    login_screen ls(100,100,reinterpret_cast<registration&>(dr),nullptr,nullptr);
+    login_screen ls(800,600, reg, nullptr,nullptr);
 
     // Login incorreto: user='u', pass='x'
     auto& ut = *ls.get_text_boxes()[0];
@@ -243,82 +233,142 @@ TEST_CASE("login_screen: fluxo de login, navegação e reset") {
 }
 
 TEST_CASE("register_screen: sucesso, falha, ESC e reset") {
-    DummyRegistration dr("dummy");
-    auto all = dr.get_all_multiset();
-    register_screen rs(100,100,reinterpret_cast<registration&>(dr),all,nullptr,nullptr);
+    auto all = reg.get_all();
+    register_screen rs(800,600, reg, all, nullptr,nullptr);
 
     // Sem dados → não completa
     auto& btnc = *rs.get_buttons()[0];
     rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,btnc.get_x()+1,btnc.get_y()+1));
     CHECK_FALSE(rs.registration_complete());
 
-    // Fluxo válido: nome="new", senha="pass"
+    // Fluxo válido: nome="new", senha="pass", confirma senha="pass"
     auto& ut = *rs.get_text_boxes()[0];
     rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,ut.get_x()+1,ut.get_y()+1));
     for(char c: std::string("new")) rs.handle_event(make_key_char_event(c,c));
     auto& pt = *rs.get_text_boxes()[1];
     rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,pt.get_x()+1,pt.get_y()+1));
     for(char c: std::string("pass")) rs.handle_event(make_key_char_event(c,c));
+    auto& cpt = *rs.get_text_boxes()[2];
+    rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,cpt.get_x()+1,cpt.get_y()+1));
+    for(char c: std::string("pass")) rs.handle_event(make_key_char_event(c,c));
     rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,btnc.get_x()+1,btnc.get_y()+1));
     CHECK(rs.registration_complete());
 
+    // Testa reset da tela de registro
     rs.reset();
     CHECK_FALSE(rs.registration_complete());
 
+    // Falha registro se senha != confirmação da senha
+    rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,ut.get_x()+1,ut.get_y()+1));
+    for(char c: std::string("new2")) rs.handle_event(make_key_char_event(c,c));
+    rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,pt.get_x()+1,pt.get_y()+1));
+    for(char c: std::string("pass")) rs.handle_event(make_key_char_event(c,c));
+    rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,cpt.get_x()+1,cpt.get_y()+1));
+    for(char c: std::string("diffpass")) rs.handle_event(make_key_char_event(c,c));
+    rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,btnc.get_x()+1,btnc.get_y()+1));
+    CHECK_FALSE(rs.registration_complete());
+    rs.reset();
+
     // Falha ao tentar registrar "exists"
-    rs.handle_event(make_key_char_event(ALLEGRO_KEY_P,'p')); // simplificado
+    rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,ut.get_x()+1,ut.get_y()+1));
+    for(char c: std::string("exists")) rs.handle_event(make_key_char_event(c,c));
+    rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,pt.get_x()+1,pt.get_y()+1));
+    for(char c: std::string("pass")) rs.handle_event(make_key_char_event(c,c));
+    rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,cpt.get_x()+1,cpt.get_y()+1));
+    for(char c: std::string("pass")) rs.handle_event(make_key_char_event(c,c));
+    rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,btnc.get_x()+1,btnc.get_y()+1));
     CHECK_FALSE(rs.registration_complete());
 
     // ESC volta ao login
-    rs.handle_event(make_key_down_event(ALLEGRO_KEY_ESCAPE));
+    rs.handle_event(make_key_up_event(ALLEGRO_KEY_ESCAPE));
     CHECK(rs.go_to_login_screen());
+    rs.reset();
+
+    // Botão de cancelar volta ao login
+    auto& btcal = *rs.get_buttons()[1];
+    rs.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,btcal.get_x()+1,btcal.get_y()+1));
+    CHECK(rs.go_to_login_screen());
+    
 }
 
 TEST_CASE("remove_user_screen: remoção com confirmação de senha e reset") {
-    DummyRegistration dr("dummy");
-    auto all = dr.get_all_multiset();
-    remove_user_screen rus(100,100,reinterpret_cast<registration&>(dr),all,nullptr,nullptr);
+    auto all = reg.get_all();
+    remove_user_screen rus(800,600, reg, all, nullptr,nullptr);
 
-    // Fase 1: digita "del" e clica Remover
+    // Não passa para confirmação se usuário não existe
     auto& ut = *rus.get_text_boxes()[0];
     rus.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,ut.get_x()+1,ut.get_y()+1));
-    for(char c: std::string("del")) rus.handle_event(make_key_char_event(c,c));
+    for(char c: std::string("noexist")) rus.handle_event(make_key_char_event(c,c));
     auto& brem = *rus.get_buttons()[0];
     rus.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,brem.get_x()+1,brem.get_y()+1));
+    CHECK_FALSE(rus.is_in_confirmation());
 
-    // Fase 2: senha incorreta → não volta
+    // Teste reset da tela de remoção
+    rus.reset();
+    CHECK_FALSE(rus.go_to_main_menu());
+
+    // Fase 1: digita "del" e clica Remover
+    rus.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,ut.get_x()+1,ut.get_y()+1));
+    for(char c: std::string("del")) rus.handle_event(make_key_char_event(c,c));
+    rus.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,brem.get_x()+1,brem.get_y()+1));
+    CHECK(rus.is_in_confirmation());
+
+    // Fase 2: senha incorreta → remoção não concluída
     auto& pw = *rus.get_text_boxes()[1];
     rus.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,pw.get_x()+1,pw.get_y()+1));
     rus.handle_event(make_key_char_event(ALLEGRO_KEY_X,'x'));
     auto& bconf = *rus.get_buttons()[2];
     rus.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,bconf.get_x()+1,bconf.get_y()+1));
-    CHECK_FALSE(rus.go_to_main_menu());
+    CHECK_FALSE(rus.is_removal_done());
 
     // Senha correta → remove e volta
+    rus.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,pw.get_x()+1,pw.get_y()+1));
+    rus.handle_event(make_key_char_event(ALLEGRO_KEY_BACKSPACE,8));
     for(char c: std::string("secret")) rus.handle_event(make_key_char_event(c,c));
     rus.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,bconf.get_x()+1,bconf.get_y()+1));
-    CHECK(rus.go_to_main_menu());
-    CHECK(dr.deleted);
+    CHECK(rus.is_removal_done());
 
     rus.reset();
-    CHECK_FALSE(rus.go_to_main_menu());
+
+    // ESC volta ao login
+    rus.handle_event(make_key_up_event(ALLEGRO_KEY_ESCAPE));
+    CHECK(rus.go_to_main_menu());
+    rus.reset();
+
+    // Botão de cancelar volta ao login
+    auto& btcal = *rus.get_buttons()[1];
+    rus.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,btcal.get_x()+1,btcal.get_y()+1));
+    CHECK(rus.go_to_main_menu());
+
 }
 
 TEST_CASE("player_list_screen: navegação de páginas e ESC") {
-    DummyRegistration dr("dummy");
-    auto ms = dr.get_all_multiset();
-    player_list_screen pls(100,100,nullptr,nullptr,ms,reinterpret_cast<registration&>(dr));
+    std::multiset<player> ms;
+    for(int i=0; i < 16;i++) {
+        std::string name = "p" + std::to_string(i);
+        ms.insert(player(name,"123",i*2,i+1));
+    }
+    player_list_screen pls(800,600,nullptr,nullptr,ms,reg);
 
     auto& back = *pls.get_buttons()[0];
     auto& next = *pls.get_buttons()[1];
     auto& menu = *pls.get_buttons()[2];
 
-    // Avança várias páginas
-    for(int i = 0; i < 3; ++i)
-        pls.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,next.get_x()+1,next.get_y()+1));
+    // Avança uma página
+    pls.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,next.get_x()+1,next.get_y()+1));
+    CHECK(pls.get_current_page() == 1);
+
     // Volta uma página
     pls.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,back.get_x()+1,back.get_y()+1));
+    CHECK(pls.get_current_page() == 0);
+
     // ESC volta ao menu
-    pls.handle_event(make_key_down_event(ALLEGRO_KEY_ESCAPE));
+    pls.handle_event(make_key_up_event(ALLEGRO_KEY_ESCAPE));
     CHECK(pls.go_to_main_menu());
+    pls.reset();
+
+    // Botão de menu volta ao login
+    pls.handle_event(make_mouse_event(ALLEGRO_EVENT_MOUSE_BUTTON_DOWN,menu.get_x()+1,menu.get_y()+1));
+    CHECK(pls.go_to_main_menu());
+
 }
