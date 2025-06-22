@@ -2,6 +2,7 @@
 #include "registration.hpp" //remover depois
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
+#include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <iostream>
 
@@ -17,7 +18,7 @@ int statistics_screen_spawn_x = SCREEN_W+192;   // Posição X do spawn da tela 
 bool statistics_showing = false;                // Bool que controla se a tela de estatísticas está sendo mostrada
 bool statistics_animation_entry = false;        // Bool que controla se a animação da tela de estatísticas está mostrando
 bool statistics_animation_exit = false;         // Bool que controla se a animação da tela de estatísticas está escondendo
-player p1 = player("Robert", "seila13", 104, 12, 491, 9, 3);    // Player aleatório para testes
+player p1("Robert", "seila13", 104, 12, 491, 3, 9);    // Player aleatório para testes (depois vai receber o player normal)
 
 // CONSTRUTOR
 Home_Screen::Home_Screen() {
@@ -43,7 +44,8 @@ Home_Screen::Home_Screen() {
     title_sprite = al_load_bitmap(TITLE_SPRITE);
 
     // Carregamento da fonte
-    ALLEGRO_FONT *pixel_sans = al_load_ttf_font(PSANS_FONT_FILEPATH, 20, 0);   
+    title_font = al_load_ttf_font(PSANS_FONT_FILEPATH, 40, 0);
+    regular_text_font = al_load_ttf_font(PSANS_FONT_FILEPATH, 24, 0);
 
     // Criação dos objetos de fundo
     background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
@@ -118,7 +120,8 @@ Home_Screen::~Home_Screen() {
     }
 
     // Destruição da fonte
-    al_destroy_font(pixel_sans);
+    al_destroy_font(title_font);
+    al_destroy_font(regular_text_font);
 
     // Limpeza dos vetores
     for (background_object* bgo : background_objects_0) {
@@ -420,7 +423,20 @@ void Home_Screen::draw() {
     // Desenho da UI
     images.at(0)->Draw();
     images.at(1)->Draw(1.25);
-    images.at(2)->Draw();
+
+    // Desenho das estatísticas
+    if (statistics_showing || statistics_animation_entry || statistics_animation_exit) {
+        // Desenha a tela de estatísticas se estiver sendo mostrada
+        images.at(2)->Draw();
+        // Escreve as estatísticas do jogador
+        al_draw_textf(title_font, al_map_rgb(255, 50, 70), images.at(2)->get_x(), images.at(2)->get_y()-190, ALLEGRO_ALIGN_CENTER, "%s", p1.username.c_str());
+        al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()-130, ALLEGRO_ALIGN_LEFT, "Total de Jogos: %d", p1.games);
+        al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()-90, ALLEGRO_ALIGN_LEFT, "Pontuação máxima: %d", p1.score);
+        al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()-50, ALLEGRO_ALIGN_LEFT, "Conquistas: %d/%d", 10, 16);
+        al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()+10, ALLEGRO_ALIGN_LEFT, "Mortes para canos: %d", p1.pipe_deaths);
+        al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()+50, ALLEGRO_ALIGN_LEFT, "Mortes por cair: %d", p1.ground_deaths);
+        al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()+90, ALLEGRO_ALIGN_LEFT, "Pulos: %d", p1.jump_count);
+    }
 
     for (moving_button* btn : buttons) {
         btn->draw();
