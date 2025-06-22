@@ -252,6 +252,8 @@ std::uniform_int_distribution<> dis(0, 384);
                 }
                 if(paused||death_menu||!playing){
                     if(buttons.at(1)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(1)->is_pressed()) {
+                        state->game_loop_screen = false;
+                        state->settings_screen = true;
                         buttons.at(1)->set_pressed(false);
                     }
                     if(buttons.at(2)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(2)->is_pressed()) {
@@ -716,11 +718,10 @@ std::uniform_int_distribution<> dis(0, 384);
         ////////////////////////////////////////
         if (!paused&&!death_menu) {
             birdo->Update(SCREEN_W, SCREEN_H); // Atualiza o pássaro
-            if(!dead){
+            if(!dead&&playing){
                 for (int i = 0; i < pipe_objects.size(); i++){
                     pipe_objects.at(i)->Update(SCREEN_W, SCREEN_H);
                 }
-                if(playing&&!dead)
                 background_objects_1.at(0)->Set_standard_speed(pipe_objects.at(1)->Get_x_speed());
                 for (background_object* bgo_3 : background_objects_3) {
                     bgo_3->Update(SCREEN_W, SCREEN_H, 0.1); // Atualiza as montanhas de trás

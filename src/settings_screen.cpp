@@ -1,66 +1,34 @@
-#include "achievements_screen.hpp"
+#include "settings_screen.hpp"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_ttf.h>
 #include <iostream>
+#include "game_loop.hpp"
 
 // CONSTANTES DE PATH
-
-const char * ACHIEVEMENTS_SCREEN_FRAME = {"assets/UI/achievements/achievements_screen_frame.png"}; // caminho do frame da tela de achievements
-const char * ACHIEVEMENTS_BADGES[16] = {
-    "assets/UI/achievements/achievements-01.png", 
-    "assets/UI/achievements/achievements-02.png", 
-    "assets/UI/achievements/achievements-03.png", 
-    "assets/UI/achievements/achievements-04.png",
-    "assets/UI/achievements/achievements-05.png",
-    "assets/UI/achievements/achievements-06.png",
-    "assets/UI/achievements/achievements-07.png",       
-    "assets/UI/achievements/achievements-08.png",
-    "assets/UI/achievements/achievements-09.png",
-    "assets/UI/achievements/achievements-10.png",
-    "assets/UI/achievements/achievements-11.png",
-    "assets/UI/achievements/achievements-12.png",
-    "assets/UI/achievements/achievements-13.png",
-    "assets/UI/achievements/achievements-14.png",
-    "assets/UI/achievements/achievements-15.png",
-    "assets/UI/achievements/achievements-16.png"
-};  // caminho dos badges de conquistas
-
+const char * BACK_SPRITE[2] = {"assets/UI/back_not.png", "assets/UI/back_yes.png"}; // caminho do botão de jogar
+const char * INDICATOR_SPRITE[2] = {"assets/UI/indicator.png", "assets/UI/indicator_pressed.png"};;
+//const char * BACK_BUTTON_SPRITE[2] = {"assets/UI/back_button.png", "assets/UI/back_button_pressed.png"};
+const char * SETTINGS_SCREEN_FRAME = {"assets/UI/settings_background.png"};                            // caminho para o frame da tela de início
+const char * TITLE_SETTINGS_SPRITE = {"assets/UI/settings_title.png"};                                                // caminho para o título do jogo
 
 // CONSTRUTOR
-Achievements_Screen::Achievements_Screen() {
-    //std::cout << "Created Achievements Screen.\n\n";
-    // Carregamento de spites
+settings_screen::settings_screen() {
+    // Carregamento de sprites
     mountain_sprite_1 = al_load_bitmap(MOUNTAIN_SPRITE_1);
     mountain_sprite_2 = al_load_bitmap(MOUNTAIN_SPRITE_2);
     mountain_sprite_3 = al_load_bitmap(MOUNTAIN_SPRITE_3);
     grass_sprite = al_load_bitmap(GRASS_SPRITE);
     background_sprite = al_load_bitmap(BACKGROUND);
-    achievements_screen_frame_sprite = al_load_bitmap(ACHIEVEMENTS_SCREEN_FRAME);
-    for (int i = 0; i < 2; i++)
-        settings_button_sprite[i] = al_load_bitmap(SETTINGS_BUTTON_SPRITE[i]);
-    for (int i = 0; i < 2; i++)
-        home_sprite[i] = al_load_bitmap(HOME_SPRITE[i]);
-    for (int i = 0; i < 2; i++)
-        statistics_button_sprite[i] = al_load_bitmap(STATISTICS_BUTTON_SPRITE[i]);
-
-    achievements_badges[0] = al_load_bitmap(ACHIEVEMENTS_BADGES[0]);
-    achievements_badges[1] = al_load_bitmap(ACHIEVEMENTS_BADGES[1]);
-    achievements_badges[2] = al_load_bitmap(ACHIEVEMENTS_BADGES[2]);
-    achievements_badges[3] = al_load_bitmap(ACHIEVEMENTS_BADGES[3]);
-    achievements_badges[4] = al_load_bitmap(ACHIEVEMENTS_BADGES[4]);
-    achievements_badges[5] = al_load_bitmap(ACHIEVEMENTS_BADGES[5]);
-    achievements_badges[6] = al_load_bitmap(ACHIEVEMENTS_BADGES[6]);
-    achievements_badges[7] = al_load_bitmap(ACHIEVEMENTS_BADGES[7]);
-    achievements_badges[8] = al_load_bitmap(ACHIEVEMENTS_BADGES[8]);
-    achievements_badges[9] = al_load_bitmap(ACHIEVEMENTS_BADGES[9]);
-    achievements_badges[10] = al_load_bitmap(ACHIEVEMENTS_BADGES[10]);
-    achievements_badges[11] = al_load_bitmap(ACHIEVEMENTS_BADGES[11]);
-    achievements_badges[12] = al_load_bitmap(ACHIEVEMENTS_BADGES[12]);
-    achievements_badges[13] = al_load_bitmap(ACHIEVEMENTS_BADGES[13]);
-    achievements_badges[14] = al_load_bitmap(ACHIEVEMENTS_BADGES[14]);
-    achievements_badges[15] = al_load_bitmap(ACHIEVEMENTS_BADGES[15]);   
-
+    settings_frame_sprite = al_load_bitmap(SETTINGS_SCREEN_FRAME);
+    title_settings_sprite = al_load_bitmap(TITLE_SETTINGS_SPRITE);
+    back_sprite[0] = al_load_bitmap(BACK_SPRITE[0]);                      
+    back_sprite[1] = al_load_bitmap(BACK_SPRITE[1]);
+    indicator_sprite[0] = al_load_bitmap(INDICATOR_SPRITE[0]);              
+    indicator_sprite[1] = al_load_bitmap(INDICATOR_SPRITE[1]);
+    back_button_sprite[0] = al_load_bitmap(BACK_BUTTON_SPRITE[0]);                
+    back_button_sprite[1] = al_load_bitmap(BACK_BUTTON_SPRITE[1]);  
+    
     // Carregamento da fonte
     ALLEGRO_FONT *pixel_sans = al_load_ttf_font(PSANS_FONT_FILEPATH, 20, 0);   
 
@@ -86,74 +54,31 @@ Achievements_Screen::Achievements_Screen() {
     background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*7/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
 
     // Criação de  elementos de UI (imagens)
-    images.push_back(new image(achievements_screen_frame_sprite, SCREEN_W/2, SCREEN_H/2));
+    images.push_back(new image(settings_frame_sprite, SCREEN_W/2, SCREEN_H/2));
+    images.push_back(new image(title_settings_sprite, SCREEN_W/2, 110));
 
-    // Criação de  elementos de UI (botões)
-    buttons.push_back(new moving_button(SCREEN_W/2-115, SCREEN_H/2+225, settings_button_sprite[0])); // BOTÃO 0
-    buttons.push_back(new moving_button(SCREEN_W/2+115, SCREEN_H/2+225, home_sprite[0]));            // BOTÃO 1
-    buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H/2+225, statistics_button_sprite[0]));   // BOTÃO 2
-
-    int img_size = 128 * 0.8;   // 102 pixels
-    int spacing_x = 48;         // espaçamento horizontal
-    int spacing_y = 2;          // espaçamento vertical
-    int text_space = 10;        // espaço para texto abaixo
-
-    int columns = 4;
-    int rows = 4;
-
-    int usable_height = 500;
-
-    int total_width = columns * img_size + (columns - 1) * spacing_x;
-    int total_height = rows * (img_size + spacing_y + text_space);
-
-    int start_x = (800 - total_width) / 2 + img_size / 2;
-    int start_y = (usable_height - total_height) / 2 + img_size / 2;
-
-    for (int i = 0; i < 16; i++) {
-        int col = i % columns;
-        int row = i / columns;
-
-        int x = start_x + col * (img_size + spacing_x);
-        int y = start_y + row * (img_size + spacing_y + text_space) + 10; 
-
-        images.push_back(new image(achievements_badges[i], x, y));
-    }
-
-    //std::cout << "Sizes of vectors:\n\tbackground_objects_0: " << background_objects_0.size() << " (expected 4)\n\tbackground_objects_1: " << background_objects_1.size() << " (expected 4)\n\tbackground_objects_2: " << background_objects_2.size() << " (expected 4)\n\tbackground_objects_3: " << background_objects_3.size() << " (expected 4)\n\timages: " << images.size() << " (expected 2)\n\n";
+    // Criação de  elementos de UI (imagens)   
+    buttons.push_back(new moving_button(60, SCREEN_H-55, back_button_sprite[0]));
+    
+    slides.push_back(new slider(back_sprite,indicator_sprite,SCREEN_W/2,SCREEN_H/2,210,1,0,0,1,10,50,30,0));
 }
 
 // DESTRUTOR
-Achievements_Screen::~Achievements_Screen() {
-    //std::cout << "Destroyed Achievements Screen.\n\n";
+settings_screen::~settings_screen() {
+    //std::cout << "Destroyed Home Screen.\n\n";
     // Destruição dos bitmaps
     al_destroy_bitmap(mountain_sprite_1);
     al_destroy_bitmap(mountain_sprite_2);
     al_destroy_bitmap(mountain_sprite_3);
     al_destroy_bitmap(grass_sprite);
     al_destroy_bitmap(background_sprite);
-    al_destroy_bitmap(achievements_screen_frame_sprite);
+    al_destroy_bitmap(settings_frame_sprite);
+    al_destroy_bitmap(title_settings_sprite);
     for (int i = 0; i < 2; i++) {
-        al_destroy_bitmap(settings_button_sprite[i]);
-        al_destroy_bitmap(home_sprite[i]);
-        al_destroy_bitmap(statistics_button_sprite[i]);
+        al_destroy_bitmap(back_button_sprite[i]);
+        al_destroy_bitmap(back_sprite[i]);
+        al_destroy_bitmap(indicator_sprite[i]);
     }
-    al_destroy_bitmap(achievements_badges[0]);
-    al_destroy_bitmap(achievements_badges[1]);
-    al_destroy_bitmap(achievements_badges[2]);
-    al_destroy_bitmap(achievements_badges[3]);
-    al_destroy_bitmap(achievements_badges[4]);
-    al_destroy_bitmap(achievements_badges[5]);
-    al_destroy_bitmap(achievements_badges[6]);
-    al_destroy_bitmap(achievements_badges[7]);
-    al_destroy_bitmap(achievements_badges[8]);
-    al_destroy_bitmap(achievements_badges[9]);
-    al_destroy_bitmap(achievements_badges[10]);
-    al_destroy_bitmap(achievements_badges[11]);
-    al_destroy_bitmap(achievements_badges[12]);
-    al_destroy_bitmap(achievements_badges[13]);
-    al_destroy_bitmap(achievements_badges[14]);
-    al_destroy_bitmap(achievements_badges[15]);
-
 
     // Destruição da fonte
     al_destroy_font(pixel_sans);
@@ -186,75 +111,39 @@ Achievements_Screen::~Achievements_Screen() {
     images.clear();
 }
 
-// PROCESSAMENTO DE COMANDOS
-void Achievements_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse_just_released, int mouse_update_x, int mouse_update_y, states& state) {
-    if (buttons.size() > 0) {
-        if (mouse_just_released) 
-        {
-            if(buttons.at(0)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(0)->is_pressed()) 
-            {
-                buttons.at(0)->set_bitmap(settings_button_sprite[0]);
-                buttons.at(0)->set_pressed(false);
-                
-            }
-
-            if(buttons.at(1)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(1)->is_pressed()) 
-            {
-                buttons.at(1)->set_bitmap(home_sprite[0]);
-                buttons.at(1)->set_pressed(false);
-                // Volta para a tela inicial se clicar no botão de home
-                state.home_screen = true;
-                state.achievements_screen = false;
-            }
-
-            if(buttons.at(2)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(2)->is_pressed()) 
-            {
-                buttons.at(2)->set_bitmap(statistics_button_sprite[0]);
-            }
-            for(int a=0;a<3;a++)
-                buttons.at(a)->set_pressed(false);
-        }
-        if (mouse_is_down) 
-        {
-            if(buttons.at(0)->contains_click(mouse_update_x, mouse_update_y)) 
-            {
-                buttons.at(0)->set_bitmap(settings_button_sprite[1]);
-                buttons.at(0)->set_pressed(true);
-            }
-
-            if(buttons.at(1)->contains_click(mouse_update_x, mouse_update_y)) 
-            {
-                buttons.at(1)->set_bitmap(home_sprite[1]);
-                buttons.at(1)->set_pressed(true);
-            }
-
-            if(buttons.at(2)->contains_click(mouse_update_x, mouse_update_y)) 
-            {
-                buttons.at(2)->set_bitmap(statistics_button_sprite[1]);
-                buttons.at(2)->set_pressed(true);
-            }
-
-        }
-        else 
-        {
-            buttons.at(0)->set_bitmap(settings_button_sprite[0]);
-            buttons.at(1)->set_bitmap(home_sprite[0]);
-            buttons.at(2)->set_bitmap(statistics_button_sprite[0]);
+void settings_screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse_just_released, int mouse_update_x, int mouse_update_y, int mouse_x_now, states& state){
+    if(mouse_is_down){
+        if(buttons.at(0)->contains_click(mouse_update_x,mouse_update_y)){
+            buttons.at(0)->set_pressed(true);
+            buttons.at(0)->set_bitmap(back_button_sprite[1]);
         }
     }
+    if(mouse_just_released){
+        if(buttons.at(0)->is_pressed()){
+            buttons.at(0)->set_bitmap(back_button_sprite[0]);
+        }
+    }
+
+    slides.at(0)->update(mouse_is_down,mouse_just_released,mouse_update_x,mouse_update_y,mouse_x_now);
 
     // Reseta o mouse just released
+    
     if (mouse_just_released) {
+        if(buttons.at(0)->is_pressed()&&buttons.at(0)->contains_click(mouse_update_x,mouse_update_y)){
+            state.settings_screen=false;
+            state.game_loop_screen=true;
+        }
+        buttons.at(0)->set_pressed(false);
         mouse_just_released = false;
     }
-
+    
     // Marca que as teclas apertadas já foram vistas
     for (int i = 0; i < ALLEGRO_KEY_MAX; i++) {
         key[i] &= 1;
     }
 }
 
-void Achievements_Screen::update() {
+void settings_screen::update() {
     ///////CENÁRIO//////////
     //Deletando e Criando as montanhas//
     if (background_objects_1.at(0)->Get_position()->x<-al_get_bitmap_width(mountain_sprite_1)/2){
@@ -305,7 +194,7 @@ void Achievements_Screen::update() {
         btn->Update();
 }
 
-void Achievements_Screen::draw() {
+void settings_screen::draw() {
     // Desenho do background
     al_draw_bitmap(background_sprite, 0, 0, 0);
 
@@ -320,15 +209,14 @@ void Achievements_Screen::draw() {
         bgo->Draw(1);
 
     // Desenho da UI
-    images[0]->Draw(); // Desenha o frame da tela de achievements
-    for (size_t i = 1; i < images.size(); i++) {
-        images[i]->Draw(0.8);  
-        }
+    images.at(0)->Draw();
+    images.at(1)->Draw(0.5);
 
-    // Desenho dos botões
     for (moving_button* btn : buttons) {
         btn->draw();
     }
+
+    slides.at(0)->draw();
 
     al_flip_display();
 }

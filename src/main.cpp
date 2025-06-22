@@ -9,6 +9,7 @@
 #include "background_object.hpp"
 #include "game_loop.hpp"
 #include "home_screen.hpp"
+#include "settings_screen.hpp"
 #include "achievements_screen.hpp"
 
 #include <math.h>
@@ -40,6 +41,8 @@ int main(int argc, char **argv) {
     int score;                                                             // Armazena a pontuação do jogador
     int mouse_click_pos_x;                                                  // Armazena a posição X do clique do mouse
     int mouse_click_pos_y;                                                  // Armazena a posição Y do clique do mouse
+    int mouse_is_now_at_x;                                                  // Armazena a posição X do mouse 
+    int mouse_is_now_at_y;                                                  // Armazena a posição Y do mouse
     bool mouse_is_down = false;                                            // Armazena se o mouse está pressionado ou não
     bool mouse_just_released = false;                                      // Armazena se o mouse foi solto nesse momento ou não
 
@@ -143,6 +146,7 @@ int main(int argc, char **argv) {
     Game_Loop main_game_loop;       // Criação do loop de jogo
     Home_Screen main_home_screen;   // Criação da home screen
     Achievements_Screen main_achievements_screen; // Criação da tela de conquistas
+    settings_screen main_settings_screen; // Criação da tela de configurações
 
     debug << "\tTelas criadas com sucesso." << std::endl;
 
@@ -195,6 +199,10 @@ int main(int argc, char **argv) {
                     mouse_click_pos_y = event.mouse.y;
                 }
                 break;
+            case ALLEGRO_EVENT_MOUSE_AXES:
+                mouse_is_now_at_x = event.mouse.x;
+                mouse_is_now_at_y = event.mouse.y;
+                break;
         }
 
         /*
@@ -218,13 +226,24 @@ int main(int argc, char **argv) {
             // debug << "Game Loop Screen ativa." << std::endl;
             main_game_loop.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, &state); // Processa os comandos causados pelas teclas/mouse
             if(state.is_updating){
-            main_game_loop.update(); // Atualiza o estado do jogo
-            main_game_loop.draw(); // Desenha o jogo na tela
-            state.is_updating = false;
+                main_game_loop.update(); // Atualiza o estado do jogo
+                main_game_loop.draw(); // Desenha o jogo na tela
+                state.is_updating = false;
             }
         }
+        
+        if(state.settings_screen){
+            main_settings_screen.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, mouse_is_now_at_x,state);
+            if(state.is_updating){
+                main_settings_screen.update();
+                main_settings_screen.draw();
+                state.is_updating = false;
+            }
+        }
+        
         /*
-        if(settings_screen){
+        if(stats_screen){
+        
         }
         */
         if(state.achievements_screen) {

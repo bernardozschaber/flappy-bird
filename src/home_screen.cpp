@@ -153,6 +153,8 @@ void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse
                 // Reseta a velocidade padrão do cenário
                 background_objects_0.at(0)->Set_standard_speed(0);
             }
+            for(int a=0;a<4;a++)
+                buttons.at(a)->set_pressed(false);
         }
         if (mouse_is_down) 
         {

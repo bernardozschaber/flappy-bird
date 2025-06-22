@@ -41,7 +41,7 @@
             angle=0;
         }
         if(this->vel_x>=0){
-        al_draw_scaled_rotated_bitmap(this->get_bitmap(),drw_pos->w/2,drw_pos->h/2,drw_pos->x,drw_pos->y,scale,scale,angle,0);
+            al_draw_scaled_rotated_bitmap(this->get_bitmap(),drw_pos->w/2,drw_pos->h/2,drw_pos->x,drw_pos->y,scale,scale,angle,0);
         }else{
             al_draw_scaled_rotated_bitmap(this->get_bitmap(),drw_pos->w/2,drw_pos->h/2,drw_pos->x,drw_pos->y,-scale,scale,-angle,0);
         }
