@@ -28,6 +28,8 @@ const char * SOUND_BUTTON_SPRITE[4] = {"assets/UI/sound_on.png", "assets/UI/soun
 const char * PAUSE_BUTTON_SPRITE[4] = {"assets/UI/pause_button.png", "assets/UI/resume_button.png", "assets/UI/pause_button_pressed.png", "assets/UI/resume_button_pressed.png"};                    // caminho do botão de pause/despause
 const char * DEATH_SCREEN_FRAME = "assets/UI/death_screen_frame.png";   // caminho do frame da tela de morte
 const char * TRY_AGAIN_BUTTON_SPRITE[2] = {"assets/UI/de_novo_button.png","assets/UI/de_novo_button_pressed.png"};  // caminho do botão de jogar de novo
+const char * BEST_SCORE_TEXT = "assets/UI/best_score_text.png"; // caminho do texto de melhor pontuação (tela de morte)
+const char * NEW_BEST_TEXT = "assets/UI/new_best_text.png"; // caminho do texto de novo recorde (tela de morte) 
 const char * SCORE_NOW = "assets/UI/score_text.png";
 const char * MAX_SCORE = "assets/UI/max_score_text.png";
 const char * PAUSED = "assets/UI/paused_text.png";
@@ -55,13 +57,16 @@ std::uniform_int_distribution<> dis(0, 384);
     bool going_up;                                                          // Bool que controla se o dif aumenta ou diminui
     int PIPE_SPACE = 160;                                                   // Espaçamento entre os canos
     float PIPE_INITIAL_SPEED = -2.5;                                        // Velocidade atual dos canos
-    float PIPE_SPEED_MAX = -8;                                             // Velocidade máxima dos canos
-    float PIPE_SPEED_INCREASE = -0.02;                                       // Aumento da velocidade dos canos a cada 10 pontos
+    float PIPE_SPEED_MAX = -8;                                              // Velocidade máxima dos canos
+    float PIPE_SPEED_INCREASE = -0.02;                                      // Aumento da velocidade dos canos a cada 10 pontos
     int BIRD_JUMP_VEL = -10;                                                // Velocidade do pulo do pássaro
     int BIRD_MAX_UP_VEL = -16;                                              // Velocidade máxima de subida do pássaro
     int BIRD_MAX_DOWN_VEL = 15;                                             // Velocidade máxima de descida do pássaro
     bool death_screen_animation = false;                                    // Bool que controla se o menu de morte está em animação
     bool points_animation = false;                                          // Bool que controla se a pontuação está em animação
+    bool best_score_animation = false;                                      // Bool que controla a animação de mostrar o recorde
+    bool new_best = false;                                                  // Bool que controla se o jogador fez um novo recorde
+    bool play_record_audio = false;                                         // Bool que controla se o áudio de novo recorde deve ser tocado
     bool bird_animation = false;                                            // Bool que controla se o passaro está em animação
     float animation_speed=0;                                                // Float que define quando tem que passar o frame de animação
     int sprite_now=0;                                                       // Int que guarda em que sprite o passaro esta
@@ -85,6 +90,8 @@ std::uniform_int_distribution<> dis(0, 384);
         score_sprite = al_load_bitmap(SCORE_SPRITE);
         background = al_load_bitmap(BACKGROUND);
         death_screen_frame = al_load_bitmap(DEATH_SCREEN_FRAME);
+        best_score_text = al_load_bitmap(BEST_SCORE_TEXT);
+        new_best_text = al_load_bitmap(NEW_BEST_TEXT);
         max_score = al_load_bitmap(MAX_SCORE);                 
         score_now = al_load_bitmap(SCORE_NOW);                 
         paused_text = al_load_bitmap(PAUSED);
@@ -109,8 +116,15 @@ std::uniform_int_distribution<> dis(0, 384);
         for (int i = 0; i < 2; i++)
             tryagain_sprite[i] = al_load_bitmap(TRY_AGAIN_BUTTON_SPRITE[i]);
 
-        // Inicialização do mixer de áudio e carregamento dos sons
-        // ...
+        // Inicialização dos sons
+        al_reserve_samples(5);
+
+        flap_sound = al_load_sample("assets/audio/flap.wav");
+        score_sound = al_load_sample("assets/audio/point.wav");
+        golden_score_sound = al_load_sample("assets/audio/gold_point.wav");
+        // death_sound = al_load_sample("assets/audio/death.wav");
+        death_screen_point_sound = al_load_sample("assets/audio/death_screen_point_up.wav");
+        high_score_sound = al_load_sample("assets/audio/high_score.wav");
             
         // Criação do pássaro e inserção no vetor de objetos
         birdo=new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 
@@ -152,6 +166,8 @@ std::uniform_int_distribution<> dis(0, 384);
         images.push_back(new image(paused_text,SCREEN_W/2,SCREEN_H/2));
         images.push_back(new image(score_box_1,al_get_bitmap_width(score_box_1)*0.66/2+7,SCREEN_H-al_get_bitmap_height(max_score)+5));
         images.push_back(new image(score_box_2,SCREEN_W-(al_get_bitmap_width(score_box_2)*0.66/2+7),SCREEN_H+100));
+        images.push_back(new image(best_score_text, SCREEN_W/2, SCREEN_H/2));
+        images.push_back(new image(new_best_text, SCREEN_W/2, SCREEN_H/2));
 
         // Criação dos botões
         buttons.push_back(new moving_button(SCREEN_W-64, -40, pause_button_sprite[0]));     
@@ -196,6 +212,14 @@ std::uniform_int_distribution<> dis(0, 384);
             al_destroy_bitmap(pause_button_sprite[i]);
         for (int i = 0; i < 2; i++)
             al_destroy_bitmap(tryagain_sprite[i]);
+
+        // Deletar mixer e áudios
+        al_destroy_sample(flap_sound);
+        al_destroy_sample(score_sound); 
+        al_destroy_sample(golden_score_sound);
+        // al_destroy_sample(death_sound);
+        al_destroy_sample(death_screen_point_sound);
+        al_destroy_sample(high_score_sound);
 
         // Deletar os objetos do jogo
         delete birdo;
@@ -374,9 +398,12 @@ std::uniform_int_distribution<> dis(0, 384);
                 if(!playing && !dead) {                        // Se o jogo não está em andamento e não está morto
                     playing = true;                            // Inicia o jogo
                     birdo->Set_y_acelleration(0.7); // Define a aceleração da gravidade
-                    } 
+                } 
                 if(playing && !dead) {                         // Se o jogo está em andamento e não está morto
                     birdo->Jump();                // Faz o pássaro pular
+                    if(sound) {
+                        al_play_sample(flap_sound, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL); // Toca o som do flap
+                    }
                     sprite_now=0;
                     bird_animation = true;
                 }
@@ -453,9 +480,15 @@ std::uniform_int_distribution<> dis(0, 384);
                 if(!pipe_objects.at(i)->is_scored()) {
                     // Veririficação se é dourado (cano dourado vale 3)
                     if(pipe_objects.at(i)->is_golden()) {
+                        if(sound) {
+                            al_play_sample(golden_score_sound, 0.6, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                        }
                         score=score+1.5;
                     }
                     else {
+                        if(sound) {
+                            al_play_sample(score_sound, 0.6, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                        }
                         score=score+0.5;
                     }
                     pipe_objects.at(i)->Set_score(true);
@@ -640,15 +673,18 @@ std::uniform_int_distribution<> dis(0, 384);
             // Animação mostrando os pontos
             else if(points_animation) {
 
-                if (score_displayed  == score)   // Pontuação mostrada chegou na pontuação de fato, pare a animação
+                if (score_displayed  == score)          // Pontuação mostrada chegou na pontuação de fato, pare a animação
                 {
                     points_animation = false;
+                    best_score_animation = true;
+                    play_record_audio = true;
                     for (int i = 1; i <= 3; i++) {
                         images.at(i)->set_position_y(SCREEN_H/2);
                     }
                 }
                 
-                if(frame_count == frames_per_point) {
+                if(frame_count == frames_per_point)     // Aumenta 1 na pontuação mostrada
+                {
                     u++;
                     if (u == 10) {
                         u = 0;
@@ -665,6 +701,10 @@ std::uniform_int_distribution<> dis(0, 384);
                     images.at(2)->set_bitmap(numbers_sprites[d]);
                     images.at(3)->set_bitmap(numbers_sprites[u]);
 
+                    if(sound) {
+                        al_play_sample(death_screen_point_sound, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                    }
+
                     score_displayed++;
 
                     frame_count = 0;
@@ -673,8 +713,19 @@ std::uniform_int_distribution<> dis(0, 384);
                 frame_count++;
             }
 
-            else {
-
+            else if(best_score_animation) {
+                if(score >= maxscore) {
+                    new_best = true;            // Se a pontuação atual é maior que a máxima, marca como novo recorde
+                }
+                else {
+                    new_best = false;           // Se não, marca como não é novo recorde
+                }
+                if(play_record_audio) {
+                    if(sound) {
+                        al_play_sample(high_score_sound, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                    }
+                    play_record_audio = false;
+                }
             }
         }
 
@@ -792,6 +843,13 @@ std::uniform_int_distribution<> dis(0, 384);
             buttons.at(3)->draw();
             buttons.at(4)->draw();
             buttons.at(6)->draw();
+            // Texto de novo recorde
+            if(best_score_animation && new_best) {
+                images.at(14)->Draw(1.33);
+            }
+            else if(best_score_animation && !new_best) {
+                images.at(13)->Draw(1.33);
+            }
         }
 
         // Desenha os Scores
@@ -938,6 +996,17 @@ std::uniform_int_distribution<> dis(0, 384);
         1 -> Centenas da pontuação (morte)
         2 -> Dezenas da pontuação (morte)
         3 -> Unidades da pontuação (morte)
+        4 -> ?
+        5 -> ?
+        6 -> ?
+        7 -> ?
+        8 -> ?
+        9 -> ?
+        10 -> ?
+        11 -> ?
+        12 -> ?
+        13 -> Text do best score na tela de morte
+        14 -> Texto do new best na tela de morte
         */
         images.push_back(new image(death_screen_frame, SCREEN_W/2, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
         images.push_back(new image(numbers_sprites[0], SCREEN_W/2-80, SCREEN_H+al_get_bitmap_height(death_screen_frame)));
@@ -952,12 +1021,16 @@ std::uniform_int_distribution<> dis(0, 384);
         images.push_back(new image(paused_text,SCREEN_W/2,SCREEN_H/2));
         images.push_back(new image(score_box_1,al_get_bitmap_width(score_box_1)*0.66/2+7,SCREEN_H-al_get_bitmap_height(max_score)+5));
         images.push_back(new image(score_box_2,SCREEN_W-(al_get_bitmap_width(score_box_2)*0.66/2+7),SCREEN_H+100));
+        images.push_back(new image(best_score_text, SCREEN_W/2, SCREEN_H/2));
+        images.push_back(new image(new_best_text, SCREEN_W/2, SCREEN_H/2));
 
         
         birdo->set_bitmap(bird_animation_sprite[0]);
         bird_animation=false;
         death_screen_animation = false;
         points_animation = false;
+        best_score_animation = false;
+        new_best = false;
 
         buttons.clear();
         /*

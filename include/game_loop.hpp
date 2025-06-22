@@ -89,17 +89,19 @@ class Game_Loop {
         ALLEGRO_BITMAP* mountain_sprite_2;                    // Bitmap da montanha (do meio)
         ALLEGRO_BITMAP* mountain_sprite_3;                    // Bitmap da montanha (de trás)
         ALLEGRO_BITMAP* grass_sprite;                         // Bitmap da grama 
-        ALLEGRO_BITMAP* achievements_button_sprite[2];           // Bitmap do botão de conquistas
-        ALLEGRO_BITMAP* back_button_sprite[2];                   // Bitmap do botão de voltar
-        ALLEGRO_BITMAP* settings_button_sprite[2];               // Bitmap do botão de configurações
+        ALLEGRO_BITMAP* achievements_button_sprite[2];        // Bitmap do botão de conquistas
+        ALLEGRO_BITMAP* back_button_sprite[2];                // Bitmap do botão de voltar
+        ALLEGRO_BITMAP* settings_button_sprite[2];            // Bitmap do botão de configurações
         ALLEGRO_BITMAP* instruções_sprite;                    // Bitmap das instruções
         ALLEGRO_BITMAP* score_sprite;                         // Bitmap da tela de morte
-        ALLEGRO_BITMAP* home_sprite[2];                          // Bitmap do botão de home
+        ALLEGRO_BITMAP* home_sprite[2];                       // Bitmap do botão de home
         ALLEGRO_BITMAP* background;                           // Bitmap do fundo
         ALLEGRO_BITMAP* numbers_sprites[10];                  // Bitmap dos números de 0 a 9 
         ALLEGRO_BITMAP* sound_button_sprite[4];               // Vetor de bitmaps do botão de som ligado/desligado
         ALLEGRO_BITMAP* pause_button_sprite[4];               // Vetor de bitmaps do botão de pause/despause
         ALLEGRO_BITMAP* death_screen_frame;                   // Bitmap do frame da tela de morte
+        ALLEGRO_BITMAP* best_score_text;                      // Bitmap do texto de melhor pontuação (tela de morte)
+        ALLEGRO_BITMAP* new_best_text;                        // Bitmap do texto de novo recorde (tela de morte)
         ALLEGRO_BITMAP* tryagain_sprite[2];                   // Vetor de bitmaps do botão de tentar de novo
         ALLEGRO_BITMAP* max_score;                            // Bitmap do max score
         ALLEGRO_BITMAP* score_now;                            // Bitmap do score na partida atual
@@ -114,12 +116,12 @@ class Game_Loop {
         ALLEGRO_COLOR black;
 
         //Controle de áudio
-        ALLEGRO_MIXER* audio_mixer;                 // Mixer de áudio para os efeitos sonoros do jogo
         ALLEGRO_SAMPLE* flap_sound;                 // Som do pulo do pássaro
         ALLEGRO_SAMPLE* score_sound;                // Som de pontuação
         ALLEGRO_SAMPLE* golden_score_sound;         // Som de pontuação quando o pássaro passa pelo cano dourado
         ALLEGRO_SAMPLE* death_sound;                // Som de morte do pássaro
         ALLEGRO_SAMPLE* death_screen_point_sound;   // Som de pontuação na tela de morte
+        ALLEGRO_SAMPLE* high_score_sound;           // Som de novo recorde
 
         //Váriáveis de estado do game_loop
         bool playing = false;

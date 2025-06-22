@@ -195,3 +195,12 @@
 
     Pedro(registration)
         - Inserção de novos atributos estatísticos para auxiliar na funcionalidade de conquistas
+
+    Matsura(Makefile, tests)
+        - Criação do doctest para o menu (ainda não funcional)
+        - Correção da Makefile
+
+    Sam (assets, game_loop, main.cpp):
+        - Sonorização do loop do jogo
+        - Adicionados os textos de new best e best para a tela de morte
+            - Ainda falta a tela de morte mostrar qual é a melhor pontuação caso não tenha sido novo recorde

@@ -50,3 +50,7 @@ void menu_audio::draw() {
     ALLEGRO_BITMAP* bmp = muted ? (pressed ? bmp_off_pr : bmp_off) : (pressed ? bmp_on_pr  : bmp_on);
     al_draw_scaled_bitmap(bmp,0,0,al_get_bitmap_width(bmp), al_get_bitmap_height(bmp),x, y,width, height,0);
 }
+
+bool menu_audio::is_muted() const {
+    return muted;
+}
