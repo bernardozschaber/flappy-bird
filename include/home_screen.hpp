@@ -31,6 +31,7 @@ class Home_Screen {
         ALLEGRO_BITMAP* settings_button_sprite[2];            // Bitmap do botão de configurações
         ALLEGRO_BITMAP* play_button_sprite[2];                // Bitmap do botão de jogar
         ALLEGRO_BITMAP* statistics_button_sprite[2];          // Bitmap do botão de estatísticas (stats)
+        ALLEGRO_BITMAP* logout_button_sprite[2];              // Bitmap do botão de logout
 
         // Fonte principal do jogo
         ALLEGRO_FONT* pixel_sans;                             // Fonte principal do jogo

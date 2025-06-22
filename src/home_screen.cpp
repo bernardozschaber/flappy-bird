@@ -6,12 +6,17 @@
 
 // CONSTANTES DE PATH
 const char * PLAY_BUTTON_SPRITE[2] = {"assets/UI/play_button.png", "assets/UI/play_button_pressed.png"}; // caminho do botão de jogar
-const char * HOME_SCREEN_FRAME = {"assets/UI/title_screen_frame.png"};                            // caminho para o frame da tela de início
-const char * TITLE_SPRITE = {"assets/UI/title_text.png"};                                                // caminho para o título do jogo
+const char * STATISTICS_BUTTON_SPRITE[2] = {"assets/UI/statistics_button.png", "assets/UI/statistics_button_pressed.png"}; // caminho do botão de achievements
+const char * LOGOUT_BUTTON_SPRITE[2] = {"assets/UI/logout_button.png", "assets/UI/logout_button_pressed.png"}; // caminho do botão de logout
+const char * HOME_SCREEN_FRAME = {"assets/UI/title_screen_frame.png"};  // caminho para o frame da tela de início
+const char * TITLE_SPRITE = {"assets/UI/title_text.png"};               // caminho para o título do jogo
+
+// VARIÁVEIS EXTRAS
+bool statistics_showing = false;                // Bool que controla se a tela de estatísticas está sendo mostrada
+bool statistics_screen_animation = false;       // Bool que controla se a animação da tela de estatísticas está ativa
 
 // CONSTRUTOR
 Home_Screen::Home_Screen() {
-    //std::cout << "Created Home Screen.\n\n";
     // Carregamento de sprites
     mountain_sprite_1 = al_load_bitmap(MOUNTAIN_SPRITE_1);
     mountain_sprite_2 = al_load_bitmap(MOUNTAIN_SPRITE_2);
@@ -27,6 +32,8 @@ Home_Screen::Home_Screen() {
     play_button_sprite[1] = al_load_bitmap(PLAY_BUTTON_SPRITE[1]);
     statistics_button_sprite[0] = al_load_bitmap(STATISTICS_BUTTON_SPRITE[0]);
     statistics_button_sprite[1] = al_load_bitmap(STATISTICS_BUTTON_SPRITE[1]);
+    logout_button_sprite[0] = al_load_bitmap(LOGOUT_BUTTON_SPRITE[0]);
+    logout_button_sprite[1] = al_load_bitmap(LOGOUT_BUTTON_SPRITE[1]);
 
     title_sprite = al_load_bitmap(TITLE_SPRITE);
 
@@ -54,14 +61,15 @@ Home_Screen::Home_Screen() {
     background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*5/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
     background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*7/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
 
-    // Criação de  elementos de UI (imagens)
+    // Criação de elementos de UI (imagens)
     images.push_back(new image(home_screen_frame_sprite, SCREEN_W/2, SCREEN_H/2));
     images.push_back(new image(title_sprite, SCREEN_W/2, SCREEN_H/2-110));
 
-    // Criação de  elementos de UI (imagens)   
-    buttons.push_back(new moving_button(SCREEN_W/2-115, SCREEN_H/2+168, settings_button_sprite[0]));
-    buttons.push_back(new moving_button(SCREEN_W/2+115, SCREEN_H/2+168, achievements_button_sprite[0]));
-    buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H/2+168, statistics_button_sprite[0]));
+    // Criação de elementos de UI (botões)   
+    buttons.push_back(new moving_button(SCREEN_W/2-117, SCREEN_H/2+168, settings_button_sprite[0]));
+    buttons.push_back(new moving_button(SCREEN_W/2+117, SCREEN_H/2+168, achievements_button_sprite[0]));
+    buttons.push_back(new moving_button(SCREEN_W/2+39, SCREEN_H/2+168, statistics_button_sprite[0]));
+    buttons.push_back(new moving_button(SCREEN_W/2-39, SCREEN_H/2+168, logout_button_sprite[0]));
     buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H/2+64, play_button_sprite[0]));
 
     //std::cout << "Sizes of vectors:\n\tbackground_objects_0: " << background_objects_0.size() << " (expected 4)\n\tbackground_objects_1: " << background_objects_1.size() << " (expected 4)\n\tbackground_objects_2: " << background_objects_2.size() << " (expected 4)\n\tbackground_objects_3: " << background_objects_3.size() << " (expected 4)\n\timages: " << images.size() << " (expected 2)\n\n";
@@ -82,6 +90,8 @@ Home_Screen::~Home_Screen() {
         al_destroy_bitmap(achievements_button_sprite[i]);
         al_destroy_bitmap(settings_button_sprite[i]);
         al_destroy_bitmap(play_button_sprite[i]);
+        al_destroy_bitmap(statistics_button_sprite[i]);
+        al_destroy_bitmap(logout_button_sprite[i]);
     }
 
     // Destruição da fonte
@@ -117,15 +127,24 @@ Home_Screen::~Home_Screen() {
 
 // PROCESSAMENTO DE COMANDOS
 void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse_just_released, int mouse_update_x, int mouse_update_y, states& state) {
+    // Processamento do mouse
     if (buttons.size() > 0) {
+        // Processo caso o mouse tenha acabado de ser solto
         if (mouse_just_released) 
         {
+            // Botão de configurações
             if(buttons.at(0)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(0)->is_pressed()) 
             {
                 buttons.at(0)->set_bitmap(settings_button_sprite[0]);
                 buttons.at(0)->set_pressed(false);
+                // Vá para a tela de configurações se clicar em "Configurações"
+                state.home_screen = false;
+                state.settings_screen = true;
+                // Reseta a velocidade padrão do cenário
+                background_objects_0.at(0)->Set_standard_speed(0);
             }
 
+            // Botão de achievements
             if(buttons.at(1)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(1)->is_pressed()) 
             {
                 buttons.at(1)->set_bitmap(achievements_button_sprite[0]);
@@ -137,25 +156,41 @@ void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse
                 background_objects_0.at(0)->Set_standard_speed(0);
             }
 
+            // Botão de estatísticas
             if(buttons.at(2)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(2)->is_pressed()) 
             {
                 buttons.at(2)->set_bitmap(statistics_button_sprite[0]);
                 buttons.at(2)->set_pressed(false);
+                // Mostre a tela de estatísticas se clicar em "Estatísticas"
+                statistics_showing = !statistics_showing;
+                if(statistics_showing) 
+                    statistics_screen_animation = true; // Inicia a animação da tela de estatísticas
             }
 
+            // Botão de logout
             if(buttons.at(3)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(3)->is_pressed()) 
             {
-                buttons.at(3)->set_bitmap(play_button_sprite[0]);
+                buttons.at(3)->set_bitmap(logout_button_sprite[0]);
                 buttons.at(3)->set_pressed(false);
+            }
+
+            // Botão de jogar
+            if(buttons.at(4)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(3)->is_pressed()) 
+            {
+                buttons.at(4)->set_bitmap(play_button_sprite[0]);
+                buttons.at(4)->set_pressed(false);
                 // Vá para o game_loop se clicar em "Jogar"
                 state.home_screen = false;
                 state.game_loop_screen = true;
                 // Reseta a velocidade padrão do cenário
                 background_objects_0.at(0)->Set_standard_speed(0);
             }
-            for(int a=0;a<4;a++)
+
+            // Reseta o estado de pressionamento dos botões
+            for(int a = 0; a < 4; a++)
                 buttons.at(a)->set_pressed(false);
         }
+        // Processo caso o mouse esteja pressionado
         if (mouse_is_down) 
         {
             if(buttons.at(0)->contains_click(mouse_update_x, mouse_update_y)) 
@@ -178,16 +213,24 @@ void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse
 
             if(buttons.at(3)->contains_click(mouse_update_x, mouse_update_y)) 
             {
-                buttons.at(3)->set_bitmap(play_button_sprite[1]);
+                buttons.at(3)->set_bitmap(logout_button_sprite[1]);
                 buttons.at(3)->set_pressed(true);
             }
+
+            if(buttons.at(4)->contains_click(mouse_update_x, mouse_update_y)) 
+            {
+                buttons.at(4)->set_bitmap(play_button_sprite[1]);
+                buttons.at(4)->set_pressed(true);
+            }
         }
+        // Processo caso o mouse esteja solto
         else 
         {
             buttons.at(0)->set_bitmap(settings_button_sprite[0]);
             buttons.at(1)->set_bitmap(achievements_button_sprite[0]);
             buttons.at(2)->set_bitmap(statistics_button_sprite[0]);
-            buttons.at(3)->set_bitmap(play_button_sprite[0]);
+            buttons.at(3)->set_bitmap(logout_button_sprite[0]);
+            buttons.at(4)->set_bitmap(play_button_sprite[0]);
         }
     }
 
