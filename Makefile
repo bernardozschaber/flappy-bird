@@ -1,86 +1,139 @@
-all: main main_menu
+# -------------------------------------------------------------------------
+# 1) Variáveis de Ambiente e Ferramentas
+# -------------------------------------------------------------------------
+CXX         := g++
+INC_DIR     ?= include
+CXXFLAGS    := -std=c++17
+INCLUDES    := -I$(INC_DIR)
+ALLEGRO_INC := -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+PKG_LIBS    := `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
 
-obj:
-	mkdir -p obj
+# -------------------------------------------------------------------------
+# 2) Diretórios
+# -------------------------------------------------------------------------
+SRC_DIR     := src
+INC_DIR     := include
+OBJ_DIR     := obj
+# BIN_DIR     := bin
+TEST_DIR    := tests
 
-obj/game_object.o: include/game_object.hpp src/game_object.cpp
-	g++ -o obj/game_object.o -c src/game_object.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+# -------------------------------------------------------------------------
+# 3) Fontes e Objetos
+# -------------------------------------------------------------------------
+# 3.1) Núcleo do jogo
+GAME_SRCS   := \
+    game_object.cpp \
+    game_loop.cpp \
+    bird_object.cpp \
+    pipe_object.cpp \
+    ui_object.cpp \
+    background_object.cpp \
+    moving_button.cpp \
+    image.cpp \
+    score.cpp \
+    home_screen.cpp \
+    achievements_screen.cpp
 
-obj/game_loop.o: include/game_loop.hpp src/game_loop.cpp
-	g++ -o obj/game_loop.o -c src/game_loop.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+MAIN_SCR := main.cpp
 
-obj/bird_object.o: include/bird_object.hpp src/bird_object.cpp
-	g++ -o obj/bird_object.o -c src/bird_object.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+MAIN_OBJ := $(addprefix $(OBJ_DIR)/, $(MAIN_SCR:.cpp=.o))  
 
-obj/pipe_object.o: include/pipe_object.hpp src/pipe_object.cpp
-	g++ -o obj/pipe_object.o -c src/pipe_object.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+GAME_OBJS   := $(addprefix $(OBJ_DIR)/, $(GAME_SRCS:.cpp=.o))
 
-obj/background_object.o: include/background_object.hpp src/background_object.cpp
-	g++ -o obj/background_object.o -c src/background_object.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+# 3.2) Menu principal
+MENU_SRCS   := \
+    menu.cpp \
+    ui_object.cpp \
+    text_box.cpp \
+    button.cpp \
+    menu_audio.cpp \
+    login_screen.cpp \
+    register_screen.cpp \
+    remove_user_screen.cpp \
+    player_list_screen.cpp \
+    registration.cpp
 
-obj/main.o: src/main.cpp | obj
-	g++ -o obj/main.o -c src/main.cpp -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+MAIN_MENU_SCR := main_menu.cpp
 
-obj/main_menu.o: src/main_menu.cpp | obj
-	g++ -o obj/main_menu.o -c src/main_menu.cpp -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+MAIN_MENU_OBJ := $(addprefix $(OBJ_DIR)/, $(MAIN_MENU_SCR:.cpp=.o))  
 
-obj/ui_object.o: include/ui_object.hpp src/ui_object.cpp
-	g++ -o obj/ui_object.o -c src/ui_object.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+MENU_OBJS   := $(addprefix $(OBJ_DIR)/, $(MENU_SRCS:.cpp=.o))
 
-obj/text_box.o: include/text_box.hpp src/text_box.cpp
-	g++ -o obj/text_box.o -c src/text_box.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+# 3.3) Testes
+TESTREG_SRC := $(TEST_DIR)/testregistration.cpp
+TESTMM_SRC  := $(TEST_DIR)/test_main_menu.cpp
 
-obj/button.o: include/button.hpp src/button.cpp
-	g++ -o obj/button.o -c src/button.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+TESTREG_OBJ := $(OBJ_DIR)/testregistration.o
+TESTMM_OBJ  := $(OBJ_DIR)/test_main_menu.o
 
-obj/login_screen.o: include/login_screen.hpp src/login_screen.cpp
-	g++ -o obj/login_screen.o -c src/login_screen.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+# -------------------------------------------------------------------------
+# 4) Alvos Principais
+# -------------------------------------------------------------------------
+.PHONY: all clean dirs
 
-obj/register_screen.o: include/register_screen.hpp src/register_screen.cpp
-	g++ -o obj/register_screen.o -c src/register_screen.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+all: dirs main main_menu	
+     #$(BIN_DIR)/main \
+     #$(BIN_DIR)/main_menu \
+     #$(BIN_DIR)/testregistration \
+     #$(BIN_DIR)/test_main_menu
 
-obj/player_list_screen.o: include/player_list_screen.hpp src/player_list_screen.cpp
-	g++ -o obj/player_list_screen.o -c src/player_list_screen.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+# -------------------------------------------------------------------------
+# 5) Criação de Diretórios
+# -------------------------------------------------------------------------
+dirs:
+	mkdir -p $(OBJ_DIR)
 
-obj/remove_user_screen.o: include/remove_user_screen.hpp src/remove_user_screen.cpp
-	g++ -o obj/remove_user_screen.o -c src/remove_user_screen.cpp -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+# -------------------------------------------------------------------------
+# 6) Regras de Compilação Genéricas (.cpp → .o)
+# -------------------------------------------------------------------------
+# -MMD: gera .d de dependências, -MP: phony targets
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | dirs
+	$(CXX) $(CXXFLAGS) $(ALLEGRO_INC) $(INCLUDES) -MMD -MP -c $< -o $@
 
-obj/menu_audio.o: include/menu_audio.hpp src/menu_audio.cpp
-	g++ -o obj/menu_audio.o -c src/menu_audio.cpp -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+$(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp | dirs
+	$(CXX) $(CXXFLAGS) $(ALLEGRO_INC) $(INCLUDES) -MMD -MP -c $< -o $@
 
-obj/registration.o: include/registration.hpp src/registration.cpp
-	g++ -o obj/registration.o -c src/registration.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+# -------------------------------------------------------------------------
+# 7) Linkagem de Binários
+# -------------------------------------------------------------------------
+# 7.1) Executável Principal do Jogo
+main: $(MAIN_OBJ) $(GAME_OBJS)
+	$(CXX) $^ -o $@ $(PKG_LIBS)
 
-obj/menu.o: include/menu.hpp src/menu.cpp
-	g++ -o obj/menu.o -c src/menu.cpp -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+#$(BIN_DIR)/main: $(MAIN_OBJ) $(GAME_OBJS)
+#	$(CXX) $^ -o $@ $(PKG_LIBS)
 
-obj/moving_button.o: include/moving_button.hpp src/moving_button.cpp
-	g++ -o obj/moving_button.o -c src/moving_button.cpp  -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+# 7.2) Executável do Menu Principal
+main_menu: $(MAIN_MENU_OBJ) $(MENU_OBJS)
+	$(CXX) $^ -o $@ $(PKG_LIBS)
 
-obj/image.o: include/image.hpp src/image.cpp
-	g++ -o obj/image.o -c src/image.cpp -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+#$(BIN_DIR)/main_menu: $(MAIN_MENU_OBJ) $(MENU_OBJS)
+#	$(CXX) $^ -o $@ $(PKG_LIBS)
 
-obj/score.o: include/score.hpp src/score.cpp
-	g++ -o obj/score.o -c src/score.cpp -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+# 7.3) Teste da Classe registration
+testregistration: $(TESTREG_OBJ) $(OBJ_DIR)/registration.o
+	$(CXX) $^ -o $@ $(PKG_LIBS)
 
-obj/home_screen.o: include/home_screen.hpp src/home_screen.cpp
-	g++ -o obj/home_screen.o -c src/home_screen.cpp -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include
+#$(BIN_DIR)/testregistration: $(TESTREG_OBJ) $(OBJ_DIR)/registration.o
+#	$(CXX) $^ -o $@ $(PKG_LIBS)
 
-obj/achievements_screen.o: include/achievements_screen.hpp src/achievements_screen.cpp
-	g++ -o obj/achievements_screen.o -c src/achievements_screen.cpp -Iinclude -I/opt/homebrew/Cellar/allegro/5.2.10.1_1/include	
+# 7.4) Teste do Menu Principal
+test_main_menu: $(TESTMM_OBJ) $(MENU_OBJS)
+	$(CXX) $^ -o $@ $(PKG_LIBS)
 
-main: obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o obj/game_loop.o obj/moving_button.o obj/ui_object.o obj/image.o obj/score.o obj/home_screen.o obj/achievements_screen.o
-	g++ obj/main.o obj/game_object.o obj/pipe_object.o obj/bird_object.o obj/background_object.o obj/game_loop.o obj/moving_button.o obj/ui_object.o obj/image.o obj/score.o obj/home_screen.o obj/achievements_screen.o -o main `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
+#$(BIN_DIR)/test_main_menu: $(TESTMM_OBJ) $(MENU_OBJS)
+#	$(CXX) $^ -o $@ $(PKG_LIBS)
 
-main_menu: obj/main_menu.o obj/menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/remove_user_screen.o obj/player_list_screen.o obj/registration.o obj/score.o obj/menu_audio.o
-	g++ obj/main_menu.o obj/menu.o obj/ui_object.o obj/text_box.o obj/button.o obj/login_screen.o obj/register_screen.o obj/remove_user_screen.o obj/player_list_screen.o obj/registration.o obj/score.o obj/menu_audio.o -o main_menu `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 allegro_image-5 allegro_font-5 allegro_primitives-5 allegro_acodec-5 allegro_ttf-5`
+# -------------------------------------------------------------------------
+# 8) Inclusão Automática de Dependências
+# -------------------------------------------------------------------------
+-include $(OBJ_DIR)/*.d
 
+# -------------------------------------------------------------------------
+# 9) Limpeza
+# -------------------------------------------------------------------------
+clean:
+	rm -rf $(OBJ_DIR)
+	rm main
+	rm main_menu
 
-# PARTE DE TESTES
-
-# CLASSE DE REGISTRO
-obj/testregistration.o: tests/testregistration.cpp include/registration.hpp
-	g++ -c tests/testregistration.cpp -Iinclude -o obj/testregistration.o 
-
-testregistration: obj/registration.o obj/testregistration.o
-	g++ obj/registration.o obj/testregistration.o -o testregistration
