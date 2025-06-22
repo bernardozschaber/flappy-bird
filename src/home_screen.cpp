@@ -1,4 +1,5 @@
 #include "home_screen.hpp"
+#include "registration.hpp" //remover depois
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_ttf.h>
@@ -12,8 +13,11 @@ const char * HOME_SCREEN_FRAME = {"assets/UI/title_screen_frame.png"};  // camin
 const char * TITLE_SPRITE = {"assets/UI/title_text.png"};               // caminho para o título do jogo
 
 // VARIÁVEIS EXTRAS
+int statistics_screen_spawn_x = SCREEN_W+192;   // Posição X do spawn da tela de estatísticas
 bool statistics_showing = false;                // Bool que controla se a tela de estatísticas está sendo mostrada
-bool statistics_screen_animation = false;       // Bool que controla se a animação da tela de estatísticas está ativa
+bool statistics_animation_entry = false;        // Bool que controla se a animação da tela de estatísticas está mostrando
+bool statistics_animation_exit = false;         // Bool que controla se a animação da tela de estatísticas está escondendo
+player p1 = player("Robert", "seila13", 104, 12, 491, 9, 3);    // Player aleatório para testes
 
 // CONSTRUTOR
 Home_Screen::Home_Screen() {
@@ -24,6 +28,7 @@ Home_Screen::Home_Screen() {
     grass_sprite = al_load_bitmap(GRASS_SPRITE);
     background_sprite = al_load_bitmap(BACKGROUND);
     home_screen_frame_sprite = al_load_bitmap(HOME_SCREEN_FRAME);
+    achievements_screen_frame_sprite = al_load_bitmap(DEATH_SCREEN_FRAME);
     achievements_button_sprite[0] = al_load_bitmap(ACHIEVEMENTS_BUTTON_SPRITE[0]);
     achievements_button_sprite[1] = al_load_bitmap(ACHIEVEMENTS_BUTTON_SPRITE[1]);
     settings_button_sprite[0] = al_load_bitmap(SETTINGS_BUTTON_SPRITE[0]);
@@ -62,15 +67,33 @@ Home_Screen::Home_Screen() {
     background_objects_0.push_back(new background_object(al_get_bitmap_width(grass_sprite)*7/2, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
 
     // Criação de elementos de UI (imagens)
+    /*
+    0 - quadro da tela principal
+    1 - título do jogo
+    2 - quadro da tela de achievements
+    */
     images.push_back(new image(home_screen_frame_sprite, SCREEN_W/2, SCREEN_H/2));
     images.push_back(new image(title_sprite, SCREEN_W/2, SCREEN_H/2-110));
+    images.push_back(new image(achievements_screen_frame_sprite, statistics_screen_spawn_x, SCREEN_H/2));
 
-    // Criação de elementos de UI (botões)   
+    // Criação de elementos de UI (botões)
+    /*
+    0 - configurações
+    1 - achievements
+    2 - estatísticas
+    3 - logout
+    4 - jogar
+    */
     buttons.push_back(new moving_button(SCREEN_W/2-117, SCREEN_H/2+168, settings_button_sprite[0]));
     buttons.push_back(new moving_button(SCREEN_W/2+117, SCREEN_H/2+168, achievements_button_sprite[0]));
     buttons.push_back(new moving_button(SCREEN_W/2+39, SCREEN_H/2+168, statistics_button_sprite[0]));
     buttons.push_back(new moving_button(SCREEN_W/2-39, SCREEN_H/2+168, logout_button_sprite[0]));
     buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H/2+64, play_button_sprite[0]));
+
+    // Reset de variáveis extras
+    statistics_showing = false;
+    statistics_animation_entry = false;
+    statistics_animation_exit = false;
 
     //std::cout << "Sizes of vectors:\n\tbackground_objects_0: " << background_objects_0.size() << " (expected 4)\n\tbackground_objects_1: " << background_objects_1.size() << " (expected 4)\n\tbackground_objects_2: " << background_objects_2.size() << " (expected 4)\n\tbackground_objects_3: " << background_objects_3.size() << " (expected 4)\n\timages: " << images.size() << " (expected 2)\n\n";
 }
@@ -163,8 +186,14 @@ void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse
                 buttons.at(2)->set_pressed(false);
                 // Mostre a tela de estatísticas se clicar em "Estatísticas"
                 statistics_showing = !statistics_showing;
-                if(statistics_showing) 
-                    statistics_screen_animation = true; // Inicia a animação da tela de estatísticas
+                if(statistics_showing) {
+                    statistics_animation_entry = true;  // Inicia a animação da tela de estatísticas
+                    statistics_animation_exit = false;  // Para a animação de saída da tela de estatísticas
+                }
+                else {
+                    statistics_animation_entry = false; // Para a animação da tela de estatísticas
+                    statistics_animation_exit = true;   // Inicia a animação de saída da tela de estatísticas
+                }
             }
 
             // Botão de logout
@@ -175,7 +204,7 @@ void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse
             }
 
             // Botão de jogar
-            if(buttons.at(4)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(3)->is_pressed()) 
+            if(buttons.at(4)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(4)->is_pressed()) 
             {
                 buttons.at(4)->set_bitmap(play_button_sprite[0]);
                 buttons.at(4)->set_pressed(false);
@@ -287,9 +316,87 @@ void Home_Screen::update() {
     }
 
     //////////UI////////////
+    //Tela de estatísticas//
+    if (statistics_showing && statistics_animation_entry) {
+        // Movendo a tela principal um pouco para a esquerda
+        float std_home_screen_speed_in = (((SCREEN_W/2-200)-images.at(0)->get_x())/10)-2;
+        images.at(0)->set_velocity(std_home_screen_speed_in, 0);
+        images.at(1)->set_velocity(std_home_screen_speed_in, 0);
+        for (moving_button* btn : buttons) {
+            btn->set_velocity(std_home_screen_speed_in, 0);
+        }
+        // Movendo a tela de estatísticas para a esquerda
+        images.at(2)->set_velocity((((SCREEN_W/2+200)-images.at(2)->get_x())/10)-2, 0);
+    }
+    else if (!statistics_showing && statistics_animation_exit) {
+        // Voltando a tela principal para o centro
+        float std_home_screen_speed_out = ((SCREEN_W/2-images.at(0)->get_x())/10)+2;
+        images.at(0)->set_velocity(std_home_screen_speed_out, 0);
+        images.at(1)->set_velocity(std_home_screen_speed_out, 0);
+        for (moving_button* btn : buttons) {
+            btn->set_velocity(std_home_screen_speed_out, 0);
+        }
+        // Voltando a tela de estatísticas para baixo
+        images.at(2)->set_velocity(((statistics_screen_spawn_x-images.at(2)->get_x())/10)+2, 0);
+    }
+
     //Atualizando as imagens//
     for (image* img : images)
         img->Update();
+
+    //Verificando se a animação da tela de estatísticas deve ter terminado//
+    if (statistics_animation_entry) {
+        if (images.at(0)->get_x() <= SCREEN_W/2-200) {
+            // Se a tela principal já estiver no lugar, para de mover
+            images.at(0)->set_position_x(SCREEN_W/2-200);
+            images.at(1)->set_position_x(SCREEN_W/2-200);
+            images.at(0)->set_velocity(0, 0);
+            images.at(1)->set_velocity(0, 0);
+            buttons.at(0)->set_x(SCREEN_W/2-317);
+            buttons.at(1)->set_x(SCREEN_W/2-83);
+            buttons.at(2)->set_x(SCREEN_W/2-161);
+            buttons.at(3)->set_x(SCREEN_W/2-239);
+            buttons.at(4)->set_x(SCREEN_W/2-200);
+            for (moving_button* btn : buttons) {
+                btn->set_velocity(0, 0);
+            }
+        }
+        if (images.at(2)->get_x() <= SCREEN_W/2+200) {
+            // Se a tela de estatísticas já estiver no lugar, para de mover
+            images.at(2)->set_position_x(SCREEN_W/2+200);
+            images.at(2)->set_velocity(0, 0);
+        }
+        if (images.at(0)->get_x() <= SCREEN_W/2-200 && images.at(2)->get_x() <= SCREEN_W/2+200) {
+            // Termina a animação de entrada
+            statistics_animation_entry = false;
+        }
+    }
+    else if (statistics_animation_exit) {
+        if (images.at(0)->get_x() >= SCREEN_W/2) {
+            // Se a tela principal já estiver no lugar, para de mover
+            images.at(0)->set_position_x(SCREEN_W/2);
+            images.at(1)->set_position_x(SCREEN_W/2);
+            images.at(0)->set_velocity(0, 0);
+            images.at(1)->set_velocity(0, 0);
+            buttons.at(0)->set_x(SCREEN_W/2-117);
+            buttons.at(1)->set_x(SCREEN_W/2+117);
+            buttons.at(2)->set_x(SCREEN_W/2+39);
+            buttons.at(3)->set_x(SCREEN_W/2-39);
+            buttons.at(4)->set_x(SCREEN_W/2);
+            for (moving_button* btn : buttons) {
+                btn->set_velocity(0, 0);
+            }
+        }
+        if (images.at(2)->get_x() >= statistics_screen_spawn_x) {
+            // Se a tela de estatísticas já estiver no lugar, para de mover
+            images.at(2)->set_position_x(statistics_screen_spawn_x);
+            images.at(2)->set_velocity(0, 0);
+        }
+        if (images.at(0)->get_x() >= SCREEN_W/2 && images.at(2)->get_x() >= statistics_screen_spawn_x) {
+            // Termina a animação de saída
+            statistics_animation_exit = false;
+        }
+    }
 
     //Atualizando os botões//
     for (moving_button* btn : buttons)
@@ -312,7 +419,8 @@ void Home_Screen::draw() {
 
     // Desenho da UI
     images.at(0)->Draw();
-    images.at(1)->Draw(1.3);
+    images.at(1)->Draw(1.25);
+    images.at(2)->Draw();
 
     for (moving_button* btn : buttons) {
         btn->draw();
