@@ -200,10 +200,6 @@
         - Criação do doctest para o menu (ainda não funcional)
         - Correção da Makefile
 
-    Matsura(Makefile, tests)
-        - Criação do doctest para o menu (ainda não funcional)
-        - Correção da Makefile
-
     Sam (assets, game_loop, main.cpp):
         - Sonorização do loop do jogo
         - Adicionados os textos de new best e best para a tela de morte
