@@ -3,6 +3,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 
 #include "bird_object.hpp"
 #include "pipe_object.hpp"
@@ -62,6 +63,7 @@ int main(int argc, char **argv) {
     bool* keyboard_install = new bool;
     bool* mouse_install = new bool;
     bool* audio_install = new bool;
+    bool* acodec_install = new bool;
 
     *sys_install = al_init();                   // Instalação principal
     *prim_install = al_init_primitives_addon(); // Instalação dos primitivos
@@ -71,15 +73,18 @@ int main(int argc, char **argv) {
     *keyboard_install = al_install_keyboard();  // Instalação do teclado
     *mouse_install = al_install_mouse();        // Instalação do mouse
     *audio_install = al_install_audio();        // Instalação do áudio
+    *acodec_install = al_init_acodec_addon();   // Instalação do codec de áudio
 
     if(!(*sys_install && *prim_install && *font_install && *ttf_install && *img_install && *keyboard_install && *mouse_install && *audio_install)) {
         debug << "Falha na instalação." << std::endl;
         debug << "SYS: " << *sys_install << std::endl;
         debug << "PRIMITIVES: " << *prim_install << std::endl;
         debug << "FONT: " << *font_install << std::endl;
+        debug << "TTF: " << *ttf_install << std::endl;
         debug << "KEYBOARD: " << *keyboard_install << std::endl;
         debug << "MOUSE: " << *mouse_install << std::endl;
         debug << "AUDIO: " << *audio_install << std::endl;
+        debug << "CODEC: " << *acodec_install << std::endl;
         system("pause");
         return -1;
     }
@@ -92,6 +97,7 @@ int main(int argc, char **argv) {
     delete keyboard_install;
     delete mouse_install;
     delete audio_install;
+    delete acodec_install;
 
     debug << "Allegro iniciado com sucesso." << std::endl;
 
