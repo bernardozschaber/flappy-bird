@@ -71,6 +71,7 @@ std::uniform_int_distribution<> dis(0, 384);
     bool new_best = false;                                                  // Bool que controla se o jogador fez um novo recorde
     bool play_record_audio = false;                                         // Bool que controla se o áudio de novo recorde deve ser tocado
     bool bird_animation = false;                                            // Bool que controla se o passaro está em animação
+    bool att_score = true;
     float animation_speed=0;                                                // Float que define quando tem que passar o frame de animação
     int sprite_now=0;                                                       // Int que guarda em que sprite o passaro esta
     int frames_per_point;                                                   // Define a velocidade da animação de pontos
@@ -449,6 +450,14 @@ std::uniform_int_distribution<> dis(0, 384);
         ////////////////////////////////////////
 
         ///////CANOS////////
+        //Ajeitando a Velocidade//
+        if(pipe_objects.size()>0&&playing&&!paused){
+            if (pipe_objects.at(0)->Get_x_speed() > PIPE_SPEED_MAX) {
+                pipe_objects.at(0)->Set_x_speed(pipe_objects.at(1)->Get_x_speed()+PIPE_SPEED_INCREASE/30);     // Se a velocidade do cano for maior que o máximo, reduza ela
+            }
+            int PIPE_SPEED=pipe_objects.at(0)->Get_x_speed();
+        }
+        
         //Criando os canos//
         if (playing &&(pipe_objects.size()==0 || pipe_objects.at(pipe_objects.size()-1)->Get_position()->x<SCREEN_W-100)){    // Adiciona o primeiro cano se não houver nenhum ou se o último cano estiver à distância adequada (100 + 250)
             random_offset = dis(gen);                               // Determina o offset do cano a ser spawnado
@@ -468,11 +477,6 @@ std::uniform_int_distribution<> dis(0, 384);
                 pipe_objects.push_back(new pipe_object(spawn_x, spawn_y+al_get_bitmap_height(pipe_sprite)+PIPE_SPACE, 
                 al_get_bitmap_width(pipe_sprite), al_get_bitmap_height(pipe_sprite), golden_pipe_sprite, true));         // Instanciação do cano inferior
             }
-                    
-            if (pipe_objects.at(1)->Get_x_speed() > PIPE_SPEED_MAX) {
-                pipe_objects.at(1)->Set_x_speed(pipe_objects.at(1)->Get_x_speed()+PIPE_SPEED_INCREASE);     // Se a velocidade do cano for maior que o máximo, reduza ela
-            }
-            int PIPE_SPEED=pipe_objects.at(1)->Get_x_speed();
         }    
         
         //Deletando os canos//
@@ -505,8 +509,6 @@ std::uniform_int_distribution<> dis(0, 384);
                 }
             }else break;
         }
-        if(score>maxscore)
-        maxscore=score;
         
         ///////Montanhas////////
         //Deletando e Criando as montanhas//
@@ -724,8 +726,9 @@ std::uniform_int_distribution<> dis(0, 384);
                 frame_count++;
             }
 
-            else if(best_score_animation) {
-                if(score >= maxscore) {
+            else if(best_score_animation&&att_score) {
+                att_score = false;
+                if(score > maxscore) {
                     new_best = true;            // Se a pontuação atual é maior que a máxima, marca como novo recorde
                 }
                 else {
@@ -737,6 +740,9 @@ std::uniform_int_distribution<> dis(0, 384);
                     }
                     play_record_audio = false;
                 }
+            if(score>maxscore){
+                maxscore=score;
+            }
             }
         }
 
@@ -871,7 +877,7 @@ std::uniform_int_distribution<> dis(0, 384);
                     images.at(16)->Draw(1);
                 }
                 else {
-                    images.at(15)->set_bitmap(numbers_sprites[(int)maxscore%100]);
+                    images.at(15)->set_bitmap(numbers_sprites[(int)maxscore/100]);
                     images.at(16)->set_bitmap(numbers_sprites[(int)maxscore%100/10]);
                     images.at(17)->set_bitmap(numbers_sprites[(int)maxscore%10]);
                     images.at(15)->Draw(1);
@@ -1092,6 +1098,7 @@ std::uniform_int_distribution<> dis(0, 384);
         dead = false;
         death_menu = false;
         paused = false;
+        att_score = true;
 
         // Reset das variáveis da animação de pontuação na tela de morte
         score_displayed = 0;

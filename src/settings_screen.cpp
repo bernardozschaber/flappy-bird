@@ -64,7 +64,7 @@ settings_screen::settings_screen() {
     slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,200,260,210,1,0,0,1,1,50,10,1)); //Força do pulo
     slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,200,360,210,1,0,0,1,1,50,15,1)); //Velocidade Máxima do passáro
     slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,200,460,210,1,0,0,1,1,20,7,1));  //Gravidade
-    slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,560,160,210,1,0,0,1,0,50,20,1)); //Aceleração do cano
+    slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,560,160,210,1,0,0,1,0,150,20,1)); //Aceleração do cano
     slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,560,260,210,1,0,0,1,0,50,25,1));  //Velocidade Inicial do Cano
     slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,560,360,210,1,0,0,1,50,150,80,1)); //Velocidade Maxima do Cano
     slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,560,460,210,1,0,0,1,0,100,3,1));  //Chance de cano dourado
@@ -257,7 +257,7 @@ void settings_screen::set_values(){
     BIRD_MAX_DOWN_VEL = slides.at(2)->get_value();
     BIRD_MAX_UP_VEL = -slides.at(2)->get_value();
     gravity_setter = slides.at(3)->get_value()/10.0;
-    PIPE_SPEED_INCREASE = -slides.at(4)->get_value()/100.0;
+    PIPE_SPEED_INCREASE = -slides.at(4)->get_value()/1000.0;
     PIPE_INITIAL_SPEED = -slides.at(5)->get_value()/10.0;
     PIPE_SPEED_MAX = -slides.at(6)->get_value()/10.0;
     golden_odds_setter = slides.at(7)->get_value();
