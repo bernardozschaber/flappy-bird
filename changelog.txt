@@ -226,3 +226,6 @@
         - Modelagem (CRC) do menu
         - Melhor suporte ao jogo da classe menu
         - Suporte da tela de listagem ao caso do arquivo vazio
+
+    Matsura(README.md)
+        - Inicio da criação do arquivo README
