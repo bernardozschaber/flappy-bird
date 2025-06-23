@@ -32,7 +32,9 @@ GAME_SRCS   := \
     image.cpp \
     score.cpp \
     home_screen.cpp \
-    achievements_screen.cpp
+    achievements_screen.cpp \
+    settings_screen.cpp \
+    slider.cpp
 
 MAIN_SCR := main.cpp
 
