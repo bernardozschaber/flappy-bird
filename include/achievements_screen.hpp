@@ -30,6 +30,8 @@ class Achievements_Screen {
         ALLEGRO_BITMAP* settings_button_sprite[2];            // Bitmap do botão de configurações
         ALLEGRO_BITMAP* statistics_button_sprite[2];          // Bitmap do botão de estatísticas (stats)
         ALLEGRO_BITMAP* achievements_badges[16];             // Bitmap dos badges de conquistas
+        ALLEGRO_BITMAP* back_button_sprite[2];                // Bitmap do botão de voltar
+        ALLEGRO_BITMAP* achievements_locked[16];              // Bitmap dos badges de conquistas bloqueados
 
         // Fonte principal do jogo
         ALLEGRO_FONT* pixel_sans;                             // Fonte principal do jogo
