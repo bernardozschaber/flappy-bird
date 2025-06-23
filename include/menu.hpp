@@ -38,6 +38,9 @@ public:
   // Verifica se o login foi concluído para parar o loop do registro
   bool is_login_done() const;
 
+  // Retorna a struct player com os dados do usuário logado
+  player get_logged_user();
+
   // Reseta todas as telas para reutilização do menu em uma mesma execução
   void reset();
 
@@ -49,9 +52,10 @@ private:
   ALLEGRO_SAMPLE* sample_button; 
   ALLEGRO_SAMPLE* sample_key;
 
-  // Bitmaps da imagem de fundo e da coroa do leaderboard
+  // Bitmaps da imagem de fundo, do título e da coroa do leaderboard
   ALLEGRO_BITMAP* background_menu;
   ALLEGRO_BITMAP* crown;
+  ALLEGRO_BITMAP* main_menu_title;
 
   // Bitmaps do ícone de áudio
   ALLEGRO_BITMAP *ico_on;

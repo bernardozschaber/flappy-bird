@@ -2,11 +2,11 @@
 
 login_screen::login_screen(int screen_w, int screen_h, registration &data_ref, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s)
     : screen_width(screen_w), screen_height(screen_h),
-      username_box(275, 200, 250, 40, 18, key_s), password_box(275, 270, 250, 40, 18, key_s),
-      login_button(270, 340, 120, 40, "Login", button_s),
-      register_button(410, 340, 120, 40, "Registrar", button_s),
-      view_players_button(210, 400, 180, 40, "Ver Jogadores", button_s),
-      remove_user_button(410, 400, 180, 40, "Remover Usuário", button_s),
+      username_box(275, 250, 250, 40, 18, key_s), password_box(275, 320, 250, 40, 18, key_s),
+      login_button(270, 390, 120, 40, "Login", button_s),
+      register_button(410, 390, 120, 40, "Registrar", button_s),
+      view_players_button(210, 450, 180, 40, "Ver Jogadores", button_s),
+      remove_user_button(410, 450, 180, 40, "Remover Usuário", button_s),
       valid_login(true), go_to_list(false), go_to_register(false), go_to_remove(false), done(false), data(data_ref), empty_field(false) {
   password_box.set_mask(true);
   username_box.set_active(false);
@@ -146,8 +146,8 @@ void login_screen::handle_event(const ALLEGRO_EVENT &ev) {
 
 void login_screen::draw(ALLEGRO_FONT *font) {
   // Desenha título das caixas de texto
-  al_draw_text(font, al_map_rgb(255, 255, 255), 275, 170, 0, "Usuário:");
-  al_draw_text(font, al_map_rgb(255, 255, 255), 275, 240, 0, "Senha:");
+  al_draw_text(font, al_map_rgb(255, 255, 255), 275, 220, 0, "Usuário:");
+  al_draw_text(font, al_map_rgb(255, 255, 255), 275, 290, 0, "Senha:");
 
   // Desenha botões e caixas de texto
   username_box.draw(font);
@@ -162,7 +162,7 @@ void login_screen::draw(ALLEGRO_FONT *font) {
     std::string erro = "Há campos vazios!";
     int erro_w = al_get_text_width(font, erro.c_str());
     int x_erro = 275;
-    int y_erro = 310;
+    int y_erro = 360;
     al_draw_text(font, al_map_rgb(252, 23, 35), x_erro, y_erro, 0,
                  erro.c_str());
   }
@@ -170,7 +170,7 @@ void login_screen::draw(ALLEGRO_FONT *font) {
     std::string erro = "usuário e/ou senha inválidos";
     int erro_w = al_get_text_width(font, erro.c_str());
     int x_erro = 275;
-    int y_erro = 310;
+    int y_erro = 360;
     al_draw_text(font, al_map_rgb(252, 23, 35), x_erro, y_erro, 0,
                  erro.c_str());
   }

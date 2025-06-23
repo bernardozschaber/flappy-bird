@@ -22,7 +22,7 @@
 // -----------------------------------------------------------------------------
 static struct EnsureDummyFile {
     EnsureDummyFile() {
-        std::ofstream f("tests/jogadores_teste.txt", std::ios::trunc);
+        std::ofstream f("../tests/jogadores_teste.txt", std::ios::trunc);
         // usuário válido para login
         f << "0 user pass 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n";
         // usuário existente para registro falhar
@@ -85,7 +85,7 @@ static ALLEGRO_EVENT make_mouse_event(int type, int x, int y) {
 // TEST_CASES
 // -----------------------------------------------------------------------------
 
-registration reg("tests/jogadores_teste.txt");
+registration reg("../tests/jogadores_teste.txt");
 
 TEST_CASE("ui_object::contains() detecta corretamente pontos dentro/fora") {
     // Struct derivada de ui_object para viabilizar testes:
