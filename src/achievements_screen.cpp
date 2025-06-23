@@ -45,7 +45,7 @@ const char * ACHIEVEMENTS_LOCKED[16] = {
     "../assets/UI/achievements/achievements-16-locked.png"
 };  // caminho dos badges de conquistas
 
-const char * BACK_BUTTON[2] = {"..assets/UI/back_button.png", "../assets/UI/back_button_pressed.png"}; // caminho do botão de voltar
+const char * BACK_BUTTON[2] = {"../assets/UI/back_button.png", "../assets/UI/back_button_pressed.png"}; // caminho do botão de voltar
 
 
 // CONSTRUTOR
