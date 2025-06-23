@@ -12,6 +12,7 @@
 #include "home_screen.hpp"
 #include "settings_screen.hpp"
 #include "achievements_screen.hpp"
+#include "menu.hpp"
 
 #include <math.h>
 #include <vector>
@@ -19,6 +20,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <filesystem>
 
 // CONSTANTES PARA CONFIGURAÇÕES GERAIS DO JOGO
 #define FPS 60          // frames por segundo 
@@ -32,7 +34,7 @@ float pipe_object::vel_x = -2.5;
 
 int main(int argc, char **argv) {
     // Arquivo para debug (just in case)
-    std::ofstream debug("debug_log.txt");
+    std::ofstream debug("../debug_log.txt");
     if (!debug.is_open()) {
         std::cout << "Debug file didn't open";
     }
@@ -77,6 +79,7 @@ int main(int argc, char **argv) {
     *mouse_install = al_install_mouse();        // Instalação do mouse
     *audio_install = al_install_audio();        // Instalação do áudio
     *acodec_install = al_init_acodec_addon();   // Instalação do codec de áudio
+    al_reserve_samples(4); // quantos sons simultâneos podem tocar
 
     if(!(*sys_install && *prim_install && *font_install && *ttf_install && *img_install && *keyboard_install && *mouse_install && *audio_install)) {
         debug << "Falha na instalação." << std::endl;
@@ -145,7 +148,7 @@ int main(int argc, char **argv) {
     debug << "\tFontes de eventos registradas com sucesso. \n\tIniciando timer..." << std::endl;
     al_start_timer(timer);
     debug << "\tTimer iniciado com sucesso." << std::endl;
-  
+    
     // CRIAÇÃO DAS TELAS DO JOGO E OS ESTADOS DE CONTROLE
     debug << "\tCriando telas do jogo..." << std::endl;
     states state;
@@ -153,6 +156,8 @@ int main(int argc, char **argv) {
     Home_Screen main_home_screen;   // Criação da home screen
     Achievements_Screen main_achievements_screen; // Criação da tela de conquistas
     settings_screen main_settings_screen; // Criação da tela de configurações
+    registration data("../jogadores.txt"); // Criação do objeto que manipula os dados
+    menu main_menu (SCREEN_W, SCREEN_H, data); // Criação do menu principal
 
     debug << "\tTelas criadas com sucesso." << std::endl;
 
@@ -162,7 +167,7 @@ int main(int argc, char **argv) {
         // ESPERA O EVENTO
         // debug << "Esperando por eventos..." << std::endl;
         al_wait_for_event(queue, &event);
-
+        
         // LEITURA DO EVENTO
         switch(event.type) 
         {
@@ -211,11 +216,32 @@ int main(int argc, char **argv) {
                 break;
         }
 
-        /*
-        if(registration_screen){
+        while(state.registration_screen){
+            if(main_menu.is_login_done())
+                main_menu.reset();
+            while(!main_menu.is_login_done() && state.registration_screen){
+                // Seta o título da janela
+                al_set_window_title(display, "Flappy Bird - Cadastro/Login");
+                al_wait_for_event(queue, &event);
 
+                // Fechar o display encerra o loop
+                if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+                    state.open = false;
+                    state.registration_screen = false;
+                    break;
+                }
+            
+                // Menu lida com o evento ocorrido
+                main_menu.handle_event(event, state.open, &state);
+
+                main_menu.draw(SCREEN_W, SCREEN_H, event);
+
+                if(!state.open)
+                state.registration_screen = false;
+            }
         }
-        */
+        
+        al_set_window_title(display, "Flappy Bird");
         
         // debug << "Processando comandos..." << std::endl;
         if(state.home_screen) {

@@ -17,7 +17,7 @@ menu::~menu() {
     al_destroy_font(pixel_sans);
 }
 
-void menu::handle_event(const ALLEGRO_EVENT &event, bool &is_open) {
+void menu::handle_event(const ALLEGRO_EVENT &event, bool &is_open, states* state) {
     // Encaminha evento de acordo com a tela atual
     if (current == SCREEN_LOGIN) {
         // ESC no menu fecha o programa
@@ -26,6 +26,11 @@ void menu::handle_event(const ALLEGRO_EVENT &event, bool &is_open) {
             return;
         }
         login_scr.handle_event(event);
+        if(login_scr.login_done()){
+            state->registration_screen = false;
+            state->home_screen = true;
+            return;
+        }    
 
         // Se usuário clicou em "Registrar" → vai para tela de registro
         if (login_scr.go_to_register_screen()) {

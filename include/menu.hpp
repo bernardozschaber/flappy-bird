@@ -12,6 +12,7 @@
 #include "player_list_screen.hpp"
 #include "remove_user_screen.hpp"
 #include "menu_audio.hpp"
+#include "game_loop.hpp"
 
 // Enum para decidir a tela atual
 enum screen_type { SCREEN_LOGIN, SCREEN_REGISTER, SCREEN_LIST, SCREEN_REMOVE };
@@ -30,7 +31,7 @@ public:
   ~menu();
 
   // Reune o comportamento de todas as telas em uma única interface
-  void handle_event(const ALLEGRO_EVENT &event, bool &is_open);
+  void handle_event(const ALLEGRO_EVENT &event, bool &is_open, states* state);
 
   // Desenha a tela ativa
   void draw(const int SCREEN_W, const int SCREEN_H, const ALLEGRO_EVENT &event);
