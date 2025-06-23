@@ -252,6 +252,8 @@ int registration::delete_user(std::string user){
 }
 
 int registration::get_max_score(){
+    if(isFileEmpty()) return 0;
+
     int max_score;
 
     users.clear();
@@ -322,6 +324,8 @@ int registration::getline_number(std::string user){
 }
 
 std::string registration::get_max_user(){
+    if(isFileEmpty()) return "";
+    
     std::string user;
     int contador = 0;
 

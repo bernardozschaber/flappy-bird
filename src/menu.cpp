@@ -1,10 +1,10 @@
 #include "menu.hpp"
 
 menu::menu(const int SCREEN_W, const int SCREEN_H, registration &data):
-    sample_button(al_load_sample("assets/audio/button_press.wav")), sample_key(al_load_sample("assets/audio/keyboard_key.wav")),
-    background_menu(al_load_bitmap("assets/scenario/background_login.png")), crown(al_load_bitmap("assets/UI/crown-2.png")), ico_on(al_load_bitmap("assets/UI/sound_on.png")), ico_off(al_load_bitmap("assets/UI/sound_off.png")),
-    ico_on_press(al_load_bitmap("assets/UI/sound_on_pressed.png")), ico_off_press(al_load_bitmap("assets/UI/sound_off_pressed.png")),
-    pixel_sans(al_load_ttf_font("assets/fonts/pixelify_sans.ttf", 20, 0)), current(SCREEN_LOGIN),
+    sample_button(al_load_sample("../assets/audio/button_press.wav")), sample_key(al_load_sample("../assets/audio/keyboard_key.wav")),
+    background_menu(al_load_bitmap("../assets/scenario/background_login.png")), crown(al_load_bitmap("../assets/UI/crown-2.png")), ico_on(al_load_bitmap("../assets/UI/sound_on.png")), ico_off(al_load_bitmap("../assets/UI/sound_off.png")),
+    ico_on_press(al_load_bitmap("../assets/UI/sound_on_pressed.png")), ico_off_press(al_load_bitmap("../assets/UI/sound_off_pressed.png")), main_menu_title(al_load_bitmap("../assets/UI/main_menu_title_text.png")),
+    pixel_sans(al_load_ttf_font("../assets/fonts/pixelify_sans.ttf", 20, 0)), current(SCREEN_LOGIN),
     audio_ctrl(ico_on,ico_off,ico_on_press,ico_off_press,sample_key,sample_button,40, 40, al_get_bitmap_width(ico_on), al_get_bitmap_height(ico_on)),
     login_scr(SCREEN_W, SCREEN_H, data, sample_key, sample_button), register_scr(SCREEN_W, SCREEN_H, data, players, sample_key, sample_button),
     list_scr(SCREEN_W, SCREEN_H, sample_button, crown, players, data), rm_scr(SCREEN_W, SCREEN_H, data, players,sample_key, sample_button), players(data.get_all()) {}
@@ -110,6 +110,12 @@ void menu::draw(const int SCREEN_W, const int SCREEN_H, const ALLEGRO_EVENT &eve
         // Desenho conforme a tela ativa
         if (current == SCREEN_LOGIN) {
             login_scr.draw(pixel_sans);
+            if (main_menu_title) {
+                al_draw_scaled_bitmap(
+                main_menu_title,
+                0,0, al_get_bitmap_width(main_menu_title), al_get_bitmap_height(main_menu_title), 
+                ((SCREEN_W - al_get_bitmap_width(main_menu_title)) / 2), 100, 450, 100, 0);
+            }
         }
         else if (current == SCREEN_REGISTER) {
             register_scr.draw(pixel_sans);
@@ -128,6 +134,8 @@ void menu::draw(const int SCREEN_W, const int SCREEN_H, const ALLEGRO_EVENT &eve
 }
 
 bool menu::is_login_done() const { return login_scr.login_done(); }
+
+player menu::get_logged_user() { return login_scr.get_logged_user(); }
 
 void menu::reset() {
     login_scr.reset();

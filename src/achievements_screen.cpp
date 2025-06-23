@@ -6,24 +6,24 @@
 
 // CONSTANTES DE PATH
 
-const char * ACHIEVEMENTS_SCREEN_FRAME = {"assets/UI/achievements/achievements_screen_frame.png"}; // caminho do frame da tela de achievements
+const char * ACHIEVEMENTS_SCREEN_FRAME = {"../assets/UI/achievements/achievements_screen_frame.png"}; // caminho do frame da tela de achievements
 const char * ACHIEVEMENTS_BADGES[16] = {
-    "assets/UI/achievements/achievements-01.png", 
-    "assets/UI/achievements/achievements-02.png", 
-    "assets/UI/achievements/achievements-03.png", 
-    "assets/UI/achievements/achievements-04.png",
-    "assets/UI/achievements/achievements-05.png",
-    "assets/UI/achievements/achievements-06.png",
-    "assets/UI/achievements/achievements-07.png",       
-    "assets/UI/achievements/achievements-08.png",
-    "assets/UI/achievements/achievements-09.png",
-    "assets/UI/achievements/achievements-10.png",
-    "assets/UI/achievements/achievements-11.png",
-    "assets/UI/achievements/achievements-12.png",
-    "assets/UI/achievements/achievements-13.png",
-    "assets/UI/achievements/achievements-14.png",
-    "assets/UI/achievements/achievements-15.png",
-    "assets/UI/achievements/achievements-16.png"
+    "../assets/UI/achievements/achievements-01.png", 
+    "../assets/UI/achievements/achievements-02.png", 
+    "../assets/UI/achievements/achievements-03.png", 
+    "../assets/UI/achievements/achievements-04.png",
+    "../assets/UI/achievements/achievements-05.png",
+    "../assets/UI/achievements/achievements-06.png",
+    "../assets/UI/achievements/achievements-07.png",       
+    "../assets/UI/achievements/achievements-08.png",
+    "../assets/UI/achievements/achievements-09.png",
+    "../assets/UI/achievements/achievements-10.png",
+    "../assets/UI/achievements/achievements-11.png",
+    "../assets/UI/achievements/achievements-12.png",
+    "../assets/UI/achievements/achievements-13.png",
+    "../assets/UI/achievements/achievements-14.png",
+    "../assets/UI/achievements/achievements-15.png",
+    "../assets/UI/achievements/achievements-16.png"
 };  // caminho dos badges de conquistas
 
 

@@ -5,36 +5,36 @@
 #include <iostream>
 
 // CONSTANTES DE PATH 
-const char * ARIAL_FONT_FILEPATH = "assets/fonts/arial.ttf";                                                            // caminho para a fonte arial
-const char * PSANS_FONT_FILEPATH = "assets/fonts/pixelify_sans.ttf";                                                    // caminho para a fonte pixelify sans
-const char * BIRD_SPRITE[6] = {"assets/bird-1.png","assets/bird-2.png","assets/bird-3.png","assets/bird-4.png","assets/bird-3.png","assets/bird-2.png"};  // bitmap do sprite do pássaro
-const char * PIPE_SPRITE = "assets/pipe.png";                                                                     // caminho do sprite do cano
-const char * GOLDEN_PIPE_SPRITE = "assets/pipe_golden.png";                                                       // caminho do sprite do cano dourado
-const char * MOUNTAIN_SPRITE_1 = "assets/scenario/mountains_1.png";                                                        // caminho das montanhas (da frente)
-const char * MOUNTAIN_SPRITE_2 = "assets/scenario/mountains_2.png";                                                        // caminho das montanhas (do meio)
-const char * MOUNTAIN_SPRITE_3 = "assets/scenario/mountains_3.png";                                                        // caminho das montanhas (de trás)
-const char * GRASS_SPRITE = "assets/scenario/grama.png";                                                                   // caminho da grama
-const char * ACHIEVEMENTS_BUTTON_SPRITE[2] = {"assets/UI/achievements_button.png","assets/UI/achievements_button_pressed.png"};                                       // caminho do botão de conquistas
-const char * BACK_BUTTON_SPRITE[2] = {"assets/UI/back_button.png","assets/UI/back_button_pressed.png"};                                                       // caminho do botão de voltar
-const char * SETTINGS_BUTTON_SPRITE[2] = {"assets/UI/settings_button.png","assets/UI/settings_button_pressed.png"};                                               // caminho do botão de configurações
-const char * INSTRUÇÕES_SPRITE = "assets/UI/instruções.png";                                                         // caminho das instruções
-const char * SCORE_SPRITE = "assets/UI/score_text.png";                                                                   // caminho da tela de morte
-const char * HOME_SPRITE[2]= {"assets/UI/home_button.png","assets/UI/home_button_pressed.png"};                                                                      // caminho do sprite de home
-const char * BACKGROUND = "assets/scenario/background.png";                                                                          // caminho do sprite do fundo
-const char * NUMBERS_SPRITES[10] = {"assets/UI/num_0.png", "assets/UI/num_1.png", "assets/UI/num_2.png", "assets/UI/num_3.png",  
-                                    "assets/UI/num_4.png", "assets/UI/num_5.png", "assets/UI/num_6.png", "assets/UI/num_7.png", 
-                                    "assets/UI/num_8.png", "assets/UI/num_9.png"};                                                              // caminho dos números 
-const char * SOUND_BUTTON_SPRITE[4] = {"assets/UI/sound_on.png", "assets/UI/sound_off.png", "assets/UI/sound_on_pressed.png", "assets/UI/sound_off_pressed.png"};                            // caminho do botão de som ligado/desligado
-const char * PAUSE_BUTTON_SPRITE[4] = {"assets/UI/pause_button.png", "assets/UI/resume_button.png", "assets/UI/pause_button_pressed.png", "assets/UI/resume_button_pressed.png"};                    // caminho do botão de pause/despause
-const char * DEATH_SCREEN_FRAME = "assets/UI/death_screen_frame.png";   // caminho do frame da tela de morte
-const char * TRY_AGAIN_BUTTON_SPRITE[2] = {"assets/UI/de_novo_button.png","assets/UI/de_novo_button_pressed.png"};  // caminho do botão de jogar de novo
-const char * BEST_SCORE_TEXT = "assets/UI/best_score_text.png"; // caminho do texto de melhor pontuação (tela de morte)
-const char * NEW_BEST_TEXT = "assets/UI/new_best_text.png"; // caminho do texto de novo recorde (tela de morte) 
-const char * SCORE_NOW = "assets/UI/score_text.png";
-const char * MAX_SCORE = "assets/UI/max_score_text.png";
-const char * PAUSED = "assets/UI/paused_text.png";
-const char * SCORE_BOX_1 = "assets/UI/score_box_1.png";
-const char * SCORE_BOX_2 = "assets/UI/score_box_2.png";
+const char * ARIAL_FONT_FILEPATH = "../assets/fonts/arial.ttf";                                                            // caminho para a fonte arial
+const char * PSANS_FONT_FILEPATH = "../assets/fonts/pixelify_sans.ttf";                                                    // caminho para a fonte pixelify sans
+const char * BIRD_SPRITE[6] = {"../assets/bird-1.png","../assets/bird-2.png","../assets/bird-3.png","../assets/bird-4.png","../assets/bird-3.png","../assets/bird-2.png"};  // bitmap do sprite do pássaro
+const char * PIPE_SPRITE = "../assets/pipe.png";                                                                     // caminho do sprite do cano
+const char * GOLDEN_PIPE_SPRITE = "../assets/pipe_golden.png";                                                       // caminho do sprite do cano dourado
+const char * MOUNTAIN_SPRITE_1 = "../assets/scenario/mountains_1.png";                                                        // caminho das montanhas (da frente)
+const char * MOUNTAIN_SPRITE_2 = "../assets/scenario/mountains_2.png";                                                        // caminho das montanhas (do meio)
+const char * MOUNTAIN_SPRITE_3 = "../assets/scenario/mountains_3.png";                                                        // caminho das montanhas (de trás)
+const char * GRASS_SPRITE = "../assets/scenario/grama.png";                                                                   // caminho da grama
+const char * ACHIEVEMENTS_BUTTON_SPRITE[2] = {"../assets/UI/achievements_button.png","../assets/UI/achievements_button_pressed.png"};                                       // caminho do botão de conquistas
+const char * BACK_BUTTON_SPRITE[2] = {"../assets/UI/back_button.png","../assets/UI/back_button_pressed.png"};                                                       // caminho do botão de voltar
+const char * SETTINGS_BUTTON_SPRITE[2] = {"../assets/UI/settings_button.png","../assets/UI/settings_button_pressed.png"};                                               // caminho do botão de configurações
+const char * INSTRUÇÕES_SPRITE = "../assets/UI/instruções.png";                                                         // caminho das instruções
+const char * SCORE_SPRITE = "../assets/UI/score_text.png";                                                                   // caminho da tela de morte
+const char * HOME_SPRITE[2]= {"../assets/UI/home_button.png","../assets/UI/home_button_pressed.png"};                                                                      // caminho do sprite de home
+const char * BACKGROUND = "../assets/scenario/background.png";                                                                          // caminho do sprite do fundo
+const char * NUMBERS_SPRITES[10] = {"../assets/UI/num_0.png", "../assets/UI/num_1.png", "../assets/UI/num_2.png", "../assets/UI/num_3.png",  
+                                    "../assets/UI/num_4.png", "../assets/UI/num_5.png", "../assets/UI/num_6.png", "../assets/UI/num_7.png", 
+                                    "../assets/UI/num_8.png", "../assets/UI/num_9.png"};                                                              // caminho dos números 
+const char * SOUND_BUTTON_SPRITE[4] = {"../assets/UI/sound_on.png", "../assets/UI/sound_off.png", "../assets/UI/sound_on_pressed.png", "../assets/UI/sound_off_pressed.png"};                            // caminho do botão de som ligado/desligado
+const char * PAUSE_BUTTON_SPRITE[4] = {"../assets/UI/pause_button.png", "../assets/UI/resume_button.png", "../assets/UI/pause_button_pressed.png", "../assets/UI/resume_button_pressed.png"};                    // caminho do botão de pause/despause
+const char * DEATH_SCREEN_FRAME = "../assets/UI/death_screen_frame.png";   // caminho do frame da tela de morte
+const char * TRY_AGAIN_BUTTON_SPRITE[2] = {"../assets/UI/de_novo_button.png","../assets/UI/de_novo_button_pressed.png"};  // caminho do botão de jogar de novo
+const char * BEST_SCORE_TEXT = "../assets/UI/best_score_text.png"; // caminho do texto de melhor pontuação (tela de morte)
+const char * NEW_BEST_TEXT = "../assets/UI/new_best_text.png"; // caminho do texto de novo recorde (tela de morte) 
+const char * SCORE_NOW = "../assets/UI/score_text.png";
+const char * MAX_SCORE = "../assets/UI/max_score_text.png";
+const char * PAUSED = "../assets/UI/paused_text.png";
+const char * SCORE_BOX_1 = "../assets/UI/score_box_1.png";
+const char * SCORE_BOX_2 = "../assets/UI/score_box_2.png";
 
 
 // CONSTANTES DE PROPRIEDADE PARA OBJETOS DO CENÁRIO
@@ -123,12 +123,12 @@ std::uniform_int_distribution<> dis(0, 384);
         // Inicialização dos sons
         al_reserve_samples(5);
 
-        flap_sound = al_load_sample("assets/audio/flap.wav");
-        score_sound = al_load_sample("assets/audio/point.wav");
-        golden_score_sound = al_load_sample("assets/audio/gold_point.wav");
-        // death_sound = al_load_sample("assets/audio/death.wav");
-        death_screen_point_sound = al_load_sample("assets/audio/death_screen_point_up.wav");
-        high_score_sound = al_load_sample("assets/audio/high_score.wav");
+        flap_sound = al_load_sample("../assets/audio/flap.wav");
+        score_sound = al_load_sample("../assets/audio/point.wav");
+        golden_score_sound = al_load_sample("../assets/audio/gold_point.wav");
+        // death_sound = al_load_sample("../assets/audio/death.wav");
+        death_screen_point_sound = al_load_sample("../assets/audio/death_screen_point_up.wav");
+        high_score_sound = al_load_sample("../assets/audio/high_score.wav");
             
         // Criação do pássaro e inserção no vetor de objetos
         birdo=new bird_object(SCREEN_W/2, SCREEN_H/2, al_get_bitmap_width(bird_animation_sprite[0]), 

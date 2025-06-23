@@ -214,3 +214,14 @@
     Sam (game_loop, home_screen):
         - Agora a tela de morte te mostra sua melhor pontuação caso não tenha feito um novo best
         - Botão de estatísticas agora tem funcionalidade na home screen
+
+    Pedro(cpp's que continham chamada de assets, registration):
+        - Adicionado o prefixo './/' no caminho para suportar a geração dos executáveis dentro da pasta bin
+        - Mudança do Makefile para suporte ao bin(partes do bin estavam comentandas)
+        - Verificação de arquivo vazio nos métodos de retorno do max_user
+
+23-06-2025
+    Matsura (src,include,assets)
+        - Melhoria visual do menu
+        - Modelagem (CRC) do menu
+        - Melhor suporte ao jogo da classe menu

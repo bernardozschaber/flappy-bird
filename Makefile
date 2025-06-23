@@ -14,7 +14,7 @@ PKG_LIBS    := `pkg-config --libs allegro-5 allegro_main-5 allegro_audio-5 alleg
 SRC_DIR     := src
 INC_DIR     := include
 OBJ_DIR     := obj
-# BIN_DIR     := bin
+BIN_DIR     := bin
 TEST_DIR    := tests
 
 # -------------------------------------------------------------------------
@@ -73,18 +73,18 @@ TESTMM_OBJ  := $(OBJ_DIR)/test_main_menu.o
 # -------------------------------------------------------------------------
 .PHONY: all clean dirs
 
-all: dirs main main_menu	
-     #$(BIN_DIR)/main \
-     #$(BIN_DIR)/main_menu \
-     #$(BIN_DIR)/testregistration \
-     #$(BIN_DIR)/test_main_menu
+all: dirs \
+    $(BIN_DIR)/main \
+    $(BIN_DIR)/main_menu \
+    $(BIN_DIR)/testregistration \
+    $(BIN_DIR)/test_main_menu
 
 # -------------------------------------------------------------------------
 # 5) Criação de Diretórios
 # -------------------------------------------------------------------------
 dirs:
 	mkdir -p $(OBJ_DIR)
-
+	mkdir -p $(BIN_DIR)
 # -------------------------------------------------------------------------
 # 6) Regras de Compilação Genéricas (.cpp → .o)
 # -------------------------------------------------------------------------
@@ -99,32 +99,20 @@ $(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp | dirs
 # 7) Linkagem de Binários
 # -------------------------------------------------------------------------
 # 7.1) Executável Principal do Jogo
-main: $(MAIN_OBJ) $(GAME_OBJS)
+$(BIN_DIR)/main: $(MAIN_OBJ) $(GAME_OBJS)
 	$(CXX) $^ -o $@ $(PKG_LIBS)
-
-#$(BIN_DIR)/main: $(MAIN_OBJ) $(GAME_OBJS)
-#	$(CXX) $^ -o $@ $(PKG_LIBS)
 
 # 7.2) Executável do Menu Principal
-main_menu: $(MAIN_MENU_OBJ) $(MENU_OBJS)
+$(BIN_DIR)/main_menu: $(MAIN_MENU_OBJ) $(MENU_OBJS)
 	$(CXX) $^ -o $@ $(PKG_LIBS)
-
-#$(BIN_DIR)/main_menu: $(MAIN_MENU_OBJ) $(MENU_OBJS)
-#	$(CXX) $^ -o $@ $(PKG_LIBS)
 
 # 7.3) Teste da Classe registration
-testregistration: $(TESTREG_OBJ) $(OBJ_DIR)/registration.o
+$(BIN_DIR)/testregistration: $(TESTREG_OBJ) $(OBJ_DIR)/registration.o
 	$(CXX) $^ -o $@ $(PKG_LIBS)
-
-#$(BIN_DIR)/testregistration: $(TESTREG_OBJ) $(OBJ_DIR)/registration.o
-#	$(CXX) $^ -o $@ $(PKG_LIBS)
 
 # 7.4) Teste do Menu Principal
-test_main_menu: $(TESTMM_OBJ) $(MENU_OBJS)
+$(BIN_DIR)/test_main_menu: $(TESTMM_OBJ) $(MENU_OBJS)
 	$(CXX) $^ -o $@ $(PKG_LIBS)
-
-#$(BIN_DIR)/test_main_menu: $(TESTMM_OBJ) $(MENU_OBJS)
-#	$(CXX) $^ -o $@ $(PKG_LIBS)
 
 # -------------------------------------------------------------------------
 # 8) Inclusão Automática de Dependências
@@ -136,6 +124,5 @@ test_main_menu: $(TESTMM_OBJ) $(MENU_OBJS)
 # -------------------------------------------------------------------------
 clean:
 	rm -rf $(OBJ_DIR)
-	rm main
-	rm main_menu
+	rm -rf $(BIN_DIR)
 

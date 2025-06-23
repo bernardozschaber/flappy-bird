@@ -7,11 +7,11 @@
 #include <iostream>
 
 // CONSTANTES DE PATH
-const char * PLAY_BUTTON_SPRITE[2] = {"assets/UI/play_button.png", "assets/UI/play_button_pressed.png"}; // caminho do botão de jogar
-const char * STATISTICS_BUTTON_SPRITE[2] = {"assets/UI/statistics_button.png", "assets/UI/statistics_button_pressed.png"}; // caminho do botão de achievements
-const char * LOGOUT_BUTTON_SPRITE[2] = {"assets/UI/logout_button.png", "assets/UI/logout_button_pressed.png"}; // caminho do botão de logout
-const char * HOME_SCREEN_FRAME = {"assets/UI/title_screen_frame.png"};  // caminho para o frame da tela de início
-const char * TITLE_SPRITE = {"assets/UI/title_text.png"};               // caminho para o título do jogo
+const char * PLAY_BUTTON_SPRITE[2] = {"../assets/UI/play_button.png", "../assets/UI/play_button_pressed.png"}; // caminho do botão de jogar
+const char * STATISTICS_BUTTON_SPRITE[2] = {"../assets/UI/statistics_button.png", "../assets/UI/statistics_button_pressed.png"}; // caminho do botão de achievements
+const char * LOGOUT_BUTTON_SPRITE[2] = {"../assets/UI/logout_button.png", "../assets/UI/logout_button_pressed.png"}; // caminho do botão de logout
+const char * HOME_SCREEN_FRAME = {"../assets/UI/title_screen_frame.png"};  // caminho para o frame da tela de início
+const char * TITLE_SPRITE = {"../assets/UI/title_text.png"};               // caminho para o título do jogo
 
 // VARIÁVEIS EXTRAS
 int statistics_screen_spawn_x = SCREEN_W+192;   // Posição X do spawn da tela de estatísticas

@@ -2,8 +2,8 @@
 #include <iostream>
     
     slider::slider(ALLEGRO_BITMAP** back_sprite, ALLEGRO_BITMAP** indicator_sprite, ALLEGRO_BITMAP* show_, float x, float y, float variation_, bool show_number_, float disp_h_, float disp_v_, float scale_, float min_value_, float max_value_, float value_, bool is_int_): ui_object(x,y,al_get_bitmap_width(back_sprite[0]),al_get_bitmap_height(back_sprite[0])), is_pressed(0), variation(variation_), show_number(show_number_), disp_h(disp_h_), disp_v(disp_v_), scale(scale_), min_value(min_value_), max_value(max_value_), value(value_), is_int(is_int_), pos_indicator((value_-min_value_)/((max_value_-min_value_)/variation_)), show(show_){
-        up_heaval = al_load_ttf_font("assets/fonts/upheavtt.ttf", 24, 0);  
-        departure = al_load_ttf_font("assets/fonts/DepartureMono-Regular.otf", 18, 0); 
+        up_heaval = al_load_ttf_font("../assets/fonts/upheavtt.ttf", 24, 0);  
+        departure = al_load_ttf_font("../assets/fonts/DepartureMono-Regular.otf", 18, 0); 
         for (int a=0; a<2; a++){
             back[a]=back_sprite[a];
             indicator[a]=indicator_sprite[a];
