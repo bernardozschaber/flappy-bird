@@ -33,8 +33,9 @@ class Home_Screen {
         ALLEGRO_BITMAP* statistics_button_sprite[2];          // Bitmap do botão de estatísticas (stats)
         ALLEGRO_BITMAP* logout_button_sprite[2];              // Bitmap do botão de logout
 
-        // Fonte principal do jogo
-        ALLEGRO_FONT* pixel_sans;                             // Fonte principal do jogo
+        // Fontes usadas
+        ALLEGRO_FONT* title_font;                             // Fonte de título
+        ALLEGRO_FONT* regular_text_font;                      // Fonte de texto regular
 
     public:
         Home_Screen();      // Construtor

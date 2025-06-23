@@ -211,5 +211,6 @@
         - Correção de bugs da interface
         - Implementação completa do doctest da interface do menu
 
-    Sam (game_loop):
+    Sam (game_loop, home_screen):
         - Agora a tela de morte te mostra sua melhor pontuação caso não tenha feito um novo best
+        - Botão de estatísticas agora tem funcionalidade na home screen
