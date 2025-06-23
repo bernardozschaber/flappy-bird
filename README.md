@@ -3,9 +3,17 @@
 </p>
 
 # 🎮 Flappy Bird C++ com Allegro
+---
+<p align="center">
+  <img src="assets/pipe_up.png" alt="Exemplo do cano" width="5%"/>
+</p>
 
 <p align="left">
-  <img src="assets/bird-3.png" alt="Pássaro do Jogo" width="20%"/>
+  <img src="assets/bird-3.png" alt="Pássaro do Jogo" width="5%"/>
+</p>
+
+<p align="center">
+  <img src="assets/pipe_down.png" alt="Exemplo do cano" width="5%"/>
 </p>
 
 ---
@@ -30,6 +38,7 @@ O sistema deve permitir:
 ---
 
 ## 📂 Estrutura do projeto
+```sh
 ├─ assets/ # Imagens, sons e fontes
 │ ├─ audio # Arquivos de audio
 │ │  ├─ button_press.wav
@@ -63,7 +72,7 @@ O sistema deve permitir:
 ├─ obj/ # objetos
 ├─ tests/ # testes com doctest
 └─ Makefile # regras de compilação
-
+```
 ---
 ## ⚙️ Visão Geral da Solução
 ### Principais Componentes
