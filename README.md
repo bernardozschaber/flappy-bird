@@ -1,6 +1,16 @@
-# "Flappy Birdo" C++ com Allegro
+<p align="center">
+  <img src="assets/UI/main_menu_title_text.png" alt="Banner do Jogo" width="80%"/>
+</p>
 
-## Descrição do Problema
+# 🎮 Flappy Bird C++ com Allegro
+
+<p align="center">
+  <img src="assets/bird-3.png" alt="Pássaro do Jogo" width="100%"/>
+</p>
+
+---
+
+## 📋 Descrição do Problema
 O objetivo deste projeto é implementar uma versão simplificada do jogo **Flappy Bird**, aliando:
 
 1. **Padrão Orientado a Objetos** em C++, com hierarquias de classes para tela de jogo e UI.  
@@ -19,31 +29,64 @@ O sistema deve permitir:
 
 ---
 
-## Visão Geral da Solução
+## 📂 Estrutura do projeto
+├─ assets/ # Imagens, sons e fontes
+│ ├─ audio # Arquivos de audio
+│ │  ├─ button_press.wav
+│ │  ├─ point.wav
+│ │  └─ ...
+│ ├─ UI # Imagens de interface
+│ │  ├─ achievements # Sprites das conquistas
+│ │  │  ├─ achievements-01.png
+│ │  │  ├─ achievements-02.png
+│ │  │  └─ ...
+│ │  ├─ score_box-1.png
+│ │  ├─ home_button.png
+│ │  └─ ...
+│ ├─ fonts # Fontes utilizadas
+│ │  ├─ pixelify_sans.ttf
+│ │  └─ ...
+│ ├─ scenario # Backgrounds
+│ │  ├─ background.png
+│ │  ├─ background_login.png
+│ │  └─ ...
+│ ├─ bird-1.png
+│ ├─ bird-2.png
+│ ├─ pipe.png
+│ ├─ pipe_golden.png
+│ └─ ... # Sprites básicos da animação do pássaro
+├─ include/ # headers (.hpp)
+├─ src/ # fontes (.cpp)
+├─ bin/ # executáveis
+├─ modeling/ # pdf's com a modelagem do projeto
+├─ jogadores.txt # dados dos jogadores para persistência entre execuções
+├─ obj/ # objetos
+├─ tests/ # testes com doctest
+└─ Makefile # regras de compilação
+
+---
+## ⚙️ Visão Geral da Solução
 ### Principais Componentes
 #### Menu Principal / Registro:
-- **`ui_object`**  
-  Classe abstrata genêrica para definir objetos de interface.  
-- **`text_box`** e **`button`**  
-  Herdeiros de `ui_object`, tratam entrada de texto e cliques, com lógica de foco, máscara de senha e sons.  
-- **Telas (`*_screen`)**  
-  - **`login_screen`**: login + botões → registrar, listar, remover.  
-  - **`register_screen`**: nome + senha + confirm, botões → registrar, cancelar.  
-  - **`player_list_screen`**: mostra 14 jogadores/página, botões Next/Back (ativados/desativados) + voltar.  
-  - **`remove_user_screen`**: *fase 1:* usuário + confirm, botões → *fase 2:* remover, confirmar, cancelar.  
-- **`menu_audio`**  
-  Gerencia quatro bitmaps (on/off + pressed) e controla áudio de UI do menu.
-- **`registration`**  
-  Lê/grava arquivo `.txt` com métodos para
-- **`menu`**  
-  Encapsula `enum` de telas, instancia objetos de UI e faz mudança de estado.  
+| Componente             | Responsabilidade                                      |
+|------------------------|-------------------------------------------------------|
+| **ui_object**          | Base para todos os elementos de interface             |
+| **text_box / button**  | Entrada de texto e botões com feedback sonoro         |
+| **login_screen**       | Tela de login + navegação para outras telas           |
+| **register_screen**    | Cadastro de novos jogadores                           |
+| **player_list_screen** | Listagem paginada, coroação de recordistas            |
+| **remove_user_screen** | Remoção com confirmação de senha                      |
+| **menu_audio**         | Gerenciamento de som e botão de mute/unmute           |
+| **registration**       | Persistência em arquivo de jogadores                  |
+| **menu**               | Controle de fluxo entre telas                         |
+
 #### Jogo
--
+
   
 
 ---
 
-## Principais Dificuldades Encontradas
+## 🛠️ Principais Dificuldades Encontradas
 
 1. **Persistência em Arquivo**  
    Manter `std::fstream` sem corromper dados e tratar erros de I/O.  
@@ -53,7 +96,7 @@ O sistema deve permitir:
     Criar uma lógica que fosse capaz de listar todos os jogadores considerando um espaço finito da tela 800x600 disponível.
 ---
 
-## Extras Implementados
+## ✨ Extras Implementados
 
 - **Melhoria da parte gráfica:** Sprites personalizados para botões e objetos do jogo.
 - **Sistema de conquistas:** Conquistas que consideram dados persistentes entre execuções do programa.
@@ -61,7 +104,7 @@ O sistema deve permitir:
 
 ---
 
-## Como Compilar e Executar
+## ▶️ Como Compilar e Executar
 
 1. **Pré-requisitos**  
    - Allegro 5 (+ addons audio, image, ttf, primitives, acodec)  
