@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
 }
 
 //Arquivo vazio
-registration registro("jogadores.txt");
+registration registro("../jogadores.txt");
 
 TEST_CASE("testing if file is open") {
     REQUIRE(registro.isOpenFile() == 1);

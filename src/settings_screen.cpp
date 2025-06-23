@@ -6,12 +6,12 @@
 #include "game_loop.hpp"
 
 // CONSTANTES DE PATH
-const char * BACK_SPRITE[2] = {"assets/UI/back_not.png", "assets/UI/back_yes.png"}; // caminho do botão de jogar
-const char * INDICATOR_SPRITE[2] = {"assets/UI/indicator.png", "assets/UI/indicator_pressed.png"};;
-//const char * BACK_BUTTON_SPRITE[2] = {"assets/UI/back_button.png", "assets/UI/back_button_pressed.png"};
-const char * SETTINGS_SCREEN_FRAME = {"assets/UI/settings_background.png"};                            // caminho para o frame da tela de início
-const char * TITLE_SETTINGS_SPRITE = {"assets/UI/settings_title.png"};                                                // caminho para o título do jogo
-const char* SHOW_SPRITE = {"assets/UI/show.png"};
+const char * BACK_SPRITE[2] = {"../assets/UI/back_not.png", "../assets/UI/back_yes.png"}; // caminho do botão de jogar
+const char * INDICATOR_SPRITE[2] = {"../assets/UI/indicator.png", "../assets/UI/indicator_pressed.png"};;
+//const char * BACK_BUTTON_SPRITE[2] = {"../assets/UI/back_button.png", "../assets/UI/back_button_pressed.png"};
+const char * SETTINGS_SCREEN_FRAME = {"../assets/UI/settings_background.png"};                            // caminho para o frame da tela de início
+const char * TITLE_SETTINGS_SPRITE = {"../assets/UI/settings_title.png"};                                                // caminho para o título do jogo
+const char* SHOW_SPRITE = {"../assets/UI/show.png"};
 
 // CONSTRUTOR
 settings_screen::settings_screen() {

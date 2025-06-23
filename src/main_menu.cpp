@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
     al_register_event_source(queue, al_get_mouse_event_source());           // Eventos do mouse
 
     // Inicia objeto que manipula os arquivos
-    registration data("jogadores.txt");
+    registration data("../jogadores.txt");
    
     // Variável que controla a condição do programa estar aberto
     bool is_open = true;
