@@ -229,3 +229,7 @@
 
     Matsura(README.md)
         - Inicio da criação do arquivo README
+
+    Pedro(testregistration.cpp, registro_teste.txt): 
+        - Criação de um novo arquivo txt para uso no teste da classe registration
+        - Adaptação do teste para comportar o novo arquivo

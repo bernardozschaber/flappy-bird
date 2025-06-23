@@ -2,7 +2,7 @@
 #include "doctest.h"
 #include "registration.hpp"
 
-//ANTES DE INICIAR OS TESTES DEIXE O ARQUIVO .TXT VAZIO
+//ANTES DE INICIAR OS TESTES, VERIFIQUE SE O ARQUIVO "registro_teste.txt" ESTÁ VAZIO
 
 //Main para definir flags 
 int main(int argc, char** argv) {
@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
 }
 
 //Arquivo vazio
-registration registro("../jogadores.txt");
+registration registro("../tests/registro_teste.txt");
 
 TEST_CASE("testing if file is open") {
     REQUIRE(registro.isOpenFile() == 1);
