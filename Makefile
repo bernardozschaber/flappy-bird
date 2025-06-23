@@ -34,11 +34,7 @@ GAME_SRCS   := \
     home_screen.cpp \
     achievements_screen.cpp \
     settings_screen.cpp \
-    slider.cpp
-
-MAIN_SCR := main.cpp
-
-MAIN_OBJ := $(addprefix $(OBJ_DIR)/, $(MAIN_SCR:.cpp=.o))  
+    slider.cpp 
 
 GAME_OBJS   := $(addprefix $(OBJ_DIR)/, $(GAME_SRCS:.cpp=.o))
 
@@ -55,13 +51,14 @@ MENU_SRCS   := \
     player_list_screen.cpp \
     registration.cpp
 
-MAIN_MENU_SCR := main_menu.cpp
-
-MAIN_MENU_OBJ := $(addprefix $(OBJ_DIR)/, $(MAIN_MENU_SCR:.cpp=.o))  
-
 MENU_OBJS   := $(addprefix $(OBJ_DIR)/, $(MENU_SRCS:.cpp=.o))
 
-# 3.3) Testes
+# 3.3) Main
+MAIN_SCR := main.cpp
+
+MAIN_OBJ := $(addprefix $(OBJ_DIR)/, $(MAIN_SCR:.cpp=.o))  
+
+# 3.4) Testes
 TESTREG_SRC := $(TEST_DIR)/testregistration.cpp
 TESTMM_SRC  := $(TEST_DIR)/test_main_menu.cpp
 
@@ -75,7 +72,6 @@ TESTMM_OBJ  := $(OBJ_DIR)/test_main_menu.o
 
 all: dirs \
     $(BIN_DIR)/main \
-    $(BIN_DIR)/main_menu \
     $(BIN_DIR)/testregistration \
     $(BIN_DIR)/test_main_menu
 
@@ -99,18 +95,14 @@ $(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp | dirs
 # 7) Linkagem de Binários
 # -------------------------------------------------------------------------
 # 7.1) Executável Principal do Jogo
-$(BIN_DIR)/main: $(MAIN_OBJ) $(GAME_OBJS)
+$(BIN_DIR)/main: $(MAIN_OBJ) $(GAME_OBJS) $(MENU_OBJS)
 	$(CXX) $^ -o $@ $(PKG_LIBS)
 
-# 7.2) Executável do Menu Principal
-$(BIN_DIR)/main_menu: $(MAIN_MENU_OBJ) $(MENU_OBJS)
-	$(CXX) $^ -o $@ $(PKG_LIBS)
-
-# 7.3) Teste da Classe registration
+# 7.2) Teste da Classe registration
 $(BIN_DIR)/testregistration: $(TESTREG_OBJ) $(OBJ_DIR)/registration.o
 	$(CXX) $^ -o $@ $(PKG_LIBS)
 
-# 7.4) Teste do Menu Principal
+# 7.3) Teste do Menu Principal
 $(BIN_DIR)/test_main_menu: $(TESTMM_OBJ) $(MENU_OBJS)
 	$(CXX) $^ -o $@ $(PKG_LIBS)
 
