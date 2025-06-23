@@ -5,7 +5,7 @@
 # 🎮 Flappy Bird C++ com Allegro
 
 <p align="center">
-  <img src="assets/bird-3.png" alt="Pássaro do Jogo" width="100%"/>
+  <img src="assets/bird-3.png" alt="Pássaro do Jogo" width="60%"/>
 </p>
 
 ---
