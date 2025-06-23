@@ -11,6 +11,7 @@ const char * INDICATOR_SPRITE[2] = {"assets/UI/indicator.png", "assets/UI/indica
 //const char * BACK_BUTTON_SPRITE[2] = {"assets/UI/back_button.png", "assets/UI/back_button_pressed.png"};
 const char * SETTINGS_SCREEN_FRAME = {"assets/UI/settings_background.png"};                            // caminho para o frame da tela de início
 const char * TITLE_SETTINGS_SPRITE = {"assets/UI/settings_title.png"};                                                // caminho para o título do jogo
+const char* SHOW_SPRITE = {"assets/UI/show.png"};
 
 // CONSTRUTOR
 settings_screen::settings_screen() {
@@ -22,6 +23,7 @@ settings_screen::settings_screen() {
     background_sprite = al_load_bitmap(BACKGROUND);
     settings_frame_sprite = al_load_bitmap(SETTINGS_SCREEN_FRAME);
     title_settings_sprite = al_load_bitmap(TITLE_SETTINGS_SPRITE);
+    show_sprite = al_load_bitmap(SHOW_SPRITE);
     back_sprite[0] = al_load_bitmap(BACK_SPRITE[0]);                      
     back_sprite[1] = al_load_bitmap(BACK_SPRITE[1]);
     indicator_sprite[0] = al_load_bitmap(INDICATOR_SPRITE[0]);              
@@ -29,9 +31,7 @@ settings_screen::settings_screen() {
     back_button_sprite[0] = al_load_bitmap(BACK_BUTTON_SPRITE[0]);                
     back_button_sprite[1] = al_load_bitmap(BACK_BUTTON_SPRITE[1]);  
     
-    // Carregamento da fonte
-    ALLEGRO_FONT *pixel_sans = al_load_ttf_font(PSANS_FONT_FILEPATH, 20, 0);   
-
+    
     // Criação dos objetos de fundo
     background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
     background_objects_3.push_back(new background_object(al_get_bitmap_width(mountain_sprite_3)*3/2, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));              
@@ -55,12 +55,20 @@ settings_screen::settings_screen() {
 
     // Criação de  elementos de UI (imagens)
     images.push_back(new image(settings_frame_sprite, SCREEN_W/2, SCREEN_H/2));
-    images.push_back(new image(title_settings_sprite, SCREEN_W/2, 110));
+    images.push_back(new image(title_settings_sprite, SCREEN_W/2, 70));
 
     // Criação de  elementos de UI (imagens)   
     buttons.push_back(new moving_button(60, SCREEN_H-55, back_button_sprite[0]));
     
-    slides.push_back(new slider(back_sprite,indicator_sprite,SCREEN_W/2,SCREEN_H/2,210,1,0,0,1,10,50,30,0));
+    slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,200,160,210,1,0,0,1,0,100,100,1)); //Volume
+    slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,200,260,210,1,0,0,1,1,50,10,1)); //Força do pulo
+    slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,200,360,210,1,0,0,1,1,50,15,1)); //Velocidade Máxima do passáro
+    slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,200,460,210,1,0,0,1,1,20,7,1));  //Gravidade
+    slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,560,160,210,1,0,0,1,0,50,20,1)); //Aceleração do cano
+    slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,560,260,210,1,0,0,1,0,50,25,1));  //Velocidade Inicial do Cano
+    slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,560,360,210,1,0,0,1,50,150,80,1)); //Velocidade Maxima do Cano
+    slides.push_back(new slider(back_sprite,indicator_sprite,show_sprite,560,460,210,1,0,0,1,0,100,3,1));  //Chance de cano dourado
+
 }
 
 // DESTRUTOR
@@ -102,6 +110,9 @@ settings_screen::~settings_screen() {
     for (image* img : images) {
             delete img;
     }
+    for (slider* slid : slides) {
+            delete slid;
+    }
         
     background_objects_0.clear();
     background_objects_1.clear();
@@ -109,9 +120,10 @@ settings_screen::~settings_screen() {
     background_objects_3.clear();
     buttons.clear();
     images.clear();
+    slides.clear();
 }
 
-void settings_screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse_just_released, int mouse_update_x, int mouse_update_y, int mouse_x_now, states& state){
+void settings_screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse_just_released, int mouse_update_x, int mouse_update_y, int mouse_x_now, states& state, Game_Loop* main_game_loop){
     if(mouse_is_down){
         if(buttons.at(0)->contains_click(mouse_update_x,mouse_update_y)){
             buttons.at(0)->set_pressed(true);
@@ -123,15 +135,28 @@ void settings_screen::commands(unsigned char key[], bool& mouse_is_down, bool& m
             buttons.at(0)->set_bitmap(back_button_sprite[0]);
         }
     }
+    for(slider* slid : slides)
+    slid->update(mouse_is_down,mouse_just_released,mouse_update_x,mouse_update_y,mouse_x_now);
 
-    slides.at(0)->update(mouse_is_down,mouse_just_released,mouse_update_x,mouse_update_y,mouse_x_now);
+    //Acerta o volume//
+    state.volume=slides.at(0)->get_value()/100.0;
 
     // Reseta o mouse just released
-    
     if (mouse_just_released) {
         if(buttons.at(0)->is_pressed()&&buttons.at(0)->contains_click(mouse_update_x,mouse_update_y)){
-            state.settings_screen=false;
-            state.game_loop_screen=true;
+            this->set_values();
+            if(state.was_in_menu){
+                state.settings_screen=false;
+                state.home_screen=true;
+                main_game_loop->reset_game();
+            }else if(state.was_playing){
+                state.settings_screen=false;
+                state.game_loop_screen=true;
+            }else{
+                state.settings_screen=false;
+                state.game_loop_screen=true;
+                main_game_loop->reset_game();
+            }
         }
         buttons.at(0)->set_pressed(false);
         mouse_just_released = false;
@@ -215,8 +240,26 @@ void settings_screen::draw() {
     for (moving_button* btn : buttons) {
         btn->draw();
     }
-
-    slides.at(0)->draw();
+    slides.at(0)->draw("Volume");
+    slides.at(1)->draw("Força do Pulo");
+    slides.at(2)->draw("Velocidade Máxima do Passáro");
+    slides.at(3)->draw("Gravidade");
+    slides.at(4)->draw("Aceleração do Cano");
+    slides.at(5)->draw("Velocidade Inicial do Cano");
+    slides.at(6)->draw("Velocidade Máxima do Cano");
+    slides.at(7)->draw("Chance de Cano Dourado");
 
     al_flip_display();
+}
+
+void settings_screen::set_values(){
+    BIRD_JUMP_VEL = -slides.at(1)->get_value();
+    BIRD_MAX_DOWN_VEL = slides.at(2)->get_value();
+    BIRD_MAX_UP_VEL = -slides.at(2)->get_value();
+    gravity_setter = slides.at(3)->get_value()/10.0;
+    PIPE_SPEED_INCREASE = -slides.at(4)->get_value()/100.0;
+    PIPE_INITIAL_SPEED = -slides.at(5)->get_value()/10.0;
+    PIPE_SPEED_MAX = -slides.at(6)->get_value()/10.0;
+    golden_odds_setter = slides.at(7)->get_value();
+    return;
 }

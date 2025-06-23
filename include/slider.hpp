@@ -3,10 +3,14 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_ttf.h>
+#include <string>
 #include "ui_object.hpp"
 
 class slider: public ui_object{
     private:
+        ALLEGRO_FONT* up_heaval;
+        ALLEGRO_FONT* departure;
+        ALLEGRO_BITMAP* show;
         ALLEGRO_BITMAP* back[2];
         ALLEGRO_BITMAP* indicator[2];
         bool is_pressed;
@@ -22,8 +26,9 @@ class slider: public ui_object{
         bool is_int;
 
     public:
-        slider(ALLEGRO_BITMAP** back_sprite, ALLEGRO_BITMAP** indicator_sprite, float x, float y, float variation_, bool show_number_, float disp_h_, float disp_v_, float scale_, float min_value_, float max_value_, float value_, bool is_int_);
-        void draw();
+        slider(ALLEGRO_BITMAP** back_sprite, ALLEGRO_BITMAP** indicator_sprite, ALLEGRO_BITMAP* show, float x, float y, float variation_, bool show_number_, float disp_h_, float disp_v_, float scale_, float min_value_, float max_value_, float value_, bool is_int_);
+        ~slider();
+        void draw(std::string nome);
         void update(bool mouse_is_down, bool mouse_just_released, int x_at_down, int y_at_down, int x_now);
         void set_pressed(bool is_pressed);
         bool cointains_indicator(float x, float y);

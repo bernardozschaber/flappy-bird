@@ -140,6 +140,7 @@ void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse
                 // Vá para a tela de configurações se clicar em "Configurações"
                 state.home_screen = false;
                 state.settings_screen = true;
+                state.was_in_menu = true;
                 // Reseta a velocidade padrão do cenário
                 background_objects_0.at(0)->Set_standard_speed(0);
             }
@@ -175,7 +176,7 @@ void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse
             }
 
             // Botão de jogar
-            if(buttons.at(4)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(3)->is_pressed()) 
+            if(buttons.at(4)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(4)->is_pressed()) 
             {
                 buttons.at(4)->set_bitmap(play_button_sprite[0]);
                 buttons.at(4)->set_pressed(false);
@@ -185,10 +186,6 @@ void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse
                 // Reseta a velocidade padrão do cenário
                 background_objects_0.at(0)->Set_standard_speed(0);
             }
-
-            // Reseta o estado de pressionamento dos botões
-            for(int a = 0; a < 4; a++)
-                buttons.at(a)->set_pressed(false);
         }
         // Processo caso o mouse esteja pressionado
         if (mouse_is_down) 
@@ -225,7 +222,10 @@ void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse
         }
         // Processo caso o mouse esteja solto
         else 
-        {
+        {   
+            // Reseta o estado de pressionamento dos botões
+            for(int a=0;a<5;a++)
+                buttons.at(a)->set_pressed(false);
             buttons.at(0)->set_bitmap(settings_button_sprite[0]);
             buttons.at(1)->set_bitmap(achievements_button_sprite[0]);
             buttons.at(2)->set_bitmap(statistics_button_sprite[0]);

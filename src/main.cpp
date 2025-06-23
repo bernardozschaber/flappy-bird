@@ -232,14 +232,14 @@ int main(int argc, char **argv) {
             // debug << "Game Loop Screen ativa." << std::endl;
             main_game_loop.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, &state); // Processa os comandos causados pelas teclas/mouse
             if(state.is_updating){
-                main_game_loop.update(); // Atualiza o estado do jogo
+                main_game_loop.update(&state); // Atualiza o estado do jogo
                 main_game_loop.draw(); // Desenha o jogo na tela
                 state.is_updating = false;
             }
         }
         
         if(state.settings_screen){
-            main_settings_screen.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, mouse_is_now_at_x,state);
+            main_settings_screen.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, mouse_is_now_at_x,state,&main_game_loop);
             if(state.is_updating){
                 main_settings_screen.update();
                 main_settings_screen.draw();

@@ -211,8 +211,6 @@ void Achievements_Screen::commands(unsigned char key[], bool& mouse_is_down, boo
             {
                 buttons.at(2)->set_bitmap(statistics_button_sprite[0]);
             }
-            for(int a=0;a<3;a++)
-                buttons.at(a)->set_pressed(false);
         }
         if (mouse_is_down) 
         {
@@ -237,6 +235,8 @@ void Achievements_Screen::commands(unsigned char key[], bool& mouse_is_down, boo
         }
         else 
         {
+            for(int a=0;a<3;a++)
+                buttons.at(a)->set_pressed(false);
             buttons.at(0)->set_bitmap(settings_button_sprite[0]);
             buttons.at(1)->set_bitmap(home_sprite[0]);
             buttons.at(2)->set_bitmap(statistics_button_sprite[0]);

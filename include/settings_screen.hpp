@@ -31,6 +31,7 @@ class settings_screen {
         ALLEGRO_BITMAP* background_sprite;                    // Bitmap do fundo
         ALLEGRO_BITMAP* settings_frame_sprite;                // Bitmap do quadro da tela de configuração
         ALLEGRO_BITMAP* title_settings_sprite;                // Bitmap do titulo da tela de configuração
+        ALLEGRO_BITMAP* show_sprite;                          // Bitmap da parte de tras do numero do slider
         ALLEGRO_BITMAP* back_sprite[2];                       // Bitmap da parte de tras do slider
         ALLEGRO_BITMAP* indicator_sprite[2];                  // Bitmap da parte da frente do slider
         ALLEGRO_BITMAP* back_button_sprite[2];                // Bitmap do botão de voltar
@@ -42,8 +43,9 @@ class settings_screen {
         settings_screen();      // Construtor
         ~settings_screen();     // Destrutor
 
-        void commands(unsigned char key[], bool& mouse_is_down, bool& mouse_just_released, int mouse_update_x, int mouse_update_y, int mouse_x_now, states& state);     // Método que processa os comandos 
+        void commands(unsigned char key[], bool& mouse_is_down, bool& mouse_just_released, int mouse_update_x, int mouse_update_y, int mouse_x_now, states& state, Game_Loop* main_game_loop);     // Método que processa os comandos 
         void update();      // Método que atualiza o estado dos objetos
         void draw();        // Método que desenha os objetos
+        void set_values(); // Pegando os valores dos sliders
 };
 #endif

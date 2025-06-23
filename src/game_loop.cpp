@@ -54,12 +54,16 @@ std::uniform_int_distribution<> dis(0, 384);
     float maxscore = 0;
     float dif;                                                              // Float que faz as instruções variarem de tamanho
     bool going_up;                                                          // Bool que controla se o dif aumenta ou diminui
+    float golden_pipe_odds = 3;                                             // Chance de ser golden_pipe
+    float golden_odds_setter = 3;
+    float gravity_setter= 0.7;
+    float gravity = 0.7;
     int PIPE_SPACE = 160;                                                   // Espaçamento entre os canos
     float PIPE_INITIAL_SPEED = -2.5;                                        // Velocidade atual dos canos
     float PIPE_SPEED_MAX = -8;                                              // Velocidade máxima dos canos
-    float PIPE_SPEED_INCREASE = -0.02;                                      // Aumento da velocidade dos canos a cada 10 pontos
+    float PIPE_SPEED_INCREASE = -0.01;                                      // Aumento da velocidade dos canos a cada 10 pontos
     int BIRD_JUMP_VEL = -10;                                                // Velocidade do pulo do pássaro
-    int BIRD_MAX_UP_VEL = -16;                                              // Velocidade máxima de subida do pássaro
+    int BIRD_MAX_UP_VEL = -15;                                              // Velocidade máxima de subida do pássaro
     int BIRD_MAX_DOWN_VEL = 15;                                             // Velocidade máxima de descida do pássaro
     bool death_screen_animation = false;                                    // Bool que controla se o menu de morte está em animação
     bool points_animation = false;                                          // Bool que controla se a pontuação está em animação
@@ -264,7 +268,6 @@ std::uniform_int_distribution<> dis(0, 384);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void Game_Loop::commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y, states* state) {
-
         // Processamento dos botões
         if(buttons.size() > 0) {
             // Mouse acabou de ser solto
@@ -281,6 +284,8 @@ std::uniform_int_distribution<> dis(0, 384);
                     if(buttons.at(1)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(1)->is_pressed()) {
                         state->game_loop_screen = false;
                         state->settings_screen = true;
+                        state->was_in_menu = false;
+                        state->was_playing = playing;
                         buttons.at(1)->set_pressed(false);
                     }
                     if(buttons.at(2)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(2)->is_pressed()) {
@@ -370,6 +375,8 @@ std::uniform_int_distribution<> dis(0, 384);
 
             // Botão do mouse está solto
             else {
+                for (int a=0; a<7;a++)
+                    buttons.at(a)->set_pressed(false);
                 switch(paused) {
                     case true: {
                         buttons.at(0)->set_bitmap(pause_button_sprite[1]);
@@ -400,12 +407,12 @@ std::uniform_int_distribution<> dis(0, 384);
             if(!paused){
                 if(!playing && !dead) {                        // Se o jogo não está em andamento e não está morto
                     playing = true;                            // Inicia o jogo
-                    birdo->Set_y_acelleration(0.7); // Define a aceleração da gravidade
+                    birdo->Set_y_acelleration(gravity); // Define a aceleração da gravidade
                 } 
                 if(playing && !dead) {                         // Se o jogo está em andamento e não está morto
                     birdo->Jump();                // Faz o pássaro pular
                     if(sound) {
-                        al_play_sample(flap_sound, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL); // Toca o som do flap
+                        al_play_sample(flap_sound, state->volume, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL); // Toca o som do flap
                     }
                     sprite_now=0;
                     bird_animation = true;
@@ -436,7 +443,7 @@ std::uniform_int_distribution<> dis(0, 384);
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    void Game_Loop::update(){
+    void Game_Loop::update(states* state){
         ////////////////////////////////////////
         //Ver posições e criar/deletar objetos//
         ////////////////////////////////////////
@@ -445,7 +452,7 @@ std::uniform_int_distribution<> dis(0, 384);
         //Criando os canos//
         if (playing &&(pipe_objects.size()==0 || pipe_objects.at(pipe_objects.size()-1)->Get_position()->x<SCREEN_W-100)){    // Adiciona o primeiro cano se não houver nenhum ou se o último cano estiver à distância adequada (100 + 250)
             random_offset = dis(gen);                               // Determina o offset do cano a ser spawnado
-            golden_factor = dis(gen) <= 3;
+            golden_factor = dis(gen)%101 <= golden_pipe_odds;
             int spawn_x = SCREEN_W + 250;                           // Coordenada X de spawn dos canos (fora da tela)
             int spawn_y = (SCREEN_H / 2) - 108 - random_offset;     // Coordenada Y de referência para spawn dos canos
 
@@ -484,13 +491,13 @@ std::uniform_int_distribution<> dis(0, 384);
                     // Veririficação se é dourado (cano dourado vale 3)
                     if(pipe_objects.at(i)->is_golden()) {
                         if(sound) {
-                            al_play_sample(golden_score_sound, 0.6, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                            al_play_sample(golden_score_sound, state->volume*0.6, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                         }
                         score=score+1.5;
                     }
                     else {
                         if(sound) {
-                            al_play_sample(score_sound, 0.6, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                            al_play_sample(score_sound, state->volume*0.6, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                         }
                         score=score+0.5;
                     }
@@ -503,6 +510,7 @@ std::uniform_int_distribution<> dis(0, 384);
         
         ///////Montanhas////////
         //Deletando e Criando as montanhas//
+        
         if (background_objects_1.at(0)->Get_position()->x<-al_get_bitmap_width(mountain_sprite_1)/2){
             delete background_objects_1.at(0); 
             background_objects_1.erase(background_objects_1.begin());   
@@ -519,7 +527,7 @@ std::uniform_int_distribution<> dis(0, 384);
             background_objects_3.erase(background_objects_3.begin());
             background_objects_3.push_back(new background_object(background_objects_3.back()->Get_position()->x+al_get_bitmap_width(mountain_sprite_3)-1, HEIGHT_REFFERENCE - 73.5, al_get_bitmap_width(mountain_sprite_3), al_get_bitmap_height(mountain_sprite_3), mountain_sprite_3));
         } 
-
+        
         ////////GRAMA///////////
         //Deletando e criando as gramas//
         if (background_objects_0.at(0)->Get_position()->x<-al_get_bitmap_width(grass_sprite)/2){
@@ -527,18 +535,18 @@ std::uniform_int_distribution<> dis(0, 384);
             background_objects_0.erase(background_objects_0.begin());
             background_objects_0.push_back(new background_object(background_objects_0.back()->Get_position()->x+al_get_bitmap_width(grass_sprite)-1, SCREEN_H - 60, al_get_bitmap_width(grass_sprite), al_get_bitmap_height(grass_sprite), grass_sprite));
         }
-
+        
         ///////PASSARINHO////////
         // Verifica se o pássaro caiu no chão
-        if(birdo->Get_position()->y>SCREEN_H&&!dead){
+        if(birdo->Get_position()->y>SCREEN_H&&!dead&&playing){
             dead = true;
             paused = false;
             birdo->Jump();
             birdo->Set_x_speed(1.5*pipe_objects.at(0)->Get_x_speed());
         }
-
+        
         // Verifica se o pássaro bateu em algum cano
-        if(!dead){
+        if(!dead&&playing){
             for (int i = 0; i < pipe_objects.size(); i++) {
                 if(birdo->is_colliding(pipe_objects.at(i))){
                     dead = true;
@@ -705,7 +713,7 @@ std::uniform_int_distribution<> dis(0, 384);
                     images.at(3)->set_bitmap(numbers_sprites[u]);
 
                     if(sound) {
-                        al_play_sample(death_screen_point_sound, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                        al_play_sample(death_screen_point_sound, state->volume, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                     }
 
                     score_displayed++;
@@ -725,7 +733,7 @@ std::uniform_int_distribution<> dis(0, 384);
                 }
                 if(play_record_audio) {
                     if(sound) {
-                        al_play_sample(high_score_sound, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+                        al_play_sample(high_score_sound, state->volume, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                     }
                     play_record_audio = false;
                 }
@@ -1090,5 +1098,15 @@ std::uniform_int_distribution<> dis(0, 384);
         c = 0;
         d = 0;
         u = 0;
-        
+
+        //Configurando odds do golden pipe
+        golden_pipe_odds=golden_odds_setter;
+        gravity=gravity_setter;
     } 
+
+    /*void Game_Loop::configure(float* valores){
+        BIRD_JUMP_VEL
+        BIRD_MAX_DOWN_VEL
+        BIRD_MAX_UP_VEL
+        
+    };*/ 

@@ -48,6 +48,8 @@ extern const int HEIGHT_REFFERENCE;
 
 // VARIÁVEIS EXTRAS
     extern int random_offset;                                                      // Offset do cano a ser spawnado
+    extern float golden_odds_setter;
+    extern float gravity_setter;
     extern float score;
     extern float max_score;
     extern int PIPE_SPACE;                                                  // Espaçamento entre os canos
@@ -64,9 +66,12 @@ struct states{
     bool is_updating = false;          // O jogo deve atualizar o estado
     bool registration_screen = true;   // Tela de registro está aberta
     bool settings_screen = false;      // Tela de configurações está aberta
+    bool was_in_menu = true;
+    bool was_playing = false;
     bool game_loop_screen = false;     // O jogo está no loop de jogo
     bool achievements_screen = false;  // Tela de conquistas está aberta
     bool home_screen = true;          // Tela inicial esta aberta
+    float volume = 1.0;
 };
 
 class Game_Loop {
@@ -137,8 +142,9 @@ class Game_Loop {
         Game_Loop();               // Construtor
         ~Game_Loop();              // Destrutor
         void commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y, states* state);
-        void update();             // Método que atualiza o estado dos objetos do jogo
+        void update(states* state);             // Método que atualiza o estado dos objetos do jogo
         void draw();               // Método que desenha os objetos do jogo na tela
         void reset_game();         // Método que reseta o jogo, recriando os objetos e o cenário
+        void configure(float* valores); //Configura o jogo
 };
 #endif // GAME_LOOP_HPP

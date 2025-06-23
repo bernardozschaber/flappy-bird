@@ -30,6 +30,12 @@ class bird_object : public game_object{
         void Set_y_speed(float a);
         void Set_y_acelleration(float a);
         void Draw_spin(float SPIN_SPEED);
+        float get_vel(){
+            return this->vel_x;
+        }
+        float get_acel(){
+            return this->acel_x;
+        }
 };
 
 #endif // BIRD_OBJECT_HPP
