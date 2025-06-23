@@ -70,7 +70,7 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
 
   // Exibe até 14 jogadores
   // it define parada para última página e i define parada para páginas completas com 14 jogadores
-  for (int i = 0; i < players_per_page && it != players.end(); ++i, ++it) {
+  if(!data.isFileEmpty()) for (int i = 0; i < players_per_page && it != players.end(); ++i, ++it) {
         int y = start_y + (i+1) * (line_h + 5);
         const auto& p = *it;
         al_draw_text(font, al_map_rgb(255,255,255), col1_x, y, 0, p.username.c_str());
@@ -106,7 +106,7 @@ void player_list_screen::draw(ALLEGRO_FONT *font) {
   }
 
   // Desenha o botão de próxima página
-  int max_page = (players.size() - 1) / players_per_page;
+  int max_page = data.isFileEmpty() ? 0 : (players.size() - 1) / players_per_page;
   if (current_page < max_page) {
       next_button.draw(font);
   } else {
