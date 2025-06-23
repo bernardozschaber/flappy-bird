@@ -76,7 +76,7 @@ void menu::handle_event(const ALLEGRO_EVENT &event, bool &is_open) {
         // Atualiza fontes de audio e posição do botão de mute
         std::vector<text_box*> null = {}; // Tela de listagem não possui caixas de texto
         audio_ctrl.set_sources(null,list_scr.get_buttons());
-        audio_ctrl.set_position(265,510);
+        audio_ctrl.set_position(1000,1000); // Retira botão de mute da tela
     }
     else if (current == SCREEN_REMOVE) {
         rm_scr.handle_event(event);
