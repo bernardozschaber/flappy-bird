@@ -3,6 +3,8 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_ttf.h>
 #include <iostream>
+#include "menu.hpp"
+#include "registration.hpp"
 
 // CONSTANTES DE PATH
 
@@ -45,7 +47,7 @@ const char * ACHIEVEMENTS_LOCKED[16] = {
     "../assets/UI/achievements/achievements-16-locked.png"
 };  // caminho dos badges de conquistas
 
-const char * BACK_BUTTON[2] = {"../assets/UI/back_button.png", "../assets/UI/back_button_pressed.png"}; // caminho do botão de voltar
+const char * HOME_BUTTON[2] = {"../assets/UI/home_button.png", "../assets/UI/home_button_pressed.png"}; // caminho do botão de voltar
 
 
 // CONSTRUTOR
@@ -59,7 +61,7 @@ Achievements_Screen::Achievements_Screen() {
     background_sprite = al_load_bitmap(BACKGROUND);
     achievements_screen_frame_sprite = al_load_bitmap(ACHIEVEMENTS_SCREEN_FRAME);
     for (int i = 0; i < 2; i++)
-        back_button_sprite[i] = al_load_bitmap(BACK_BUTTON[i]);
+    home_button_sprite[i] = al_load_bitmap(HOME_BUTTON[i]);
 
     achievements_badges[0] = al_load_bitmap(ACHIEVEMENTS_BADGES[0]);
     achievements_badges[1] = al_load_bitmap(ACHIEVEMENTS_BADGES[1]);
@@ -123,7 +125,7 @@ Achievements_Screen::Achievements_Screen() {
     images.push_back(new image(achievements_screen_frame_sprite, SCREEN_W/2, SCREEN_H/2)); // (BACKGROUND IMAGE)
 
     // Criação de  elementos de UI (botões)
-    buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H/2+225, back_button_sprite[0]));   // BOTÃO 0 (BACK BUTTON)
+    buttons.push_back(new moving_button(SCREEN_W/2, SCREEN_H/2+225, home_button_sprite[0]));   // BOTÃO 0 (BACK BUTTON)
 
     int img_size = 128 * 0.8;   // 102 pixels
     int spacing_x = 48;         // espaçamento horizontal
@@ -148,7 +150,7 @@ Achievements_Screen::Achievements_Screen() {
         int x = start_x + col * (img_size + spacing_x);
         int y = start_y + row * (img_size + spacing_y + text_space) + 10; 
 
-        images.push_back(new image(achievements_badges[i], x, y));
+        images.push_back(new image(achievements_locked[i], x, y));
     } // Verificação de caso o player possua os achievements ou não ocorrerá por uma chamada aqui
 
     //std::cout << "Sizes of vectors:\n\tbackground_objects_0: " << background_objects_0.size() << " (expected 4)\n\tbackground_objects_1: " << background_objects_1.size() << " (expected 4)\n\tbackground_objects_2: " << background_objects_2.size() << " (expected 4)\n\tbackground_objects_3: " << background_objects_3.size() << " (expected 4)\n\timages: " << images.size() << " (expected 2)\n\n";
@@ -165,7 +167,7 @@ Achievements_Screen::~Achievements_Screen() {
     al_destroy_bitmap(background_sprite);
     al_destroy_bitmap(achievements_screen_frame_sprite);
     for (int i = 0; i < 2; i++) {
-        al_destroy_bitmap(back_button_sprite[i]);
+        al_destroy_bitmap(home_button_sprite[i]);
     }
     al_destroy_bitmap(achievements_badges[0]);
     al_destroy_bitmap(achievements_badges[1]);
@@ -239,7 +241,7 @@ void Achievements_Screen::commands(unsigned char key[], bool& mouse_is_down, boo
         {
             if(buttons.at(0)->contains_click(mouse_update_x, mouse_update_y) && buttons.at(0)->is_pressed()) 
             {
-                buttons.at(0)->set_bitmap(back_button_sprite[0]);
+                buttons.at(0)->set_bitmap(home_button_sprite[0]);
                 buttons.at(0)->set_pressed(false);
                 state.home_screen = true;
                 state.achievements_screen = false;
@@ -252,7 +254,7 @@ void Achievements_Screen::commands(unsigned char key[], bool& mouse_is_down, boo
         {
             if(buttons.at(0)->contains_click(mouse_update_x, mouse_update_y)) 
             {
-                buttons.at(0)->set_bitmap(back_button_sprite[1]);
+                buttons.at(0)->set_bitmap(home_button_sprite[1]);
                 buttons.at(0)->set_pressed(true);
             }
 
@@ -260,7 +262,7 @@ void Achievements_Screen::commands(unsigned char key[], bool& mouse_is_down, boo
         else 
         {
             buttons.at(0)->set_pressed(false);
-            buttons.at(0)->set_bitmap(back_button_sprite[0]);
+            buttons.at(0)->set_bitmap(home_button_sprite[0]);
         }
     }
 
