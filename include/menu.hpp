@@ -14,72 +14,107 @@
 #include "menu_audio.hpp"
 #include "game_loop.hpp"
 
-// Enum para decidir a tela atual
+/// Enum para decidir a tela atual
 enum screen_type { SCREEN_LOGIN, SCREEN_REGISTER, SCREEN_LIST, SCREEN_REMOVE };
 
-/* Classe que representa o menu principal de forma geral:
+/** 
+ * @class menu
+ * @brief Classe que representa o menu principal de forma geral
+ *
  * - Reune a implementação de todas as telas em uma única interface
  * - Direciona o evento à tela ativa correspondente
  * - Libera os recursos utilizados
-*/ 
+ */ 
 class menu {
 public:
-  // Construtor
+  /**
+  * @brief Construtor que inicializa o menu
+  * @param SCREEN_W Largura da tela
+  * @param SCREEN_H Altura da tela
+  * @param data Referência ao objeto que manipula os arquivos
+  */
   menu(const int SCREEN_W, const int SCREEN_H, registration &data);
 
-  // Destrutor para liberação dos recursos (bitmaps, samples)
+  /// Destrutor para liberação dos recursos (bitmaps, samples)
   ~menu();
 
-  // Reune o comportamento de todas as telas em uma única interface
+  /**
+  * @brief Reune o comportamento de todas as telas em uma única interface
+  * @param event Evento passado às telas
+  * @param is_open Booleano para indicar se o programa deve continuar rodando
+  * @param state Ponteiro para alterar o estado do main e iniciar o jogo
+  */
   void handle_event(const ALLEGRO_EVENT &event, bool &is_open, states* state);
 
-  // Desenha a tela ativa
+  /**
+  * @brief Desenha a tela ativa
+  * @param SCREEN_W Largura da tela
+  * @param SCREEN_H Altura da tela
+  * @param event Evento que pode indicar se a tela deve ser desenhada
+  */
   void draw(const int SCREEN_W, const int SCREEN_H, const ALLEGRO_EVENT &event);
 
-  // Verifica se o login foi concluído para parar o loop do registro
+  /**
+  * @brief Verifica se o login foi concluído para parar o loop do registro
+  * @return Booleano que indica o estado do login
+  */
   bool is_login_done() const;
 
-  // Retorna a struct player com os dados do usuário logado
+  /**
+  * @brief Retorna a struct player com os dados do usuário logado
+  * @return Dados do jogador logado
+  */
   player get_logged_user();
 
-  // Atualiza o multiset de players para listagem
+  /**
+  * @brief Atualiza o multiset de players para listagem
+  * @param new_players Novo multiset
+  */
   void set_players(const std::multiset<player> new_players);
 
-  // Reseta todas as telas para reutilização do menu em uma mesma execução
+  /// Reseta todas as telas para reutilização do menu em uma mesma execução
   void reset();
 
 private:
-  // Indica qual tela está ativa 
+  /// Indica qual tela está ativa 
   screen_type current;
 
-  // Efeitos sonoros das caixas de texto e botões
+  /// @name Efeitos sonoros das caixas de texto e botões
+  /// @{
   ALLEGRO_SAMPLE* sample_button; 
   ALLEGRO_SAMPLE* sample_key;
+  /// @}
 
-  // Bitmaps da imagem de fundo, do título e da coroa do leaderboard
+  /// @name Bitmaps da imagem de fundo, do título e da coroa do leaderboard
+  /// @{
   ALLEGRO_BITMAP* background_menu;
   ALLEGRO_BITMAP* crown;
   ALLEGRO_BITMAP* main_menu_title;
+  /// @}
 
-  // Bitmaps do ícone de áudio
+  /// @name Bitmaps do ícone de áudio
+  /// @{
   ALLEGRO_BITMAP *ico_on;
   ALLEGRO_BITMAP *ico_off;
   ALLEGRO_BITMAP *ico_on_press;
   ALLEGRO_BITMAP *ico_off_press;
+  /// @}
 
-  // Objeto que controla o áudio do menu
+  /// Objeto que controla o áudio do menu
   menu_audio audio_ctrl;
 
-  // Multiset com todos os jogadores existentes
+  /// Multiset com todos os jogadores existentes
   std::multiset<player> players;
 
-  // Declaração das telas
+  /// @name Declaração das telas
+  /// @{
   login_screen login_scr;
   register_screen register_scr;
   player_list_screen list_scr;
   remove_user_screen rm_scr;
+  /// @}
 
-  // Fonte utilizada no menu
+  /// Fonte utilizada no menu
   ALLEGRO_FONT *pixel_sans;
 };
 

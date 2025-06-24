@@ -26,7 +26,10 @@ void menu::handle_event(const ALLEGRO_EVENT &event, bool &is_open, states* state
             state->open = false;
             return;
         }
+
         login_scr.handle_event(event);
+
+        // Atualiza estados do main para iniciar o jogo
         if(login_scr.login_done()){
             state->home_screen = true;
             return;
