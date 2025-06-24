@@ -91,6 +91,7 @@ TEST_CASE("Atualização dos jogadores"){
     p.username = "Sofia";
     p.score = 20;
     p.jump_count = 3;
+    p.games++;
     registro.update(p);
     CHECK(registro.get_stats("Sofia") == "");
 
@@ -100,6 +101,7 @@ TEST_CASE("Atualização dos jogadores"){
     p.achievements[1] = true;
     p.jump_count = 11;
     p.pipe_deaths++;
+    p.games++;
     registro.update(p);
     CHECK(registro.get_stats("Carlos") == "30 Carlos flappybird 3 11 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
 
@@ -110,6 +112,7 @@ TEST_CASE("Atualização dos jogadores"){
     p.achievements[12] = true;
     p.ground_deaths++;
     p.jump_count = 8;
+    p.games++;
     registro.update(p);
     CHECK(registro.get_stats("Maria") == "45 Maria flappybird1 2 8 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0");
 
@@ -121,6 +124,7 @@ TEST_CASE("Atualização dos jogadores"){
     p.achievements[12] = true;
     p.ground_deaths++;
     p.jump_count = 41;
+    p.games++;
     registro.update(p);
     CHECK(registro.get_stats("Roberto") == "41 Roberto flappy 1 41 1 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 1");
 }
@@ -167,6 +171,7 @@ TEST_CASE("Jogador com maior score"){
     //Atualiza o jogador Rodney
     p = registro.get_player("Rodney");
     p.score = 130;
+    p.games++;
     registro.update(p);
     //Ele deve ser o jogador com maior score
     CHECK(registro.get_max_user() == "Rodney");
