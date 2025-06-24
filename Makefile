@@ -59,10 +59,10 @@ MAIN_SCR := main.cpp
 MAIN_OBJ := $(addprefix $(OBJ_DIR)/, $(MAIN_SCR:.cpp=.o))  
 
 # 3.4) Testes
-TESTREG_SRC := $(TEST_DIR)/testregistration.cpp
+TESTREG_SRC := $(TEST_DIR)/test_registration.cpp
 TESTMM_SRC  := $(TEST_DIR)/test_main_menu.cpp
 
-TESTREG_OBJ := $(OBJ_DIR)/testregistration.o
+TESTREG_OBJ := $(OBJ_DIR)/test_registration.o
 TESTMM_OBJ  := $(OBJ_DIR)/test_main_menu.o
 
 # -------------------------------------------------------------------------
@@ -72,7 +72,7 @@ TESTMM_OBJ  := $(OBJ_DIR)/test_main_menu.o
 
 all: dirs \
     $(BIN_DIR)/main \
-    $(BIN_DIR)/testregistration \
+    $(BIN_DIR)/test_registration \
     $(BIN_DIR)/test_main_menu
 
 # -------------------------------------------------------------------------
@@ -99,7 +99,7 @@ $(BIN_DIR)/main: $(MAIN_OBJ) $(GAME_OBJS) $(MENU_OBJS)
 	$(CXX) $^ -o $@ $(PKG_LIBS)
 
 # 7.2) Teste da Classe registration
-$(BIN_DIR)/testregistration: $(TESTREG_OBJ) $(OBJ_DIR)/registration.o
+$(BIN_DIR)/test_registration: $(TESTREG_OBJ) $(OBJ_DIR)/registration.o
 	$(CXX) $^ -o $@ $(PKG_LIBS)
 
 # 7.3) Teste do Menu Principal

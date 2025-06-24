@@ -1,10 +1,19 @@
+/**
+ * @file test_registration.cpp
+ * @brief Testes unitários para a classe de registro.
+ * @details Valida a criação de jogadores e manipulação dos métodos principais no arquivo.
+ */
+
 #define DOCTEST_CONFIG_IMPLEMENT
+
 #include "doctest.h"
 #include "registration.hpp"
 
 //ANTES DE INICIAR OS TESTES, VERIFIQUE SE O ARQUIVO "registro_teste.txt" ESTÁ VAZIO
 
-//Main para definir flags 
+/**
+ * @brief Main com o objetivo de permitir o fechamento instantâneo do programa caso haja algum problema na abertura ou tamanho do arquivo.
+ */
 int main(int argc, char** argv) {
     doctest::Context context;
     //Qualquer falha de resultado, o programa é abortado
@@ -17,18 +26,21 @@ int main(int argc, char** argv) {
     return res;
 }
 
-//Arquivo vazio
-registration registro("../tests/registro_teste.txt");
 
-TEST_CASE("testing if file is open") {
+registration registro("../tests/registro_teste.txt"); /**< Instanciação de um objeto da classe de registro. */
+
+/// @test Verifica se o arquivo foi aberto corretamente.
+TEST_CASE("Arquivo aberto") {
     REQUIRE(registro.isOpenFile() == 1);
 }
 
-TEST_CASE("testing if file is empty") {
+/// @test Verifica se o arquivo está vazio.
+TEST_CASE("Arquivo vazio") {
     REQUIRE(registro.isFileEmpty() == true);
 }
 
-TEST_CASE("testing if return of get_stats is correct"){
+/// @test Testa se o retorno é válido para os jogadores.
+TEST_CASE("Retorno da linha dos jogadores"){
     //Arquivo está vazio, logo não tem retorno
     CHECK(registro.get_stats("Maria") == "");
 
@@ -51,7 +63,8 @@ TEST_CASE("testing if return of get_stats is correct"){
     CHECK(registro.get_stats("Carlos") == "24 Carlos flappybird 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
 }
 
-TEST_CASE("testing if return of get_player is correct"){
+/// @test Testa se o método get_player retorna as informações corretamente.
+TEST_CASE("Objeto com as informações dos jogadores"){
     player p;
 
     //Jogador não está cadastrado
@@ -70,7 +83,8 @@ TEST_CASE("testing if return of get_player is correct"){
     CHECK(p.pipe_deaths == 0);
 }
 
-TEST_CASE("update method is working correctly?"){
+/// @test Testa a atualização dos jogadores.
+TEST_CASE("Atualização dos jogadores"){
     player p;
 
     //Tentativa de atualizar um player inexistente
@@ -111,7 +125,8 @@ TEST_CASE("update method is working correctly?"){
     CHECK(registro.get_stats("Roberto") == "41 Roberto flappy 1 41 1 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 1");
 }
 
-TEST_CASE("delete_user method is working correctly?"){
+/// @test Testa a remoção de jogadores.
+TEST_CASE("Remoção de jogadores"){
     //Sofia não está registrada
     CHECK(registro.get_stats("Sofia") == "");
     //Tentativa de deletá-la
@@ -123,7 +138,8 @@ TEST_CASE("delete_user method is working correctly?"){
     CHECK(registro.get_stats("Carlos") == "");
 }
 
-TEST_CASE("method of best player(get_max_user() e get_max_score())"){
+/// @test Testa as funções de retorno do jogador com maior score(username e score).
+TEST_CASE("Jogador com maior score"){
     player p;
     
     //Adiciona um novo jogador
@@ -158,7 +174,8 @@ TEST_CASE("method of best player(get_max_user() e get_max_score())"){
 
 }
 
-TEST_CASE("show all players registered sorting by score"){
+/// @test Testa a função de retorno do multiset para verificar se os jogadores estão listados e posicionados da forma correta dentro do container.
+TEST_CASE("Lista dos jogadores ordenados pelo score"){
     std::multiset<player> players;
     //Recebe todos os jogadores
     players = registro.get_all();
