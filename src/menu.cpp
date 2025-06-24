@@ -142,6 +142,11 @@ bool menu::is_login_done() const { return login_scr.login_done(); }
 
 player menu::get_logged_user() { return login_scr.get_logged_user(); }
 
+void menu::set_players(const std::multiset<player> new_players) {
+    players.clear();
+    players = new_players;
+}
+
 void menu::reset() {
     login_scr.reset();
     register_scr.reset();

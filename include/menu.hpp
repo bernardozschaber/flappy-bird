@@ -42,6 +42,9 @@ public:
   // Retorna a struct player com os dados do usuário logado
   player get_logged_user();
 
+  // Atualiza o multiset de players para listagem
+  void set_players(const std::multiset<player> new_players);
+
   // Reseta todas as telas para reutilização do menu em uma mesma execução
   void reset();
 
