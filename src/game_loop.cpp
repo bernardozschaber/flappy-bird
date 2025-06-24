@@ -51,7 +51,7 @@ std::uniform_int_distribution<> dis(0, 384);
     int random_offset;                                                      // Offset do cano a ser spawnado
     bool golden_factor;                                                     // Característica se o cano é dourado ou não
     float score;
-    float maxscore = 0;
+    float maxscore;
     float dif;                                                              // Float que faz as instruções variarem de tamanho
     bool going_up;                                                          // Bool que controla se o dif aumenta ou diminui
     float golden_pipe_odds = 3;                                             // Chance de ser golden_pipe
@@ -71,7 +71,6 @@ std::uniform_int_distribution<> dis(0, 384);
     bool new_best = false;                                                  // Bool que controla se o jogador fez um novo recorde
     bool play_record_audio = false;                                         // Bool que controla se o áudio de novo recorde deve ser tocado
     bool bird_animation = false;                                            // Bool que controla se o passaro está em animação
-    bool att_score = true;
     float animation_speed=0;                                                // Float que define quando tem que passar o frame de animação
     int sprite_now=0;                                                       // Int que guarda em que sprite o passaro esta
     int frames_per_point;                                                   // Define a velocidade da animação de pontos
@@ -194,7 +193,6 @@ std::uniform_int_distribution<> dis(0, 384);
     // Destrutor
     Game_Loop::~Game_Loop() {
         // Deletar os bitmaps dos objetos do jogo
-        al_destroy_font(pixel_sans);
         al_destroy_bitmap(pipe_sprite);
         al_destroy_bitmap(golden_pipe_sprite);
         al_destroy_bitmap(mountain_sprite_1);
@@ -225,7 +223,7 @@ std::uniform_int_distribution<> dis(0, 384);
         al_destroy_sample(flap_sound);
         al_destroy_sample(score_sound); 
         al_destroy_sample(golden_score_sound);
-        // al_destroy_sample(death_sound);
+        al_destroy_sample(death_sound);
         al_destroy_sample(death_screen_point_sound);
         al_destroy_sample(high_score_sound);
 
@@ -412,6 +410,7 @@ std::uniform_int_distribution<> dis(0, 384);
                 } 
                 if(playing && !dead) {                         // Se o jogo está em andamento e não está morto
                     birdo->Jump();                // Faz o pássaro pular
+                    state->p.jump_count++;
                     if(sound) {
                         al_play_sample(flap_sound, state->volume, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL); // Toca o som do flap
                     }
@@ -489,6 +488,7 @@ std::uniform_int_distribution<> dis(0, 384);
         }
 
         //Verificando pontuação//
+        maxscore = state->p.score;
         for (int i = 0; i < pipe_objects.size(); i++) {
             if(pipe_objects.at(i)->Get_position()->x<=SCREEN_W/2){
                 if(!pipe_objects.at(i)->is_scored()) {
@@ -545,6 +545,7 @@ std::uniform_int_distribution<> dis(0, 384);
             paused = false;
             birdo->Jump();
             birdo->Set_x_speed(1.5*pipe_objects.at(0)->Get_x_speed());
+            state->p.ground_deaths++;
         }
         
         // Verifica se o pássaro bateu em algum cano
@@ -555,16 +556,19 @@ std::uniform_int_distribution<> dis(0, 384);
                     paused = false;
                     birdo->Jump();
                     birdo->Set_x_speed(1.7*pipe_objects.at(0)->Get_x_speed());
+                    state->p.pipe_deaths++;
                     break;
                 }
             }
         }
 
         // Setando death_menu para true caso ele caia de verdade
+        state->p.games++;
         if(birdo->Get_position()->y>SCREEN_H+50 && dead && !death_menu){
             death_menu = true;
             playing = false;
             death_screen_animation = true;
+            state->load_user = true;
 
             // Movendo os botões de achievements (3) e home (4) para a tela de morte
             buttons.at(3)->set_x(SCREEN_W/2 + 115);
@@ -685,7 +689,12 @@ std::uniform_int_distribution<> dis(0, 384);
 
             // Animação mostrando os pontos
             else if(points_animation) {
-
+                if(score > maxscore) {
+                    new_best = true;            // Se a pontuação atual é maior que a máxima, marca como novo recorde
+                    maxscore = score;
+                    state->p.score = maxscore;
+                }
+                
                 if (score_displayed  == score)          // Pontuação mostrada chegou na pontuação de fato, pare a animação
                 {
                     points_animation = false;
@@ -726,23 +735,13 @@ std::uniform_int_distribution<> dis(0, 384);
                 frame_count++;
             }
 
-            else if(best_score_animation&&att_score) {
-                att_score = false;
-                if(score > maxscore) {
-                    new_best = true;            // Se a pontuação atual é maior que a máxima, marca como novo recorde
-                }
-                else {
-                    new_best = false;           // Se não, marca como não é novo recorde
-                }
+            else if(best_score_animation) {
                 if(play_record_audio) {
                     if(sound) {
                         al_play_sample(high_score_sound, state->volume, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                     }
                     play_record_audio = false;
                 }
-            if(score>maxscore){
-                maxscore=score;
-            }
             }
         }
 
@@ -792,16 +791,16 @@ std::uniform_int_distribution<> dis(0, 384);
                 }
                 background_objects_1.at(0)->Set_standard_speed(pipe_objects.at(1)->Get_x_speed());
                 for (background_object* bgo_3 : background_objects_3) {
-                    bgo_3->Update(SCREEN_W, SCREEN_H, 0.1); // Atualiza as montanhas de trás
+                    bgo_3->Update(0.1); // Atualiza as montanhas de trás
                 }
                 for (background_object* bgo_2 : background_objects_2) {
-                    bgo_2->Update(SCREEN_W, SCREEN_H, 0.2); // Atualiza as montanhas do meio
+                    bgo_2->Update(0.2); // Atualiza as montanhas do meio
                 }
                 for (background_object* bgo_1 : background_objects_1) {
-                    bgo_1->Update(SCREEN_W, SCREEN_H, 0.3); // Atualiza as montanhas da frente
+                    bgo_1->Update(0.3); // Atualiza as montanhas da frente
                 }
                 for (background_object* bgo_0 : background_objects_0) {
-                    bgo_0->Update(SCREEN_W, SCREEN_H, 0.4); // Atualiza a grama
+                    bgo_0->Update(0.4); // Atualiza a grama
                 }
             }
         }
@@ -1098,7 +1097,7 @@ std::uniform_int_distribution<> dis(0, 384);
         dead = false;
         death_menu = false;
         paused = false;
-        att_score = true;
+        new_best = false;           // Se não, marca como não é novo recorde
 
         // Reset das variáveis da animação de pontuação na tela de morte
         score_displayed = 0;

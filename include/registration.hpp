@@ -1,102 +1,193 @@
+/**
+ * @file registration.hpp
+ * @brief Declaração da classe de registro para execução de diversos comandos no arquivo txt
+ * 
+ * Este arquivo contém a definição da classe de registro, responsável pelo armazenamento, captura e atualização dos dados dos jogadores
+ * Inclui métodos principais para o manejamento do arquivo durante o jogo
+ */
+
 #ifndef REGISTRATION_HPP
 #define REGISTRATION_HPP
+
 #include <fstream>
 #include <string>
 #include <set>
 #include <vector>
 
-//Struct com informações dos jogadores para auxiliar na lista de retorno  
+/**
+ * @struct player
+ * @brief Struct que representa um jogador.
+ * 
+ * A struct player gerencia os dados de um jogador, como 
+ * nome de usuário, pontuação, número de partidas jogadas, password, conquistas e variáveis auxiliares de conquista.
+ */ 
 struct player{
 
 private: 
-  std::string password = "";
+  std::string password = "";  /**< Senha do jogador. */
   
 public:
-  std::string username = "";
-  int score = 0, games = 0;
-  std::vector<bool> achievements;
+  std::string username = "";  /**< Nome de usuário do jogador. */
+  int score = 0;              /**< Pontuação atual do jogador. */  
+  int games = 0;              /**< Quantidade de jogos jogados. */
+  std::vector<bool> achievements; /**< Conquistas desbloqueadas pelo jogador. */
 
-  //Variáveis estatísticas para auxiliar nas conquistas
+ /**
+  * @brief Variáveis auxiliares para o desbloqueio de determinadas conquistas.
+  */
   int jump_count = 0, ground_deaths = 0, pipe_deaths = 0;
   
-  //Construtor padrão
+ /**
+  * @brief Construtor padrão.
+  */
   player(){}
 
-  //Construtor para inicializar todos os atributos
+ /**
+  * @brief Construtor que inicializa o jogador com todos os atributos da struct.
+  * @param username Nome do jogador.
+  * @param password Senha do jogador.
+  * @param score Pontuação inicial.
+  * @param games Número inicial de jogos.
+  * @param jump_count Número de pulos executados pelo jogador.
+  * @param ground_deaths Número de mortes no chão.
+  * @param pipe_deaths Número de mortes no cano.
+  */
   player(const std::string& username, const std::string& password, int score, int games, int jump_count, int ground_deaths, int pipe_deaths) : username(username), score(score), games(games), password(password), jump_count(jump_count), ground_deaths(ground_deaths), pipe_deaths(pipe_deaths) {}
 
-  //Contrutor para inicializar alguns dos atributos
+  /**
+  * @brief Construtor que inicializa o jogador com username, password, score e games.
+  * @param username Nome do jogador.
+  * @param password Senha do jogador.
+  * @param score Pontuação inicial.
+  * @param games Número inicial de jogos.
+  */
   player(const std::string& username, const std::string& password, int score, int games) : username(username), password(password), score(score), games(games) {}
 
-  //Sobrecarga no operador < para colocar em ordem descrescente de score dentro do container multiset
+  /**
+  * @brief Sobrecarga no operador < para colocar em ordem descrescente de score dentro do container multiset
+  * @param otherplayer Objeto do tipo player de outro jogador.
+  * @return Maior score dentre os scores comparados.
+  */
   bool operator < (const player& otherplayer) const{
     return score > otherplayer.score;
   }
 
-  //Função get da senha
+  /**
+  * @brief Obtém a senha do jogador.
+  * @return Senha do jogador.
+  */
   std::string get_password() const{
     return password;
   }
   
 };
 
+/**
+ * @class registration
+ * @brief Classe que realiza operações dentro do arquivo.
+ * 
+ * A classe registration permite inserções, remoções, atualizações, captura de dados dos jogadores que estarão presentes no arquivo.
+ */ 
 class registration {
 private:
-  //Variável que permitirá acesso ao arquivo
-  std::fstream users;
+  std::fstream users; /**< Variável que permitirá acesso ao arquivo. */
 
-  std::string file;
+  std::string file; /**< Nome do arquivo. */
 
-  //Flag para checagem de abertura do arquivo
-  bool openfile_check = false;
+  bool openfile_check = false;  /**< Flag para checagem de abertura do arquivo. */
 
-  //Armazena posição do jogador com maior score
-  std::streampos pos_champion;
+  std::streampos pos_champion;  /**< Armazena a posição do ponteiro de leitura onde se localiza o jogador com maior score. */
 
-  //Maior score do jogo
-  int score_champion = 0;
+  int score_champion = 0; /**< Maior score do jogo. */
   
-  //Retorna a linha do jogador correspondente do .txt
+ /**
+  * @brief Retorna a linha do jogador correspondente.
+  * @param user Nome do usuário.
+  * @return Número da linha do jogador no arquivo.
+  */
   int getline_number(std::string user);
 
 public:
-  //Construtor da classe
+ /**
+  * @brief Construtor da classe.
+  * @param arquivo Nome do arquivo.
+  */
   registration(std::string arquivo);
 
-  //Verifica se o arquivo está vazio
+ /**
+  * @brief Verifica se o arquivo está vazio.
+  * @return Booleano representando se o arquivo está vazio(true) ou false.
+  */
   bool isFileEmpty();
 
-  //Realiza o cadastro do jogador
+ /**
+  * @brief Cadastra um novo jogador.
+  * @param name Nome do jogador.
+  * @param password Senha do jogador.
+  * @param score Pontuação inicial do jogador.
+  * @param games Jogos jogados.
+  */
   void new_user(std::string name, std::string password, int score, int games);
 
-  //Captura a linha com as infos do jogador
+ /**
+  * @brief Captura a linha do jogador no arquivo.
+  * @param name Nome do jogador.
+  * @return Linha com as informações do jogador.
+  */
   std::string get_stats(const std::string& name);
 
-  //Captura as informações do usuário e retorna o objeto preenchido
+ /**
+  * @brief Captura as informações do jogador no arquivo.
+  * @param name Nome do jogador.
+  * @return Objeto com as todas as informações do jogador.
+  */
   player get_player(const std::string& name);
 
-  //Resgata as informações de todos os jogadores, exceto senha
+ /**
+  * @brief Resgata as informações de todos os jogadores, exceto senha.
+  * @return Container Multiset ordenado pela pontuação de todos os jogadores.
+  */
   std::multiset<player> get_all();
 
-  //Atualiza as informações do usuário
+ /**
+  * @brief Atualiza o arquivo com as informações de determinado jogador.
+  * @param player_stats Objeto player com as informações do jogador a serem atualizadas.
+  */
   void update(player& player_stats);
 
-  //Deleta o jogador
+ /**
+  * @brief Deleta o jogador.
+  * @param user Nome do jogador.
+  * @return Inteiro identificando se a exclusão foi bem sucedida(1) ou não (0).
+  */
   int delete_user(std::string user);
 
-  //Obtém o maior score do jogo
+ /**
+  * @brief Obtém a maior pontuação do jogo.
+  * @return Maior pontuação do jogo.
+  */
   int get_max_score();
 
-  //Obtém o username do campeão
+ /**
+  * @brief Obtém o username do jogador com maior pontuação do jogo.
+  * @return Username do jogador.
+  */
   std::string get_max_user();
 
-  //Atualiza o novo campeão
+ /**
+  * @brief Atualiza a posição do "possível" novo campeão após operações no arquivo.
+  */
   void update_champion();
 
-  //Verifica se o arquivo está aberto
+ /**
+  * @brief Verifica se o arquivo está aberto.
+  * @return Confirmação(true) ou false.
+  */
   bool isOpenFile();
 
-  //Destrutor da classe
+ /**
+  * @brief Destrutor da classe que realiza o fechamento do arquivo(se for necessário).
+  */
   ~registration();
 };
 

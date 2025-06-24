@@ -73,6 +73,7 @@ settings_screen::settings_screen() {
 
 // DESTRUTOR
 settings_screen::~settings_screen() {
+    std::cout<<"Inicio do Destrutor Settings Screen"<<std::endl;
     //std::cout << "Destroyed Home Screen.\n\n";
     // Destruição dos bitmaps
     al_destroy_bitmap(mountain_sprite_1);
@@ -87,9 +88,6 @@ settings_screen::~settings_screen() {
         al_destroy_bitmap(back_sprite[i]);
         al_destroy_bitmap(indicator_sprite[i]);
     }
-
-    // Destruição da fonte
-    al_destroy_font(pixel_sans);
 
     // Limpeza dos vetores
     for (background_object* bgo : background_objects_0) {
@@ -113,7 +111,7 @@ settings_screen::~settings_screen() {
     for (slider* slid : slides) {
             delete slid;
     }
-        
+    
     background_objects_0.clear();
     background_objects_1.clear();
     background_objects_2.clear();
@@ -121,6 +119,7 @@ settings_screen::~settings_screen() {
     buttons.clear();
     images.clear();
     slides.clear();
+    std::cout<<"Destrutor Settings"<<std::endl;
 }
 
 void settings_screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse_just_released, int mouse_update_x, int mouse_update_y, int mouse_x_now, states& state, Game_Loop* main_game_loop){
@@ -197,16 +196,16 @@ void settings_screen::update() {
     //Atualizando os objetos do cenário//
     background_objects_1.at(0)->Set_standard_speed(-2.5);
     for (background_object* bgo_3 : background_objects_3) {
-        bgo_3->Update(SCREEN_W, SCREEN_H, 0.1); // Atualiza as montanhas de trás
+        bgo_3->Update(0.1); // Atualiza as montanhas de trás
     }
     for (background_object* bgo_2 : background_objects_2) {
-        bgo_2->Update(SCREEN_W, SCREEN_H, 0.2); // Atualiza as montanhas do meio
+        bgo_2->Update(0.2); // Atualiza as montanhas do meio
     }
     for (background_object* bgo_1 : background_objects_1) {
-        bgo_1->Update(SCREEN_W, SCREEN_H, 0.3); // Atualiza as montanhas da frente
+        bgo_1->Update(0.3); // Atualiza as montanhas da frente
     }
     for (background_object* bgo_0 : background_objects_0) {
-        bgo_0->Update(SCREEN_W, SCREEN_H, 0.4); // Atualiza a grama
+        bgo_0->Update(0.4); // Atualiza a grama
     }
 
     //////////UI////////////

@@ -40,8 +40,6 @@ int main(int argc, char **argv) {
     }
 
     // Variáveis
-    int max_score;                                                          // Armazena a pontuação máxima do jogador
-    int score;                                                             // Armazena a pontuação do jogador
     int mouse_click_pos_x;                                                  // Armazena a posição X do clique do mouse
     int mouse_click_pos_y;                                                  // Armazena a posição Y do clique do mouse
     int mouse_is_now_at_x;                                                  // Armazena a posição X do mouse 
@@ -69,7 +67,7 @@ int main(int argc, char **argv) {
     bool* mouse_install = new bool;
     bool* audio_install = new bool;
     bool* acodec_install = new bool;
-
+    
     *sys_install = al_init();                   // Instalação principal
     *prim_install = al_init_primitives_addon(); // Instalação dos primitivos
     *font_install = al_init_font_addon();       // Instalação do addon de fontes
@@ -80,7 +78,7 @@ int main(int argc, char **argv) {
     *audio_install = al_install_audio();        // Instalação do áudio
     *acodec_install = al_init_acodec_addon();   // Instalação do codec de áudio
     al_reserve_samples(4); // quantos sons simultâneos podem tocar
-
+    
     if(!(*sys_install && *prim_install && *font_install && *ttf_install && *img_install && *keyboard_install && *mouse_install && *audio_install)) {
         debug << "Falha na instalação." << std::endl;
         debug << "SYS: " << *sys_install << std::endl;
@@ -94,7 +92,7 @@ int main(int argc, char **argv) {
         system("pause");
         return -1;
     }
-
+    
     delete sys_install;
     delete prim_install;
     delete font_install;
@@ -104,11 +102,11 @@ int main(int argc, char **argv) {
     delete mouse_install;
     delete audio_install;
     delete acodec_install;
-
+    
     debug << "Allegro iniciado com sucesso." << std::endl;
-
+    
     debug << "Preparando para o início do jogo..." << std::endl;
-
+    
     // VARIÁVEIS INICIAIS ALLEGRO
     debug << "\tCriando display, fila de eventos e timer..." << std::endl;
     ALLEGRO_DISPLAY *display = al_create_display(SCREEN_W, SCREEN_H);           // Inicialização do display
@@ -132,13 +130,13 @@ int main(int argc, char **argv) {
         return 3;
     }
     debug << "\tDisplay, fila de eventos e timer criados com sucesso." << std::endl;
-
+    
     // VETOR PARA LEITURA DE TECLA PRESSIONADA
     debug << "\tCriando vetor de teclas..." << std::endl;
     unsigned char key[ALLEGRO_KEY_MAX];     // Cria um vetor com a quantidade de teclas que podem ser detectadas
     memset(key, 0, sizeof(key));            // Inicializa todas os elementos do vetor como 0
     debug << "\tVetor de teclas criado com sucesso." << std::endl;
-    
+
     // REGISTRO DA ORIGEM DOS EVENTOS NA FILA DE EVENTOS
     debug << "\tRegistrando fontes de eventos..." << std::endl;
     al_register_event_source(queue, al_get_display_event_source(display));  // Eventos do display
@@ -158,13 +156,12 @@ int main(int argc, char **argv) {
     settings_screen main_settings_screen; // Criação da tela de configurações
     registration data("../jogadores.txt"); // Criação do objeto que manipula os dados
     menu main_menu (SCREEN_W, SCREEN_H, data); // Criação do menu principal
-
     debug << "\tTelas criadas com sucesso." << std::endl;
-
+    
     debug << "\tJogo iniciando...\n" << std::endl;
 
     al_set_window_title(display, "Flappy Bird");
-
+    
     while(state.open){
         // ESPERA O EVENTO
         // debug << "Esperando por eventos..." << std::endl;
@@ -180,7 +177,7 @@ int main(int argc, char **argv) {
             // Timer - "chama" o loop de update
             case ALLEGRO_EVENT_TIMER:
                 if(al_is_event_queue_empty(queue))
-                state.is_updating = true;
+                    state.is_updating = true;
                 break;
 
             // Key Down - registra uma tecla pressionada em key (... 0 0 1 1)
@@ -227,16 +224,19 @@ int main(int argc, char **argv) {
             
                 // Menu lida com o evento ocorrido
                 main_menu.handle_event(event, state.open, &state);
-
+                
                 main_menu.draw(SCREEN_W, SCREEN_H, event);
-
-                if(!state.open)
-                state.registration_screen = false;
             }
+            if(main_menu.is_login_done())
+                state.p=main_menu.get_logged_user();
         }
-        
+
         // debug << "Processando comandos..." << std::endl;
         if(state.home_screen) {
+            if (state.registration_screen == true){
+                state.registration_screen = false;
+                mouse_is_down = false;
+            }
             // debug << "Home Screen ativa." << std::endl;
             main_home_screen.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, state);
             if(state.is_updating && state.home_screen) {
@@ -265,11 +265,6 @@ int main(int argc, char **argv) {
             }
         }
         
-        /*
-        if(stats_screen){
-        
-        }
-        */
         if(state.achievements_screen) {
             // debug << "Achievements Screen ativa." << std::endl;
             main_achievements_screen.commands(key, mouse_is_down, mouse_just_released, mouse_click_pos_x, mouse_click_pos_y, state);
@@ -279,13 +274,28 @@ int main(int argc, char **argv) {
                 state.is_updating = false;
             }
         }
-        
+        if(mouse_just_released)
+            mouse_just_released = false;
+
+        if(state.load_user){
+            data.update(state.p);
+            state.load_user = false;
+        }
     }
-    // Libera recursos Allegro
+    
     debug << "Fim da execução. Fechando Allegro..." << std::endl;
+
+    // Libera recursos Allegro
     al_destroy_display(display);
     al_destroy_event_queue(queue);
     al_destroy_timer(timer);
+    al_uninstall_keyboard();
+    //al_uninstall_mouse();
+    //al_uninstall_audio();
+    //al_shutdown_primitives_addon();
+    //al_shutdown_font_addon();
+    //al_shutdown_ttf_addon();
+    //al_shutdown_image_addon();
     debug.close();
     return 0;
 }
