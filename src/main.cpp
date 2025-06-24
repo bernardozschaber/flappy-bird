@@ -163,11 +163,12 @@ int main(int argc, char **argv) {
 
     debug << "\tJogo iniciando...\n" << std::endl;
 
+    al_set_window_title(display, "Flappy Bird");
+
     while(state.open){
         // ESPERA O EVENTO
         // debug << "Esperando por eventos..." << std::endl;
         al_wait_for_event(queue, &event);
-        
         // LEITURA DO EVENTO
         switch(event.type) 
         {
@@ -178,6 +179,7 @@ int main(int argc, char **argv) {
 
             // Timer - "chama" o loop de update
             case ALLEGRO_EVENT_TIMER:
+                if(al_is_event_queue_empty(queue))
                 state.is_updating = true;
                 break;
 
@@ -216,20 +218,12 @@ int main(int argc, char **argv) {
                 break;
         }
 
-        while(state.registration_screen){
+        if(state.registration_screen){
             if(main_menu.is_login_done())
                 main_menu.reset();
-            while(!main_menu.is_login_done() && state.registration_screen){
+            if(!main_menu.is_login_done() && state.registration_screen){
                 // Seta o título da janela
-                al_set_window_title(display, "Flappy Bird - Cadastro/Login");
-                al_wait_for_event(queue, &event);
-
-                // Fechar o display encerra o loop
-                if (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-                    state.open = false;
-                    state.registration_screen = false;
-                    break;
-                }
+                //al_set_window_title(display, "Flappy Bird - Cadastro/Login");
             
                 // Menu lida com o evento ocorrido
                 main_menu.handle_event(event, state.open, &state);
@@ -240,8 +234,6 @@ int main(int argc, char **argv) {
                 state.registration_screen = false;
             }
         }
-        
-        al_set_window_title(display, "Flappy Bird");
         
         // debug << "Processando comandos..." << std::endl;
         if(state.home_screen) {

@@ -494,13 +494,13 @@ std::uniform_int_distribution<> dis(0, 384);
                 if(!pipe_objects.at(i)->is_scored()) {
                     // Veririficação se é dourado (cano dourado vale 3)
                     if(pipe_objects.at(i)->is_golden()) {
-                        if(sound) {
+                        if(sound&&i%2==0) {
                             al_play_sample(golden_score_sound, state->volume*0.6, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                         }
                         score=score+1.5;
                     }
                     else {
-                        if(sound) {
+                        if(sound&&i%2==0) {
                             al_play_sample(score_sound, state->volume*0.6, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                         }
                         score=score+0.5;
