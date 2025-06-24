@@ -14,7 +14,7 @@ class pipe_object : public game_object {
         pipe_object(float pos_x, float pos_y, int width, int height, ALLEGRO_BITMAP *Bitmap, bool is_golden);
 
         //Override
-        void Draw(float a);
+        void Draw(float scale);
         void Update(int a, int b);
         void Set_x_speed(float a);
         void Set_y_speed(float a);

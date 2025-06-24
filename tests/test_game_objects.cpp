@@ -22,11 +22,7 @@
 struct AllegroInit {
     AllegroInit() {
         al_init();
-        al_install_keyboard();
-        al_install_mouse();
-        al_install_audio();
-        al_init_acodec_addon();
-        al_reserve_samples(4);
+        al_init_image_addon();
     }
 } _allegro_init;
 
@@ -100,7 +96,7 @@ TEST_CASE("background_object: criação e métodos") {
 TEST_CASE("bird_object: criação e atualização") {
     // Criação de um bitmap padrão para inicialização
     ALLEGRO_BITMAP* bitmap = al_create_bitmap(50, 50);
-    bird_object bird(200, 200, 50, 50, bitmap, 5.0, 10.0, 15.0); // Objeto de testes
+    bird_object bird(200, 200, 50, 50, bitmap, -15.0, 15.0, 10.0); // Objeto de testes
 
     // Testa criação
     CHECK(bird.Get_position()->x == 200);
@@ -111,13 +107,57 @@ TEST_CASE("bird_object: criação e atualização") {
     CHECK(bird.get_vel() == 0);
     CHECK(bird.get_acel() == 0);
 
-    // Testa atualização de posição
-    bird.Update(800, 600);
-    CHECK(bird.Get_position()->y < 600); // Verifica se a posição Y não ultrapassa o limite inferior
+    // Testa setters
+    bird.Set_x_speed(10.0);
+    bird.Set_x_acelleration(5.0);
+    bird.Set_y_speed(-5.0);
+    bird.Set_y_acelleration(-5.0);
 
-    // Testa salto
-    bird.Jump();
-    CHECK(bird.Get_position()->y < 200); // Verifica se a posição Y sobe após o salto
+    CHECK(bird.get_vel() == 10.0);              // Verifica velocidade X
+    CHECK(bird.get_acel() == 5.0);              // Verifica aceleração X
+
+    // Vários updates para verificar posição, velocidade e aceleração
+    bird.Update(400, 400);                      // Simulação de uma tela 400x400
+
+    CHECK(bird.Get_position()->x == 210);       // Verifica nova posição X
+    CHECK(bird.Get_position()->y == 195);       // Verifica nova posição Y (nova vel Y = -10.0)
+    CHECK(bird.get_vel() == 15.0);              // Verifica velocidade X após update
+    CHECK(bird.get_acel() == 5.0);              // Verifica aceleração X após update
+
+    bird.Update(400, 400);                      // Atualiza novamente para verificar se a posição continua mudando
+
+    CHECK(bird.Get_position()->x == 225);       // Verifica nova posição X após segundo update
+    CHECK(bird.Get_position()->y == 185);       // Verifica nova posição Y após segundo update (nova vel Y = -15.0)
+    CHECK(bird.get_vel() == 15.0);              // Verifica velocidade X após segundo update (chegou no mínimo)
+    CHECK(bird.get_acel() == 5.0);              // Verifica aceleração X após segundo update
+
+    bird.Update(400, 400);                      // Atualiza novamente para verificar o limite da velocidade Y
+
+    CHECK(bird.Get_position()->y == 170);       // Verifica nova posição Y (nova vel Y = -15.0, não deve ultrapassar o máximo)
+    bird.Update(400, 400);
+    CHECK(bird.Get_position()->y == 155);       // Verifica nova posição Y
+
+    bird.Set_y_speed(0.0);                  // Reseta velocidade Y para 0
+    bird.Set_y_acelleration(0.0);           // Reseta aceleração Y para 0
+    bird.Update(400, 20);                   // Deve forçar o pássaro a ficar no limite da tela
+    CHECK(bird.Get_position()->y == 120);   // SCREEN_H + 100
+
+    // Testa pulo e atualização
+    bird_object bird_2(200, 200, 50, 50, bitmap, -10.0, 10.0, 5.0);     // Novo pássaro para teste de pulo
+    bird_2.Set_y_speed(1.0);                    // Reseta velocidade Y para 1.0 (subindo)
+    bird_2.Jump();                              // Primeiro pulo (deve ter setado a vel Y para 5.0)
+    bird_2.Update(400, 400);
+    CHECK(bird_2.Get_position()->y == 205);     // Verifica se o pássaro subiu
+
+    bird_2.Set_y_speed(-3.0);                   // Reseta velocidade Y para -3.0 (caindo)
+    bird_2.Jump();                              // Pula novamente (deve setar a vel Y para 2.0)
+    bird_2.Update(400, 400);
+    CHECK(bird_2.Get_position()->y == 207);     // Verifica se o pássaro subiu novamente
+
+    bird_2.Set_y_speed(0.0);                    // Reseta velocidade Y para 0.0 (inerte)
+    bird_2.Jump();                              // Pula novamente (deve setar a vel Y para 5.0)
+    bird_2.Update(400, 400);
+    CHECK(bird_2.Get_position()->y == 212);     // Verifica se o pássaro subiu novamente
 
     // Limpeza
     al_destroy_bitmap(bitmap);
@@ -126,7 +166,8 @@ TEST_CASE("bird_object: criação e atualização") {
 TEST_CASE("pipe_object: criação e atualização") {
     // Criação de um bitmap padrão para inicialização
     ALLEGRO_BITMAP* bitmap = al_create_bitmap(60, 120);
-    pipe_object pipe(300, 400, 60, 120, bitmap); // Objeto de testes
+    pipe_object pipe(300, 400, 60, 120, bitmap, false); // Objeto de testes
+    pipe.Set_score(true);
 
     // Testa criação
     CHECK(pipe.Get_position()->x == 300);
@@ -134,10 +175,18 @@ TEST_CASE("pipe_object: criação e atualização") {
     CHECK(pipe.Get_position()->w == 60);
     CHECK(pipe.Get_position()->h == 120);
     CHECK(pipe.get_bitmap() == bitmap);
+    CHECK(pipe.is_golden() == false);
+    CHECK(pipe.is_scored() == true);
 
     // Testa atualização de posição
-    pipe.Update(800, 600);
-    CHECK(pipe.Get_position()->x < 300); // Verifica se a posição X diminui após atualização
+    pipe_object pipe_2(500, 400, 60, 120, bitmap, true);
+    pipe.Set_x_speed(-5.0);     // Define velocidade padrão X
+    CHECK(pipe.Get_x_speed() == -5.0);
+    CHECK(pipe_2.Get_x_speed() == -5.0);
+    pipe.Update(800, 600);      // Simulação de uma tela 800x600
+    pipe_2.Update(800, 600);
+    CHECK(pipe.Get_position()->x == 295);   // Verifica nova posição X
+    CHECK(pipe_2.Get_position()->x == 495); // Verifica nova posição X
 
     // Limpeza
     al_destroy_bitmap(bitmap);

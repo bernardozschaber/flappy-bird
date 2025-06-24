@@ -36,3 +36,5 @@ bool pipe_object::is_golden() {
 float pipe_object::Get_x_speed(){
     return vel_x;
 };
+
+float pipe_object::vel_x = 0.0;
