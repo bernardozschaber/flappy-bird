@@ -171,8 +171,6 @@ void registration::update(player& player_stats){
     if(line == ""){
         return;
     }
-
-    player_stats.games++;
     
     int currentLine = 0;
     //Localizar a linha que deseja mudar
