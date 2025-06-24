@@ -1,3 +1,9 @@
+/**
+ * @file test_main_menu.cpp
+ * @brief Testes unitários para o menu principal
+ * @details Valida o funcionamento dos processos de login, registro, listagem e remoção, e o funcionamento dos objetos de UI utilizados
+ */
+
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 
@@ -16,10 +22,9 @@
 #include "remove_user_screen.hpp"
 #include "player_list_screen.hpp"
 
-// -----------------------------------------------------------------------------
-// Garante que "jogadores_teste.txt" exista com dados iniciais para login, registro e remoção.
-// Simula dados de jogadores para teste
-// -----------------------------------------------------------------------------
+/// @struct EnsureDummyFile
+/// @brief Garante que "jogadores_teste.txt" exista com dados iniciais para login, registro e remoção.
+/// - Simula dados de jogadores para teste
 static struct EnsureDummyFile {
     EnsureDummyFile() {
         std::ofstream f("../tests/jogadores_teste.txt", std::ios::trunc);
@@ -32,10 +37,8 @@ static struct EnsureDummyFile {
     }
 } _ensure_dummy_file;
 
-// -----------------------------------------------------------------------------
-// AllegroInit
-// Inicializa subsistemas de Allegro antes de qualquer teste.
-// -----------------------------------------------------------------------------
+/// @struct AllegroInit
+/// @brief Garante inicialização do Allegro para os testes
 struct AllegroInit {
     AllegroInit() {
         al_init();
@@ -47,9 +50,8 @@ struct AllegroInit {
     }
 } _allegro_init;
 
-// -----------------------------------------------------------------------------
-// Helpers para criar eventos simulados do Allegro
-// -----------------------------------------------------------------------------
+/// @name Helpers para simular eventos do Allegro
+/// @{
 static ALLEGRO_EVENT make_key_char_event(int keycode, int unichar) {
     ALLEGRO_EVENT ev{};
     ev.type                 = ALLEGRO_EVENT_KEY_CHAR;
@@ -80,6 +82,7 @@ static ALLEGRO_EVENT make_mouse_event(int type, int x, int y) {
     ev.mouse.button= 1;
     return ev;
 }
+/// @}
 
 // -----------------------------------------------------------------------------
 // TEST_CASES
@@ -87,6 +90,7 @@ static ALLEGRO_EVENT make_mouse_event(int type, int x, int y) {
 
 registration reg("../tests/jogadores_teste.txt");
 
+/// @test Verifica se objetos de UI estão identificando cliques corretamente
 TEST_CASE("ui_object::contains() detecta corretamente pontos dentro/fora") {
     // Struct derivada de ui_object para viabilizar testes:
     // ui_object é abstrata, logo, não pode ser instanciada
@@ -108,6 +112,7 @@ TEST_CASE("ui_object::contains() detecta corretamente pontos dentro/fora") {
     CHECK_FALSE( d.contains(10,61) );
 }
 
+/// @test Verifica o comportamento das caixas de texto, como tamanho máximo, exclusão de caracteres e somente inclusão de ASCII válido
 TEST_CASE("text_box: aceita só ASCII 33–127, respeita max_length e backspace") {
     text_box tb(0,0,100,20,3,nullptr);
     tb.set_active(true);
@@ -134,6 +139,7 @@ TEST_CASE("text_box: aceita só ASCII 33–127, respeita max_length e backspace"
     CHECK( tb.get_text().empty() );
 }
 
+/// @test Verifica se a máscara de senha preserva o texto
 TEST_CASE("text_box: masking preserva texto interno") {
     text_box tb(0,0,100,20,5,nullptr);
     tb.set_active(true);
@@ -146,6 +152,7 @@ TEST_CASE("text_box: masking preserva texto interno") {
     CHECK( tb.get_text() == "AB" );
 }
 
+/// @test Verifica se os botões identificam cliques corretos e se o reset funciona
 TEST_CASE("button: clicável apenas dentro da área e reset funciona") {
     button b(5,5,50,20,"OK", nullptr);
 
@@ -162,6 +169,7 @@ TEST_CASE("button: clicável apenas dentro da área e reset funciona") {
     CHECK_FALSE(b.was_clicked());
 }
 
+/// @test Verifica o comportamento do áudio do menu
 TEST_CASE("menu_audio: toggle mute/unmute e update_sources()") {
     menu_audio ma(nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,0,0,16,16);
     text_box tb(0,0,50,20,5,nullptr);
@@ -187,6 +195,7 @@ TEST_CASE("menu_audio: toggle mute/unmute e update_sources()") {
     CHECK(tb.get_text() == "A");
 }
 
+/// @test Verifica funcionamento da tela de login
 TEST_CASE("login_screen: fluxo de login, navegação e reset") {
     login_screen ls(800,600, reg, nullptr,nullptr);
 
@@ -232,6 +241,7 @@ TEST_CASE("login_screen: fluxo de login, navegação e reset") {
     CHECK(ls.go_to_remove_screen());
 }
 
+///@ test Verifica funcionamento da tela de registro
 TEST_CASE("register_screen: sucesso, falha, ESC e reset") {
     auto all = reg.get_all();
     register_screen rs(800,600, reg, all, nullptr,nullptr);
@@ -291,6 +301,7 @@ TEST_CASE("register_screen: sucesso, falha, ESC e reset") {
     
 }
 
+/// @test Verifica funcionamento da tela de remoção
 TEST_CASE("remove_user_screen: remoção com confirmação de senha e reset") {
     auto all = reg.get_all();
     remove_user_screen rus(800,600, reg, all, nullptr,nullptr);
@@ -342,6 +353,7 @@ TEST_CASE("remove_user_screen: remoção com confirmação de senha e reset") {
 
 }
 
+/// @test Verifica funcionamento da tela de listagem
 TEST_CASE("player_list_screen: navegação de páginas e ESC") {
     std::multiset<player> ms;
     for(int i=0; i < 16;i++) {

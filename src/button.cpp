@@ -31,14 +31,6 @@ void button::draw(ALLEGRO_FONT *font) {
   al_draw_text(font, al_map_rgb(255, 255, 255), text_x, text_y, 0,label.c_str());
 }
 
-int button::get_x(){
-  return x;
-}
-
-int button::get_y(){
-  return y;
-}
-
 bool button::was_clicked() const {
   return clicked; 
 }
