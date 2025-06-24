@@ -9,7 +9,7 @@ void background_object::Draw(float scale) {
     al_draw_scaled_rotated_bitmap(this->get_bitmap(), drawing_position->w/2, drawing_position->h/2, drawing_position->x, drawing_position->y, scale, scale, 0, 0);
 }
 
-void background_object::Update(const int SCREEN_W, const int SCREEN_H, const float multiplier) {
+void background_object::Update(const float multiplier) {
     this->Get_position()->x += background_object::standard_x_speed * multiplier;
 }
 

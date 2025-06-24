@@ -18,17 +18,17 @@ class bird_object : public game_object{
 
     public:
         //Construtor
-        bird_object(float a, float b, int c, int d, ALLEGRO_BITMAP * e, int f, int g, int h);
+        bird_object(float x, float y, int w, int h, ALLEGRO_BITMAP * bitmap, int max_vel, int min_vel, int jump_vel);
 
         //Override
-        void Draw(float a);
-        void Draw(float a, ALLEGRO_BITMAP* bitmap);
+        void Draw(float scale);
+        void Draw(float scale, ALLEGRO_BITMAP* bitmap);
         void Update(int SCREEN_W, int SCREEN_H);
         void Jump();
-        void Set_x_speed(float a);
-        void Set_x_acelleration(int a);
-        void Set_y_speed(float a);
-        void Set_y_acelleration(float a);
+        void Set_x_speed(float new_x_speed);
+        void Set_x_acelleration(int new_x_accel);
+        void Set_y_speed(float new_y_speed);
+        void Set_y_acelleration(float new_y_accel);
         void Draw_spin(float SPIN_SPEED);
         float get_vel(){
             return this->vel_x;

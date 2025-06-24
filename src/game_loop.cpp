@@ -792,16 +792,16 @@ std::uniform_int_distribution<> dis(0, 384);
                 }
                 background_objects_1.at(0)->Set_standard_speed(pipe_objects.at(1)->Get_x_speed());
                 for (background_object* bgo_3 : background_objects_3) {
-                    bgo_3->Update(SCREEN_W, SCREEN_H, 0.1); // Atualiza as montanhas de trás
+                    bgo_3->Update(0.1); // Atualiza as montanhas de trás
                 }
                 for (background_object* bgo_2 : background_objects_2) {
-                    bgo_2->Update(SCREEN_W, SCREEN_H, 0.2); // Atualiza as montanhas do meio
+                    bgo_2->Update(0.2); // Atualiza as montanhas do meio
                 }
                 for (background_object* bgo_1 : background_objects_1) {
-                    bgo_1->Update(SCREEN_W, SCREEN_H, 0.3); // Atualiza as montanhas da frente
+                    bgo_1->Update(0.3); // Atualiza as montanhas da frente
                 }
                 for (background_object* bgo_0 : background_objects_0) {
-                    bgo_0->Update(SCREEN_W, SCREEN_H, 0.4); // Atualiza a grama
+                    bgo_0->Update(0.4); // Atualiza a grama
                 }
             }
         }
