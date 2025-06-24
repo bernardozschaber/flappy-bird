@@ -23,11 +23,11 @@ void menu::handle_event(const ALLEGRO_EVENT &event, bool &is_open, states* state
         // ESC no menu fecha o programa
         if (event.type == ALLEGRO_EVENT_KEY_UP && event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
             is_open = false;
+            state->open = false;
             return;
         }
         login_scr.handle_event(event);
         if(login_scr.login_done()){
-            state->registration_screen = false;
             state->home_screen = true;
             return;
         }    

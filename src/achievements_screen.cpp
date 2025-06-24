@@ -204,7 +204,8 @@ Achievements_Screen::~Achievements_Screen() {
     al_destroy_bitmap(achievements_locked[15]);
 
     // Destruição da fonte
-    al_destroy_font(pixel_sans);
+    //if(pixel_sans)
+    //al_destroy_font(pixel_sans);
 
     // Limpeza dos vetores
     for (background_object* bgo : background_objects_0) {

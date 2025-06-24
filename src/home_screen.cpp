@@ -18,7 +18,7 @@ int statistics_screen_spawn_x = SCREEN_W+192;   // Posição X do spawn da tela 
 bool statistics_showing = false;                // Bool que controla se a tela de estatísticas está sendo mostrada
 bool statistics_animation_entry = false;        // Bool que controla se a animação da tela de estatísticas está mostrando
 bool statistics_animation_exit = false;         // Bool que controla se a animação da tela de estatísticas está escondendo
-player p1("Robert", "seila13", 104, 12, 491, 3, 9);    // Player aleatório para testes (depois vai receber o player normal)
+player p1;
 
 // CONSTRUTOR
 Home_Screen::Home_Screen() {
@@ -205,6 +205,9 @@ void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse
             {
                 buttons.at(3)->set_bitmap(logout_button_sprite[0]);
                 buttons.at(3)->set_pressed(false);
+                state.load_user = true;
+                state.registration_screen = true;
+                state.home_screen = false;
             }
 
             // Botão de jogar
@@ -265,6 +268,9 @@ void Home_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse
             buttons.at(4)->set_bitmap(play_button_sprite[0]);
         }
     }
+
+    //Setando player//
+    p1=state.p;
 
     // Reseta o mouse just released
     if (mouse_just_released) {
@@ -429,10 +435,16 @@ void Home_Screen::draw() {
         // Desenha a tela de estatísticas se estiver sendo mostrada
         images.at(2)->Draw();
         // Escreve as estatísticas do jogador
+        int num_achievements;
+        for (int a=0; a<16 ; a++){
+            std::cout<<p1.achievements.at(a)<<std::endl;
+            num_achievements += (int)p1.achievements.at(a);
+        }
+        std::cout<<num_achievements<<std::endl;
         al_draw_textf(title_font, al_map_rgb(255, 50, 70), images.at(2)->get_x(), images.at(2)->get_y()-190, ALLEGRO_ALIGN_CENTER, "%s", p1.username.c_str());
         al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()-130, ALLEGRO_ALIGN_LEFT, "Total de Jogos: %d", p1.games);
         al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()-90, ALLEGRO_ALIGN_LEFT, "Pontuação máxima: %d", p1.score);
-        al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()-50, ALLEGRO_ALIGN_LEFT, "Conquistas: %d/%d", 10, 16);
+        al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()-50, ALLEGRO_ALIGN_LEFT, "Conquistas: %d/%d", num_achievements-4, 16);
         al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()+10, ALLEGRO_ALIGN_LEFT, "Mortes para canos: %d", p1.pipe_deaths);
         al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()+50, ALLEGRO_ALIGN_LEFT, "Mortes por cair: %d", p1.ground_deaths);
         al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()+90, ALLEGRO_ALIGN_LEFT, "Pulos: %d", p1.jump_count);

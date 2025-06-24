@@ -7,6 +7,7 @@
 #include "bird_object.hpp"
 #include "image.hpp"
 #include "score.hpp"
+#include "registration.hpp"
 #include <allegro5/allegro_audio.h>
 #include <vector>
 #include <random>
@@ -68,10 +69,12 @@ struct states{
     bool settings_screen = false;      // Tela de configurações está aberta
     bool was_in_menu = false;
     bool was_playing = false;
+    bool load_user = false;
     bool game_loop_screen = false;     // O jogo está no loop de jogo
     bool achievements_screen = false;  // Tela de conquistas está aberta
     bool home_screen = false;          // Tela inicial esta aberta
     float volume = 1.0;
+    player p;
 };
 
 class Game_Loop {

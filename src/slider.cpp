@@ -11,11 +11,6 @@
     }
 
     slider::~slider(){
-        al_destroy_bitmap(show);
-        al_destroy_bitmap(back[0]);
-        al_destroy_bitmap(back[1]);
-        al_destroy_bitmap(indicator[0]);
-        al_destroy_bitmap(indicator[1]);
         al_destroy_font(up_heaval);
         al_destroy_font(departure);
     };
