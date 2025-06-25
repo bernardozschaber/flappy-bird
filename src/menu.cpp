@@ -5,7 +5,7 @@ menu::menu(const int SCREEN_W, const int SCREEN_H, registration &data):
     background_menu(al_load_bitmap("../assets/scenario/background_login.png")), crown(al_load_bitmap("../assets/UI/crown-2.png")), ico_on(al_load_bitmap("../assets/UI/sound_on.png")), ico_off(al_load_bitmap("../assets/UI/sound_off.png")),
     ico_on_press(al_load_bitmap("../assets/UI/sound_on_pressed.png")), ico_off_press(al_load_bitmap("../assets/UI/sound_off_pressed.png")), main_menu_title(al_load_bitmap("../assets/UI/main_menu_title_text.png")),
     pixel_sans(al_load_ttf_font("../assets/fonts/pixelify_sans.ttf", 20, 0)), current(SCREEN_LOGIN),
-    audio_ctrl(ico_on,ico_off,ico_on_press,ico_off_press,sample_key,sample_button,40, 40, al_get_bitmap_width(ico_on), al_get_bitmap_height(ico_on)),
+    audio_ctrl(ico_on,ico_off,ico_on_press,ico_off_press,sample_key,sample_button,40, 40, al_get_bitmap_width(ico_on), al_get_bitmap_height(ico_on)), 
     login_scr(SCREEN_W, SCREEN_H, data, sample_key, sample_button), register_scr(SCREEN_W, SCREEN_H, data, players, sample_key, sample_button),
     list_scr(SCREEN_W, SCREEN_H, sample_button, crown, players, data), rm_scr(SCREEN_W, SCREEN_H, data, players,sample_key, sample_button), players(data.get_all()) {}
 

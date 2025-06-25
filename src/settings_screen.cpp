@@ -73,7 +73,6 @@ settings_screen::settings_screen() {
 
 // DESTRUTOR
 settings_screen::~settings_screen() {
-    std::cout<<"Inicio do Destrutor Settings Screen"<<std::endl;
     //std::cout << "Destroyed Home Screen.\n\n";
     // Destruição dos bitmaps
     al_destroy_bitmap(mountain_sprite_1);
@@ -119,7 +118,6 @@ settings_screen::~settings_screen() {
     buttons.clear();
     images.clear();
     slides.clear();
-    std::cout<<"Destrutor Settings"<<std::endl;
 }
 
 void settings_screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse_just_released, int mouse_update_x, int mouse_update_y, int mouse_x_now, states& state, Game_Loop* main_game_loop){
