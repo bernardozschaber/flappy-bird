@@ -8,7 +8,7 @@ void pipe_object::Draw(float scale){
     al_draw_scaled_rotated_bitmap(this->get_bitmap(),drw_pos->w/2,drw_pos->h/2,drw_pos->x,drw_pos->y,scale,scale,0,0);
 };
     
-void pipe_object::Update(int a , int b){
+void pipe_object::Update(int a , int b) {
     this->Get_position()->x += vel_x;
     this->Get_position()->y += vel_y;
 };
