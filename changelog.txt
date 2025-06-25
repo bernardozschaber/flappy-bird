@@ -233,3 +233,7 @@
     Pedro(testregistration.cpp, registro_teste.txt): 
         - Criação de um novo arquivo txt para uso no teste da classe registration
         - Adaptação do teste para comportar o novo arquivo
+
+24-06-2025
+    Sam(tests):
+        - Finalizados os doctests para a parte minha e do Laércio
