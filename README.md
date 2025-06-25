@@ -70,7 +70,7 @@ O sistema deve permitir:
 ├─ modeling/ # pdf's com a modelagem do projeto
 ├─ jogadores.txt # dados dos jogadores para persistência entre execuções
 ├─ obj/ # objetos
-├─ tests/ # testes com doctest
+├─ tests/ # testes com doctest e doxygen
 └─ Makefile # regras de compilação
 ```
 ---
