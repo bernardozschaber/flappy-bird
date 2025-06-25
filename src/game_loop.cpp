@@ -1157,10 +1157,3 @@ std::uniform_int_distribution<> dis(0, 384);
         ragequit = false;
         hello = false;                                      
     } 
-
-    /*void Game_Loop::configure(float* valores){
-        BIRD_JUMP_VEL
-        BIRD_MAX_DOWN_VEL
-        BIRD_MAX_UP_VEL
-        
-    };*/ 
