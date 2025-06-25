@@ -235,6 +235,10 @@ Achievements_Screen::~Achievements_Screen() {
     images.clear();
 }
 
+
+
+
+
 // PROCESSAMENTO DE COMANDOS
 void Achievements_Screen::commands(unsigned char key[], bool& mouse_is_down, bool& mouse_just_released, int mouse_update_x, int mouse_update_y, states& state) {
     if (buttons.size() > 0) {
@@ -264,6 +268,15 @@ void Achievements_Screen::commands(unsigned char key[], bool& mouse_is_down, boo
         {
             buttons.at(0)->set_pressed(false);
             buttons.at(0)->set_bitmap(home_button_sprite[0]);
+        }
+    }
+
+    // ACHIEVEMENTS//
+    for(int a=0; a<16; a++){
+        if(state.p.achievements.at(a)){
+            images.at(a+1)->set_bitmap(achievements_badges[a]);
+        }else{
+            images.at(a+1)->set_bitmap(achievements_locked[a]);
         }
     }
 

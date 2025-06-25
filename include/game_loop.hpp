@@ -65,14 +65,14 @@ extern const int HEIGHT_REFFERENCE;
 struct states{
     bool open = true;                  // Jogo está aberto
     bool is_updating = false;          // O jogo deve atualizar o estado
-    bool registration_screen = false;   // Tela de registro está aberta
+    bool registration_screen = true;   // Tela de registro está aberta
     bool settings_screen = false;      // Tela de configurações está aberta
     bool was_in_menu = false;
     bool was_playing = false;
     bool load_user = false;
     bool game_loop_screen = false;     // O jogo está no loop de jogo
     bool achievements_screen = false;  // Tela de conquistas está aberta
-    bool home_screen = true;          // Tela inicial esta aberta
+    bool home_screen = false;          // Tela inicial esta aberta
     float volume = 1.0;
     player p;
 };

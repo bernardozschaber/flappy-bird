@@ -71,10 +71,15 @@ std::uniform_int_distribution<> dis(0, 384);
     bool new_best = false;                                                  // Bool que controla se o jogador fez um novo recorde
     bool play_record_audio = false;                                         // Bool que controla se o áudio de novo recorde deve ser tocado
     bool bird_animation = false;                                            // Bool que controla se o passaro está em animação
+    bool all_achievements = false;
     float animation_speed=0;                                                // Float que define quando tem que passar o frame de animação
     int sprite_now=0;                                                       // Int que guarda em que sprite o passaro esta
     int frames_per_point;                                                   // Define a velocidade da animação de pontos
     int frame_count;                                                        // Contagem de frames para a animação dos pontos
+    float golden_pipes = 0;                                                 // Quantidade de canos dourados passados em uma mesma jogatina
+    int bonks = 0;                                                          // Quantidade de vezes que bateu a cabeça no teto em uma jogatina
+    bool ragequit = false;                                                  // Bool que guarda se o usuario saiu do jogo na tela de morte
+    bool hello = false;                                                     // Bool que guarda se o usuario morreu sem se mexer
     int score_displayed = 0;                                                // Monitora a pontuação que está sendo mostrada
     int c = 0, d = 0, u = 0;                                                // Índices para o sprite da pontuação
 
@@ -267,6 +272,12 @@ std::uniform_int_distribution<> dis(0, 384);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void Game_Loop::commands(unsigned char key[], bool mouse_is_down, bool &mouse_just_released, int mouse_update_x, int mouse_update_y, states* state) {
+        // Checando ragequit
+        if(!state->open&&dead&&!playing){
+            ragequit = true;
+            state->is_updating = true;
+        }
+        
         // Processamento dos botões
         if(buttons.size() > 0) {
             // Mouse acabou de ser solto
@@ -406,9 +417,12 @@ std::uniform_int_distribution<> dis(0, 384);
             if(!paused){
                 if(!playing && !dead) {                        // Se o jogo não está em andamento e não está morto
                     playing = true;                            // Inicia o jogo
+                    hello = true;
                     birdo->Set_y_acelleration(gravity); // Define a aceleração da gravidade
                 } 
                 if(playing && !dead) {                         // Se o jogo está em andamento e não está morto
+                    if (pipe_objects.size()>0)
+                        hello = false;
                     birdo->Jump();                // Faz o pássaro pular
                     state->p.jump_count++;
                     if(sound) {
@@ -422,7 +436,6 @@ std::uniform_int_distribution<> dis(0, 384);
                     death_menu = false;
                     this->reset_game();
                 }
-                //if()
             }
         }
         else if(key[ALLEGRO_KEY_ESCAPE] == 3) {
@@ -498,6 +511,7 @@ std::uniform_int_distribution<> dis(0, 384);
                             al_play_sample(golden_score_sound, state->volume*0.6, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                         }
                         score=score+1.5;
+                        golden_pipes +=0.5;
                     }
                     else {
                         if(sound&&i%2==0) {
@@ -562,12 +576,78 @@ std::uniform_int_distribution<> dis(0, 384);
             }
         }
 
+        
+        // Verificando se deu ragequit
+        if(!state->p.achievements.at(8)&&ragequit){
+            state->load_user = true;
+            state->p.achievements.at(8) = true;
+        }
+        
+        all_achievements = true;
+            
+        for(int a = 0; a<15; a++){
+            if(!state->p.achievements.at(a)){
+                all_achievements = false;
+            }
+        }
+        if(!state->p.achievements.at(15)&&all_achievements){
+            state->load_user = true;
+            state->p.achievements.at(15) = true;
+        }
+        
         // Setando death_menu para true caso ele caia de verdade
-        state->p.games++;
         if(birdo->Get_position()->y>SCREEN_H+50 && dead && !death_menu){
+            state->p.games++;
             death_menu = true;
             playing = false;
             death_screen_animation = true;
+        
+            if(score > maxscore) {
+                new_best = true;            // Se a pontuação atual é maior que a máxima, marca como novo recorde
+                maxscore = score;
+                state->p.score = (int)maxscore;
+            }
+
+            //Verificando os achievements//
+            if(!state->p.achievements.at(0)&&state->p.score>=10)
+                state->p.achievements.at(0) = true;
+            if(!state->p.achievements.at(1)&&state->p.score>=20)
+                state->p.achievements.at(1) = true;
+            if(!state->p.achievements.at(2)&&state->p.score>=30)
+                state->p.achievements.at(2) = true;
+            if(!state->p.achievements.at(3)&&bonks>=10)
+                state->p.achievements.at(3) = true;
+            if(!state->p.achievements.at(4)&&golden_pipes>=1)
+                state->p.achievements.at(4) = true;
+            if(!state->p.achievements.at(5)&&state->p.jump_count>=100)
+                state->p.achievements.at(5) = true;
+            if(!state->p.achievements.at(6)&&state->p.jump_count>=500)
+                state->p.achievements.at(6) = true;
+            if(!state->p.achievements.at(7)&&hello)
+                state->p.achievements.at(7) = true;
+            if(!state->p.achievements.at(9)&&state->p.ground_deaths>=20)
+                state->p.achievements.at(9) = true;
+            if(!state->p.achievements.at(10)&&state->p.ground_deaths>=50)
+                state->p.achievements.at(10) = true;
+            if(!state->p.achievements.at(11)&&state->p.pipe_deaths>=20)
+                state->p.achievements.at(11) = true;
+            if(!state->p.achievements.at(12)&&state->p.pipe_deaths>=50)
+                state->p.achievements.at(12) = true;
+            if(!state->p.achievements.at(13)&&state->p.score>=100)
+                state->p.achievements.at(13) = true;
+            if(!state->p.achievements.at(14)&&golden_pipes>=3)
+                state->p.achievements.at(14) = true;
+            all_achievements = true;
+            
+        for(int a = 0; a<15; a++){
+            if(!state->p.achievements.at(a)){
+                all_achievements = false;
+            }
+        }
+        if(!state->p.achievements.at(15)&&all_achievements){
+            state->load_user = true;
+            state->p.achievements.at(15) = true;
+        }
             state->load_user = true;
 
             // Movendo os botões de achievements (3) e home (4) para a tela de morte
@@ -689,11 +769,6 @@ std::uniform_int_distribution<> dis(0, 384);
 
             // Animação mostrando os pontos
             else if(points_animation) {
-                if(score > maxscore) {
-                    new_best = true;            // Se a pontuação atual é maior que a máxima, marca como novo recorde
-                    maxscore = score;
-                    state->p.score = maxscore;
-                }
                 
                 if (score_displayed  == score)          // Pontuação mostrada chegou na pontuação de fato, pare a animação
                 {
@@ -785,6 +860,8 @@ std::uniform_int_distribution<> dis(0, 384);
         ////////////////////////////////////////
         if (!paused&&!death_menu) {
             birdo->Update(SCREEN_W, SCREEN_H); // Atualiza o pássaro
+            if(!paused&&birdo->Get_position()->y==0)
+                bonks++;
             if(!dead&&playing){
                 for (int i = 0; i < pipe_objects.size(); i++){
                     pipe_objects.at(i)->Update(SCREEN_W, SCREEN_H);
@@ -1108,6 +1185,11 @@ std::uniform_int_distribution<> dis(0, 384);
         //Configurando odds do golden pipe
         golden_pipe_odds=golden_odds_setter;
         gravity=gravity_setter;
+
+        golden_pipes = 0;
+        bonks = 0;    
+        ragequit = false;
+        hello = false;                                      
     } 
 
     /*void Game_Loop::configure(float* valores){

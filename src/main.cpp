@@ -171,6 +171,7 @@ int main(int argc, char **argv) {
         {
             // Fechamento do display - sai do loop principal
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
+                state.load_user = true;
                 state.open = false;
                 break;
 
@@ -227,8 +228,9 @@ int main(int argc, char **argv) {
                 
                 main_menu.draw(SCREEN_W, SCREEN_H, event);
             }
-            if(main_menu.is_login_done())
+            if(main_menu.is_login_done()){
                 state.p=main_menu.get_logged_user();
+                }
         }
 
         // debug << "Processando comandos..." << std::endl;
@@ -280,6 +282,7 @@ int main(int argc, char **argv) {
         if(state.load_user){
             data.update(state.p);
             state.load_user = false;
+            main_menu.set_players(data.get_all());
         }
     }
     
