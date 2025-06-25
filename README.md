@@ -89,7 +89,7 @@ O sistema deve permitir:
 | **registration**       | Persistência em arquivo de jogadores                  |
 | **menu**               | Controle de fluxo entre telas                         |
 
-#### Jogo
+#### Jogo:
 | Componente             | Responsabilidade                                      |
 |------------------------|-------------------------------------------------------|
 | **game_object**        | Base para todos os objetos do jogo                    |
