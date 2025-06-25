@@ -53,7 +53,7 @@
     al_draw_scaled_rotated_bitmap(this->get_bitmap(),drw_pos->w/2,drw_pos->h/2,drw_pos->x,drw_pos->y,1,1,angle,0);
     }
 
-     void bird_object::Draw(float SPIN_SPEED, ALLEGRO_BITMAP* bitmap){
+    void bird_object::Draw(float SPIN_SPEED, ALLEGRO_BITMAP* bitmap){
     abs_pos* drw_pos = this->Get_position();
     angle+=SPIN_SPEED;
     al_draw_scaled_rotated_bitmap(bitmap,drw_pos->w/2,drw_pos->h/2,drw_pos->x,drw_pos->y,1,1,angle,0);
