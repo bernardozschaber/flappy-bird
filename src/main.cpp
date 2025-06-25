@@ -29,9 +29,6 @@
 #define SEEN 1          // importante para detecção de teclas
 #define RELEASED 2      // importante para detecção de teclas
 
-// DECLARANDO A STATIC VELOCIDADE DO CANO
-float pipe_object::vel_x = -2.5;    
-
 int main(int argc, char **argv) {
     // Arquivo para debug (just in case)
     std::ofstream debug("../debug_log.txt");
