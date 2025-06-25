@@ -53,17 +53,9 @@ void moving_button::Update(){
     this->vel_y+=acel_y;
 }
 
-void moving_button::set_transparacy(float trns) {
-    this->transparacy=trns;
-}
-
 void moving_button::set_pressed(bool pressed) {
     this->is_being_pressed = pressed;
 }
-
-float moving_button::get_acel(){
-    return acel_y;
-};
 
 void moving_button::handle_event(const ALLEGRO_EVENT &ev) {
     return;

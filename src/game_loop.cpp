@@ -86,7 +86,6 @@ std::uniform_int_distribution<> dis(0, 384);
     // Construtor
     Game_Loop::Game_Loop(){ 
         // Inicialização dos bitmaps dos objetos do jogo
-        ALLEGRO_COLOR black = al_map_rgb(0, 0, 0);
         ALLEGRO_FONT *pixel_sans = al_load_ttf_font(PSANS_FONT_FILEPATH, 20, 0);
         pipe_sprite = al_load_bitmap(PIPE_SPRITE);
         golden_pipe_sprite = al_load_bitmap(GOLDEN_PIPE_SPRITE);
@@ -888,9 +887,6 @@ std::uniform_int_distribution<> dis(0, 384);
         for(image* img : images) {
             img->Update();
         }
-        
-        //If menu
-
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1032,36 +1028,6 @@ std::uniform_int_distribution<> dis(0, 384);
                 buttons.at(5)->draw(0.22+dif);
             }
         }
-        /*             SE FOR USAR ESSE É SO TIRAR O COMENTARIO E BOTAR COMENTARIO NO OUTRO
-        if(playing) {            
-            // Cálculo dos dígitos
-            int unidades = (int)score % 10;
-            int dezenas = (int)(score / 10) % 10;
-            int centenas = (int)(score / 100) % 10;
-
-            // Parâmetros de layout
-            int digit_width = al_get_bitmap_width(numbers_sprites[0]); // Largura de cada número
-            int total_digits = (score >= 100) ? 3 : (score >= 10) ? 2 : 1;
-            int total_width = digit_width * total_digits;
-
-            int start_x = (SCREEN_W / 2) - (total_width / 2); // Centraliza no meio da tela
-            int y = SCREEN_H / 2 - 225; // Mesma altura que você estava usando para o texto
-
-            // Desenha os dígitos corretamente posicionados
-            if (total_digits == 3) {
-                al_draw_bitmap(numbers_sprites[centenas], start_x, y, 0);
-                al_draw_bitmap(numbers_sprites[dezenas], start_x + digit_width, y, 0);
-                al_draw_bitmap(numbers_sprites[unidades], start_x + 2 * digit_width, y, 0);
-            }
-            else if (total_digits == 2) {
-                al_draw_bitmap(numbers_sprites[dezenas], start_x, y, 0);
-                al_draw_bitmap(numbers_sprites[unidades], start_x + digit_width, y, 0);
-            }
-            else {
-                al_draw_bitmap(numbers_sprites[unidades], start_x, y, 0);
-            }
-            
-        }*/
         al_flip_display();
     }      
 
