@@ -1,0 +1,150 @@
+\doxysection{Referência à classe menu\+\_\+audio}
+\hypertarget{classmenu__audio}{}\label{classmenu__audio}\index{menu\_audio@{menu\_audio}}
+
+
+Gerencia o estado de áudio dos efeitos sonoros do menu (mute/unmute)  
+
+
+
+
+{\ttfamily \#include $<$menu\+\_\+audio.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmenu__audio_a86ea0e587688aada39eb83eb8c956e75}{menu\+\_\+audio}} (ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}bmp\+\_\+on, ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}bmp\+\_\+off, ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}bmp\+\_\+on\+\_\+pr, ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}bmp\+\_\+off\+\_\+pr, ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}key\+\_\+sample, ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}click\+\_\+sample, int x, int y, int w, int h)
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa o controle de áudio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmenu__audio_aca4f150b92fb23ce0af165dc5b64d37d}{set\+\_\+sources}} (const std\+::vector$<$ \mbox{\hyperlink{classtext__box}{text\+\_\+box}} \texorpdfstring{$\ast$}{*} $>$ \&tboxes, const std\+::vector$<$ \mbox{\hyperlink{classbutton}{button}} \texorpdfstring{$\ast$}{*} $>$ \&buttons)
+\begin{DoxyCompactList}\small\item\em Registra quais elementos estão sendo controlados. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmenu__audio_ade9c129ec36bc524188d3bec01f2e3f9}{set\+\_\+position}} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Define a posição do botão de mute/unmute. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmenu__audio_a3dad184f7f9b2e554937ff4cae399a78}{handle\+\_\+event}} (const ALLEGRO\+\_\+\+EVENT \&ev)
+\begin{DoxyCompactList}\small\item\em Muta/\+Desmuta o áudio conforme cliques do mouse. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmenu__audio_a715f5022aca63afe073dea34f1d97537}{is\+\_\+muted}} () const
+\begin{DoxyCompactList}\small\item\em Verifica o estado de audio do menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmenu__audio_a4a2cd7e69ef20597dd13170828b9636c}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Desenha o botão na posição correta e com o bitmap correspondente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Gerencia o estado de áudio dos efeitos sonoros do menu (mute/unmute) 
+
+\label{doc-constructors}
+\Hypertarget{classmenu__audio_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classmenu__audio_a86ea0e587688aada39eb83eb8c956e75}\index{menu\_audio@{menu\_audio}!menu\_audio@{menu\_audio}}
+\index{menu\_audio@{menu\_audio}!menu\_audio@{menu\_audio}}
+\doxysubsubsection{\texorpdfstring{menu\_audio()}{menu\_audio()}}
+{\footnotesize\ttfamily \label{classmenu__audio_a86ea0e587688aada39eb83eb8c956e75} 
+menu\+\_\+audio\+::menu\+\_\+audio (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{bmp\+\_\+on}{, }\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{bmp\+\_\+off}{, }\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{bmp\+\_\+on\+\_\+pr}{, }\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{bmp\+\_\+off\+\_\+pr}{, }\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{key\+\_\+sample}{, }\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{click\+\_\+sample}{, }\item[{int}]{x}{, }\item[{int}]{y}{, }\item[{int}]{w}{, }\item[{int}]{h}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que inicializa o controle de áudio. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bmp\+\_\+on} & Sprite do botão de mute ligado \\
+\hline
+{\em bmp\+\_\+off} & Sprite do botão de mute desligado \\
+\hline
+{\em bmp\+\_\+on\+\_\+pr} & Sprite do botão de mute ligado e pressionado \\
+\hline
+{\em bmp\+\_\+off\+\_\+pr} & Sprite do botão de mute desligado e pressionado \\
+\hline
+{\em key\+\_\+sample} & Efeito sonoro das caixas de texto \\
+\hline
+{\em click\+\_\+sample} & Efeito sonoro de clicar no botão \\
+\hline
+{\em x} & Coordenada x do botão de mute \\
+\hline
+{\em y} & Coordenada y do botão de mute \\
+\hline
+{\em w} & Largura do botão de mute \\
+\hline
+{\em h} & Altura do botão de mute \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classmenu__audio_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classmenu__audio_a4a2cd7e69ef20597dd13170828b9636c}\index{menu\_audio@{menu\_audio}!draw@{draw}}
+\index{draw@{draw}!menu\_audio@{menu\_audio}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classmenu__audio_a4a2cd7e69ef20597dd13170828b9636c} 
+void menu\+\_\+audio\+::draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Desenha o botão na posição correta e com o bitmap correspondente. 
+
+\Hypertarget{classmenu__audio_a3dad184f7f9b2e554937ff4cae399a78}\index{menu\_audio@{menu\_audio}!handle\_event@{handle\_event}}
+\index{handle\_event@{handle\_event}!menu\_audio@{menu\_audio}}
+\doxysubsubsection{\texorpdfstring{handle\_event()}{handle\_event()}}
+{\footnotesize\ttfamily \label{classmenu__audio_a3dad184f7f9b2e554937ff4cae399a78} 
+void menu\+\_\+audio\+::handle\+\_\+event (\begin{DoxyParamCaption}\item[{const ALLEGRO\+\_\+\+EVENT \&}]{ev}{}\end{DoxyParamCaption})}
+
+
+
+Muta/\+Desmuta o áudio conforme cliques do mouse. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ev} & Evento processado \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classmenu__audio_a715f5022aca63afe073dea34f1d97537}\index{menu\_audio@{menu\_audio}!is\_muted@{is\_muted}}
+\index{is\_muted@{is\_muted}!menu\_audio@{menu\_audio}}
+\doxysubsubsection{\texorpdfstring{is\_muted()}{is\_muted()}}
+{\footnotesize\ttfamily \label{classmenu__audio_a715f5022aca63afe073dea34f1d97537} 
+bool menu\+\_\+audio\+::is\+\_\+muted (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Verifica o estado de audio do menu. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica se está mutado ou não 
+\end{DoxyReturn}
+\Hypertarget{classmenu__audio_ade9c129ec36bc524188d3bec01f2e3f9}\index{menu\_audio@{menu\_audio}!set\_position@{set\_position}}
+\index{set\_position@{set\_position}!menu\_audio@{menu\_audio}}
+\doxysubsubsection{\texorpdfstring{set\_position()}{set\_position()}}
+{\footnotesize\ttfamily \label{classmenu__audio_ade9c129ec36bc524188d3bec01f2e3f9} 
+void menu\+\_\+audio\+::set\+\_\+position (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Define a posição do botão de mute/unmute. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em x} & Novo x \\
+\hline
+{\em y} & Novo y \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classmenu__audio_aca4f150b92fb23ce0af165dc5b64d37d}\index{menu\_audio@{menu\_audio}!set\_sources@{set\_sources}}
+\index{set\_sources@{set\_sources}!menu\_audio@{menu\_audio}}
+\doxysubsubsection{\texorpdfstring{set\_sources()}{set\_sources()}}
+{\footnotesize\ttfamily \label{classmenu__audio_aca4f150b92fb23ce0af165dc5b64d37d} 
+void menu\+\_\+audio\+::set\+\_\+sources (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classtext__box}{text\+\_\+box}} \texorpdfstring{$\ast$}{*} $>$ \&}]{tboxes}{, }\item[{const std\+::vector$<$ \mbox{\hyperlink{classbutton}{button}} \texorpdfstring{$\ast$}{*} $>$ \&}]{buttons}{}\end{DoxyParamCaption})}
+
+
+
+Registra quais elementos estão sendo controlados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em tboxes} & Caixas de texto controladas \\
+\hline
+{\em buttons} & Botões controlados \\
+\hline
+\end{DoxyParams}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{menu__audio_8hpp}{menu\+\_\+audio.\+hpp}}\item 
+src/\mbox{\hyperlink{menu__audio_8cpp}{menu\+\_\+audio.\+cpp}}\end{DoxyCompactItemize}

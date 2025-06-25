@@ -1,0 +1,1310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>pds2_projeto_final: Referência ao ficheiro src/game_loop.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">pds2_projeto_final
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('game__loop_8cpp.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referência ao ficheiro game_loop.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="game__loop_8hpp_source.html">game_loop.hpp</a>&quot;</code><br />
+<code>#include &lt;allegro5/allegro.h&gt;</code><br />
+<code>#include &lt;allegro5/allegro_image.h&gt;</code><br />
+<code>#include &lt;allegro5/allegro_ttf.h&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a374a9a7de3fd00dceacc5de8a654c087" id="r_a374a9a7de3fd00dceacc5de8a654c087"><td class="memItemLeft" align="right" valign="top">std::mt19937&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a374a9a7de3fd00dceacc5de8a654c087">gen</a> (<a class="el" href="#a7071b0092ad8c5b57d6cc40c5f803df5">rd</a>())</td></tr>
+<tr class="memitem:aa264661af5994099282dbd2ff20a3daa" id="r_aa264661af5994099282dbd2ff20a3daa"><td class="memItemLeft" align="right" valign="top">std::uniform_int_distribution&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa264661af5994099282dbd2ff20a3daa">dis</a> (0, 384)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variáveis</h2></td></tr>
+<tr class="memitem:ae856fd9e9eb470b17346dba969a1cb48" id="r_ae856fd9e9eb470b17346dba969a1cb48"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae856fd9e9eb470b17346dba969a1cb48">ARIAL_FONT_FILEPATH</a> = &quot;../assets/fonts/arial.ttf&quot;</td></tr>
+<tr class="memdesc:ae856fd9e9eb470b17346dba969a1cb48"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho para a fonte arial  <br /></td></tr>
+<tr class="memitem:a5463d4d6fed515acd15da7816831672f" id="r_a5463d4d6fed515acd15da7816831672f"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5463d4d6fed515acd15da7816831672f">PSANS_FONT_FILEPATH</a> = &quot;../assets/fonts/pixelify_sans.ttf&quot;</td></tr>
+<tr class="memdesc:a5463d4d6fed515acd15da7816831672f"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho para a fonte pixelify sans  <br /></td></tr>
+<tr class="memitem:a0d4c738f74169d87fa2947f556d5ef87" id="r_a0d4c738f74169d87fa2947f556d5ef87"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d4c738f74169d87fa2947f556d5ef87">BIRD_SPRITE</a> [6] = {&quot;../assets/bird-1.png&quot;,&quot;../assets/bird-2.png&quot;,&quot;../assets/bird-3.png&quot;,&quot;../assets/bird-4.png&quot;,&quot;../assets/bird-3.png&quot;,&quot;../assets/bird-2.png&quot;}</td></tr>
+<tr class="memdesc:a0d4c738f74169d87fa2947f556d5ef87"><td class="mdescLeft">&#160;</td><td class="mdescRight">bitmap do sprite do pássaro  <br /></td></tr>
+<tr class="memitem:a159d1f06c23f149aff29cb550e4d1595" id="r_a159d1f06c23f149aff29cb550e4d1595"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a159d1f06c23f149aff29cb550e4d1595">PIPE_SPRITE</a> = &quot;../assets/pipe.png&quot;</td></tr>
+<tr class="memdesc:a159d1f06c23f149aff29cb550e4d1595"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite do cano  <br /></td></tr>
+<tr class="memitem:acb531bbbf72124dc6151437929ed2d0b" id="r_acb531bbbf72124dc6151437929ed2d0b"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb531bbbf72124dc6151437929ed2d0b">GOLDEN_PIPE_SPRITE</a> = &quot;../assets/pipe_golden.png&quot;</td></tr>
+<tr class="memdesc:acb531bbbf72124dc6151437929ed2d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite do cano dourado  <br /></td></tr>
+<tr class="memitem:a70c1a8f25b3c95275ab4cfce8bf2f061" id="r_a70c1a8f25b3c95275ab4cfce8bf2f061"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70c1a8f25b3c95275ab4cfce8bf2f061">MOUNTAIN_SPRITE_1</a> = &quot;../assets/scenario/mountains_1.png&quot;</td></tr>
+<tr class="memdesc:a70c1a8f25b3c95275ab4cfce8bf2f061"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho das montanhas (da frente)  <br /></td></tr>
+<tr class="memitem:ac196aba7dcd73adb8b5a7a6e3660d975" id="r_ac196aba7dcd73adb8b5a7a6e3660d975"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac196aba7dcd73adb8b5a7a6e3660d975">MOUNTAIN_SPRITE_2</a> = &quot;../assets/scenario/mountains_2.png&quot;</td></tr>
+<tr class="memdesc:ac196aba7dcd73adb8b5a7a6e3660d975"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho das montanhas (do meio)  <br /></td></tr>
+<tr class="memitem:ac6d8324b7d16ad75fa3ba4d3602d590d" id="r_ac6d8324b7d16ad75fa3ba4d3602d590d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6d8324b7d16ad75fa3ba4d3602d590d">MOUNTAIN_SPRITE_3</a> = &quot;../assets/scenario/mountains_3.png&quot;</td></tr>
+<tr class="memdesc:ac6d8324b7d16ad75fa3ba4d3602d590d"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho das montanhas (de trás)  <br /></td></tr>
+<tr class="memitem:a2b2ab5e638eae34a700e507b028c1e9d" id="r_a2b2ab5e638eae34a700e507b028c1e9d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b2ab5e638eae34a700e507b028c1e9d">GRASS_SPRITE</a> = &quot;../assets/scenario/grama.png&quot;</td></tr>
+<tr class="memdesc:a2b2ab5e638eae34a700e507b028c1e9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho da grama  <br /></td></tr>
+<tr class="memitem:a7eaa3ebf328a26c5a5d7a0dfafb59604" id="r_a7eaa3ebf328a26c5a5d7a0dfafb59604"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7eaa3ebf328a26c5a5d7a0dfafb59604">ACHIEVEMENTS_BUTTON_SPRITE</a> [2] = {&quot;../assets/UI/achievements_button.png&quot;,&quot;../assets/UI/achievements_button_pressed.png&quot;}</td></tr>
+<tr class="memdesc:a7eaa3ebf328a26c5a5d7a0dfafb59604"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de conquistas  <br /></td></tr>
+<tr class="memitem:ac6f81fa926a1d78fb0a605ab57e19767" id="r_ac6f81fa926a1d78fb0a605ab57e19767"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6f81fa926a1d78fb0a605ab57e19767">BACK_BUTTON_SPRITE</a> [2] = {&quot;../assets/UI/back_button.png&quot;,&quot;../assets/UI/back_button_pressed.png&quot;}</td></tr>
+<tr class="memdesc:ac6f81fa926a1d78fb0a605ab57e19767"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de voltar  <br /></td></tr>
+<tr class="memitem:a5701a161d0bf9261d7e3a7df4e2535dc" id="r_a5701a161d0bf9261d7e3a7df4e2535dc"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5701a161d0bf9261d7e3a7df4e2535dc">SETTINGS_BUTTON_SPRITE</a> [2] = {&quot;../assets/UI/settings_button.png&quot;,&quot;../assets/UI/settings_button_pressed.png&quot;}</td></tr>
+<tr class="memdesc:a5701a161d0bf9261d7e3a7df4e2535dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de configurações  <br /></td></tr>
+<tr class="memitem:aac8971b3200129792a6888b2273ab7aa" id="r_aac8971b3200129792a6888b2273ab7aa"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac8971b3200129792a6888b2273ab7aa">INSTRUÇÕES_SPRITE</a> = &quot;../assets/UI/instruções.png&quot;</td></tr>
+<tr class="memdesc:aac8971b3200129792a6888b2273ab7aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho das instruções  <br /></td></tr>
+<tr class="memitem:a66c8cdd8d1373bae8688f0c62b0e31f9" id="r_a66c8cdd8d1373bae8688f0c62b0e31f9"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66c8cdd8d1373bae8688f0c62b0e31f9">SCORE_SPRITE</a> = &quot;../assets/UI/score_text.png&quot;</td></tr>
+<tr class="memdesc:a66c8cdd8d1373bae8688f0c62b0e31f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho da tela de morte  <br /></td></tr>
+<tr class="memitem:acdfcacf8bc9b742e55228ac3148d30bd" id="r_acdfcacf8bc9b742e55228ac3148d30bd"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdfcacf8bc9b742e55228ac3148d30bd">HOME_SPRITE</a> [2] = {&quot;../assets/UI/home_button.png&quot;,&quot;../assets/UI/home_button_pressed.png&quot;}</td></tr>
+<tr class="memdesc:acdfcacf8bc9b742e55228ac3148d30bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite de home  <br /></td></tr>
+<tr class="memitem:ab7468c58bfe25562161210e119133c6e" id="r_ab7468c58bfe25562161210e119133c6e"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7468c58bfe25562161210e119133c6e">BACKGROUND</a> = &quot;../assets/scenario/background.png&quot;</td></tr>
+<tr class="memdesc:ab7468c58bfe25562161210e119133c6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite do fundo  <br /></td></tr>
+<tr class="memitem:aa7309b74fae45ad9ef8544103af0f7d6" id="r_aa7309b74fae45ad9ef8544103af0f7d6"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7309b74fae45ad9ef8544103af0f7d6">NUMBERS_SPRITES</a> [10]</td></tr>
+<tr class="memdesc:aa7309b74fae45ad9ef8544103af0f7d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho dos números  <br /></td></tr>
+<tr class="memitem:aa143a78a1ad7d02a92b0a146343f7b10" id="r_aa143a78a1ad7d02a92b0a146343f7b10"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa143a78a1ad7d02a92b0a146343f7b10">SOUND_BUTTON_SPRITE</a> [4] = {&quot;../assets/UI/sound_on.png&quot;, &quot;../assets/UI/sound_off.png&quot;, &quot;../assets/UI/sound_on_pressed.png&quot;, &quot;../assets/UI/sound_off_pressed.png&quot;}</td></tr>
+<tr class="memdesc:aa143a78a1ad7d02a92b0a146343f7b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de som ligado/desligado  <br /></td></tr>
+<tr class="memitem:adf8e461e3d53ef14cfd420014d244f13" id="r_adf8e461e3d53ef14cfd420014d244f13"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf8e461e3d53ef14cfd420014d244f13">PAUSE_BUTTON_SPRITE</a> [4] = {&quot;../assets/UI/pause_button.png&quot;, &quot;../assets/UI/resume_button.png&quot;, &quot;../assets/UI/pause_button_pressed.png&quot;, &quot;../assets/UI/resume_button_pressed.png&quot;}</td></tr>
+<tr class="memdesc:adf8e461e3d53ef14cfd420014d244f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de pause/despause  <br /></td></tr>
+<tr class="memitem:aefaf712a0749353cf25b79030a500e90" id="r_aefaf712a0749353cf25b79030a500e90"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefaf712a0749353cf25b79030a500e90">DEATH_SCREEN_FRAME</a> = &quot;../assets/UI/death_screen_frame.png&quot;</td></tr>
+<tr class="memdesc:aefaf712a0749353cf25b79030a500e90"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do frame da tela de morte  <br /></td></tr>
+<tr class="memitem:a15ebe5fcd600d0846f3b488e8d149aba" id="r_a15ebe5fcd600d0846f3b488e8d149aba"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15ebe5fcd600d0846f3b488e8d149aba">TRY_AGAIN_BUTTON_SPRITE</a> [2] = {&quot;../assets/UI/de_novo_button.png&quot;,&quot;../assets/UI/de_novo_button_pressed.png&quot;}</td></tr>
+<tr class="memdesc:a15ebe5fcd600d0846f3b488e8d149aba"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de tentar de novo  <br /></td></tr>
+<tr class="memitem:a394c3c894da9aee15ad97eefb33a8f38" id="r_a394c3c894da9aee15ad97eefb33a8f38"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a394c3c894da9aee15ad97eefb33a8f38">BEST_SCORE_TEXT</a> = &quot;../assets/UI/best_score_text.png&quot;</td></tr>
+<tr class="memitem:ade3e1775464e9877c9963cf71fe97463" id="r_ade3e1775464e9877c9963cf71fe97463"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade3e1775464e9877c9963cf71fe97463">NEW_BEST_TEXT</a> = &quot;../assets/UI/new_best_text.png&quot;</td></tr>
+<tr class="memitem:a57213da153dc322a0b6726cf2e6c31fa" id="r_a57213da153dc322a0b6726cf2e6c31fa"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57213da153dc322a0b6726cf2e6c31fa">SCORE_NOW</a> = &quot;../assets/UI/score_text.png&quot;</td></tr>
+<tr class="memdesc:a57213da153dc322a0b6726cf2e6c31fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite do score da jogatina  <br /></td></tr>
+<tr class="memitem:ae6ce26640bc52364d45ea732fea89f46" id="r_ae6ce26640bc52364d45ea732fea89f46"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6ce26640bc52364d45ea732fea89f46">MAX_SCORE</a> = &quot;../assets/UI/max_score_text.png&quot;</td></tr>
+<tr class="memdesc:ae6ce26640bc52364d45ea732fea89f46"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite do max score  <br /></td></tr>
+<tr class="memitem:a0ca859196c368e755571e925f594b364" id="r_a0ca859196c368e755571e925f594b364"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ca859196c368e755571e925f594b364">PAUSED</a> = &quot;../assets/UI/paused_text.png&quot;</td></tr>
+<tr class="memdesc:a0ca859196c368e755571e925f594b364"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite do texto de pause  <br /></td></tr>
+<tr class="memitem:a9397a6082fe4d7bd25c305eba2bd91a1" id="r_a9397a6082fe4d7bd25c305eba2bd91a1"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9397a6082fe4d7bd25c305eba2bd91a1">SCORE_BOX_1</a> = &quot;../assets/UI/score_box_1.png&quot;</td></tr>
+<tr class="memdesc:a9397a6082fe4d7bd25c305eba2bd91a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho da caixa de score  <br /></td></tr>
+<tr class="memitem:ad5273f9e682ca6ae904c73e3ff47ceed" id="r_ad5273f9e682ca6ae904c73e3ff47ceed"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5273f9e682ca6ae904c73e3ff47ceed">SCORE_BOX_2</a> = &quot;../assets/UI/score_box_2.png&quot;</td></tr>
+<tr class="memdesc:ad5273f9e682ca6ae904c73e3ff47ceed"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho da caixa de score  <br /></td></tr>
+<tr class="memitem:a42c075b5e54349391d38c5d53c4eddde" id="r_a42c075b5e54349391d38c5d53c4eddde"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42c075b5e54349391d38c5d53c4eddde">SCREEN_H</a> = 600</td></tr>
+<tr class="memdesc:a42c075b5e54349391d38c5d53c4eddde"><td class="mdescLeft">&#160;</td><td class="mdescRight">altura da tela  <br /></td></tr>
+<tr class="memitem:afca0db9c0e472d6c9aefd3022751d0ba" id="r_afca0db9c0e472d6c9aefd3022751d0ba"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afca0db9c0e472d6c9aefd3022751d0ba">SCREEN_W</a> = 800</td></tr>
+<tr class="memdesc:afca0db9c0e472d6c9aefd3022751d0ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">comprimento da tela  <br /></td></tr>
+<tr class="memitem:a7ec33da8078befd2fa14476b0ad35852" id="r_a7ec33da8078befd2fa14476b0ad35852"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ec33da8078befd2fa14476b0ad35852">HEIGHT_REFFERENCE</a> = <a class="el" href="main_8cpp.html#a27cddfd509d28b4b2b0b44c093fac090">SCREEN_H</a> - 204</td></tr>
+<tr class="memdesc:a7ec33da8078befd2fa14476b0ad35852"><td class="mdescLeft">&#160;</td><td class="mdescRight">altura de referência para spawn de objetos do cenário  <br /></td></tr>
+<tr class="memitem:a7071b0092ad8c5b57d6cc40c5f803df5" id="r_a7071b0092ad8c5b57d6cc40c5f803df5"><td class="memItemLeft" align="right" valign="top">std::random_device&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7071b0092ad8c5b57d6cc40c5f803df5">rd</a></td></tr>
+<tr class="memitem:a35ced579e7e8c3bb22c4265bc5bcf7b0" id="r_a35ced579e7e8c3bb22c4265bc5bcf7b0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35ced579e7e8c3bb22c4265bc5bcf7b0">random_offset</a></td></tr>
+<tr class="memdesc:a35ced579e7e8c3bb22c4265bc5bcf7b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset do cano a ser spawnado.  <br /></td></tr>
+<tr class="memitem:afcdc7ae0f7436171d6fd40a6ea835727" id="r_afcdc7ae0f7436171d6fd40a6ea835727"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcdc7ae0f7436171d6fd40a6ea835727">golden_factor</a></td></tr>
+<tr class="memitem:a8c5cd9b525ee73a24b1d9d8e34982d1c" id="r_a8c5cd9b525ee73a24b1d9d8e34982d1c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c5cd9b525ee73a24b1d9d8e34982d1c">score</a></td></tr>
+<tr class="memdesc:a8c5cd9b525ee73a24b1d9d8e34982d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classScore.html">Score</a> atual do jogo.  <br /></td></tr>
+<tr class="memitem:a0b30b27c01673dabd5673852a2e87c70" id="r_a0b30b27c01673dabd5673852a2e87c70"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b30b27c01673dabd5673852a2e87c70">maxscore</a></td></tr>
+<tr class="memitem:a4de62cac22373f52cf3fed5556986ebd" id="r_a4de62cac22373f52cf3fed5556986ebd"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4de62cac22373f52cf3fed5556986ebd">dif</a></td></tr>
+<tr class="memitem:aeeed4a081a20db3cd483f0bce9a49881" id="r_aeeed4a081a20db3cd483f0bce9a49881"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeeed4a081a20db3cd483f0bce9a49881">going_up</a></td></tr>
+<tr class="memitem:a0d9c51f73daf71cd3b4ec426d4f7d75d" id="r_a0d9c51f73daf71cd3b4ec426d4f7d75d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d9c51f73daf71cd3b4ec426d4f7d75d">golden_pipe_odds</a> = 3</td></tr>
+<tr class="memitem:a025972eb75530e83c807d3df1a162e7d" id="r_a025972eb75530e83c807d3df1a162e7d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a025972eb75530e83c807d3df1a162e7d">golden_odds_setter</a> = 3</td></tr>
+<tr class="memdesc:a025972eb75530e83c807d3df1a162e7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Probabilidade de spawn de canos dourados.  <br /></td></tr>
+<tr class="memitem:ace63adf20ffbab0547d2f1a1c806181b" id="r_ace63adf20ffbab0547d2f1a1c806181b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace63adf20ffbab0547d2f1a1c806181b">gravity_setter</a> = 0.7</td></tr>
+<tr class="memdesc:ace63adf20ffbab0547d2f1a1c806181b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gravidade do jogo.  <br /></td></tr>
+<tr class="memitem:a31924e6c9b17aad7f861e818b8be5d8f" id="r_a31924e6c9b17aad7f861e818b8be5d8f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31924e6c9b17aad7f861e818b8be5d8f">gravity</a> = 0.7</td></tr>
+<tr class="memitem:a35c30f46e84633eaa7a7b3e6bf67c89a" id="r_a35c30f46e84633eaa7a7b3e6bf67c89a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35c30f46e84633eaa7a7b3e6bf67c89a">PIPE_SPACE</a> = 160</td></tr>
+<tr class="memdesc:a35c30f46e84633eaa7a7b3e6bf67c89a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Espaçamento entre os canos.  <br /></td></tr>
+<tr class="memitem:a6ec666cdcd59ec24f7a8b7f7f01fc283" id="r_a6ec666cdcd59ec24f7a8b7f7f01fc283"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ec666cdcd59ec24f7a8b7f7f01fc283">PIPE_INITIAL_SPEED</a> = -2.5</td></tr>
+<tr class="memdesc:a6ec666cdcd59ec24f7a8b7f7f01fc283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidade atual dos canos.  <br /></td></tr>
+<tr class="memitem:a1bac67ae9d699398178b533922253976" id="r_a1bac67ae9d699398178b533922253976"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bac67ae9d699398178b533922253976">PIPE_SPEED_MAX</a> = -8</td></tr>
+<tr class="memdesc:a1bac67ae9d699398178b533922253976"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidade máxima dos canos.  <br /></td></tr>
+<tr class="memitem:a600c80b1fb156bbf8fc270642a83cae4" id="r_a600c80b1fb156bbf8fc270642a83cae4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a600c80b1fb156bbf8fc270642a83cae4">PIPE_SPEED_INCREASE</a> = -0.01</td></tr>
+<tr class="memdesc:a600c80b1fb156bbf8fc270642a83cae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aumento da velocidade dos canos a cada 10 pontos.  <br /></td></tr>
+<tr class="memitem:a638a5de4abce9374e834ac6f361853ae" id="r_a638a5de4abce9374e834ac6f361853ae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a638a5de4abce9374e834ac6f361853ae">BIRD_JUMP_VEL</a> = -10</td></tr>
+<tr class="memdesc:a638a5de4abce9374e834ac6f361853ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidade do pulo do pássaro.  <br /></td></tr>
+<tr class="memitem:aae691e933a02744eeacd914b5636cbbf" id="r_aae691e933a02744eeacd914b5636cbbf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae691e933a02744eeacd914b5636cbbf">BIRD_MAX_UP_VEL</a> = -15</td></tr>
+<tr class="memdesc:aae691e933a02744eeacd914b5636cbbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidade máxima de subida do pássaro.  <br /></td></tr>
+<tr class="memitem:a7aec9d4a68371ef1bf524c838ea25a53" id="r_a7aec9d4a68371ef1bf524c838ea25a53"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7aec9d4a68371ef1bf524c838ea25a53">BIRD_MAX_DOWN_VEL</a> = 15</td></tr>
+<tr class="memdesc:a7aec9d4a68371ef1bf524c838ea25a53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidade máxima de descida do pássaro.  <br /></td></tr>
+<tr class="memitem:a92e4ce8257068f0a5f23267e54c64964" id="r_a92e4ce8257068f0a5f23267e54c64964"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92e4ce8257068f0a5f23267e54c64964">death_screen_animation</a> = false</td></tr>
+<tr class="memitem:ae4463779a79a9cab6995105a35587ebe" id="r_ae4463779a79a9cab6995105a35587ebe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4463779a79a9cab6995105a35587ebe">points_animation</a> = false</td></tr>
+<tr class="memitem:a0a311575c52453f8afdc72f2cff7d91c" id="r_a0a311575c52453f8afdc72f2cff7d91c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a311575c52453f8afdc72f2cff7d91c">best_score_animation</a> = false</td></tr>
+<tr class="memitem:aaa9a5983224cbb5d6e2362ebd399a8b5" id="r_aaa9a5983224cbb5d6e2362ebd399a8b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa9a5983224cbb5d6e2362ebd399a8b5">new_best</a> = false</td></tr>
+<tr class="memitem:a9514413603a372008854c65352d95e14" id="r_a9514413603a372008854c65352d95e14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9514413603a372008854c65352d95e14">play_record_audio</a> = false</td></tr>
+<tr class="memitem:aa5a0b54d8f025d1163041226819c8dc9" id="r_aa5a0b54d8f025d1163041226819c8dc9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5a0b54d8f025d1163041226819c8dc9">bird_animation</a> = false</td></tr>
+<tr class="memitem:a3653accfd941ee162602f2a203b65d2f" id="r_a3653accfd941ee162602f2a203b65d2f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3653accfd941ee162602f2a203b65d2f">all_achievements</a> = false</td></tr>
+<tr class="memitem:a63b20b0eefc743f76056b5890c6312dd" id="r_a63b20b0eefc743f76056b5890c6312dd"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63b20b0eefc743f76056b5890c6312dd">animation_speed</a> =0</td></tr>
+<tr class="memitem:ac2a24f08bae4e80b337785733e866cce" id="r_ac2a24f08bae4e80b337785733e866cce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2a24f08bae4e80b337785733e866cce">sprite_now</a> =0</td></tr>
+<tr class="memitem:a69cefbe7c4207150d2e872dee2223128" id="r_a69cefbe7c4207150d2e872dee2223128"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69cefbe7c4207150d2e872dee2223128">frames_per_point</a></td></tr>
+<tr class="memitem:afd3bfa5add6477abed3eaa362c5702b4" id="r_afd3bfa5add6477abed3eaa362c5702b4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd3bfa5add6477abed3eaa362c5702b4">frame_count</a></td></tr>
+<tr class="memitem:a21beb0c691d48bc6ad16d5cbc54ce135" id="r_a21beb0c691d48bc6ad16d5cbc54ce135"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21beb0c691d48bc6ad16d5cbc54ce135">golden_pipes</a> = 0</td></tr>
+<tr class="memitem:a22b9391ab3ed095ec0a3be44bce248fd" id="r_a22b9391ab3ed095ec0a3be44bce248fd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22b9391ab3ed095ec0a3be44bce248fd">bonks</a> = 0</td></tr>
+<tr class="memitem:a11d9bb46590693efee3f3bed1c70ad65" id="r_a11d9bb46590693efee3f3bed1c70ad65"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11d9bb46590693efee3f3bed1c70ad65">ragequit</a> = false</td></tr>
+<tr class="memitem:a92310068944a551312e6e857f34d8ae0" id="r_a92310068944a551312e6e857f34d8ae0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92310068944a551312e6e857f34d8ae0">hello</a> = false</td></tr>
+<tr class="memitem:ad7da755654cfba0b8f1f6d8939afc30b" id="r_ad7da755654cfba0b8f1f6d8939afc30b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7da755654cfba0b8f1f6d8939afc30b">score_displayed</a> = 0</td></tr>
+<tr class="memitem:a4e1e0e72dd773439e333c84dd762a9c3" id="r_a4e1e0e72dd773439e333c84dd762a9c3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e1e0e72dd773439e333c84dd762a9c3">c</a> = 0</td></tr>
+<tr class="memitem:a6f364afbe132c4ecfea48bde1b0618ba" id="r_a6f364afbe132c4ecfea48bde1b0618ba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f364afbe132c4ecfea48bde1b0618ba">d</a> = 0</td></tr>
+<tr class="memitem:a5874b4c2ec2e28321eea4e4871d08222" id="r_a5874b4c2ec2e28321eea4e4871d08222"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5874b4c2ec2e28321eea4e4871d08222">u</a> = 0</td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentação das funções</h2>
+<a id="aa264661af5994099282dbd2ff20a3daa" name="aa264661af5994099282dbd2ff20a3daa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa264661af5994099282dbd2ff20a3daa">&#9670;&#160;</a></span>dis()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::uniform_int_distribution dis </td>
+          <td>(</td>
+          <td class="paramtype">0</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">384</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a374a9a7de3fd00dceacc5de8a654c087" name="a374a9a7de3fd00dceacc5de8a654c087"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a374a9a7de3fd00dceacc5de8a654c087">&#9670;&#160;</a></span>gen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mt19937 gen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a7071b0092ad8c5b57d6cc40c5f803df5">rd</a>()</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentação das variáveis</h2>
+<a id="a7eaa3ebf328a26c5a5d7a0dfafb59604" name="a7eaa3ebf328a26c5a5d7a0dfafb59604"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eaa3ebf328a26c5a5d7a0dfafb59604">&#9670;&#160;</a></span>ACHIEVEMENTS_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* ACHIEVEMENTS_BUTTON_SPRITE[2] = {&quot;../assets/UI/achievements_button.png&quot;,&quot;../assets/UI/achievements_button_pressed.png&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do botão de conquistas </p>
+
+</div>
+</div>
+<a id="a3653accfd941ee162602f2a203b65d2f" name="a3653accfd941ee162602f2a203b65d2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3653accfd941ee162602f2a203b65d2f">&#9670;&#160;</a></span>all_achievements</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool all_achievements = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a63b20b0eefc743f76056b5890c6312dd" name="a63b20b0eefc743f76056b5890c6312dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63b20b0eefc743f76056b5890c6312dd">&#9670;&#160;</a></span>animation_speed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float animation_speed =0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae856fd9e9eb470b17346dba969a1cb48" name="ae856fd9e9eb470b17346dba969a1cb48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae856fd9e9eb470b17346dba969a1cb48">&#9670;&#160;</a></span>ARIAL_FONT_FILEPATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* ARIAL_FONT_FILEPATH = &quot;../assets/fonts/arial.ttf&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho para a fonte arial </p>
+
+</div>
+</div>
+<a id="ac6f81fa926a1d78fb0a605ab57e19767" name="ac6f81fa926a1d78fb0a605ab57e19767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6f81fa926a1d78fb0a605ab57e19767">&#9670;&#160;</a></span>BACK_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* BACK_BUTTON_SPRITE[2] = {&quot;../assets/UI/back_button.png&quot;,&quot;../assets/UI/back_button_pressed.png&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do botão de voltar </p>
+
+</div>
+</div>
+<a id="ab7468c58bfe25562161210e119133c6e" name="ab7468c58bfe25562161210e119133c6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7468c58bfe25562161210e119133c6e">&#9670;&#160;</a></span>BACKGROUND</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* BACKGROUND = &quot;../assets/scenario/background.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do sprite do fundo </p>
+
+</div>
+</div>
+<a id="a0a311575c52453f8afdc72f2cff7d91c" name="a0a311575c52453f8afdc72f2cff7d91c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a311575c52453f8afdc72f2cff7d91c">&#9670;&#160;</a></span>best_score_animation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool best_score_animation = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a394c3c894da9aee15ad97eefb33a8f38" name="a394c3c894da9aee15ad97eefb33a8f38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a394c3c894da9aee15ad97eefb33a8f38">&#9670;&#160;</a></span>BEST_SCORE_TEXT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* BEST_SCORE_TEXT = &quot;../assets/UI/best_score_text.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa5a0b54d8f025d1163041226819c8dc9" name="aa5a0b54d8f025d1163041226819c8dc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5a0b54d8f025d1163041226819c8dc9">&#9670;&#160;</a></span>bird_animation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool bird_animation = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a638a5de4abce9374e834ac6f361853ae" name="a638a5de4abce9374e834ac6f361853ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a638a5de4abce9374e834ac6f361853ae">&#9670;&#160;</a></span>BIRD_JUMP_VEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BIRD_JUMP_VEL = -10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Velocidade do pulo do pássaro. </p>
+
+</div>
+</div>
+<a id="a7aec9d4a68371ef1bf524c838ea25a53" name="a7aec9d4a68371ef1bf524c838ea25a53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aec9d4a68371ef1bf524c838ea25a53">&#9670;&#160;</a></span>BIRD_MAX_DOWN_VEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BIRD_MAX_DOWN_VEL = 15</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Velocidade máxima de descida do pássaro. </p>
+
+</div>
+</div>
+<a id="aae691e933a02744eeacd914b5636cbbf" name="aae691e933a02744eeacd914b5636cbbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae691e933a02744eeacd914b5636cbbf">&#9670;&#160;</a></span>BIRD_MAX_UP_VEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BIRD_MAX_UP_VEL = -15</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Velocidade máxima de subida do pássaro. </p>
+
+</div>
+</div>
+<a id="a0d4c738f74169d87fa2947f556d5ef87" name="a0d4c738f74169d87fa2947f556d5ef87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d4c738f74169d87fa2947f556d5ef87">&#9670;&#160;</a></span>BIRD_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* BIRD_SPRITE[6] = {&quot;../assets/bird-1.png&quot;,&quot;../assets/bird-2.png&quot;,&quot;../assets/bird-3.png&quot;,&quot;../assets/bird-4.png&quot;,&quot;../assets/bird-3.png&quot;,&quot;../assets/bird-2.png&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>bitmap do sprite do pássaro </p>
+
+</div>
+</div>
+<a id="a22b9391ab3ed095ec0a3be44bce248fd" name="a22b9391ab3ed095ec0a3be44bce248fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22b9391ab3ed095ec0a3be44bce248fd">&#9670;&#160;</a></span>bonks</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int bonks = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e1e0e72dd773439e333c84dd762a9c3" name="a4e1e0e72dd773439e333c84dd762a9c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e1e0e72dd773439e333c84dd762a9c3">&#9670;&#160;</a></span>c</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int c = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6f364afbe132c4ecfea48bde1b0618ba" name="a6f364afbe132c4ecfea48bde1b0618ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f364afbe132c4ecfea48bde1b0618ba">&#9670;&#160;</a></span>d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int d = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a92e4ce8257068f0a5f23267e54c64964" name="a92e4ce8257068f0a5f23267e54c64964"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92e4ce8257068f0a5f23267e54c64964">&#9670;&#160;</a></span>death_screen_animation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool death_screen_animation = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aefaf712a0749353cf25b79030a500e90" name="aefaf712a0749353cf25b79030a500e90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefaf712a0749353cf25b79030a500e90">&#9670;&#160;</a></span>DEATH_SCREEN_FRAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* DEATH_SCREEN_FRAME = &quot;../assets/UI/death_screen_frame.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do frame da tela de morte </p>
+
+</div>
+</div>
+<a id="a4de62cac22373f52cf3fed5556986ebd" name="a4de62cac22373f52cf3fed5556986ebd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4de62cac22373f52cf3fed5556986ebd">&#9670;&#160;</a></span>dif</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float dif</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afd3bfa5add6477abed3eaa362c5702b4" name="afd3bfa5add6477abed3eaa362c5702b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd3bfa5add6477abed3eaa362c5702b4">&#9670;&#160;</a></span>frame_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int frame_count</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69cefbe7c4207150d2e872dee2223128" name="a69cefbe7c4207150d2e872dee2223128"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69cefbe7c4207150d2e872dee2223128">&#9670;&#160;</a></span>frames_per_point</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int frames_per_point</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeeed4a081a20db3cd483f0bce9a49881" name="aeeed4a081a20db3cd483f0bce9a49881"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeed4a081a20db3cd483f0bce9a49881">&#9670;&#160;</a></span>going_up</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool going_up</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afcdc7ae0f7436171d6fd40a6ea835727" name="afcdc7ae0f7436171d6fd40a6ea835727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcdc7ae0f7436171d6fd40a6ea835727">&#9670;&#160;</a></span>golden_factor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool golden_factor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a025972eb75530e83c807d3df1a162e7d" name="a025972eb75530e83c807d3df1a162e7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a025972eb75530e83c807d3df1a162e7d">&#9670;&#160;</a></span>golden_odds_setter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float golden_odds_setter = 3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Probabilidade de spawn de canos dourados. </p>
+
+</div>
+</div>
+<a id="a0d9c51f73daf71cd3b4ec426d4f7d75d" name="a0d9c51f73daf71cd3b4ec426d4f7d75d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d9c51f73daf71cd3b4ec426d4f7d75d">&#9670;&#160;</a></span>golden_pipe_odds</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float golden_pipe_odds = 3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb531bbbf72124dc6151437929ed2d0b" name="acb531bbbf72124dc6151437929ed2d0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb531bbbf72124dc6151437929ed2d0b">&#9670;&#160;</a></span>GOLDEN_PIPE_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* GOLDEN_PIPE_SPRITE = &quot;../assets/pipe_golden.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do sprite do cano dourado </p>
+
+</div>
+</div>
+<a id="a21beb0c691d48bc6ad16d5cbc54ce135" name="a21beb0c691d48bc6ad16d5cbc54ce135"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21beb0c691d48bc6ad16d5cbc54ce135">&#9670;&#160;</a></span>golden_pipes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float golden_pipes = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2b2ab5e638eae34a700e507b028c1e9d" name="a2b2ab5e638eae34a700e507b028c1e9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b2ab5e638eae34a700e507b028c1e9d">&#9670;&#160;</a></span>GRASS_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* GRASS_SPRITE = &quot;../assets/scenario/grama.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho da grama </p>
+
+</div>
+</div>
+<a id="a31924e6c9b17aad7f861e818b8be5d8f" name="a31924e6c9b17aad7f861e818b8be5d8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31924e6c9b17aad7f861e818b8be5d8f">&#9670;&#160;</a></span>gravity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float gravity = 0.7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace63adf20ffbab0547d2f1a1c806181b" name="ace63adf20ffbab0547d2f1a1c806181b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace63adf20ffbab0547d2f1a1c806181b">&#9670;&#160;</a></span>gravity_setter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float gravity_setter = 0.7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gravidade do jogo. </p>
+
+</div>
+</div>
+<a id="a7ec33da8078befd2fa14476b0ad35852" name="a7ec33da8078befd2fa14476b0ad35852"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ec33da8078befd2fa14476b0ad35852">&#9670;&#160;</a></span>HEIGHT_REFFERENCE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HEIGHT_REFFERENCE = <a class="el" href="main_8cpp.html#a27cddfd509d28b4b2b0b44c093fac090">SCREEN_H</a> - 204</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>altura de referência para spawn de objetos do cenário </p>
+<p>VARIÁVEIS EXTRAS </p>
+
+</div>
+</div>
+<a id="a92310068944a551312e6e857f34d8ae0" name="a92310068944a551312e6e857f34d8ae0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92310068944a551312e6e857f34d8ae0">&#9670;&#160;</a></span>hello</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hello = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acdfcacf8bc9b742e55228ac3148d30bd" name="acdfcacf8bc9b742e55228ac3148d30bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdfcacf8bc9b742e55228ac3148d30bd">&#9670;&#160;</a></span>HOME_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* HOME_SPRITE[2] = {&quot;../assets/UI/home_button.png&quot;,&quot;../assets/UI/home_button_pressed.png&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do sprite de home </p>
+
+</div>
+</div>
+<a id="aac8971b3200129792a6888b2273ab7aa" name="aac8971b3200129792a6888b2273ab7aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac8971b3200129792a6888b2273ab7aa">&#9670;&#160;</a></span>INSTRUÇÕES_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* INSTRUÇÕES_SPRITE = &quot;../assets/UI/instruções.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho das instruções </p>
+
+</div>
+</div>
+<a id="ae6ce26640bc52364d45ea732fea89f46" name="ae6ce26640bc52364d45ea732fea89f46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ce26640bc52364d45ea732fea89f46">&#9670;&#160;</a></span>MAX_SCORE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* MAX_SCORE = &quot;../assets/UI/max_score_text.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do sprite do max score </p>
+
+</div>
+</div>
+<a id="a0b30b27c01673dabd5673852a2e87c70" name="a0b30b27c01673dabd5673852a2e87c70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b30b27c01673dabd5673852a2e87c70">&#9670;&#160;</a></span>maxscore</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float maxscore</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a70c1a8f25b3c95275ab4cfce8bf2f061" name="a70c1a8f25b3c95275ab4cfce8bf2f061"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70c1a8f25b3c95275ab4cfce8bf2f061">&#9670;&#160;</a></span>MOUNTAIN_SPRITE_1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* MOUNTAIN_SPRITE_1 = &quot;../assets/scenario/mountains_1.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho das montanhas (da frente) </p>
+
+</div>
+</div>
+<a id="ac196aba7dcd73adb8b5a7a6e3660d975" name="ac196aba7dcd73adb8b5a7a6e3660d975"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac196aba7dcd73adb8b5a7a6e3660d975">&#9670;&#160;</a></span>MOUNTAIN_SPRITE_2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* MOUNTAIN_SPRITE_2 = &quot;../assets/scenario/mountains_2.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho das montanhas (do meio) </p>
+
+</div>
+</div>
+<a id="ac6d8324b7d16ad75fa3ba4d3602d590d" name="ac6d8324b7d16ad75fa3ba4d3602d590d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6d8324b7d16ad75fa3ba4d3602d590d">&#9670;&#160;</a></span>MOUNTAIN_SPRITE_3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* MOUNTAIN_SPRITE_3 = &quot;../assets/scenario/mountains_3.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho das montanhas (de trás) </p>
+
+</div>
+</div>
+<a id="aaa9a5983224cbb5d6e2362ebd399a8b5" name="aaa9a5983224cbb5d6e2362ebd399a8b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa9a5983224cbb5d6e2362ebd399a8b5">&#9670;&#160;</a></span>new_best</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool new_best = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade3e1775464e9877c9963cf71fe97463" name="ade3e1775464e9877c9963cf71fe97463"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade3e1775464e9877c9963cf71fe97463">&#9670;&#160;</a></span>NEW_BEST_TEXT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* NEW_BEST_TEXT = &quot;../assets/UI/new_best_text.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa7309b74fae45ad9ef8544103af0f7d6" name="aa7309b74fae45ad9ef8544103af0f7d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7309b74fae45ad9ef8544103af0f7d6">&#9670;&#160;</a></span>NUMBERS_SPRITES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* NUMBERS_SPRITES[10]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor inicial:</b><div class="fragment"><div class="line">= {<span class="stringliteral">&quot;../assets/UI/num_0.png&quot;</span>, <span class="stringliteral">&quot;../assets/UI/num_1.png&quot;</span>, <span class="stringliteral">&quot;../assets/UI/num_2.png&quot;</span>, <span class="stringliteral">&quot;../assets/UI/num_3.png&quot;</span>,  </div>
+<div class="line">                                    <span class="stringliteral">&quot;../assets/UI/num_4.png&quot;</span>, <span class="stringliteral">&quot;../assets/UI/num_5.png&quot;</span>, <span class="stringliteral">&quot;../assets/UI/num_6.png&quot;</span>, <span class="stringliteral">&quot;../assets/UI/num_7.png&quot;</span>, </div>
+<div class="line">                                    <span class="stringliteral">&quot;../assets/UI/num_8.png&quot;</span>, <span class="stringliteral">&quot;../assets/UI/num_9.png&quot;</span>}</div>
+</div><!-- fragment -->
+<p>caminho dos números </p>
+
+</div>
+</div>
+<a id="adf8e461e3d53ef14cfd420014d244f13" name="adf8e461e3d53ef14cfd420014d244f13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf8e461e3d53ef14cfd420014d244f13">&#9670;&#160;</a></span>PAUSE_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* PAUSE_BUTTON_SPRITE[4] = {&quot;../assets/UI/pause_button.png&quot;, &quot;../assets/UI/resume_button.png&quot;, &quot;../assets/UI/pause_button_pressed.png&quot;, &quot;../assets/UI/resume_button_pressed.png&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do botão de pause/despause </p>
+
+</div>
+</div>
+<a id="a0ca859196c368e755571e925f594b364" name="a0ca859196c368e755571e925f594b364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ca859196c368e755571e925f594b364">&#9670;&#160;</a></span>PAUSED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* PAUSED = &quot;../assets/UI/paused_text.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do sprite do texto de pause </p>
+
+</div>
+</div>
+<a id="a6ec666cdcd59ec24f7a8b7f7f01fc283" name="a6ec666cdcd59ec24f7a8b7f7f01fc283"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ec666cdcd59ec24f7a8b7f7f01fc283">&#9670;&#160;</a></span>PIPE_INITIAL_SPEED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PIPE_INITIAL_SPEED = -2.5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Velocidade atual dos canos. </p>
+
+</div>
+</div>
+<a id="a35c30f46e84633eaa7a7b3e6bf67c89a" name="a35c30f46e84633eaa7a7b3e6bf67c89a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35c30f46e84633eaa7a7b3e6bf67c89a">&#9670;&#160;</a></span>PIPE_SPACE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PIPE_SPACE = 160</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Espaçamento entre os canos. </p>
+
+</div>
+</div>
+<a id="a600c80b1fb156bbf8fc270642a83cae4" name="a600c80b1fb156bbf8fc270642a83cae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a600c80b1fb156bbf8fc270642a83cae4">&#9670;&#160;</a></span>PIPE_SPEED_INCREASE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PIPE_SPEED_INCREASE = -0.01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aumento da velocidade dos canos a cada 10 pontos. </p>
+
+</div>
+</div>
+<a id="a1bac67ae9d699398178b533922253976" name="a1bac67ae9d699398178b533922253976"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bac67ae9d699398178b533922253976">&#9670;&#160;</a></span>PIPE_SPEED_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PIPE_SPEED_MAX = -8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Velocidade máxima dos canos. </p>
+
+</div>
+</div>
+<a id="a159d1f06c23f149aff29cb550e4d1595" name="a159d1f06c23f149aff29cb550e4d1595"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a159d1f06c23f149aff29cb550e4d1595">&#9670;&#160;</a></span>PIPE_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* PIPE_SPRITE = &quot;../assets/pipe.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do sprite do cano </p>
+
+</div>
+</div>
+<a id="a9514413603a372008854c65352d95e14" name="a9514413603a372008854c65352d95e14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9514413603a372008854c65352d95e14">&#9670;&#160;</a></span>play_record_audio</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool play_record_audio = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4463779a79a9cab6995105a35587ebe" name="ae4463779a79a9cab6995105a35587ebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4463779a79a9cab6995105a35587ebe">&#9670;&#160;</a></span>points_animation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool points_animation = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5463d4d6fed515acd15da7816831672f" name="a5463d4d6fed515acd15da7816831672f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5463d4d6fed515acd15da7816831672f">&#9670;&#160;</a></span>PSANS_FONT_FILEPATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* PSANS_FONT_FILEPATH = &quot;../assets/fonts/pixelify_sans.ttf&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho para a fonte pixelify sans </p>
+
+</div>
+</div>
+<a id="a11d9bb46590693efee3f3bed1c70ad65" name="a11d9bb46590693efee3f3bed1c70ad65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11d9bb46590693efee3f3bed1c70ad65">&#9670;&#160;</a></span>ragequit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ragequit = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35ced579e7e8c3bb22c4265bc5bcf7b0" name="a35ced579e7e8c3bb22c4265bc5bcf7b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35ced579e7e8c3bb22c4265bc5bcf7b0">&#9670;&#160;</a></span>random_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int random_offset</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Offset do cano a ser spawnado. </p>
+
+</div>
+</div>
+<a id="a7071b0092ad8c5b57d6cc40c5f803df5" name="a7071b0092ad8c5b57d6cc40c5f803df5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7071b0092ad8c5b57d6cc40c5f803df5">&#9670;&#160;</a></span>rd</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::random_device rd</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8c5cd9b525ee73a24b1d9d8e34982d1c" name="a8c5cd9b525ee73a24b1d9d8e34982d1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c5cd9b525ee73a24b1d9d8e34982d1c">&#9670;&#160;</a></span>score</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float score</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classScore.html">Score</a> atual do jogo. </p>
+
+</div>
+</div>
+<a id="a9397a6082fe4d7bd25c305eba2bd91a1" name="a9397a6082fe4d7bd25c305eba2bd91a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9397a6082fe4d7bd25c305eba2bd91a1">&#9670;&#160;</a></span>SCORE_BOX_1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SCORE_BOX_1 = &quot;../assets/UI/score_box_1.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho da caixa de score </p>
+
+</div>
+</div>
+<a id="ad5273f9e682ca6ae904c73e3ff47ceed" name="ad5273f9e682ca6ae904c73e3ff47ceed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5273f9e682ca6ae904c73e3ff47ceed">&#9670;&#160;</a></span>SCORE_BOX_2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SCORE_BOX_2 = &quot;../assets/UI/score_box_2.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho da caixa de score </p>
+
+</div>
+</div>
+<a id="ad7da755654cfba0b8f1f6d8939afc30b" name="ad7da755654cfba0b8f1f6d8939afc30b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7da755654cfba0b8f1f6d8939afc30b">&#9670;&#160;</a></span>score_displayed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int score_displayed = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a57213da153dc322a0b6726cf2e6c31fa" name="a57213da153dc322a0b6726cf2e6c31fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57213da153dc322a0b6726cf2e6c31fa">&#9670;&#160;</a></span>SCORE_NOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SCORE_NOW = &quot;../assets/UI/score_text.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do sprite do score da jogatina </p>
+
+</div>
+</div>
+<a id="a66c8cdd8d1373bae8688f0c62b0e31f9" name="a66c8cdd8d1373bae8688f0c62b0e31f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66c8cdd8d1373bae8688f0c62b0e31f9">&#9670;&#160;</a></span>SCORE_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SCORE_SPRITE = &quot;../assets/UI/score_text.png&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho da tela de morte </p>
+
+</div>
+</div>
+<a id="a42c075b5e54349391d38c5d53c4eddde" name="a42c075b5e54349391d38c5d53c4eddde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42c075b5e54349391d38c5d53c4eddde">&#9670;&#160;</a></span>SCREEN_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int SCREEN_H = 600</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>altura da tela </p>
+
+</div>
+</div>
+<a id="afca0db9c0e472d6c9aefd3022751d0ba" name="afca0db9c0e472d6c9aefd3022751d0ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afca0db9c0e472d6c9aefd3022751d0ba">&#9670;&#160;</a></span>SCREEN_W</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int SCREEN_W = 800</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>comprimento da tela </p>
+
+</div>
+</div>
+<a id="a5701a161d0bf9261d7e3a7df4e2535dc" name="a5701a161d0bf9261d7e3a7df4e2535dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5701a161d0bf9261d7e3a7df4e2535dc">&#9670;&#160;</a></span>SETTINGS_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SETTINGS_BUTTON_SPRITE[2] = {&quot;../assets/UI/settings_button.png&quot;,&quot;../assets/UI/settings_button_pressed.png&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do botão de configurações </p>
+
+</div>
+</div>
+<a id="aa143a78a1ad7d02a92b0a146343f7b10" name="aa143a78a1ad7d02a92b0a146343f7b10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa143a78a1ad7d02a92b0a146343f7b10">&#9670;&#160;</a></span>SOUND_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SOUND_BUTTON_SPRITE[4] = {&quot;../assets/UI/sound_on.png&quot;, &quot;../assets/UI/sound_off.png&quot;, &quot;../assets/UI/sound_on_pressed.png&quot;, &quot;../assets/UI/sound_off_pressed.png&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do botão de som ligado/desligado </p>
+
+</div>
+</div>
+<a id="ac2a24f08bae4e80b337785733e866cce" name="ac2a24f08bae4e80b337785733e866cce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2a24f08bae4e80b337785733e866cce">&#9670;&#160;</a></span>sprite_now</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sprite_now =0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a15ebe5fcd600d0846f3b488e8d149aba" name="a15ebe5fcd600d0846f3b488e8d149aba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15ebe5fcd600d0846f3b488e8d149aba">&#9670;&#160;</a></span>TRY_AGAIN_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* TRY_AGAIN_BUTTON_SPRITE[2] = {&quot;../assets/UI/de_novo_button.png&quot;,&quot;../assets/UI/de_novo_button_pressed.png&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>caminho do botão de tentar de novo </p>
+
+</div>
+</div>
+<a id="a5874b4c2ec2e28321eea4e4871d08222" name="a5874b4c2ec2e28321eea4e4871d08222"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5874b4c2ec2e28321eea4e4871d08222">&#9670;&#160;</a></span>u</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int u = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="game__loop_8cpp.html">game_loop.cpp</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

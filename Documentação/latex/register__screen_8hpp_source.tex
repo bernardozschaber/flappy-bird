@@ -1,0 +1,58 @@
+\doxysection{register\+\_\+screen.\+hpp}
+\hypertarget{register__screen_8hpp_source}{}\label{register__screen_8hpp_source}\index{include/register\_screen.hpp@{include/register\_screen.hpp}}
+\mbox{\hyperlink{register__screen_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ REGISTER\_SCREEN\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ REGISTER\_SCREEN\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{button_8hpp}{button.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{registration_8hpp}{registration.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{text__box_8hpp}{text\_box.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_font.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classregister__screen_a5e8e4a900f5913d2acc0a2dded3a6446}{register\_screen}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{classregister__screen_a5e8e4a900f5913d2acc0a2dded3a6446}{register\_screen}}(\textcolor{keywordtype}{int}\ screen\_w,\ \textcolor{keywordtype}{int}\ screen\_h,\ \mbox{\hyperlink{classregistration}{registration}}\ \&data\_ref,\ std::multiset<player>\ \&set,\ ALLEGRO\_SAMPLE*\ key\_s,\ ALLEGRO\_SAMPLE*\ button\_s);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classregister__screen_af53bb265a34e9dda4450022726329f9b}{handle\_event}}(\textcolor{keyword}{const}\ ALLEGRO\_EVENT\ \&ev);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classregister__screen_a3e9a47ea1deefac6f16dc9820d840542}{draw}}(ALLEGRO\_FONT\ *font);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classregister__screen_a115739f738528459aaab38f0fe97b076}{registration\_complete}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classregister__screen_ae46cb0f67fc821a6195fccaba9fbaf8a}{go\_to\_login\_screen}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{const}\ std::vector<text\_box*>\&\ \mbox{\hyperlink{classregister__screen_a113b32f01b2a6a66474269122a063a4f}{get\_text\_boxes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{const}\ std::vector<button*>\&\ \ \mbox{\hyperlink{classregister__screen_a1835a3eee456d71aa60d412c62bd3316}{get\_buttons}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classregister__screen_aaa356c5084c75005782eaa557e45ff25}{reset}}();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{int}\ screen\_width;\ }
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordtype}{int}\ screen\_height;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ \mbox{\hyperlink{classregistration}{registration}}\ \&data;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ std::multiset<player>\ \&players;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00083\ \ \ \mbox{\hyperlink{classtext__box}{text\_box}}\ username\_box;}
+\DoxyCodeLine{00084\ \ \ \mbox{\hyperlink{classtext__box}{text\_box}}\ password\_box;}
+\DoxyCodeLine{00085\ \ \ \mbox{\hyperlink{classtext__box}{text\_box}}\ confirm\_box;}
+\DoxyCodeLine{00087\ \ \ }
+\DoxyCodeLine{00090\ \ \ \mbox{\hyperlink{classbutton}{button}}\ confirm\_button;}
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{classbutton}{button}}\ cancel\_button;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00096\ \ \ std::vector<text\_box*>\ text\_boxes;}
+\DoxyCodeLine{00097\ \ \ std::vector<button*>\ \ buttons;}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00102\ \ \ \textcolor{keywordtype}{bool}\ reg\_complete;\ }
+\DoxyCodeLine{00103\ \ \ \textcolor{keywordtype}{bool}\ go\_to\_login;\ }
+\DoxyCodeLine{00104\ \ \ \textcolor{keywordtype}{bool}\ password\_mismatch;\ }
+\DoxyCodeLine{00105\ \ \ \textcolor{keywordtype}{bool}\ empty\_field;\ }
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordtype}{bool}\ existing\_user;\ }
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ REGISTER\_SCREEN\_HPP}}
+
+\end{DoxyCode}

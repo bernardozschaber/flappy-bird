@@ -1,0 +1,56 @@
+\doxysection{bird\+\_\+object.\+hpp}
+\hypertarget{bird__object_8hpp_source}{}\label{bird__object_8hpp_source}\index{include/bird\_object.hpp@{include/bird\_object.hpp}}
+\mbox{\hyperlink{bird__object_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BIRD\_OBJECT\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BIRD\_OBJECT\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{game__object_8hpp}{game\_object.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_image.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classbird__object_aba2512ef4da44750537778708b0b66a3}{bird\_object}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classgame__object_abffd356756b24f590eff91bc1917b38e}{game\_object}}\{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ vel\_x;\ \ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ vel\_y;\ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ acel\_x;\ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ acel\_y;\ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ VEL\_MAX;\ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ VEL\_MIN;\ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ JUMP\_VEL;\ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ angle;\ \ \ \ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classbird__object_aba2512ef4da44750537778708b0b66a3}{bird\_object}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{int}\ w,\ \textcolor{keywordtype}{int}\ h,\ ALLEGRO\_BITMAP\ *\ bitmap,\ \textcolor{keywordtype}{int}\ max\_vel,\ \textcolor{keywordtype}{int}\ min\_vel,\ \textcolor{keywordtype}{int}\ jump\_vel);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Override}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbird__object_a30b54c20e8f532d69e03ccd3837d5d0b}{Draw}}(\textcolor{keywordtype}{float}\ scale);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbird__object_a30b54c20e8f532d69e03ccd3837d5d0b}{Draw}}(\textcolor{keywordtype}{float}\ scale,\ ALLEGRO\_BITMAP*\ bitmap);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbird__object_aafef625b0e1f564413283b2622c39aa8}{Update}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a9b6bc9242882d1e758e06ed751a2e8ec}{SCREEN\_W}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a27cddfd509d28b4b2b0b44c093fac090}{SCREEN\_H}});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbird__object_adf4846ae2eb9bd849c60fc16772fa45e}{Jump}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbird__object_a14b15b64df52e9954830bdedcde4fb32}{Set\_x\_speed}}(\textcolor{keywordtype}{float}\ new\_x\_speed);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbird__object_a971887b093b63664a55b8549a3eab6ef}{Set\_x\_acelleration}}(\textcolor{keywordtype}{int}\ new\_x\_accel);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbird__object_a650e752ebbf30ec9cba43ed1cb63a996}{Set\_y\_speed}}(\textcolor{keywordtype}{float}\ new\_y\_speed);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbird__object_a45045cd1cae74a38a387727eef339524}{Set\_y\_acelleration}}(\textcolor{keywordtype}{float}\ new\_y\_accel);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbird__object_acbfdf963bcb117aaa5ad3861e5a8f248}{Draw\_spin}}(\textcolor{keywordtype}{float}\ SPIN\_SPEED);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classbird__object_a35f6769a18666b1ef3514b8b502b651e}{get\_vel}}()\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>vel\_x;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classbird__object_a27f535b0e8c8ff2538a9278192eedf41}{get\_acel}}()\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>acel\_x;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ BIRD\_OBJECT\_HPP}}
+
+\end{DoxyCode}

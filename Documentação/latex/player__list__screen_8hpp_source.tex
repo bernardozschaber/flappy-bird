@@ -1,0 +1,49 @@
+\doxysection{player\+\_\+list\+\_\+screen.\+hpp}
+\hypertarget{player__list__screen_8hpp_source}{}\label{player__list__screen_8hpp_source}\index{include/player\_list\_screen.hpp@{include/player\_list\_screen.hpp}}
+\mbox{\hyperlink{player__list__screen_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PLAYER\_LIST\_SCREEN\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PLAYER\_LIST\_SCREEN\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{button_8hpp}{button.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{registration_8hpp}{registration.hpp}}"{}}}
+\DoxyCodeLine{00006\ \ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classplayer__list__screen_af2c4ebae7210765ca90e559d76144133}{player\_list\_screen}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{classplayer__list__screen_af2c4ebae7210765ca90e559d76144133}{player\_list\_screen}}(\textcolor{keywordtype}{int}\ screen\_w,\ \textcolor{keywordtype}{int}\ screen\_h,\ ALLEGRO\_SAMPLE*\ button\_s,\ ALLEGRO\_BITMAP*\ crown,\ \textcolor{keyword}{const}\ std::multiset<player>\ \&set,\ \mbox{\hyperlink{classregistration}{registration}}\&\ data\_ref);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayer__list__screen_a3ea0858859df20a896582b94762d5014}{handle\_event}}(\textcolor{keyword}{const}\ ALLEGRO\_EVENT\ \&ev);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayer__list__screen_ad0083e246953a7da14df42b4fdd89c0e}{draw}}(ALLEGRO\_FONT\ *font);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classplayer__list__screen_aba6b3ee1178025f2de5a0bfb699d90bd}{go\_to\_main\_menu}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{const}\ std::vector<button*>\&\ \ \mbox{\hyperlink{classplayer__list__screen_ab9ec0ddfe236a55ac15ee0d72c9085f7}{get\_buttons}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classplayer__list__screen_a1de96765a1c8adc2e00e4a53eb161478}{get\_current\_page}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classplayer__list__screen_abc15b993f06e722a7a591d9872029d0a}{reset}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordtype}{int}\ screen\_width,\ screen\_height;\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordtype}{int}\ current\_page;\ }
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordtype}{int}\ players\_per\_page;\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00067\ \ \ \mbox{\hyperlink{classbutton}{button}}\ next\_button;}
+\DoxyCodeLine{00068\ \ \ \mbox{\hyperlink{classbutton}{button}}\ back\_button;}
+\DoxyCodeLine{00069\ \ \ \mbox{\hyperlink{classbutton}{button}}\ main\_menu\_button;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{keyword}{const}\ std::multiset<player>\ \&players;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ ALLEGRO\_BITMAP*\ crown;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ std::vector<button*>\ \ buttons;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00082\ \ \ \mbox{\hyperlink{classregistration}{registration}}\&\ data;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordtype}{bool}\ go\_to\_menu;}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLAYER\_LIST\_SCREEN\_HPP}}
+
+\end{DoxyCode}

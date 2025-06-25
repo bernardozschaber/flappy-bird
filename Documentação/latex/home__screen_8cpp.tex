@@ -1,0 +1,101 @@
+\doxysection{Referência ao ficheiro src/home\+\_\+screen.cpp}
+\hypertarget{home__screen_8cpp}{}\label{home__screen_8cpp}\index{src/home\_screen.cpp@{src/home\_screen.cpp}}
+{\ttfamily \#include "{}home\+\_\+screen.\+hpp"{}}\newline
+{\ttfamily \#include "{}registration.\+hpp"{}}\newline
+{\ttfamily \#include $<$allegro5/allegro.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+font.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+\doxysubsubsection*{Variáveis}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{home__screen_8cpp_ac3f578429ecff2c04f7e4ce47cbe599a}{PLAY\+\_\+\+BUTTON\+\_\+\+SPRITE}} \mbox{[}2\mbox{]} = \{"{}../assets/UI/play\+\_\+button.\+png"{}, "{}../assets/UI/play\+\_\+button\+\_\+pressed.\+png"{}\}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{home__screen_8cpp_afb8a03ac3ad09a97371c38a0b4734cb1}{STATISTICS\+\_\+\+BUTTON\+\_\+\+SPRITE}} \mbox{[}2\mbox{]} = \{"{}../assets/UI/statistics\+\_\+button.\+png"{}, "{}../assets/UI/statistics\+\_\+button\+\_\+pressed.\+png"{}\}
+\begin{DoxyCompactList}\small\item\em caminho do botão de achievements \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{home__screen_8cpp_a7723420b3ebde588ddc5e4e9de078f04}{LOGOUT\+\_\+\+BUTTON\+\_\+\+SPRITE}} \mbox{[}2\mbox{]} = \{"{}../assets/UI/logout\+\_\+button.\+png"{}, "{}../assets/UI/logout\+\_\+button\+\_\+pressed.\+png"{}\}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{home__screen_8cpp_a94b9ac34ada4ac3c6d0b3fd55f08e944}{HOME\+\_\+\+SCREEN\+\_\+\+FRAME}} = \{"{}../assets/UI/title\+\_\+screen\+\_\+frame.\+png"{}\}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{home__screen_8cpp_a956b1614d6b4fd0f7e88a19fd4918863}{TITLE\+\_\+\+SPRITE}} = \{"{}../assets/UI/title\+\_\+text.\+png"{}\}
+\item 
+int \mbox{\hyperlink{home__screen_8cpp_aaf3f0791e344172f5ed2b497eab36ae8}{statistics\+\_\+screen\+\_\+spawn\+\_\+x}} = \mbox{\hyperlink{main_8cpp_a9b6bc9242882d1e758e06ed751a2e8ec}{SCREEN\+\_\+W}}+192
+\item 
+bool \mbox{\hyperlink{home__screen_8cpp_a3b4dcee7fb028936415a65b016e30efc}{statistics\+\_\+showing}} = false
+\item 
+bool \mbox{\hyperlink{home__screen_8cpp_a4c2a35ee9e2cafca8c1160f503279256}{statistics\+\_\+animation\+\_\+entry}} = false
+\item 
+bool \mbox{\hyperlink{home__screen_8cpp_acc306abeecd2f4a0e49dacbf53693d92}{statistics\+\_\+animation\+\_\+exit}} = false
+\item 
+\mbox{\hyperlink{structplayer}{player}} \mbox{\hyperlink{home__screen_8cpp_a7abf2c042470b9621cbe061c34daa574}{p1}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-var-members}
+\Hypertarget{home__screen_8cpp_doc-var-members}
+\doxysubsection{Documentação das variáveis}
+\Hypertarget{home__screen_8cpp_a94b9ac34ada4ac3c6d0b3fd55f08e944}\index{home\_screen.cpp@{home\_screen.cpp}!HOME\_SCREEN\_FRAME@{HOME\_SCREEN\_FRAME}}
+\index{HOME\_SCREEN\_FRAME@{HOME\_SCREEN\_FRAME}!home\_screen.cpp@{home\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{HOME\_SCREEN\_FRAME}{HOME\_SCREEN\_FRAME}}
+{\footnotesize\ttfamily \label{home__screen_8cpp_a94b9ac34ada4ac3c6d0b3fd55f08e944} 
+const char\texorpdfstring{$\ast$}{*} HOME\+\_\+\+SCREEN\+\_\+\+FRAME = \{"{}../assets/UI/title\+\_\+screen\+\_\+frame.\+png"{}\}}
+
+\Hypertarget{home__screen_8cpp_a7723420b3ebde588ddc5e4e9de078f04}\index{home\_screen.cpp@{home\_screen.cpp}!LOGOUT\_BUTTON\_SPRITE@{LOGOUT\_BUTTON\_SPRITE}}
+\index{LOGOUT\_BUTTON\_SPRITE@{LOGOUT\_BUTTON\_SPRITE}!home\_screen.cpp@{home\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{LOGOUT\_BUTTON\_SPRITE}{LOGOUT\_BUTTON\_SPRITE}}
+{\footnotesize\ttfamily \label{home__screen_8cpp_a7723420b3ebde588ddc5e4e9de078f04} 
+const char\texorpdfstring{$\ast$}{*} LOGOUT\+\_\+\+BUTTON\+\_\+\+SPRITE\mbox{[}2\mbox{]} = \{"{}../assets/UI/logout\+\_\+button.\+png"{}, "{}../assets/UI/logout\+\_\+button\+\_\+pressed.\+png"{}\}}
+
+\Hypertarget{home__screen_8cpp_a7abf2c042470b9621cbe061c34daa574}\index{home\_screen.cpp@{home\_screen.cpp}!p1@{p1}}
+\index{p1@{p1}!home\_screen.cpp@{home\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{p1}{p1}}
+{\footnotesize\ttfamily \label{home__screen_8cpp_a7abf2c042470b9621cbe061c34daa574} 
+\mbox{\hyperlink{structplayer}{player}} p1}
+
+\Hypertarget{home__screen_8cpp_ac3f578429ecff2c04f7e4ce47cbe599a}\index{home\_screen.cpp@{home\_screen.cpp}!PLAY\_BUTTON\_SPRITE@{PLAY\_BUTTON\_SPRITE}}
+\index{PLAY\_BUTTON\_SPRITE@{PLAY\_BUTTON\_SPRITE}!home\_screen.cpp@{home\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{PLAY\_BUTTON\_SPRITE}{PLAY\_BUTTON\_SPRITE}}
+{\footnotesize\ttfamily \label{home__screen_8cpp_ac3f578429ecff2c04f7e4ce47cbe599a} 
+const char\texorpdfstring{$\ast$}{*} PLAY\+\_\+\+BUTTON\+\_\+\+SPRITE\mbox{[}2\mbox{]} = \{"{}../assets/UI/play\+\_\+button.\+png"{}, "{}../assets/UI/play\+\_\+button\+\_\+pressed.\+png"{}\}}
+
+\Hypertarget{home__screen_8cpp_a4c2a35ee9e2cafca8c1160f503279256}\index{home\_screen.cpp@{home\_screen.cpp}!statistics\_animation\_entry@{statistics\_animation\_entry}}
+\index{statistics\_animation\_entry@{statistics\_animation\_entry}!home\_screen.cpp@{home\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{statistics\_animation\_entry}{statistics\_animation\_entry}}
+{\footnotesize\ttfamily \label{home__screen_8cpp_a4c2a35ee9e2cafca8c1160f503279256} 
+bool statistics\+\_\+animation\+\_\+entry = false}
+
+\Hypertarget{home__screen_8cpp_acc306abeecd2f4a0e49dacbf53693d92}\index{home\_screen.cpp@{home\_screen.cpp}!statistics\_animation\_exit@{statistics\_animation\_exit}}
+\index{statistics\_animation\_exit@{statistics\_animation\_exit}!home\_screen.cpp@{home\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{statistics\_animation\_exit}{statistics\_animation\_exit}}
+{\footnotesize\ttfamily \label{home__screen_8cpp_acc306abeecd2f4a0e49dacbf53693d92} 
+bool statistics\+\_\+animation\+\_\+exit = false}
+
+\Hypertarget{home__screen_8cpp_afb8a03ac3ad09a97371c38a0b4734cb1}\index{home\_screen.cpp@{home\_screen.cpp}!STATISTICS\_BUTTON\_SPRITE@{STATISTICS\_BUTTON\_SPRITE}}
+\index{STATISTICS\_BUTTON\_SPRITE@{STATISTICS\_BUTTON\_SPRITE}!home\_screen.cpp@{home\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{STATISTICS\_BUTTON\_SPRITE}{STATISTICS\_BUTTON\_SPRITE}}
+{\footnotesize\ttfamily \label{home__screen_8cpp_afb8a03ac3ad09a97371c38a0b4734cb1} 
+const char\texorpdfstring{$\ast$}{*} STATISTICS\+\_\+\+BUTTON\+\_\+\+SPRITE\mbox{[}2\mbox{]} = \{"{}../assets/UI/statistics\+\_\+button.\+png"{}, "{}../assets/UI/statistics\+\_\+button\+\_\+pressed.\+png"{}\}}
+
+
+
+caminho do botão de achievements 
+
+\Hypertarget{home__screen_8cpp_aaf3f0791e344172f5ed2b497eab36ae8}\index{home\_screen.cpp@{home\_screen.cpp}!statistics\_screen\_spawn\_x@{statistics\_screen\_spawn\_x}}
+\index{statistics\_screen\_spawn\_x@{statistics\_screen\_spawn\_x}!home\_screen.cpp@{home\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{statistics\_screen\_spawn\_x}{statistics\_screen\_spawn\_x}}
+{\footnotesize\ttfamily \label{home__screen_8cpp_aaf3f0791e344172f5ed2b497eab36ae8} 
+int statistics\+\_\+screen\+\_\+spawn\+\_\+x = \mbox{\hyperlink{main_8cpp_a9b6bc9242882d1e758e06ed751a2e8ec}{SCREEN\+\_\+W}}+192}
+
+\Hypertarget{home__screen_8cpp_a3b4dcee7fb028936415a65b016e30efc}\index{home\_screen.cpp@{home\_screen.cpp}!statistics\_showing@{statistics\_showing}}
+\index{statistics\_showing@{statistics\_showing}!home\_screen.cpp@{home\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{statistics\_showing}{statistics\_showing}}
+{\footnotesize\ttfamily \label{home__screen_8cpp_a3b4dcee7fb028936415a65b016e30efc} 
+bool statistics\+\_\+showing = false}
+
+\Hypertarget{home__screen_8cpp_a956b1614d6b4fd0f7e88a19fd4918863}\index{home\_screen.cpp@{home\_screen.cpp}!TITLE\_SPRITE@{TITLE\_SPRITE}}
+\index{TITLE\_SPRITE@{TITLE\_SPRITE}!home\_screen.cpp@{home\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{TITLE\_SPRITE}{TITLE\_SPRITE}}
+{\footnotesize\ttfamily \label{home__screen_8cpp_a956b1614d6b4fd0f7e88a19fd4918863} 
+const char\texorpdfstring{$\ast$}{*} TITLE\+\_\+\+SPRITE = \{"{}../assets/UI/title\+\_\+text.\+png"{}\}}
+

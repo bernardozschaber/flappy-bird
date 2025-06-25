@@ -1,0 +1,108 @@
+\doxysection{Referência à classe Home\+\_\+\+Screen}
+\hypertarget{classHome__Screen}{}\label{classHome__Screen}\index{Home\_Screen@{Home\_Screen}}
+
+
+Classe que representa a tela de título do jogo.  
+
+
+
+
+{\ttfamily \#include $<$home\+\_\+screen.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHome__Screen_a1168ae4db2114585151244df0d762862}{Home\+\_\+\+Screen}} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{classHome__Screen}{Home\+\_\+\+Screen}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHome__Screen_adede9f19b5a6ab744a1ba5d2ad9cb2e8}{\texorpdfstring{$\sim$}{\string~}\+Home\+\_\+\+Screen}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da classe \doxylink{classHome__Screen}{Home\+\_\+\+Screen} Destrói bitmaps e objetos da tela. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHome__Screen_ab0eb7acb8f5e435b7928f085602d0080}{commands}} (unsigned char key\mbox{[}$\,$\mbox{]}, bool \&mouse\+\_\+is\+\_\+down, bool \&mouse\+\_\+just\+\_\+released, int mouse\+\_\+update\+\_\+x, int mouse\+\_\+update\+\_\+y, \mbox{\hyperlink{structstates}{states}} \&state)
+\begin{DoxyCompactList}\small\item\em Processa os comandos da tela de início. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHome__Screen_af004605d2b58769f3ffbef8f76956b75}{update}} ()
+\begin{DoxyCompactList}\small\item\em Atualiza o estado dos objetos da tela de início. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHome__Screen_a8b8c64bf1768b75a6ea3a838e5c6f3a1}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Desenha os objetos da tela de início. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe que representa a tela de título do jogo. 
+
+\label{doc-constructors}
+\Hypertarget{classHome__Screen_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classHome__Screen_a1168ae4db2114585151244df0d762862}\index{Home\_Screen@{Home\_Screen}!Home\_Screen@{Home\_Screen}}
+\index{Home\_Screen@{Home\_Screen}!Home\_Screen@{Home\_Screen}}
+\doxysubsubsection{\texorpdfstring{Home\_Screen()}{Home\_Screen()}}
+{\footnotesize\ttfamily \label{classHome__Screen_a1168ae4db2114585151244df0d762862} 
+Home\+\_\+\+Screen\+::\+Home\+\_\+\+Screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{classHome__Screen}{Home\+\_\+\+Screen}. 
+
+\Hypertarget{classHome__Screen_adede9f19b5a6ab744a1ba5d2ad9cb2e8}\index{Home\_Screen@{Home\_Screen}!````~Home\_Screen@{\texorpdfstring{$\sim$}{\string~}Home\_Screen}}
+\index{````~Home\_Screen@{\texorpdfstring{$\sim$}{\string~}Home\_Screen}!Home\_Screen@{Home\_Screen}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Home\_Screen()}{\string~Home\_Screen()}}
+{\footnotesize\ttfamily \label{classHome__Screen_adede9f19b5a6ab744a1ba5d2ad9cb2e8} 
+Home\+\_\+\+Screen\+::\texorpdfstring{$\sim$}{\string~}\+Home\+\_\+\+Screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destrutor da classe \doxylink{classHome__Screen}{Home\+\_\+\+Screen} Destrói bitmaps e objetos da tela. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classHome__Screen_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classHome__Screen_ab0eb7acb8f5e435b7928f085602d0080}\index{Home\_Screen@{Home\_Screen}!commands@{commands}}
+\index{commands@{commands}!Home\_Screen@{Home\_Screen}}
+\doxysubsubsection{\texorpdfstring{commands()}{commands()}}
+{\footnotesize\ttfamily \label{classHome__Screen_ab0eb7acb8f5e435b7928f085602d0080} 
+void Home\+\_\+\+Screen\+::commands (\begin{DoxyParamCaption}\item[{unsigned char}]{key}{\mbox{[}$\,$\mbox{]}, }\item[{bool \&}]{mouse\+\_\+is\+\_\+down}{, }\item[{bool \&}]{mouse\+\_\+just\+\_\+released}{, }\item[{int}]{mouse\+\_\+update\+\_\+x}{, }\item[{int}]{mouse\+\_\+update\+\_\+y}{, }\item[{\mbox{\hyperlink{structstates}{states}} \&}]{state}{}\end{DoxyParamCaption})}
+
+
+
+Processa os comandos da tela de início. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em key} & Array de teclas pressionadas \\
+\hline
+{\em mouse\+\_\+is\+\_\+down} & Indica se o mouse está pressionado \\
+\hline
+{\em mouse\+\_\+just\+\_\+released} & Indica se o mouse foi solto \\
+\hline
+{\em mouse\+\_\+update\+\_\+x} & Posição X de click/release do mouse \\
+\hline
+{\em mouse\+\_\+update\+\_\+y} & Posição Y de click/release do mouse \\
+\hline
+{\em state} & Referência ao estado do jogo \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classHome__Screen_a8b8c64bf1768b75a6ea3a838e5c6f3a1}\index{Home\_Screen@{Home\_Screen}!draw@{draw}}
+\index{draw@{draw}!Home\_Screen@{Home\_Screen}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classHome__Screen_a8b8c64bf1768b75a6ea3a838e5c6f3a1} 
+void Home\+\_\+\+Screen\+::draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Desenha os objetos da tela de início. 
+
+\Hypertarget{classHome__Screen_af004605d2b58769f3ffbef8f76956b75}\index{Home\_Screen@{Home\_Screen}!update@{update}}
+\index{update@{update}!Home\_Screen@{Home\_Screen}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classHome__Screen_af004605d2b58769f3ffbef8f76956b75} 
+void Home\+\_\+\+Screen\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza o estado dos objetos da tela de início. 
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{home__screen_8hpp}{home\+\_\+screen.\+hpp}}\item 
+src/\mbox{\hyperlink{home__screen_8cpp}{home\+\_\+screen.\+cpp}}\end{DoxyCompactItemize}

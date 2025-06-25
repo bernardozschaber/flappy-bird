@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>pds2_projeto_final: Código-Fonte de include/image.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">pds2_projeto_final
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('image_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">image.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="image_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef IMAGE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define IMAGE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="ui__object_8hpp.html">ui_object.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span></div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classimage.html">   11</a></span><span class="keyword">class </span><a class="code hl_function" href="classimage.html#aa7c28092bb0626268d3368aa0a5bf34c">image</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        ALLEGRO_BITMAP* bitmap; </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <span class="keywordtype">float</span> vel_x;            </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keywordtype">float</span> vel_y;            </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keywordtype">float</span> acel_x;           </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keywordtype">float</span> acel_y;           </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keywordtype">float</span> x, y;             </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordtype">int</span> width, height;      </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classimage.html#aa7c28092bb0626268d3368aa0a5bf34c">   29</a></span>        <a class="code hl_function" href="classimage.html#aa7c28092bb0626268d3368aa0a5bf34c">image</a>(ALLEGRO_BITMAP* sprite, <span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y) : <a class="code hl_function" href="classimage.html#aa7c28092bb0626268d3368aa0a5bf34c">image</a>(sprite, x, y, 0, 0, 0, 0) { };</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <a class="code hl_function" href="classimage.html#aa7c28092bb0626268d3368aa0a5bf34c">image</a>(ALLEGRO_BITMAP* sprite, <span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> vx, <span class="keywordtype">float</span> vy, <span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#ae1ed9afeb5bf50d42356f7443f11fadd">Draw</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#ae1ed9afeb5bf50d42356f7443f11fadd">Draw</a>(<span class="keywordtype">float</span> scale);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#a97c8f2dd019cfdf78e7803b70c2d53ea">Update</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classimage.html#a569b33078b28b51fe0c9a735d44bd18c">get_x</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classimage.html#a3cef4902a688a8e5d8c8d07077ab510f">get_y</a>();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classimage.html#ad94b9944ff060c382c4863d8b2561e2c">get_velocity_x</a>();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classimage.html#a24d59d3738ac7ef48c333777de2f78ea">get_velocity_y</a>();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#ad1e3258c54f0eb8de47adb137bee3981">set_position_x</a>(<span class="keywordtype">float</span> new_x);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#a51d31770f8728868c66958a51ed5f797">set_position_y</a>(<span class="keywordtype">float</span> new_y);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#ac98829af6fdfbd466b2438f03eb7aa0f">set_velocity</a>(<span class="keywordtype">float</span> new_vel_x, <span class="keywordtype">float</span> new_vel_y);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#a06a9b620628b4e1d198cba62402f823f">set_acceleration</a>(<span class="keywordtype">float</span> new_accel_x, <span class="keywordtype">float</span> new_accel_y);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classimage.html#ac5071c34bcb894ed3a5ae646e7c57f11">set_bitmap</a>(ALLEGRO_BITMAP* new_sprite);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>};</div>
+</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassimage_html_a06a9b620628b4e1d198cba62402f823f"><div class="ttname"><a href="classimage.html#a06a9b620628b4e1d198cba62402f823f">image::set_acceleration</a></div><div class="ttdeci">void set_acceleration(float new_accel_x, float new_accel_y)</div><div class="ttdoc">Seta a aceleração da imagem.</div><div class="ttdef"><b>Definição</b> image.cpp:44</div></div>
+<div class="ttc" id="aclassimage_html_a24d59d3738ac7ef48c333777de2f78ea"><div class="ttname"><a href="classimage.html#a24d59d3738ac7ef48c333777de2f78ea">image::get_velocity_y</a></div><div class="ttdeci">float get_velocity_y()</div><div class="ttdoc">Retorna a velocidade vertical da imagem.</div><div class="ttdef"><b>Definição</b> image.cpp:27</div></div>
+<div class="ttc" id="aclassimage_html_a3cef4902a688a8e5d8c8d07077ab510f"><div class="ttname"><a href="classimage.html#a3cef4902a688a8e5d8c8d07077ab510f">image::get_y</a></div><div class="ttdeci">float get_y()</div><div class="ttdoc">Retorna a posição Y da imagem.</div><div class="ttdef"><b>Definição</b> image.cpp:19</div></div>
+<div class="ttc" id="aclassimage_html_a51d31770f8728868c66958a51ed5f797"><div class="ttname"><a href="classimage.html#a51d31770f8728868c66958a51ed5f797">image::set_position_y</a></div><div class="ttdeci">void set_position_y(float new_y)</div><div class="ttdoc">Seta a posição Y da imagem.</div><div class="ttdef"><b>Definição</b> image.cpp:35</div></div>
+<div class="ttc" id="aclassimage_html_a569b33078b28b51fe0c9a735d44bd18c"><div class="ttname"><a href="classimage.html#a569b33078b28b51fe0c9a735d44bd18c">image::get_x</a></div><div class="ttdeci">float get_x()</div><div class="ttdoc">Retorna a posição X da imagem.</div><div class="ttdef"><b>Definição</b> image.cpp:15</div></div>
+<div class="ttc" id="aclassimage_html_a97c8f2dd019cfdf78e7803b70c2d53ea"><div class="ttname"><a href="classimage.html#a97c8f2dd019cfdf78e7803b70c2d53ea">image::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdoc">Atualiza a posição da imagem com base na velocidade e aceleração.</div><div class="ttdef"><b>Definição</b> image.cpp:61</div></div>
+<div class="ttc" id="aclassimage_html_aa7c28092bb0626268d3368aa0a5bf34c"><div class="ttname"><a href="classimage.html#aa7c28092bb0626268d3368aa0a5bf34c">image::image</a></div><div class="ttdeci">image(ALLEGRO_BITMAP *sprite, float x, float y)</div><div class="ttdoc">Construtor da classe image.</div><div class="ttdef"><b>Definição</b> image.hpp:29</div></div>
+<div class="ttc" id="aclassimage_html_ac5071c34bcb894ed3a5ae646e7c57f11"><div class="ttname"><a href="classimage.html#ac5071c34bcb894ed3a5ae646e7c57f11">image::set_bitmap</a></div><div class="ttdeci">void set_bitmap(ALLEGRO_BITMAP *new_sprite)</div><div class="ttdoc">Troca o bitmap(sprite) da imagem.</div><div class="ttdef"><b>Definição</b> image.cpp:49</div></div>
+<div class="ttc" id="aclassimage_html_ac98829af6fdfbd466b2438f03eb7aa0f"><div class="ttname"><a href="classimage.html#ac98829af6fdfbd466b2438f03eb7aa0f">image::set_velocity</a></div><div class="ttdeci">void set_velocity(float new_vel_x, float new_vel_y)</div><div class="ttdoc">Seta a velocidade da imagem.</div><div class="ttdef"><b>Definição</b> image.cpp:39</div></div>
+<div class="ttc" id="aclassimage_html_ad1e3258c54f0eb8de47adb137bee3981"><div class="ttname"><a href="classimage.html#ad1e3258c54f0eb8de47adb137bee3981">image::set_position_x</a></div><div class="ttdeci">void set_position_x(float new_x)</div><div class="ttdoc">Seta a posição X da imagem.</div><div class="ttdef"><b>Definição</b> image.cpp:31</div></div>
+<div class="ttc" id="aclassimage_html_ad94b9944ff060c382c4863d8b2561e2c"><div class="ttname"><a href="classimage.html#ad94b9944ff060c382c4863d8b2561e2c">image::get_velocity_x</a></div><div class="ttdeci">float get_velocity_x()</div><div class="ttdoc">Retorna a velocidade horizontal da imagem.</div><div class="ttdef"><b>Definição</b> image.cpp:23</div></div>
+<div class="ttc" id="aclassimage_html_ae1ed9afeb5bf50d42356f7443f11fadd"><div class="ttname"><a href="classimage.html#ae1ed9afeb5bf50d42356f7443f11fadd">image::Draw</a></div><div class="ttdeci">void Draw()</div><div class="ttdoc">Desenha a imagem na tela.</div><div class="ttdef"><b>Definição</b> image.cpp:53</div></div>
+<div class="ttc" id="aui__object_8hpp_html"><div class="ttname"><a href="ui__object_8hpp.html">ui_object.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="image_8hpp.html">image.hpp</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

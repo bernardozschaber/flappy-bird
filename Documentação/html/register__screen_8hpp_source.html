@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>pds2_projeto_final: Código-Fonte de include/register_screen.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">pds2_projeto_final
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('register__screen_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">register_screen.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="register__screen_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef REGISTER_SCREEN_HPP</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define REGISTER_SCREEN_HPP</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="button_8hpp.html">button.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="registration_8hpp.html">registration.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="text__box_8hpp.html">text_box.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;allegro5/allegro_font.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classregister__screen.html">   16</a></span><span class="keyword">class </span><a class="code hl_function" href="classregister__screen.html#a5e8e4a900f5913d2acc0a2dded3a6446">register_screen</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <a class="code hl_function" href="classregister__screen.html#a5e8e4a900f5913d2acc0a2dded3a6446">register_screen</a>(<span class="keywordtype">int</span> screen_w, <span class="keywordtype">int</span> screen_h, <a class="code hl_class" href="classregistration.html">registration</a> &amp;data_ref, std::multiset&lt;player&gt; &amp;set, ALLEGRO_SAMPLE* key_s, ALLEGRO_SAMPLE* button_s);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classregister__screen.html#af53bb265a34e9dda4450022726329f9b">handle_event</a>(<span class="keyword">const</span> ALLEGRO_EVENT &amp;ev);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classregister__screen.html#a3e9a47ea1deefac6f16dc9820d840542">draw</a>(ALLEGRO_FONT *font);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classregister__screen.html#a115739f738528459aaab38f0fe97b076">registration_complete</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classregister__screen.html#ae46cb0f67fc821a6195fccaba9fbaf8a">go_to_login_screen</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keyword">const</span> std::vector&lt;text_box*&gt;&amp; <a class="code hl_function" href="classregister__screen.html#a113b32f01b2a6a66474269122a063a4f">get_text_boxes</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keyword">const</span> std::vector&lt;button*&gt;&amp;  <a class="code hl_function" href="classregister__screen.html#a1835a3eee456d71aa60d412c62bd3316">get_buttons</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classregister__screen.html#aaa356c5084c75005782eaa557e45ff25">reset</a>();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordtype">int</span> screen_width; </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordtype">int</span> screen_height;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <a class="code hl_class" href="classregistration.html">registration</a> &amp;data;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  std::multiset&lt;player&gt; &amp;players;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <a class="code hl_class" href="classtext__box.html">text_box</a> username_box;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <a class="code hl_class" href="classtext__box.html">text_box</a> password_box;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <a class="code hl_class" href="classtext__box.html">text_box</a> confirm_box;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <a class="code hl_class" href="classbutton.html">button</a> confirm_button;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <a class="code hl_class" href="classbutton.html">button</a> cancel_button;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  std::vector&lt;text_box*&gt; text_boxes;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  std::vector&lt;button*&gt;  buttons;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  <span class="keywordtype">bool</span> reg_complete; </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="keywordtype">bool</span> go_to_login; </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="keywordtype">bool</span> password_mismatch; </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="keywordtype">bool</span> empty_field; </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordtype">bool</span> existing_user; </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
+</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#endif </span><span class="comment">// REGISTER_SCREEN_HPP</span></div>
+<div class="ttc" id="abutton_8hpp_html"><div class="ttname"><a href="button_8hpp.html">button.hpp</a></div></div>
+<div class="ttc" id="aclassbutton_html"><div class="ttname"><a href="classbutton.html">button</a></div><div class="ttdoc">Classe que representa os botões da interface do menu: Herda da classe genêrica de objetos de UI.</div><div class="ttdef"><b>Definição</b> button.hpp:14</div></div>
+<div class="ttc" id="aclassregister__screen_html_a113b32f01b2a6a66474269122a063a4f"><div class="ttname"><a href="classregister__screen.html#a113b32f01b2a6a66474269122a063a4f">register_screen::get_text_boxes</a></div><div class="ttdeci">const std::vector&lt; text_box * &gt; &amp; get_text_boxes() const</div><div class="ttdoc">Get do vetor com ponteiros para as caixas de texto para testes e manipulação de áudio.</div><div class="ttdef"><b>Definição</b> register_screen.cpp:231</div></div>
+<div class="ttc" id="aclassregister__screen_html_a115739f738528459aaab38f0fe97b076"><div class="ttname"><a href="classregister__screen.html#a115739f738528459aaab38f0fe97b076">register_screen::registration_complete</a></div><div class="ttdeci">bool registration_complete() const</div><div class="ttdoc">Indica se o registro foi concluído com sucesso (para voltar ao login)</div><div class="ttdef"><b>Definição</b> register_screen.cpp:227</div></div>
+<div class="ttc" id="aclassregister__screen_html_a1835a3eee456d71aa60d412c62bd3316"><div class="ttname"><a href="classregister__screen.html#a1835a3eee456d71aa60d412c62bd3316">register_screen::get_buttons</a></div><div class="ttdeci">const std::vector&lt; button * &gt; &amp; get_buttons() const</div><div class="ttdoc">Get do vetor com ponteiros para os botões para testes e manipulação de áudio.</div><div class="ttdef"><b>Definição</b> register_screen.cpp:232</div></div>
+<div class="ttc" id="aclassregister__screen_html_a3e9a47ea1deefac6f16dc9820d840542"><div class="ttname"><a href="classregister__screen.html#a3e9a47ea1deefac6f16dc9820d840542">register_screen::draw</a></div><div class="ttdeci">void draw(ALLEGRO_FONT *font)</div><div class="ttdoc">Desenha os componentes da tela.</div><div class="ttdef"><b>Definição</b> register_screen.cpp:184</div></div>
+<div class="ttc" id="aclassregister__screen_html_a5e8e4a900f5913d2acc0a2dded3a6446"><div class="ttname"><a href="classregister__screen.html#a5e8e4a900f5913d2acc0a2dded3a6446">register_screen::register_screen</a></div><div class="ttdeci">register_screen(int screen_w, int screen_h, registration &amp;data_ref, std::multiset&lt; player &gt; &amp;set, ALLEGRO_SAMPLE *key_s, ALLEGRO_SAMPLE *button_s)</div><div class="ttdoc">Construtor que inicializa a tela de registro.</div><div class="ttdef"><b>Definição</b> register_screen.cpp:4</div></div>
+<div class="ttc" id="aclassregister__screen_html_aaa356c5084c75005782eaa557e45ff25"><div class="ttname"><a href="classregister__screen.html#aaa356c5084c75005782eaa557e45ff25">register_screen::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Reseta campos e flags para nova exibição.</div><div class="ttdef"><b>Definição</b> register_screen.cpp:234</div></div>
+<div class="ttc" id="aclassregister__screen_html_ae46cb0f67fc821a6195fccaba9fbaf8a"><div class="ttname"><a href="classregister__screen.html#ae46cb0f67fc821a6195fccaba9fbaf8a">register_screen::go_to_login_screen</a></div><div class="ttdeci">bool go_to_login_screen() const</div><div class="ttdoc">Indica se deve voltar à tela de login.</div><div class="ttdef"><b>Definição</b> register_screen.cpp:229</div></div>
+<div class="ttc" id="aclassregister__screen_html_af53bb265a34e9dda4450022726329f9b"><div class="ttname"><a href="classregister__screen.html#af53bb265a34e9dda4450022726329f9b">register_screen::handle_event</a></div><div class="ttdeci">void handle_event(const ALLEGRO_EVENT &amp;ev)</div><div class="ttdoc">Trata eventos (mouse/teclado) e repassa para componentes.</div><div class="ttdef"><b>Definição</b> register_screen.cpp:20</div></div>
+<div class="ttc" id="aclassregistration_html"><div class="ttname"><a href="classregistration.html">registration</a></div><div class="ttdoc">Classe que realiza operações dentro do arquivo.</div><div class="ttdef"><b>Definição</b> registration.hpp:91</div></div>
+<div class="ttc" id="aclasstext__box_html"><div class="ttname"><a href="classtext__box.html">text_box</a></div><div class="ttdoc">Classe que representa caixas de texto do menu: Herda da classe genêrica de objetos de UI.</div><div class="ttdef"><b>Definição</b> text_box.hpp:14</div></div>
+<div class="ttc" id="aregistration_8hpp_html"><div class="ttname"><a href="registration_8hpp.html">registration.hpp</a></div><div class="ttdoc">Declaração da classe de registro para execução de diversos comandos no arquivo txt.</div></div>
+<div class="ttc" id="atext__box_8hpp_html"><div class="ttname"><a href="text__box_8hpp.html">text_box.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="register__screen_8hpp.html">register_screen.hpp</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

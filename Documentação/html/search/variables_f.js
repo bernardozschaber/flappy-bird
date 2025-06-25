@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['score_0',['score',['../structplayer.html#a0effac341657c96528752f808fa23291',1,'player::score'],['../game__loop_8hpp.html#a8c5cd9b525ee73a24b1d9d8e34982d1c',1,'score:&#160;game_loop.cpp'],['../game__loop_8cpp.html#a8c5cd9b525ee73a24b1d9d8e34982d1c',1,'score:&#160;game_loop.cpp']]],
+  ['score_5fbox_5f1_1',['SCORE_BOX_1',['../game__loop_8hpp.html#a9397a6082fe4d7bd25c305eba2bd91a1',1,'SCORE_BOX_1:&#160;game_loop.cpp'],['../game__loop_8cpp.html#a9397a6082fe4d7bd25c305eba2bd91a1',1,'SCORE_BOX_1:&#160;game_loop.cpp']]],
+  ['score_5fbox_5f2_2',['SCORE_BOX_2',['../game__loop_8hpp.html#ad5273f9e682ca6ae904c73e3ff47ceed',1,'SCORE_BOX_2:&#160;game_loop.cpp'],['../game__loop_8cpp.html#ad5273f9e682ca6ae904c73e3ff47ceed',1,'SCORE_BOX_2:&#160;game_loop.cpp']]],
+  ['score_5fdisplayed_3',['score_displayed',['../game__loop_8cpp.html#ad7da755654cfba0b8f1f6d8939afc30b',1,'game_loop.cpp']]],
+  ['score_5fnow_4',['SCORE_NOW',['../game__loop_8hpp.html#a57213da153dc322a0b6726cf2e6c31fa',1,'SCORE_NOW:&#160;game_loop.cpp'],['../game__loop_8cpp.html#a57213da153dc322a0b6726cf2e6c31fa',1,'SCORE_NOW:&#160;game_loop.cpp']]],
+  ['score_5fsprite_5',['SCORE_SPRITE',['../game__loop_8hpp.html#a66c8cdd8d1373bae8688f0c62b0e31f9',1,'SCORE_SPRITE:&#160;game_loop.cpp'],['../game__loop_8cpp.html#a66c8cdd8d1373bae8688f0c62b0e31f9',1,'SCORE_SPRITE:&#160;game_loop.cpp']]],
+  ['screen_5fh_6',['SCREEN_H',['../game__loop_8hpp.html#a42c075b5e54349391d38c5d53c4eddde',1,'SCREEN_H:&#160;game_loop.cpp'],['../game__loop_8cpp.html#a42c075b5e54349391d38c5d53c4eddde',1,'SCREEN_H:&#160;game_loop.cpp']]],
+  ['screen_5fw_7',['SCREEN_W',['../game__loop_8hpp.html#afca0db9c0e472d6c9aefd3022751d0ba',1,'SCREEN_W:&#160;game_loop.cpp'],['../game__loop_8cpp.html#afca0db9c0e472d6c9aefd3022751d0ba',1,'SCREEN_W:&#160;game_loop.cpp']]],
+  ['settings_5fbutton_5fsprite_8',['SETTINGS_BUTTON_SPRITE',['../game__loop_8hpp.html#a5701a161d0bf9261d7e3a7df4e2535dc',1,'SETTINGS_BUTTON_SPRITE:&#160;game_loop.cpp'],['../game__loop_8cpp.html#a5701a161d0bf9261d7e3a7df4e2535dc',1,'SETTINGS_BUTTON_SPRITE:&#160;game_loop.cpp']]],
+  ['settings_5fscreen_9',['settings_screen',['../structstates.html#a24b8844800bd02f3ebfc3317af5e1552',1,'states']]],
+  ['settings_5fscreen_5fframe_10',['SETTINGS_SCREEN_FRAME',['../settings__screen_8cpp.html#a67e89067e5896ac8d723723c630eb455',1,'settings_screen.cpp']]],
+  ['show_5fsprite_11',['SHOW_SPRITE',['../settings__screen_8cpp.html#a9929e94efa63125d023c81d022815b3f',1,'settings_screen.cpp']]],
+  ['sound_5fbutton_5fsprite_12',['SOUND_BUTTON_SPRITE',['../game__loop_8hpp.html#aa143a78a1ad7d02a92b0a146343f7b10',1,'SOUND_BUTTON_SPRITE:&#160;game_loop.cpp'],['../game__loop_8cpp.html#aa143a78a1ad7d02a92b0a146343f7b10',1,'SOUND_BUTTON_SPRITE:&#160;game_loop.cpp']]],
+  ['sprite_5fnow_13',['sprite_now',['../game__loop_8cpp.html#ac2a24f08bae4e80b337785733e866cce',1,'game_loop.cpp']]],
+  ['statistics_5fanimation_5fentry_14',['statistics_animation_entry',['../home__screen_8cpp.html#a4c2a35ee9e2cafca8c1160f503279256',1,'home_screen.cpp']]],
+  ['statistics_5fanimation_5fexit_15',['statistics_animation_exit',['../home__screen_8cpp.html#acc306abeecd2f4a0e49dacbf53693d92',1,'home_screen.cpp']]],
+  ['statistics_5fbutton_5fsprite_16',['STATISTICS_BUTTON_SPRITE',['../game__loop_8hpp.html#afb8a03ac3ad09a97371c38a0b4734cb1',1,'STATISTICS_BUTTON_SPRITE:&#160;home_screen.cpp'],['../home__screen_8cpp.html#afb8a03ac3ad09a97371c38a0b4734cb1',1,'STATISTICS_BUTTON_SPRITE:&#160;home_screen.cpp']]],
+  ['statistics_5fscreen_5fspawn_5fx_17',['statistics_screen_spawn_x',['../home__screen_8cpp.html#aaf3f0791e344172f5ed2b497eab36ae8',1,'home_screen.cpp']]],
+  ['statistics_5fshowing_18',['statistics_showing',['../home__screen_8cpp.html#a3b4dcee7fb028936415a65b016e30efc',1,'home_screen.cpp']]]
+];

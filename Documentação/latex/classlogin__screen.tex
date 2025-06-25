@@ -1,0 +1,216 @@
+\doxysection{Referência à classe login\+\_\+screen}
+\hypertarget{classlogin__screen}{}\label{classlogin__screen}\index{login\_screen@{login\_screen}}
+
+
+Tela que lida com todo o processo de login (Menu Principal)  
+
+
+
+
+{\ttfamily \#include $<$login\+\_\+screen.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlogin__screen_a42734fd761527e743111ad833ba422f5}{login\+\_\+screen}} (int screen\+\_\+w, int screen\+\_\+h, \mbox{\hyperlink{classregistration}{registration}} \&data\+\_\+ref, ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}key\+\_\+s, ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}button\+\_\+s)
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa a tela de login. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogin__screen_a0c181069bafb4ca5dbb05f64b8d54b29}{handle\+\_\+event}} (const ALLEGRO\+\_\+\+EVENT \&ev)
+\begin{DoxyCompactList}\small\item\em Trata eventos (mouse/teclado) e repassa aos componentes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogin__screen_a7d27666e43d004a11de7c6a9f82f9b68}{draw}} (ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}font)
+\begin{DoxyCompactList}\small\item\em Desenha todos os componentes na tela. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogin__screen_a312df1a89d78f0b0ce75ccbf75c49510}{go\+\_\+to\+\_\+player\+\_\+list}} () const
+\begin{DoxyCompactList}\small\item\em Indica se deve trocar para a tela de listagem. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogin__screen_a1cee6b78ac331a15668eaff963606f69}{go\+\_\+to\+\_\+register\+\_\+screen}} () const
+\begin{DoxyCompactList}\small\item\em Indica se deve trocar para a tela de registro. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogin__screen_aaba32fd78846a105988f31fa65437cc4}{go\+\_\+to\+\_\+remove\+\_\+screen}} () const
+\begin{DoxyCompactList}\small\item\em Indica se deve trocar para a tela de remoção. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlogin__screen_a2a96bea00d0be93a7d91cff90af2e38d}{login\+\_\+done}} () const
+\begin{DoxyCompactList}\small\item\em Indica se o login foi concluído. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplayer}{player}} \mbox{\hyperlink{classlogin__screen_af045fb087269a810b8d53b22b32b9898}{get\+\_\+logged\+\_\+user}} ()
+\begin{DoxyCompactList}\small\item\em Get dos dados do usuário que está logado. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \mbox{\hyperlink{classtext__box}{text\+\_\+box}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classlogin__screen_ab8ceaedab64e70b3f44fb65153ae5d7f}{get\+\_\+text\+\_\+boxes}} () const
+\begin{DoxyCompactList}\small\item\em Get do vetor com ponteiros para as caixas de texto para testes e manipulação de áudio. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \mbox{\hyperlink{classbutton}{button}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classlogin__screen_a358e46811c5f703560ecfbfd1ee185f4}{get\+\_\+buttons}} () const
+\begin{DoxyCompactList}\small\item\em Get do vetor com ponteiros para os botões para testes e manipulação de áudio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlogin__screen_a88244b153d61879d03e1668b2aff6632}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Reseta caixas e flags. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Tela que lida com todo o processo de login (Menu Principal) 
+
+
+\begin{DoxyItemize}
+\item Serve como hub para trocar para as outras telas do menu principal
+\item Processa e valida tentativas de login
+\item Armazena informações do usuário logado 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{classlogin__screen_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classlogin__screen_a42734fd761527e743111ad833ba422f5}\index{login\_screen@{login\_screen}!login\_screen@{login\_screen}}
+\index{login\_screen@{login\_screen}!login\_screen@{login\_screen}}
+\doxysubsubsection{\texorpdfstring{login\_screen()}{login\_screen()}}
+{\footnotesize\ttfamily \label{classlogin__screen_a42734fd761527e743111ad833ba422f5} 
+login\+\_\+screen\+::login\+\_\+screen (\begin{DoxyParamCaption}\item[{int}]{screen\+\_\+w}{, }\item[{int}]{screen\+\_\+h}{, }\item[{\mbox{\hyperlink{classregistration}{registration}} \&}]{data\+\_\+ref}{, }\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{key\+\_\+s}{, }\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{button\+\_\+s}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que inicializa a tela de login. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em screen\+\_\+w} & Largura da tela \\
+\hline
+{\em screen\+\_\+h} & Altura da tela \\
+\hline
+{\em data\+\_\+ref} & Referência ao objeto que manipula os arquivos \\
+\hline
+{\em key\+\_\+s} & Efeito sonoro das caixas de texto \\
+\hline
+{\em button\+\_\+s} & Efeito sonoro dos botões \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classlogin__screen_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classlogin__screen_a7d27666e43d004a11de7c6a9f82f9b68}\index{login\_screen@{login\_screen}!draw@{draw}}
+\index{draw@{draw}!login\_screen@{login\_screen}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classlogin__screen_a7d27666e43d004a11de7c6a9f82f9b68} 
+void login\+\_\+screen\+::draw (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}}]{font}{}\end{DoxyParamCaption})}
+
+
+
+Desenha todos os componentes na tela. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em font} & Fonte utilizada e repassada para os componentes \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogin__screen_a358e46811c5f703560ecfbfd1ee185f4}\index{login\_screen@{login\_screen}!get\_buttons@{get\_buttons}}
+\index{get\_buttons@{get\_buttons}!login\_screen@{login\_screen}}
+\doxysubsubsection{\texorpdfstring{get\_buttons()}{get\_buttons()}}
+{\footnotesize\ttfamily \label{classlogin__screen_a358e46811c5f703560ecfbfd1ee185f4} 
+const std\+::vector$<$ \mbox{\hyperlink{classbutton}{button}} \texorpdfstring{$\ast$}{*} $>$ \& login\+\_\+screen\+::get\+\_\+buttons (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get do vetor com ponteiros para os botões para testes e manipulação de áudio. 
+
+\begin{DoxyReturn}{Retorna}
+Vetor com os ponteiros 
+\end{DoxyReturn}
+\Hypertarget{classlogin__screen_af045fb087269a810b8d53b22b32b9898}\index{login\_screen@{login\_screen}!get\_logged\_user@{get\_logged\_user}}
+\index{get\_logged\_user@{get\_logged\_user}!login\_screen@{login\_screen}}
+\doxysubsubsection{\texorpdfstring{get\_logged\_user()}{get\_logged\_user()}}
+{\footnotesize\ttfamily \label{classlogin__screen_af045fb087269a810b8d53b22b32b9898} 
+\mbox{\hyperlink{structplayer}{player}} login\+\_\+screen\+::get\+\_\+logged\+\_\+user (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get dos dados do usuário que está logado. 
+
+\begin{DoxyReturn}{Retorna}
+Struct com os dados do jogador logado 
+\end{DoxyReturn}
+\Hypertarget{classlogin__screen_ab8ceaedab64e70b3f44fb65153ae5d7f}\index{login\_screen@{login\_screen}!get\_text\_boxes@{get\_text\_boxes}}
+\index{get\_text\_boxes@{get\_text\_boxes}!login\_screen@{login\_screen}}
+\doxysubsubsection{\texorpdfstring{get\_text\_boxes()}{get\_text\_boxes()}}
+{\footnotesize\ttfamily \label{classlogin__screen_ab8ceaedab64e70b3f44fb65153ae5d7f} 
+const std\+::vector$<$ \mbox{\hyperlink{classtext__box}{text\+\_\+box}} \texorpdfstring{$\ast$}{*} $>$ \& login\+\_\+screen\+::get\+\_\+text\+\_\+boxes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get do vetor com ponteiros para as caixas de texto para testes e manipulação de áudio. 
+
+\begin{DoxyReturn}{Retorna}
+Vetor com os ponteiros 
+\end{DoxyReturn}
+\Hypertarget{classlogin__screen_a312df1a89d78f0b0ce75ccbf75c49510}\index{login\_screen@{login\_screen}!go\_to\_player\_list@{go\_to\_player\_list}}
+\index{go\_to\_player\_list@{go\_to\_player\_list}!login\_screen@{login\_screen}}
+\doxysubsubsection{\texorpdfstring{go\_to\_player\_list()}{go\_to\_player\_list()}}
+{\footnotesize\ttfamily \label{classlogin__screen_a312df1a89d78f0b0ce75ccbf75c49510} 
+bool login\+\_\+screen\+::go\+\_\+to\+\_\+player\+\_\+list (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica se deve trocar para a tela de listagem. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica a troca 
+\end{DoxyReturn}
+\Hypertarget{classlogin__screen_a1cee6b78ac331a15668eaff963606f69}\index{login\_screen@{login\_screen}!go\_to\_register\_screen@{go\_to\_register\_screen}}
+\index{go\_to\_register\_screen@{go\_to\_register\_screen}!login\_screen@{login\_screen}}
+\doxysubsubsection{\texorpdfstring{go\_to\_register\_screen()}{go\_to\_register\_screen()}}
+{\footnotesize\ttfamily \label{classlogin__screen_a1cee6b78ac331a15668eaff963606f69} 
+bool login\+\_\+screen\+::go\+\_\+to\+\_\+register\+\_\+screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica se deve trocar para a tela de registro. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica a troca 
+\end{DoxyReturn}
+\Hypertarget{classlogin__screen_aaba32fd78846a105988f31fa65437cc4}\index{login\_screen@{login\_screen}!go\_to\_remove\_screen@{go\_to\_remove\_screen}}
+\index{go\_to\_remove\_screen@{go\_to\_remove\_screen}!login\_screen@{login\_screen}}
+\doxysubsubsection{\texorpdfstring{go\_to\_remove\_screen()}{go\_to\_remove\_screen()}}
+{\footnotesize\ttfamily \label{classlogin__screen_aaba32fd78846a105988f31fa65437cc4} 
+bool login\+\_\+screen\+::go\+\_\+to\+\_\+remove\+\_\+screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica se deve trocar para a tela de remoção. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica a troca 
+\end{DoxyReturn}
+\Hypertarget{classlogin__screen_a0c181069bafb4ca5dbb05f64b8d54b29}\index{login\_screen@{login\_screen}!handle\_event@{handle\_event}}
+\index{handle\_event@{handle\_event}!login\_screen@{login\_screen}}
+\doxysubsubsection{\texorpdfstring{handle\_event()}{handle\_event()}}
+{\footnotesize\ttfamily \label{classlogin__screen_a0c181069bafb4ca5dbb05f64b8d54b29} 
+void login\+\_\+screen\+::handle\+\_\+event (\begin{DoxyParamCaption}\item[{const ALLEGRO\+\_\+\+EVENT \&}]{ev}{}\end{DoxyParamCaption})}
+
+
+
+Trata eventos (mouse/teclado) e repassa aos componentes. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ev} & Evento a ser repassado \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlogin__screen_a2a96bea00d0be93a7d91cff90af2e38d}\index{login\_screen@{login\_screen}!login\_done@{login\_done}}
+\index{login\_done@{login\_done}!login\_screen@{login\_screen}}
+\doxysubsubsection{\texorpdfstring{login\_done()}{login\_done()}}
+{\footnotesize\ttfamily \label{classlogin__screen_a2a96bea00d0be93a7d91cff90af2e38d} 
+bool login\+\_\+screen\+::login\+\_\+done (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica se o login foi concluído. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica o estado do login 
+\end{DoxyReturn}
+\Hypertarget{classlogin__screen_a88244b153d61879d03e1668b2aff6632}\index{login\_screen@{login\_screen}!reset@{reset}}
+\index{reset@{reset}!login\_screen@{login\_screen}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classlogin__screen_a88244b153d61879d03e1668b2aff6632} 
+void login\+\_\+screen\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reseta caixas e flags. 
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{login__screen_8hpp}{login\+\_\+screen.\+hpp}}\item 
+src/\mbox{\hyperlink{login__screen_8cpp}{login\+\_\+screen.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,149 @@
+\doxysection{Referência à classe background\+\_\+object}
+\hypertarget{classbackground__object}{}\label{classbackground__object}\index{background\_object@{background\_object}}
+
+
+Classe que representa os sprites de fundo do jogo\+: Herda da classe genérica de objetos do jogo.  
+
+
+
+
+{\ttfamily \#include $<$background\+\_\+object.\+hpp$>$}
+
+Diagrama de heranças da classe background\+\_\+object\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classbackground__object}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbackground__object_a8b28c2a583f1f41bc3fa3bb0f4bd97cc}{background\+\_\+object}} (float pos\+\_\+x, float pos\+\_\+y, int width, int height, ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}Bitmap)
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{classbackground__object}{background\+\_\+object}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbackground__object_a26a0a28031c614902d4b4fc2fc2bb796}{Draw}} (float scale)
+\begin{DoxyCompactList}\small\item\em Desenha o objeto na tela. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbackground__object_a95579e2f52ff735eab972ec1119374b6}{Update}} (const float multiplier)
+\begin{DoxyCompactList}\small\item\em Atualiza a posição do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classbackground__object_aaef5f23afcbf6e391a60d8173fdda8c8}{Get\+\_\+standard\+\_\+speed}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a velocidade padrão de movimento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbackground__object_a440606dfee6fdea28f3811718a1477d3}{Set\+\_\+standard\+\_\+speed}} (float new\+\_\+std\+\_\+speed)
+\begin{DoxyCompactList}\small\item\em Seta uma nova velocidade padrão de movimento. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Membros públicos herdados de \mbox{\hyperlink{classgame__object}{game\+\_\+object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgame__object_abffd356756b24f590eff91bc1917b38e}{game\+\_\+object}} (float x, float y, int w, int h, ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}bitmap)
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{classgame__object}{game\+\_\+object}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{game__object_8hpp_aaf3bf2398ad88d99808776aec49a86e6}{abs\+\_\+pos}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classgame__object_aa32ba851c49b691f6342a13d5b306dd5}{Get\+\_\+position}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a posição absoluta do objeto. \end{DoxyCompactList}\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classgame__object_a638a58a73fb4ab09aa34461fddaefa57}{get\+\_\+bitmap}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o bitmap(sprite) do objeto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgame__object_a3a5fc5a2c88413958d3652bea296d0df}{is\+\_\+colliding}} (\mbox{\hyperlink{classgame__object}{game\+\_\+object}} \texorpdfstring{$\ast$}{*}other\+\_\+object)
+\begin{DoxyCompactList}\small\item\em Detecta colisão entre este objeto e outro objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgame__object_ae5eb741d2f67ac954dc62050095478ca}{set\+\_\+bitmap}} (std\+::string sprite)
+\begin{DoxyCompactList}\small\item\em Troca o bitmap(sprite) do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgame__object_a247dd13bb4bfdd649e11670df72031ce}{set\+\_\+bitmap}} (ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}sprite)
+\begin{DoxyCompactList}\small\item\em Troca o bitmap(sprite) do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgame__object_ad3e388773d75df2a870661e82bf828c2}{Draw}} (float scale)
+\begin{DoxyCompactList}\small\item\em Desenha o objeto na tela. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe que representa os sprites de fundo do jogo\+: Herda da classe genérica de objetos do jogo. 
+
+Se movem baseado em uma velocidade padrão, que pode ser alterada por um multiplicador 
+
+\label{doc-constructors}
+\Hypertarget{classbackground__object_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classbackground__object_a8b28c2a583f1f41bc3fa3bb0f4bd97cc}\index{background\_object@{background\_object}!background\_object@{background\_object}}
+\index{background\_object@{background\_object}!background\_object@{background\_object}}
+\doxysubsubsection{\texorpdfstring{background\_object()}{background\_object()}}
+{\footnotesize\ttfamily \label{classbackground__object_a8b28c2a583f1f41bc3fa3bb0f4bd97cc} 
+background\+\_\+object\+::background\+\_\+object (\begin{DoxyParamCaption}\item[{float}]{pos\+\_\+x}{, }\item[{float}]{pos\+\_\+y}{, }\item[{int}]{width}{, }\item[{int}]{height}{, }\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{Bitmap}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{classbackground__object}{background\+\_\+object}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em pos\+\_\+x} & Posição X do objeto \\
+\hline
+{\em pos\+\_\+y} & Posição Y do objeto \\
+\hline
+{\em width} & Largura do objeto \\
+\hline
+{\em height} & Altura do objeto \\
+\hline
+{\em Bitmap} & Bitmap(sprite) do objeto \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classbackground__object_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classbackground__object_a26a0a28031c614902d4b4fc2fc2bb796}\index{background\_object@{background\_object}!Draw@{Draw}}
+\index{Draw@{Draw}!background\_object@{background\_object}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily \label{classbackground__object_a26a0a28031c614902d4b4fc2fc2bb796} 
+void background\+\_\+object\+::\+Draw (\begin{DoxyParamCaption}\item[{float}]{scale}{}\end{DoxyParamCaption})}
+
+
+
+Desenha o objeto na tela. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em scale} & Escala de desenho do objeto \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classbackground__object_aaef5f23afcbf6e391a60d8173fdda8c8}\index{background\_object@{background\_object}!Get\_standard\_speed@{Get\_standard\_speed}}
+\index{Get\_standard\_speed@{Get\_standard\_speed}!background\_object@{background\_object}}
+\doxysubsubsection{\texorpdfstring{Get\_standard\_speed()}{Get\_standard\_speed()}}
+{\footnotesize\ttfamily \label{classbackground__object_aaef5f23afcbf6e391a60d8173fdda8c8} 
+float background\+\_\+object\+::\+Get\+\_\+standard\+\_\+speed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a velocidade padrão de movimento. 
+
+\begin{DoxyReturn}{Retorna}
+Velocidade padrão de movimento 
+\end{DoxyReturn}
+\Hypertarget{classbackground__object_a440606dfee6fdea28f3811718a1477d3}\index{background\_object@{background\_object}!Set\_standard\_speed@{Set\_standard\_speed}}
+\index{Set\_standard\_speed@{Set\_standard\_speed}!background\_object@{background\_object}}
+\doxysubsubsection{\texorpdfstring{Set\_standard\_speed()}{Set\_standard\_speed()}}
+{\footnotesize\ttfamily \label{classbackground__object_a440606dfee6fdea28f3811718a1477d3} 
+void background\+\_\+object\+::\+Set\+\_\+standard\+\_\+speed (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+std\+\_\+speed}{}\end{DoxyParamCaption})}
+
+
+
+Seta uma nova velocidade padrão de movimento. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em new\+\_\+std\+\_\+speed} & Nova velocidade padrão a ser definida \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classbackground__object_a95579e2f52ff735eab972ec1119374b6}\index{background\_object@{background\_object}!Update@{Update}}
+\index{Update@{Update}!background\_object@{background\_object}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{classbackground__object_a95579e2f52ff735eab972ec1119374b6} 
+void background\+\_\+object\+::\+Update (\begin{DoxyParamCaption}\item[{const float}]{multiplier}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza a posição do objeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em multiplier} & Multiplicador de velocidade para o movimento do objeto (baseado na velocidade padrão) \\
+\hline
+\end{DoxyParams}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{background__object_8hpp}{background\+\_\+object.\+hpp}}\item 
+src/\mbox{\hyperlink{background__object_8cpp}{background\+\_\+object.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>pds2_projeto_final: Código-Fonte de include/settings_screen.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">pds2_projeto_final
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('settings__screen_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">settings_screen.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="settings__screen_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SETTINGS_SCREEN_HPP</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SETTINGS_SCREEN_HPP</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;allegro5/allegro.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;allegro5/allegro_image.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;allegro5/allegro_ttf.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="game__object_8hpp.html">game_object.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="background__object_8hpp.html">background_object.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="moving__button_8hpp.html">moving_button.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="image_8hpp.html">image.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="slider_8hpp.html">slider.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="game__loop_8hpp.html">game_loop.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classsettings__screen.html">   21</a></span><span class="keyword">class </span><a class="code hl_function" href="classsettings__screen.html#ab69725860905a59ed4a50b4ff7a0b6e6">settings_screen</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="comment">// Vetores de objetos</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        std::vector&lt;moving_button*&gt; buttons;                  </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        std::vector&lt;slider*&gt; slides;                          </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        std::vector&lt;image*&gt; images;                           </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        std::vector&lt;background_object*&gt; background_objects_0; </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        std::vector&lt;background_object*&gt; background_objects_1; </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        std::vector&lt;background_object*&gt; background_objects_2; </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        std::vector&lt;background_object*&gt; background_objects_3; </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="comment">// Bitmaps</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        ALLEGRO_BITMAP* mountain_sprite_1;                    </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        ALLEGRO_BITMAP* mountain_sprite_2;                    </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        ALLEGRO_BITMAP* mountain_sprite_3;                    </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        ALLEGRO_BITMAP* grass_sprite;                         </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        ALLEGRO_BITMAP* background_sprite;                    </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        ALLEGRO_BITMAP* settings_frame_sprite;                </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        ALLEGRO_BITMAP* title_settings_sprite;                </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        ALLEGRO_BITMAP* show_sprite;                          </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        ALLEGRO_BITMAP* back_sprite[2];                       </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        ALLEGRO_BITMAP* indicator_sprite[2];                  </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        ALLEGRO_BITMAP* back_button_sprite[2];                </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="comment">// Fonte principal do jogo</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        ALLEGRO_FONT* pixel_sans;                             </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <a class="code hl_function" href="classsettings__screen.html#ab69725860905a59ed4a50b4ff7a0b6e6">settings_screen</a>();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <a class="code hl_function" href="classsettings__screen.html#a97dd9860eedadf96cf2fb6e59c161abc">~settings_screen</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classsettings__screen.html#a3a338c142849e3f1a8458338db4bffeb">commands</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> key[], <span class="keywordtype">bool</span>&amp; mouse_is_down, <span class="keywordtype">bool</span>&amp; mouse_just_released, <span class="keywordtype">int</span> mouse_update_x, <span class="keywordtype">int</span> mouse_update_y, <span class="keywordtype">int</span> mouse_x_now, <a class="code hl_struct" href="structstates.html">states</a>&amp; state, <a class="code hl_class" href="classGame__Loop.html">Game_Loop</a>* main_game_loop);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classsettings__screen.html#a9de830988afc5a321849fb7fbf5b165b">update</a>();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classsettings__screen.html#a450e81e9c2944d82ac722572a3b79880">draw</a>();</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classsettings__screen.html#a7fc1a4cfd168802e85a4f24ac6681480">set_values</a>();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>};</div>
+</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="abackground__object_8hpp_html"><div class="ttname"><a href="background__object_8hpp.html">background_object.hpp</a></div></div>
+<div class="ttc" id="aclassGame__Loop_html"><div class="ttname"><a href="classGame__Loop.html">Game_Loop</a></div><div class="ttdoc">Classe que representa a tela de loop de gameplay.</div><div class="ttdef"><b>Definição</b> game_loop.hpp:87</div></div>
+<div class="ttc" id="aclasssettings__screen_html_a3a338c142849e3f1a8458338db4bffeb"><div class="ttname"><a href="classsettings__screen.html#a3a338c142849e3f1a8458338db4bffeb">settings_screen::commands</a></div><div class="ttdeci">void commands(unsigned char key[], bool &amp;mouse_is_down, bool &amp;mouse_just_released, int mouse_update_x, int mouse_update_y, int mouse_x_now, states &amp;state, Game_Loop *main_game_loop)</div><div class="ttdoc">Processa os comandos da tela de configurações.</div><div class="ttdef"><b>Definição</b> settings_screen.cpp:123</div></div>
+<div class="ttc" id="aclasssettings__screen_html_a450e81e9c2944d82ac722572a3b79880"><div class="ttname"><a href="classsettings__screen.html#a450e81e9c2944d82ac722572a3b79880">settings_screen::draw</a></div><div class="ttdeci">void draw()</div><div class="ttdoc">Desenha os objetos da tela de configurações.</div><div class="ttdef"><b>Definição</b> settings_screen.cpp:219</div></div>
+<div class="ttc" id="aclasssettings__screen_html_a7fc1a4cfd168802e85a4f24ac6681480"><div class="ttname"><a href="classsettings__screen.html#a7fc1a4cfd168802e85a4f24ac6681480">settings_screen::set_values</a></div><div class="ttdeci">void set_values()</div><div class="ttdoc">Pega os valores dos sliders e os armazena nas variáveis correspondentes.</div><div class="ttdef"><b>Definição</b> settings_screen.cpp:252</div></div>
+<div class="ttc" id="aclasssettings__screen_html_a97dd9860eedadf96cf2fb6e59c161abc"><div class="ttname"><a href="classsettings__screen.html#a97dd9860eedadf96cf2fb6e59c161abc">settings_screen::~settings_screen</a></div><div class="ttdeci">~settings_screen()</div><div class="ttdoc">Destrutor da classe settings_screen Destrói bitmaps e objetos da tela.</div><div class="ttdef"><b>Definição</b> settings_screen.cpp:75</div></div>
+<div class="ttc" id="aclasssettings__screen_html_a9de830988afc5a321849fb7fbf5b165b"><div class="ttname"><a href="classsettings__screen.html#a9de830988afc5a321849fb7fbf5b165b">settings_screen::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Desenha todos os componentes na tela.</div><div class="ttdef"><b>Definição</b> settings_screen.cpp:168</div></div>
+<div class="ttc" id="aclasssettings__screen_html_ab69725860905a59ed4a50b4ff7a0b6e6"><div class="ttname"><a href="classsettings__screen.html#ab69725860905a59ed4a50b4ff7a0b6e6">settings_screen::settings_screen</a></div><div class="ttdeci">settings_screen()</div><div class="ttdoc">Construtor da classe settings_screen.</div><div class="ttdef"><b>Definição</b> settings_screen.cpp:17</div></div>
+<div class="ttc" id="agame__loop_8hpp_html"><div class="ttname"><a href="game__loop_8hpp.html">game_loop.hpp</a></div></div>
+<div class="ttc" id="agame__object_8hpp_html"><div class="ttname"><a href="game__object_8hpp.html">game_object.hpp</a></div></div>
+<div class="ttc" id="aimage_8hpp_html"><div class="ttname"><a href="image_8hpp.html">image.hpp</a></div></div>
+<div class="ttc" id="amoving__button_8hpp_html"><div class="ttname"><a href="moving__button_8hpp.html">moving_button.hpp</a></div></div>
+<div class="ttc" id="aslider_8hpp_html"><div class="ttname"><a href="slider_8hpp.html">slider.hpp</a></div></div>
+<div class="ttc" id="astructstates_html"><div class="ttname"><a href="structstates.html">states</a></div><div class="ttdoc">Estrutura que armazena informações sobre o estado do jogo.</div><div class="ttdef"><b>Definição</b> game_loop.hpp:68</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="settings__screen_8hpp.html">settings_screen.hpp</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

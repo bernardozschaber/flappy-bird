@@ -1,0 +1,61 @@
+\doxysection{settings\+\_\+screen.\+hpp}
+\hypertarget{settings__screen_8hpp_source}{}\label{settings__screen_8hpp_source}\index{include/settings\_screen.hpp@{include/settings\_screen.hpp}}
+\mbox{\hyperlink{settings__screen_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SETTINGS\_SCREEN\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SETTINGS\_SCREEN\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_image.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_ttf.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{game__object_8hpp}{game\_object.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{background__object_8hpp}{background\_object.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{moving__button_8hpp}{moving\_button.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{image_8hpp}{image.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{slider_8hpp}{slider.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{game__loop_8hpp}{game\_loop.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsettings__screen_ab69725860905a59ed4a50b4ff7a0b6e6}{settings\_screen}}\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vetores\ de\ objetos}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ std::vector<moving\_button*>\ buttons;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ std::vector<slider*>\ slides;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ std::vector<image*>\ images;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_0;\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_1;\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_2;\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_3;\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmaps}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ mountain\_sprite\_1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ mountain\_sprite\_2;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ mountain\_sprite\_3;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ grass\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ background\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ settings\_frame\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ title\_settings\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ show\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ back\_sprite[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ indicator\_sprite[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ back\_button\_sprite[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fonte\ principal\ do\ jogo}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ ALLEGRO\_FONT*\ pixel\_sans;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsettings__screen_ab69725860905a59ed4a50b4ff7a0b6e6}{settings\_screen}}();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsettings__screen_a97dd9860eedadf96cf2fb6e59c161abc}{\string~settings\_screen}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsettings__screen_a3a338c142849e3f1a8458338db4bffeb}{commands}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ key[],\ \textcolor{keywordtype}{bool}\&\ mouse\_is\_down,\ \textcolor{keywordtype}{bool}\&\ mouse\_just\_released,\ \textcolor{keywordtype}{int}\ mouse\_update\_x,\ \textcolor{keywordtype}{int}\ mouse\_update\_y,\ \textcolor{keywordtype}{int}\ mouse\_x\_now,\ \mbox{\hyperlink{structstates}{states}}\&\ state,\ \mbox{\hyperlink{classGame__Loop}{Game\_Loop}}*\ main\_game\_loop);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsettings__screen_a9de830988afc5a321849fb7fbf5b165b}{update}}();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsettings__screen_a450e81e9c2944d82ac722572a3b79880}{draw}}();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsettings__screen_a7fc1a4cfd168802e85a4f24ac6681480}{set\_values}}();}
+\DoxyCodeLine{00087\ \};}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

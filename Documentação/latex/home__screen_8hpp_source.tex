@@ -1,0 +1,58 @@
+\doxysection{home\+\_\+screen.\+hpp}
+\hypertarget{home__screen_8hpp_source}{}\label{home__screen_8hpp_source}\index{include/home\_screen.hpp@{include/home\_screen.hpp}}
+\mbox{\hyperlink{home__screen_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ HOME\_SCREEN\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ HOME\_SCREEN\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{game__object_8hpp}{game\_object.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{background__object_8hpp}{background\_object.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{moving__button_8hpp}{moving\_button.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{image_8hpp}{image.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{game__loop_8hpp}{game\_loop.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classHome__Screen_a1168ae4db2114585151244df0d762862}{Home\_Screen}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vetores\ de\ objetos}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ std::vector<moving\_button*>\ buttons;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ std::vector<image*>\ images;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_0;\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_1;\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_2;\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_3;\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmaps}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ mountain\_sprite\_1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ mountain\_sprite\_2;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ mountain\_sprite\_3;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ grass\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ background\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ home\_screen\_frame\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ achievements\_screen\_frame\_sprite;\ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ title\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ achievements\_button\_sprite[2];\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ settings\_button\_sprite[2];\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ play\_button\_sprite[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ statistics\_button\_sprite[2];\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ logout\_button\_sprite[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fontes\ usadas}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ ALLEGRO\_FONT*\ title\_font;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ ALLEGRO\_FONT*\ regular\_text\_font;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHome__Screen_a1168ae4db2114585151244df0d762862}{Home\_Screen}}();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classHome__Screen_adede9f19b5a6ab744a1ba5d2ad9cb2e8}{\string~Home\_Screen}}();\ \ \ \ \ \textcolor{comment}{//\ Destrutor}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHome__Screen_ab0eb7acb8f5e435b7928f085602d0080}{commands}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ key[],\ \textcolor{keywordtype}{bool}\&\ mouse\_is\_down,\ \textcolor{keywordtype}{bool}\&\ mouse\_just\_released,\ \textcolor{keywordtype}{int}\ mouse\_update\_x,\ \textcolor{keywordtype}{int}\ mouse\_update\_y,\ \mbox{\hyperlink{structstates}{states}}\&\ state);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHome__Screen_af004605d2b58769f3ffbef8f76956b75}{update}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHome__Screen_a8b8c64bf1768b75a6ea3a838e5c6f3a1}{draw}}();}
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

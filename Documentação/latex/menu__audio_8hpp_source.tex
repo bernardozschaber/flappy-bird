@@ -1,0 +1,54 @@
+\doxysection{menu\+\_\+audio.\+hpp}
+\hypertarget{menu__audio_8hpp_source}{}\label{menu__audio_8hpp_source}\index{include/menu\_audio.hpp@{include/menu\_audio.hpp}}
+\mbox{\hyperlink{menu__audio_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MENU\_AUDIO\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MENU\_AUDIO\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_audio.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{button_8hpp}{button.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{text__box_8hpp}{text\_box.hpp}}"{}}}
+\DoxyCodeLine{00009\ \ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classmenu__audio_a86ea0e587688aada39eb83eb8c956e75}{menu\_audio}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classmenu__audio_a86ea0e587688aada39eb83eb8c956e75}{menu\_audio}}(ALLEGRO\_BITMAP*\ bmp\_on,\ ALLEGRO\_BITMAP*\ bmp\_off,\ ALLEGRO\_BITMAP*\ bmp\_on\_pr,\ ALLEGRO\_BITMAP*\ bmp\_off\_pr,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ ALLEGRO\_SAMPLE*\ key\_sample,\ ALLEGRO\_SAMPLE*\ click\_sample,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ w,\ \textcolor{keywordtype}{int}\ h);}
+\DoxyCodeLine{00031\ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmenu__audio_aca4f150b92fb23ce0af165dc5b64d37d}{set\_sources}}(\textcolor{keyword}{const}\ std::vector<text\_box*>\&\ tboxes,\textcolor{keyword}{const}\ std::vector<button*>\&\ \ buttons);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmenu__audio_ade9c129ec36bc524188d3bec01f2e3f9}{set\_position}}(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmenu__audio_a3dad184f7f9b2e554937ff4cae399a78}{handle\_event}}(\textcolor{keyword}{const}\ ALLEGRO\_EVENT\&\ ev);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmenu__audio_a715f5022aca63afe073dea34f1d97537}{is\_muted}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmenu__audio_a4a2cd7e69ef20597dd13170828b9636c}{draw}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{int}\ x;\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{int}\ y;\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{int}\ width;\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{int}\ height;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00072\ \ \ \ \ ALLEGRO\_BITMAP*\ bmp\_on;}
+\DoxyCodeLine{00073\ \ \ \ \ ALLEGRO\_BITMAP*\ bmp\_off;}
+\DoxyCodeLine{00074\ \ \ \ \ ALLEGRO\_BITMAP*\ bmp\_on\_pr;}
+\DoxyCodeLine{00075\ \ \ \ \ ALLEGRO\_BITMAP*\ bmp\_off\_pr;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00080\ \ \ \ \ ALLEGRO\_SAMPLE*\ key\_sample;}
+\DoxyCodeLine{00081\ \ \ \ \ ALLEGRO\_SAMPLE*\ click\_sample;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00086\ \ \ \ \ std::vector<text\_box*>\ text\_boxes;}
+\DoxyCodeLine{00087\ \ \ \ \ std::vector<button*>\ buttons;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{bool}\ muted;\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ pressed;\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ update\_sources();}
+\DoxyCodeLine{00095\ \};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MENU\_AUDIO\_HPP}}
+
+\end{DoxyCode}

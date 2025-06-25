@@ -1,0 +1,65 @@
+\doxysection{login\+\_\+screen.\+hpp}
+\hypertarget{login__screen_8hpp_source}{}\label{login__screen_8hpp_source}\index{include/login\_screen.hpp@{include/login\_screen.hpp}}
+\mbox{\hyperlink{login__screen_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LOGIN\_SCREEN\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LOGIN\_SCREEN\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{button_8hpp}{button.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{registration_8hpp}{registration.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{text__box_8hpp}{text\_box.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_font.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlogin__screen_a42734fd761527e743111ad833ba422f5}{login\_screen}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{classlogin__screen_a42734fd761527e743111ad833ba422f5}{login\_screen}}(\textcolor{keywordtype}{int}\ screen\_w,\ \textcolor{keywordtype}{int}\ screen\_h,\ \mbox{\hyperlink{classregistration}{registration}}\ \&data\_ref,\ ALLEGRO\_SAMPLE*\ key\_s,\ ALLEGRO\_SAMPLE*\ button\_s);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogin__screen_a0c181069bafb4ca5dbb05f64b8d54b29}{handle\_event}}(\textcolor{keyword}{const}\ ALLEGRO\_EVENT\ \&ev);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogin__screen_a7d27666e43d004a11de7c6a9f82f9b68}{draw}}(ALLEGRO\_FONT\ *font);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogin__screen_a312df1a89d78f0b0ce75ccbf75c49510}{go\_to\_player\_list}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogin__screen_a1cee6b78ac331a15668eaff963606f69}{go\_to\_register\_screen}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogin__screen_aaba32fd78846a105988f31fa65437cc4}{go\_to\_remove\_screen}}()\ \textcolor{keyword}{const};\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlogin__screen_a2a96bea00d0be93a7d91cff90af2e38d}{login\_done}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00069\ \ \ \mbox{\hyperlink{structplayer}{player}}\ \mbox{\hyperlink{classlogin__screen_af045fb087269a810b8d53b22b32b9898}{get\_logged\_user}}();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{const}\ std::vector<text\_box*>\&\ \mbox{\hyperlink{classlogin__screen_ab8ceaedab64e70b3f44fb65153ae5d7f}{get\_text\_boxes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{const}\ std::vector<button*>\&\ \ \mbox{\hyperlink{classlogin__screen_a358e46811c5f703560ecfbfd1ee185f4}{get\_buttons}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlogin__screen_a88244b153d61879d03e1668b2aff6632}{reset}}();}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00089\ \ \ \textcolor{keywordtype}{int}\ screen\_width;}
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordtype}{int}\ screen\_height;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordtype}{bool}\ valid\_login;\ }
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordtype}{bool}\ empty\_field;\ }
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordtype}{bool}\ done;\ }
+\DoxyCodeLine{00098\ \ \ \textcolor{keywordtype}{bool}\ go\_to\_list;\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordtype}{bool}\ go\_to\_register;\ }
+\DoxyCodeLine{00100\ \ \ \textcolor{keywordtype}{bool}\ go\_to\_remove;\ }
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00104\ \ \ \mbox{\hyperlink{structplayer}{player}}\ logged\_user;}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00108\ \ \ \mbox{\hyperlink{classtext__box}{text\_box}}\ username\_box;}
+\DoxyCodeLine{00109\ \ \ \mbox{\hyperlink{classtext__box}{text\_box}}\ password\_box;}
+\DoxyCodeLine{00110\ \ \ \mbox{\hyperlink{classbutton}{button}}\ login\_button;}
+\DoxyCodeLine{00111\ \ \ \mbox{\hyperlink{classbutton}{button}}\ register\_button;}
+\DoxyCodeLine{00112\ \ \ \mbox{\hyperlink{classbutton}{button}}\ view\_players\_button;}
+\DoxyCodeLine{00113\ \ \ \mbox{\hyperlink{classbutton}{button}}\ remove\_user\_button;}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00117\ \ \ \mbox{\hyperlink{classregistration}{registration}}\ \&data;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00121\ \ \ std::vector<text\_box*>\ text\_boxes;}
+\DoxyCodeLine{00122\ \ \ std::vector<button*>\ \ buttons;}
+\DoxyCodeLine{00124\ \};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LOGIN\_SCREEN\_HPP}}
+
+\end{DoxyCode}

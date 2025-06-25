@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>pds2_projeto_final: Código-Fonte de include/moving_button.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">pds2_projeto_final
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('moving__button_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">moving_button.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="moving__button_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef MOVING_BUTTON_HPP</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define MOVING_BUTTON_HPP</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="ui__object_8hpp.html">ui_object.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span></div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classmoving__button.html">   11</a></span><span class="keyword">class </span><a class="code hl_function" href="classmoving__button.html#ade5cd3e393b566bad48728c8ae54b959">moving_button</a> : <span class="keyword">public</span> <a class="code hl_function" href="classui__object.html#a8e48c858fc29ec57df399ed268694e2a">ui_object</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordtype">float</span> vel_x = 0;                    </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">float</span> vel_y = 0;                    </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordtype">float</span> acel_x = 0;                   </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordtype">float</span> acel_y = 0;                   </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">float</span> transparacy = 1;              </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">bool</span> is_being_pressed = <span class="keyword">false</span>;      </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    ALLEGRO_BITMAP* sprite;             </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_function" href="classmoving__button.html#ade5cd3e393b566bad48728c8ae54b959">moving_button</a>(<span class="keywordtype">float</span> <a class="code hl_variable" href="classui__object.html#abf9d88bc2a8df75f8aa9bb403fdb7b8d">x</a>, <span class="keywordtype">float</span> <a class="code hl_variable" href="classui__object.html#af929118b76e3a339121ee106356c3ab4">y</a>, ALLEGRO_BITMAP* Bitmap);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classmoving__button.html#a4c68628993f89d4dd02c94145421f948">draw</a>();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classmoving__button.html#a4c68628993f89d4dd02c94145421f948">draw</a>(<span class="keywordtype">float</span> scale);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classmoving__button.html#acfa977ed2a006b6a8c05bd4414fb71e8">set_velocity</a>(<span class="keywordtype">float</span> vx, <span class="keywordtype">float</span> vy);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classmoving__button.html#a2eded2c03c362c9e9ecc057f3e31c05f">set_acceleration</a>(<span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classmoving__button.html#af3412b3c13681554e01a367a09a9d560">get_velocity_y</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classmoving__button.html#a41aa2a5e3847948c9dd73378e1073879">get_velocity_x</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classmoving__button.html#a81b25bfed75b41d4823a47e7530d9de0">set_bitmap</a>(ALLEGRO_BITMAP* bitmap);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classmoving__button.html#ab446c8bf94add297b810f45e49b09b2e">contains_click</a>(<span class="keywordtype">float</span> mouse_x, <span class="keywordtype">float</span> mouse_y);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classmoving__button.html#a13b0a0767adcd3cecacdb6001e615b47">set_pressed</a>(<span class="keywordtype">bool</span> pressed);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classmoving__button.html#ace1f14899172b8f4303d36968deb62e3">is_pressed</a>();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classmoving__button.html#a62ef119f7022406776f6f3ff7b35cbb2">Update</a>();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classmoving__button.html#a25224dace0ff4d9f9b793e902d7a054a">handle_event</a>(<span class="keyword">const</span> ALLEGRO_EVENT &amp;ev);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classmoving__button.html#a4c68628993f89d4dd02c94145421f948">draw</a>(ALLEGRO_FONT *font);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>};</div>
+</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassmoving__button_html_a13b0a0767adcd3cecacdb6001e615b47"><div class="ttname"><a href="classmoving__button.html#a13b0a0767adcd3cecacdb6001e615b47">moving_button::set_pressed</a></div><div class="ttdeci">void set_pressed(bool pressed)</div><div class="ttdoc">Seta o botão como apertado ou não.</div><div class="ttdef"><b>Definição</b> moving_button.cpp:56</div></div>
+<div class="ttc" id="aclassmoving__button_html_a25224dace0ff4d9f9b793e902d7a054a"><div class="ttname"><a href="classmoving__button.html#a25224dace0ff4d9f9b793e902d7a054a">moving_button::handle_event</a></div><div class="ttdeci">void handle_event(const ALLEGRO_EVENT &amp;ev)</div><div class="ttdoc">Não faz nada, mas precisa estar definido por causa da herança.</div><div class="ttdef"><b>Definição</b> moving_button.cpp:60</div></div>
+<div class="ttc" id="aclassmoving__button_html_a2eded2c03c362c9e9ecc057f3e31c05f"><div class="ttname"><a href="classmoving__button.html#a2eded2c03c362c9e9ecc057f3e31c05f">moving_button::set_acceleration</a></div><div class="ttdeci">void set_acceleration(float ax, float ay)</div><div class="ttdoc">Seta uma nova aceleração para o botão.</div><div class="ttdef"><b>Definição</b> moving_button.cpp:10</div></div>
+<div class="ttc" id="aclassmoving__button_html_a41aa2a5e3847948c9dd73378e1073879"><div class="ttname"><a href="classmoving__button.html#a41aa2a5e3847948c9dd73378e1073879">moving_button::get_velocity_x</a></div><div class="ttdeci">float get_velocity_x()</div><div class="ttdoc">Retorna a velocidade horizontal do botão.</div><div class="ttdef"><b>Definição</b> moving_button.cpp:19</div></div>
+<div class="ttc" id="aclassmoving__button_html_a4c68628993f89d4dd02c94145421f948"><div class="ttname"><a href="classmoving__button.html#a4c68628993f89d4dd02c94145421f948">moving_button::draw</a></div><div class="ttdeci">void draw()</div><div class="ttdoc">Desenha o botão na tela.</div><div class="ttdef"><b>Definição</b> moving_button.cpp:35</div></div>
+<div class="ttc" id="aclassmoving__button_html_a62ef119f7022406776f6f3ff7b35cbb2"><div class="ttname"><a href="classmoving__button.html#a62ef119f7022406776f6f3ff7b35cbb2">moving_button::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdoc">Atualiza a posição do botão com base na velocidade e aceleração.</div><div class="ttdef"><b>Definição</b> moving_button.cpp:49</div></div>
+<div class="ttc" id="aclassmoving__button_html_a81b25bfed75b41d4823a47e7530d9de0"><div class="ttname"><a href="classmoving__button.html#a81b25bfed75b41d4823a47e7530d9de0">moving_button::set_bitmap</a></div><div class="ttdeci">void set_bitmap(ALLEGRO_BITMAP *bitmap)</div><div class="ttdoc">Seta o bitmap do botão.</div><div class="ttdef"><b>Definição</b> moving_button.cpp:29</div></div>
+<div class="ttc" id="aclassmoving__button_html_ab446c8bf94add297b810f45e49b09b2e"><div class="ttname"><a href="classmoving__button.html#ab446c8bf94add297b810f45e49b09b2e">moving_button::contains_click</a></div><div class="ttdeci">bool contains_click(float mouse_x, float mouse_y)</div><div class="ttdoc">Verifica se o botão contém um clique do mouse.</div><div class="ttdef"><b>Definição</b> moving_button.cpp:23</div></div>
+<div class="ttc" id="aclassmoving__button_html_ace1f14899172b8f4303d36968deb62e3"><div class="ttname"><a href="classmoving__button.html#ace1f14899172b8f4303d36968deb62e3">moving_button::is_pressed</a></div><div class="ttdeci">bool is_pressed()</div><div class="ttdoc">Retorna se o botão está sendo pressionado.</div><div class="ttdef"><b>Definição</b> moving_button.cpp:45</div></div>
+<div class="ttc" id="aclassmoving__button_html_acfa977ed2a006b6a8c05bd4414fb71e8"><div class="ttname"><a href="classmoving__button.html#acfa977ed2a006b6a8c05bd4414fb71e8">moving_button::set_velocity</a></div><div class="ttdeci">void set_velocity(float vx, float vy)</div><div class="ttdoc">Seta uma nova velocidade para o botão.</div><div class="ttdef"><b>Definição</b> moving_button.cpp:5</div></div>
+<div class="ttc" id="aclassmoving__button_html_ade5cd3e393b566bad48728c8ae54b959"><div class="ttname"><a href="classmoving__button.html#ade5cd3e393b566bad48728c8ae54b959">moving_button::moving_button</a></div><div class="ttdeci">moving_button(float x, float y, ALLEGRO_BITMAP *Bitmap)</div><div class="ttdoc">Construtor da classe moving_button.</div><div class="ttdef"><b>Definição</b> moving_button.cpp:3</div></div>
+<div class="ttc" id="aclassmoving__button_html_af3412b3c13681554e01a367a09a9d560"><div class="ttname"><a href="classmoving__button.html#af3412b3c13681554e01a367a09a9d560">moving_button::get_velocity_y</a></div><div class="ttdeci">float get_velocity_y()</div><div class="ttdoc">Retorna a velocidade vertical do botão.</div><div class="ttdef"><b>Definição</b> moving_button.cpp:15</div></div>
+<div class="ttc" id="aclassui__object_html_a8e48c858fc29ec57df399ed268694e2a"><div class="ttname"><a href="classui__object.html#a8e48c858fc29ec57df399ed268694e2a">ui_object::ui_object</a></div><div class="ttdeci">ui_object(float x, float y, int width, int height)</div><div class="ttdoc">Construtor genêrico de objetos de UI.</div><div class="ttdef"><b>Definição</b> ui_object.cpp:3</div></div>
+<div class="ttc" id="aclassui__object_html_abf9d88bc2a8df75f8aa9bb403fdb7b8d"><div class="ttname"><a href="classui__object.html#abf9d88bc2a8df75f8aa9bb403fdb7b8d">ui_object::x</a></div><div class="ttdeci">float x</div><div class="ttdoc">Coordenada x do inicio da área do objeto.</div><div class="ttdef"><b>Definição</b> ui_object.hpp:81</div></div>
+<div class="ttc" id="aclassui__object_html_af929118b76e3a339121ee106356c3ab4"><div class="ttname"><a href="classui__object.html#af929118b76e3a339121ee106356c3ab4">ui_object::y</a></div><div class="ttdeci">float y</div><div class="ttdoc">Coordenada y do inicio da área do objeto.</div><div class="ttdef"><b>Definição</b> ui_object.hpp:82</div></div>
+<div class="ttc" id="aui__object_8hpp_html"><div class="ttname"><a href="ui__object_8hpp.html">ui_object.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="moving__button_8hpp.html">moving_button.hpp</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

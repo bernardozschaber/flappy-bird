@@ -1,0 +1,41 @@
+\doxysection{game\+\_\+object.\+hpp}
+\hypertarget{game__object_8hpp_source}{}\label{game__object_8hpp_source}\index{include/game\_object.hpp@{include/game\_object.hpp}}
+\mbox{\hyperlink{game__object_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GAME\_OBJECT\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GAME\_OBJECT\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_image.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structabsolute__position}{absolute\_position}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structabsolute__position_a0a75aec1e07d43cf52d7d95140758ac2}{x}};\ \ \textcolor{comment}{//posição\ horizontal\ do\ ponto\ central\ do\ objeto}}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structabsolute__position_a9a7c5611cca60e6cdacc10432f08abb5}{y}};\ \ \textcolor{comment}{//posição\ vertical\ do\ ponto\ central\ do\ objeto}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structabsolute__position_aec4351975849ce782db09a351c05d5fa}{w}};\ \ \ \ \textcolor{comment}{//comprimento\ (width)}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structabsolute__position_a11e8945c30f0ece239e15b45cc6aa37d}{h}};\ \ \ \ \textcolor{comment}{//altura\ (height)}}
+\DoxyCodeLine{00016\ \}\ \mbox{\hyperlink{game__object_8hpp_aaf3bf2398ad88d99808776aec49a86e6}{abs\_pos}};}
+\DoxyCodeLine{00017\ \ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgame__object_abffd356756b24f590eff91bc1917b38e}{game\_object}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structabsolute__position}{absolute\_position}}\ position;\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ Bitmap;\ \ \ \ \ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgame__object_abffd356756b24f590eff91bc1917b38e}{game\_object}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{int}\ w,\ \textcolor{keywordtype}{int}\ h,\ ALLEGRO\_BITMAP*\ bitmap);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{game__object_8hpp_aaf3bf2398ad88d99808776aec49a86e6}{abs\_pos}}*\ \mbox{\hyperlink{classgame__object_aa32ba851c49b691f6342a13d5b306dd5}{Get\_position}}();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ \mbox{\hyperlink{classgame__object_a638a58a73fb4ab09aa34461fddaefa57}{get\_bitmap}}();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgame__object_a3a5fc5a2c88413958d3652bea296d0df}{is\_colliding}}(\mbox{\hyperlink{classgame__object_abffd356756b24f590eff91bc1917b38e}{game\_object}}*\ other\_object);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgame__object_ae5eb741d2f67ac954dc62050095478ca}{set\_bitmap}}(std::string\ sprite);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgame__object_ae5eb741d2f67ac954dc62050095478ca}{set\_bitmap}}(ALLEGRO\_BITMAP*\ sprite);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgame__object_ad3e388773d75df2a870661e82bf828c2}{Draw}}(\textcolor{keywordtype}{float}\ scale);}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GAME\_OBJECT\_HPP}}
+
+\end{DoxyCode}

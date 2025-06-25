@@ -1,0 +1,88 @@
+\doxysection{registration.\+hpp}
+\hypertarget{registration_8hpp_source}{}\label{registration_8hpp_source}\index{include/registration.hpp@{include/registration.hpp}}
+\mbox{\hyperlink{registration_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ REGISTRATION\_HPP}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ REGISTRATION\_HPP}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00016\ \ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayer_a97de83bce15f880241f561b55b016b02}{player}}\{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:\ }
+\DoxyCodeLine{00027\ \ \ std::string\ password\ =\ \textcolor{stringliteral}{"{}"{}};\ \ }
+\DoxyCodeLine{00028\ \ \ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ std::string\ \mbox{\hyperlink{structplayer_a6716b2fe7ed415cce33439a9cac72cc5}{username}}\ =\ \textcolor{stringliteral}{"{}"{}};\ \ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structplayer_a5c50d0ffb7d0f552fbe12b79c101c6a9}{games}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ std::vector<bool>\ \mbox{\hyperlink{structplayer_a8b5c1761cffc71d5f21b0a79b57310b9}{achievements}};\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structplayer_a0bf42934b61750e6f27c1ade3ed3a104}{jump\_count}}\ =\ 0,\ \mbox{\hyperlink{structplayer_a77c34ceb5d7379882c786c17fb1588d5}{ground\_deaths}}\ =\ 0,\ \mbox{\hyperlink{structplayer_a6e69ce1bf46971aff6726c9a514f34df}{pipe\_deaths}}\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ }
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{structplayer_a97de83bce15f880241f561b55b016b02}{player}}()\{\}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{structplayer_a5ea0bb1f7707e13ccd9d792c78070eb7}{player}}(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{structplayer_a6716b2fe7ed415cce33439a9cac72cc5}{username}},\ \textcolor{keyword}{const}\ std::string\&\ password,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structplayer_a5c50d0ffb7d0f552fbe12b79c101c6a9}{games}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structplayer_a0bf42934b61750e6f27c1ade3ed3a104}{jump\_count}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structplayer_a77c34ceb5d7379882c786c17fb1588d5}{ground\_deaths}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structplayer_a6e69ce1bf46971aff6726c9a514f34df}{pipe\_deaths}})\ :\ \mbox{\hyperlink{structplayer_a6716b2fe7ed415cce33439a9cac72cc5}{username}}(\mbox{\hyperlink{structplayer_a6716b2fe7ed415cce33439a9cac72cc5}{username}}),\ \mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}}(\mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}}),\ \mbox{\hyperlink{structplayer_a5c50d0ffb7d0f552fbe12b79c101c6a9}{games}}(\mbox{\hyperlink{structplayer_a5c50d0ffb7d0f552fbe12b79c101c6a9}{games}}),\ password(password),\ \mbox{\hyperlink{structplayer_a0bf42934b61750e6f27c1ade3ed3a104}{jump\_count}}(\mbox{\hyperlink{structplayer_a0bf42934b61750e6f27c1ade3ed3a104}{jump\_count}}),\ \mbox{\hyperlink{structplayer_a77c34ceb5d7379882c786c17fb1588d5}{ground\_deaths}}(\mbox{\hyperlink{structplayer_a77c34ceb5d7379882c786c17fb1588d5}{ground\_deaths}}),\ \mbox{\hyperlink{structplayer_a6e69ce1bf46971aff6726c9a514f34df}{pipe\_deaths}}(\mbox{\hyperlink{structplayer_a6e69ce1bf46971aff6726c9a514f34df}{pipe\_deaths}})\ \{\}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00064\ \ \ \mbox{\hyperlink{structplayer_a530f8d77198f831d713b5c67bf524a68}{player}}(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{structplayer_a6716b2fe7ed415cce33439a9cac72cc5}{username}},\ \textcolor{keyword}{const}\ std::string\&\ password,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structplayer_a5c50d0ffb7d0f552fbe12b79c101c6a9}{games}})\ :\ \mbox{\hyperlink{structplayer_a6716b2fe7ed415cce33439a9cac72cc5}{username}}(\mbox{\hyperlink{structplayer_a6716b2fe7ed415cce33439a9cac72cc5}{username}}),\ password(password),\ \mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}}(\mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}}),\ \mbox{\hyperlink{structplayer_a5c50d0ffb7d0f552fbe12b79c101c6a9}{games}}(\mbox{\hyperlink{structplayer_a5c50d0ffb7d0f552fbe12b79c101c6a9}{games}})\ \{\}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structplayer_a19d4e87009b0ba219527016845a8a926}{operator\ <\ }}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structplayer_a97de83bce15f880241f561b55b016b02}{player}}\&\ otherplayer)\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}}\ >\ otherplayer.\mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}};}
+\DoxyCodeLine{00073\ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00079\ \ \ std::string\ \mbox{\hyperlink{structplayer_a8eafebc562f28bf8e3e6c6f4dff67acf}{get\_password}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ password;}
+\DoxyCodeLine{00081\ \ \ \}}
+\DoxyCodeLine{00082\ \ \ }
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ \ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classregistration_a3f907d79fe0e297f82d864c6fd5e66ee}{registration}}\ \{}
+\DoxyCodeLine{00092\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00093\ \ \ std::fstream\ users;\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ std::string\ file;\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordtype}{bool}\ openfile\_check\ =\ \textcolor{keyword}{false};\ \ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ std::streampos\ pos\_champion;\ \ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordtype}{int}\ score\_champion\ =\ 0;\ }
+\DoxyCodeLine{00102\ \ \ }
+\DoxyCodeLine{00108\ \ \ \textcolor{keywordtype}{int}\ getline\_number(std::string\ user);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00115\ \ \ \mbox{\hyperlink{classregistration_a3f907d79fe0e297f82d864c6fd5e66ee}{registration}}(std::string\ arquivo);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00121\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classregistration_aff5f826369fa3d8b4e13ad9c0a3f3285}{isFileEmpty}}();}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classregistration_a28af6e324536ae56e465407f6a9c15f2}{new\_user}}(std::string\ name,\ std::string\ password,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game__loop_8hpp_a8c5cd9b525ee73a24b1d9d8e34982d1c}{score}},\ \textcolor{keywordtype}{int}\ games);}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00137\ \ \ std::string\ \mbox{\hyperlink{classregistration_a483e5d95abeb52efe45bdf724ef8ae33}{get\_stats}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00144\ \ \ \mbox{\hyperlink{structplayer}{player}}\ \mbox{\hyperlink{classregistration_a0cdebda5917f487a9c1ec6bdd3d4aff4}{get\_player}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00150\ \ \ std::multiset<player>\ \mbox{\hyperlink{classregistration_a79fed56545f5439074097435b926bc67}{get\_all}}();}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00156\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classregistration_a7d8b264e272556664243073d2253201c}{update}}(\mbox{\hyperlink{structplayer}{player}}\&\ player\_stats);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00163\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classregistration_a98c75bd24966f2d21d7407c9fb431949}{delete\_user}}(std::string\ user);}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00169\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classregistration_a09a6f7ece46cce35397f7d0a9564c7a1}{get\_max\_score}}();}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00175\ \ \ std::string\ \mbox{\hyperlink{classregistration_a7e1b534b0f9ee3297e321846acef7989}{get\_max\_user}}();}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00180\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classregistration_aa44c2429bda9397f840649f6b475822c}{update\_champion}}();}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00186\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classregistration_a95e66fc3b998064719c5a0404aa49717}{isOpenFile}}();}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00191\ \ \ \mbox{\hyperlink{classregistration_a810017b2a89d603f4cf11a0beb9eac4b}{\string~registration}}();}
+\DoxyCodeLine{00192\ \};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ REGISTRATION\_HPP}}
+
+\end{DoxyCode}

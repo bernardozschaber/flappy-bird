@@ -1,0 +1,60 @@
+\doxysection{slider.\+hpp}
+\hypertarget{slider_8hpp_source}{}\label{slider_8hpp_source}\index{include/slider.hpp@{include/slider.hpp}}
+\mbox{\hyperlink{slider_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SLIDER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SLIDER\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_image.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_ttf.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ui__object_8hpp}{ui\_object.hpp}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classslider_a2ccc6b22017f36938689c149f11bd854}{slider}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classui__object_a8e48c858fc29ec57df399ed268694e2a}{ui\_object}}\{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ ALLEGRO\_FONT*\ up\_heaval;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ ALLEGRO\_FONT*\ departure;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ show;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ back[2];}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ indicator[2];}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_pressed;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ pos\_indicator;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ variation;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ show\_number;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ disp\_h;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ disp\_v;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ scale;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ min\_value;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ max\_value;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ value;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_int;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classslider_a2ccc6b22017f36938689c149f11bd854}{slider}}(ALLEGRO\_BITMAP**\ back\_sprite,\ ALLEGRO\_BITMAP**\ indicator\_sprite,\ ALLEGRO\_BITMAP*\ show,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}},\ \textcolor{keywordtype}{float}\ variation\_,\ \textcolor{keywordtype}{bool}\ show\_number\_,\ \textcolor{keywordtype}{float}\ disp\_h\_,\ \textcolor{keywordtype}{float}\ disp\_v\_,\ \textcolor{keywordtype}{float}\ scale\_,\ \textcolor{keywordtype}{float}\ min\_value\_,\ \textcolor{keywordtype}{float}\ max\_value\_,\ \textcolor{keywordtype}{float}\ value\_,\ \textcolor{keywordtype}{bool}\ is\_int\_);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classslider_aa17a049b92b7905493be6ef06736f381}{\string~slider}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classslider_ac6df50710cb9b96d373ecc5175f79db1}{draw}}(std::string\ nome);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classslider_aeca80f1d24723a90268c07888f1f1595}{update}}(\textcolor{keywordtype}{bool}\ mouse\_is\_down,\ \textcolor{keywordtype}{bool}\ mouse\_just\_released,\ \textcolor{keywordtype}{int}\ x\_at\_down,\ \textcolor{keywordtype}{int}\ y\_at\_down,\ \textcolor{keywordtype}{int}\ x\_now);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classslider_a2c05ea81a8473fd04fd0107641873c21}{set\_pressed}}(\textcolor{keywordtype}{bool}\ is\_pressed);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classslider_a1a66b997a81e954e72822c273bae570c}{cointains\_indicator}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}});}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classslider_ab07f6ddd2d6fc54c56e301866f4ffe16}{cointains\_back}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classslider_ab0a82d994446f43523636a27590fef0b}{set\_bitmap\_back}}(ALLEGRO\_BITMAP*\ new\_back\_bitmap);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classslider_a5b11eca975b7533f48fb1e628db32e79}{set\_bitmap\_indicator}}(ALLEGRO\_BITMAP*\ new\_indicator\_bitmap);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classslider_a8541ab6d245055c842925fd67e68b12d}{get\_value}}();}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classslider_a0a0e7ffd1d1cb200a0d31805def0c079}{handle\_event}}(\textcolor{keyword}{const}\ ALLEGRO\_EVENT\ \&ev)\textcolor{keyword}{override\ }\{\textcolor{keywordflow}{return};\}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classslider_a8ca2661b277b375ca88257b847a51daf}{draw}}(ALLEGRO\_FONT\ *font)\textcolor{keyword}{override}\{\textcolor{keywordflow}{return};\}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \};}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

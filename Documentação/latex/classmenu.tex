@@ -1,0 +1,174 @@
+\doxysection{Referência à classe menu}
+\hypertarget{classmenu}{}\label{classmenu}\index{menu@{menu}}
+
+
+Classe que representa o menu principal de forma geral.  
+
+
+
+
+{\ttfamily \#include $<$menu.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmenu_ad405a08b68a1d570cb283de07ae063ed}{menu}} (const int \mbox{\hyperlink{main_8cpp_a9b6bc9242882d1e758e06ed751a2e8ec}{SCREEN\+\_\+W}}, const int \mbox{\hyperlink{main_8cpp_a27cddfd509d28b4b2b0b44c093fac090}{SCREEN\+\_\+H}}, \mbox{\hyperlink{classregistration}{registration}} \&data)
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa o menu. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmenu_a5efbd22f23289b42ed68d2a9bb431f35}{\texorpdfstring{$\sim$}{\string~}menu}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor para liberação dos recursos (bitmaps, samples) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmenu_af65495911a439d3ec79d863498b82180}{handle\+\_\+event}} (const ALLEGRO\+\_\+\+EVENT \&event, bool \&is\+\_\+open, \mbox{\hyperlink{structstates}{states}} \texorpdfstring{$\ast$}{*}state)
+\begin{DoxyCompactList}\small\item\em Reune o comportamento de todas as telas em uma única interface. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmenu_a0a08cf07f341224007706c54d1f1ad1e}{draw}} (const int \mbox{\hyperlink{main_8cpp_a9b6bc9242882d1e758e06ed751a2e8ec}{SCREEN\+\_\+W}}, const int \mbox{\hyperlink{main_8cpp_a27cddfd509d28b4b2b0b44c093fac090}{SCREEN\+\_\+H}}, const ALLEGRO\+\_\+\+EVENT \&event)
+\begin{DoxyCompactList}\small\item\em Desenha a tela ativa. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmenu_a356d5f977c2c420a25949012cc4de920}{is\+\_\+login\+\_\+done}} () const
+\begin{DoxyCompactList}\small\item\em Verifica se o login foi concluído para parar o loop do registro. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplayer}{player}} \mbox{\hyperlink{classmenu_aee48fe40b118787a56455a6a8992bfdd}{get\+\_\+logged\+\_\+user}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a struct player com os dados do usuário logado. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmenu_ae2d0697fb0145ea98352c4c858dd33cb}{set\+\_\+players}} (const std\+::multiset$<$ \mbox{\hyperlink{structplayer}{player}} $>$ new\+\_\+players)
+\begin{DoxyCompactList}\small\item\em Atualiza o multiset de players para listagem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmenu_ad6674a57772cfab037201468928f38d0}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Reseta todas as telas para reutilização do menu em uma mesma execução. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe que representa o menu principal de forma geral. 
+
+
+\begin{DoxyItemize}
+\item Reune a implementação de todas as telas em uma única interface
+\item Direciona o evento à tela ativa correspondente
+\item Libera os recursos utilizados 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{classmenu_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classmenu_ad405a08b68a1d570cb283de07ae063ed}\index{menu@{menu}!menu@{menu}}
+\index{menu@{menu}!menu@{menu}}
+\doxysubsubsection{\texorpdfstring{menu()}{menu()}}
+{\footnotesize\ttfamily \label{classmenu_ad405a08b68a1d570cb283de07ae063ed} 
+menu\+::menu (\begin{DoxyParamCaption}\item[{const int}]{SCREEN\+\_\+W}{, }\item[{const int}]{SCREEN\+\_\+H}{, }\item[{\mbox{\hyperlink{classregistration}{registration}} \&}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que inicializa o menu. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em SCREEN\+\_\+W} & Largura da tela \\
+\hline
+{\em SCREEN\+\_\+H} & Altura da tela \\
+\hline
+{\em data} & Referência ao objeto que manipula os arquivos \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classmenu_a5efbd22f23289b42ed68d2a9bb431f35}\index{menu@{menu}!````~menu@{\texorpdfstring{$\sim$}{\string~}menu}}
+\index{````~menu@{\texorpdfstring{$\sim$}{\string~}menu}!menu@{menu}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}menu()}{\string~menu()}}
+{\footnotesize\ttfamily \label{classmenu_a5efbd22f23289b42ed68d2a9bb431f35} 
+menu\+::\texorpdfstring{$\sim$}{\string~}menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destrutor para liberação dos recursos (bitmaps, samples) 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classmenu_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classmenu_a0a08cf07f341224007706c54d1f1ad1e}\index{menu@{menu}!draw@{draw}}
+\index{draw@{draw}!menu@{menu}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classmenu_a0a08cf07f341224007706c54d1f1ad1e} 
+void menu\+::draw (\begin{DoxyParamCaption}\item[{const int}]{SCREEN\+\_\+W}{, }\item[{const int}]{SCREEN\+\_\+H}{, }\item[{const ALLEGRO\+\_\+\+EVENT \&}]{event}{}\end{DoxyParamCaption})}
+
+
+
+Desenha a tela ativa. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em SCREEN\+\_\+W} & Largura da tela \\
+\hline
+{\em SCREEN\+\_\+H} & Altura da tela \\
+\hline
+{\em event} & Evento que pode indicar se a tela deve ser desenhada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classmenu_aee48fe40b118787a56455a6a8992bfdd}\index{menu@{menu}!get\_logged\_user@{get\_logged\_user}}
+\index{get\_logged\_user@{get\_logged\_user}!menu@{menu}}
+\doxysubsubsection{\texorpdfstring{get\_logged\_user()}{get\_logged\_user()}}
+{\footnotesize\ttfamily \label{classmenu_aee48fe40b118787a56455a6a8992bfdd} 
+\mbox{\hyperlink{structplayer}{player}} menu\+::get\+\_\+logged\+\_\+user (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a struct player com os dados do usuário logado. 
+
+\begin{DoxyReturn}{Retorna}
+Dados do jogador logado 
+\end{DoxyReturn}
+\Hypertarget{classmenu_af65495911a439d3ec79d863498b82180}\index{menu@{menu}!handle\_event@{handle\_event}}
+\index{handle\_event@{handle\_event}!menu@{menu}}
+\doxysubsubsection{\texorpdfstring{handle\_event()}{handle\_event()}}
+{\footnotesize\ttfamily \label{classmenu_af65495911a439d3ec79d863498b82180} 
+void menu\+::handle\+\_\+event (\begin{DoxyParamCaption}\item[{const ALLEGRO\+\_\+\+EVENT \&}]{event}{, }\item[{bool \&}]{is\+\_\+open}{, }\item[{\mbox{\hyperlink{structstates}{states}} \texorpdfstring{$\ast$}{*}}]{state}{}\end{DoxyParamCaption})}
+
+
+
+Reune o comportamento de todas as telas em uma única interface. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em event} & Evento passado às telas \\
+\hline
+{\em is\+\_\+open} & Booleano para indicar se o programa deve continuar rodando \\
+\hline
+{\em state} & Ponteiro para alterar o estado do main e iniciar o jogo \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classmenu_a356d5f977c2c420a25949012cc4de920}\index{menu@{menu}!is\_login\_done@{is\_login\_done}}
+\index{is\_login\_done@{is\_login\_done}!menu@{menu}}
+\doxysubsubsection{\texorpdfstring{is\_login\_done()}{is\_login\_done()}}
+{\footnotesize\ttfamily \label{classmenu_a356d5f977c2c420a25949012cc4de920} 
+bool menu\+::is\+\_\+login\+\_\+done (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Verifica se o login foi concluído para parar o loop do registro. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica o estado do login 
+\end{DoxyReturn}
+\Hypertarget{classmenu_ad6674a57772cfab037201468928f38d0}\index{menu@{menu}!reset@{reset}}
+\index{reset@{reset}!menu@{menu}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classmenu_ad6674a57772cfab037201468928f38d0} 
+void menu\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reseta todas as telas para reutilização do menu em uma mesma execução. 
+
+\Hypertarget{classmenu_ae2d0697fb0145ea98352c4c858dd33cb}\index{menu@{menu}!set\_players@{set\_players}}
+\index{set\_players@{set\_players}!menu@{menu}}
+\doxysubsubsection{\texorpdfstring{set\_players()}{set\_players()}}
+{\footnotesize\ttfamily \label{classmenu_ae2d0697fb0145ea98352c4c858dd33cb} 
+void menu\+::set\+\_\+players (\begin{DoxyParamCaption}\item[{const std\+::multiset$<$ \mbox{\hyperlink{structplayer}{player}} $>$}]{new\+\_\+players}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza o multiset de players para listagem. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em new\+\_\+players} & Novo multiset \\
+\hline
+\end{DoxyParams}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{menu_8hpp}{menu.\+hpp}}\item 
+src/\mbox{\hyperlink{menu_8cpp}{menu.\+cpp}}\end{DoxyCompactItemize}

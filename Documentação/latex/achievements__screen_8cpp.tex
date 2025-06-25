@@ -1,0 +1,93 @@
+\doxysection{Referência ao ficheiro src/achievements\+\_\+screen.cpp}
+\hypertarget{achievements__screen_8cpp}{}\label{achievements__screen_8cpp}\index{src/achievements\_screen.cpp@{src/achievements\_screen.cpp}}
+{\ttfamily \#include "{}achievements\+\_\+screen.\+hpp"{}}\newline
+{\ttfamily \#include $<$allegro5/allegro.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include "{}menu.\+hpp"{}}\newline
+{\ttfamily \#include "{}registration.\+hpp"{}}\newline
+\doxysubsubsection*{Variáveis}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{achievements__screen_8cpp_ac78d17ce17aab998466945dda9a3dd59}{ACHIEVEMENTS\+\_\+\+SCREEN\+\_\+\+FRAME}} = \{"{}../assets/UI/achievements/achievements\+\_\+screen\+\_\+frame.\+png"{}\}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{achievements__screen_8cpp_ac8486bfb42cd1806939028781a3b57db}{ACHIEVEMENTS\+\_\+\+BADGES}} \mbox{[}16\mbox{]}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{achievements__screen_8cpp_a8c679069fd75e7b3870a74a7909bee8e}{ACHIEVEMENTS\+\_\+\+LOCKED}} \mbox{[}16\mbox{]}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{achievements__screen_8cpp_a43ab2f020deca415a24b89cfaf8e81a1}{HOME\+\_\+\+BUTTON}} \mbox{[}2\mbox{]} = \{"{}../assets/UI/home\+\_\+button.\+png"{}, "{}../assets/UI/home\+\_\+button\+\_\+pressed.\+png"{}\}
+\end{DoxyCompactItemize}
+
+
+\label{doc-var-members}
+\Hypertarget{achievements__screen_8cpp_doc-var-members}
+\doxysubsection{Documentação das variáveis}
+\Hypertarget{achievements__screen_8cpp_ac8486bfb42cd1806939028781a3b57db}\index{achievements\_screen.cpp@{achievements\_screen.cpp}!ACHIEVEMENTS\_BADGES@{ACHIEVEMENTS\_BADGES}}
+\index{ACHIEVEMENTS\_BADGES@{ACHIEVEMENTS\_BADGES}!achievements\_screen.cpp@{achievements\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{ACHIEVEMENTS\_BADGES}{ACHIEVEMENTS\_BADGES}}
+{\footnotesize\ttfamily \label{achievements__screen_8cpp_ac8486bfb42cd1806939028781a3b57db} 
+const char\texorpdfstring{$\ast$}{*} ACHIEVEMENTS\+\_\+\+BADGES\mbox{[}16\mbox{]}}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/01.png"{}},\ }
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/02.png"{}},\ }
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/03.png"{}},\ }
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/04.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/05.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/06.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/07.png"{}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/08.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/09.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/10.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/11.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/12.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/13.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/14.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/15.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/16.png"{}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{achievements__screen_8cpp_a8c679069fd75e7b3870a74a7909bee8e}\index{achievements\_screen.cpp@{achievements\_screen.cpp}!ACHIEVEMENTS\_LOCKED@{ACHIEVEMENTS\_LOCKED}}
+\index{ACHIEVEMENTS\_LOCKED@{ACHIEVEMENTS\_LOCKED}!achievements\_screen.cpp@{achievements\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{ACHIEVEMENTS\_LOCKED}{ACHIEVEMENTS\_LOCKED}}
+{\footnotesize\ttfamily \label{achievements__screen_8cpp_a8c679069fd75e7b3870a74a7909bee8e} 
+const char\texorpdfstring{$\ast$}{*} ACHIEVEMENTS\+\_\+\+LOCKED\mbox{[}16\mbox{]}}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/01-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/02-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/03-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/04-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/05-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/06-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/07-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/08-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/09-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/10-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/11-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/12-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/13-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/14-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/15-\/locked.png"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}../assets/UI/achievements/achievements-\/16-\/locked.png"{}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{achievements__screen_8cpp_ac78d17ce17aab998466945dda9a3dd59}\index{achievements\_screen.cpp@{achievements\_screen.cpp}!ACHIEVEMENTS\_SCREEN\_FRAME@{ACHIEVEMENTS\_SCREEN\_FRAME}}
+\index{ACHIEVEMENTS\_SCREEN\_FRAME@{ACHIEVEMENTS\_SCREEN\_FRAME}!achievements\_screen.cpp@{achievements\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{ACHIEVEMENTS\_SCREEN\_FRAME}{ACHIEVEMENTS\_SCREEN\_FRAME}}
+{\footnotesize\ttfamily \label{achievements__screen_8cpp_ac78d17ce17aab998466945dda9a3dd59} 
+const char\texorpdfstring{$\ast$}{*} ACHIEVEMENTS\+\_\+\+SCREEN\+\_\+\+FRAME = \{"{}../assets/UI/achievements/achievements\+\_\+screen\+\_\+frame.\+png"{}\}}
+
+\Hypertarget{achievements__screen_8cpp_a43ab2f020deca415a24b89cfaf8e81a1}\index{achievements\_screen.cpp@{achievements\_screen.cpp}!HOME\_BUTTON@{HOME\_BUTTON}}
+\index{HOME\_BUTTON@{HOME\_BUTTON}!achievements\_screen.cpp@{achievements\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{HOME\_BUTTON}{HOME\_BUTTON}}
+{\footnotesize\ttfamily \label{achievements__screen_8cpp_a43ab2f020deca415a24b89cfaf8e81a1} 
+const char\texorpdfstring{$\ast$}{*} HOME\+\_\+\+BUTTON\mbox{[}2\mbox{]} = \{"{}../assets/UI/home\+\_\+button.\+png"{}, "{}../assets/UI/home\+\_\+button\+\_\+pressed.\+png"{}\}}
+

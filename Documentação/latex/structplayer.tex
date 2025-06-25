@@ -1,0 +1,201 @@
+\doxysection{Referência à estrutura player}
+\hypertarget{structplayer}{}\label{structplayer}\index{player@{player}}
+
+
+Struct que representa um jogador.  
+
+
+
+
+{\ttfamily \#include $<$registration.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structplayer_a97de83bce15f880241f561b55b016b02}{player}} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplayer_a5ea0bb1f7707e13ccd9d792c78070eb7}{player}} (const std\+::string \&\mbox{\hyperlink{structplayer_a6716b2fe7ed415cce33439a9cac72cc5}{username}}, const std\+::string \&password, int \mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}}, int \mbox{\hyperlink{structplayer_a5c50d0ffb7d0f552fbe12b79c101c6a9}{games}}, int \mbox{\hyperlink{structplayer_a0bf42934b61750e6f27c1ade3ed3a104}{jump\+\_\+count}}, int \mbox{\hyperlink{structplayer_a77c34ceb5d7379882c786c17fb1588d5}{ground\+\_\+deaths}}, int \mbox{\hyperlink{structplayer_a6e69ce1bf46971aff6726c9a514f34df}{pipe\+\_\+deaths}})
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa o jogador com todos os atributos da struct. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplayer_a530f8d77198f831d713b5c67bf524a68}{player}} (const std\+::string \&\mbox{\hyperlink{structplayer_a6716b2fe7ed415cce33439a9cac72cc5}{username}}, const std\+::string \&password, int \mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}}, int \mbox{\hyperlink{structplayer_a5c50d0ffb7d0f552fbe12b79c101c6a9}{games}})
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa o jogador com username, password, score e games. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structplayer_a19d4e87009b0ba219527016845a8a926}{operator$<$}} (const \mbox{\hyperlink{structplayer}{player}} \&otherplayer) const
+\begin{DoxyCompactList}\small\item\em Sobrecarga no operador \texorpdfstring{$<$}{<} para colocar em ordem descrescente de score dentro do container multiset. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{structplayer_a8eafebc562f28bf8e3e6c6f4dff67acf}{get\+\_\+password}} () const
+\begin{DoxyCompactList}\small\item\em Obtém a senha do jogador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{structplayer_a6716b2fe7ed415cce33439a9cac72cc5}{username}} = "{}"{}
+\item 
+int \mbox{\hyperlink{structplayer_a0effac341657c96528752f808fa23291}{score}} = 0
+\item 
+int \mbox{\hyperlink{structplayer_a5c50d0ffb7d0f552fbe12b79c101c6a9}{games}} = 0
+\item 
+std\+::vector$<$ bool $>$ \mbox{\hyperlink{structplayer_a8b5c1761cffc71d5f21b0a79b57310b9}{achievements}}
+\item 
+int \mbox{\hyperlink{structplayer_a0bf42934b61750e6f27c1ade3ed3a104}{jump\+\_\+count}} = 0
+\begin{DoxyCompactList}\small\item\em Variáveis auxiliares para o desbloqueio de determinadas conquistas. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structplayer_a77c34ceb5d7379882c786c17fb1588d5}{ground\+\_\+deaths}} = 0
+\item 
+int \mbox{\hyperlink{structplayer_a6e69ce1bf46971aff6726c9a514f34df}{pipe\+\_\+deaths}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Struct que representa um jogador. 
+
+A struct player gerencia os dados de um jogador, como nome de usuário, pontuação, número de partidas jogadas, password, conquistas e variáveis auxiliares de conquista. 
+
+\label{doc-constructors}
+\Hypertarget{structplayer_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{structplayer_a97de83bce15f880241f561b55b016b02}\index{player@{player}!player@{player}}
+\index{player@{player}!player@{player}}
+\doxysubsubsection{\texorpdfstring{player()}{player()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{structplayer_a97de83bce15f880241f561b55b016b02} 
+player\+::player (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor padrão. 
+
+\Hypertarget{structplayer_a5ea0bb1f7707e13ccd9d792c78070eb7}\index{player@{player}!player@{player}}
+\index{player@{player}!player@{player}}
+\doxysubsubsection{\texorpdfstring{player()}{player()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{structplayer_a5ea0bb1f7707e13ccd9d792c78070eb7} 
+player\+::player (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username}{, }\item[{const std\+::string \&}]{password}{, }\item[{int}]{score}{, }\item[{int}]{games}{, }\item[{int}]{jump\+\_\+count}{, }\item[{int}]{ground\+\_\+deaths}{, }\item[{int}]{pipe\+\_\+deaths}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor que inicializa o jogador com todos os atributos da struct. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em username} & Nome do jogador. \\
+\hline
+{\em password} & Senha do jogador. \\
+\hline
+{\em score} & Pontuação inicial. \\
+\hline
+{\em games} & Número inicial de jogos. \\
+\hline
+{\em jump\+\_\+count} & Número de pulos executados pelo jogador. \\
+\hline
+{\em ground\+\_\+deaths} & Número de mortes no chão. \\
+\hline
+{\em pipe\+\_\+deaths} & Número de mortes no cano. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structplayer_a530f8d77198f831d713b5c67bf524a68}\index{player@{player}!player@{player}}
+\index{player@{player}!player@{player}}
+\doxysubsubsection{\texorpdfstring{player()}{player()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{structplayer_a530f8d77198f831d713b5c67bf524a68} 
+player\+::player (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username}{, }\item[{const std\+::string \&}]{password}{, }\item[{int}]{score}{, }\item[{int}]{games}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor que inicializa o jogador com username, password, score e games. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em username} & Nome do jogador. \\
+\hline
+{\em password} & Senha do jogador. \\
+\hline
+{\em score} & Pontuação inicial. \\
+\hline
+{\em games} & Número inicial de jogos. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{structplayer_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{structplayer_a8eafebc562f28bf8e3e6c6f4dff67acf}\index{player@{player}!get\_password@{get\_password}}
+\index{get\_password@{get\_password}!player@{player}}
+\doxysubsubsection{\texorpdfstring{get\_password()}{get\_password()}}
+{\footnotesize\ttfamily \label{structplayer_a8eafebc562f28bf8e3e6c6f4dff67acf} 
+std\+::string player\+::get\+\_\+password (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtém a senha do jogador. 
+
+\begin{DoxyReturn}{Retorna}
+Senha do jogador. 
+\end{DoxyReturn}
+\Hypertarget{structplayer_a19d4e87009b0ba219527016845a8a926}\index{player@{player}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!player@{player}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily \label{structplayer_a19d4e87009b0ba219527016845a8a926} 
+bool player\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structplayer}{player}} \&}]{otherplayer}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sobrecarga no operador \texorpdfstring{$<$}{<} para colocar em ordem descrescente de score dentro do container multiset. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em otherplayer} & Objeto do tipo player de outro jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Maior score dentre os scores comparados. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{structplayer_doc-variable-members}
+\doxysubsection{Documentação dos dados membro}
+\Hypertarget{structplayer_a8b5c1761cffc71d5f21b0a79b57310b9}\index{player@{player}!achievements@{achievements}}
+\index{achievements@{achievements}!player@{player}}
+\doxysubsubsection{\texorpdfstring{achievements}{achievements}}
+{\footnotesize\ttfamily \label{structplayer_a8b5c1761cffc71d5f21b0a79b57310b9} 
+std\+::vector$<$bool$>$ player\+::achievements}
+
+Conquistas desbloqueadas pelo jogador. \Hypertarget{structplayer_a5c50d0ffb7d0f552fbe12b79c101c6a9}\index{player@{player}!games@{games}}
+\index{games@{games}!player@{player}}
+\doxysubsubsection{\texorpdfstring{games}{games}}
+{\footnotesize\ttfamily \label{structplayer_a5c50d0ffb7d0f552fbe12b79c101c6a9} 
+int player\+::games = 0}
+
+Quantidade de jogos jogados. \Hypertarget{structplayer_a77c34ceb5d7379882c786c17fb1588d5}\index{player@{player}!ground\_deaths@{ground\_deaths}}
+\index{ground\_deaths@{ground\_deaths}!player@{player}}
+\doxysubsubsection{\texorpdfstring{ground\_deaths}{ground\_deaths}}
+{\footnotesize\ttfamily \label{structplayer_a77c34ceb5d7379882c786c17fb1588d5} 
+int player\+::ground\+\_\+deaths = 0}
+
+\Hypertarget{structplayer_a0bf42934b61750e6f27c1ade3ed3a104}\index{player@{player}!jump\_count@{jump\_count}}
+\index{jump\_count@{jump\_count}!player@{player}}
+\doxysubsubsection{\texorpdfstring{jump\_count}{jump\_count}}
+{\footnotesize\ttfamily \label{structplayer_a0bf42934b61750e6f27c1ade3ed3a104} 
+int player\+::jump\+\_\+count = 0}
+
+
+
+Variáveis auxiliares para o desbloqueio de determinadas conquistas. 
+
+\Hypertarget{structplayer_a6e69ce1bf46971aff6726c9a514f34df}\index{player@{player}!pipe\_deaths@{pipe\_deaths}}
+\index{pipe\_deaths@{pipe\_deaths}!player@{player}}
+\doxysubsubsection{\texorpdfstring{pipe\_deaths}{pipe\_deaths}}
+{\footnotesize\ttfamily \label{structplayer_a6e69ce1bf46971aff6726c9a514f34df} 
+int player\+::pipe\+\_\+deaths = 0}
+
+\Hypertarget{structplayer_a0effac341657c96528752f808fa23291}\index{player@{player}!score@{score}}
+\index{score@{score}!player@{player}}
+\doxysubsubsection{\texorpdfstring{score}{score}}
+{\footnotesize\ttfamily \label{structplayer_a0effac341657c96528752f808fa23291} 
+int player\+::score = 0}
+
+Pontuação atual do jogador. \Hypertarget{structplayer_a6716b2fe7ed415cce33439a9cac72cc5}\index{player@{player}!username@{username}}
+\index{username@{username}!player@{player}}
+\doxysubsubsection{\texorpdfstring{username}{username}}
+{\footnotesize\ttfamily \label{structplayer_a6716b2fe7ed415cce33439a9cac72cc5} 
+std\+::string player\+::username = "{}"{}}
+
+Nome de usuário do jogador. 
+
+A documentação para esta estrutura foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{registration_8hpp}{registration.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,157 @@
+\doxysection{Referência à classe game\+\_\+object}
+\hypertarget{classgame__object}{}\label{classgame__object}\index{game\_object@{game\_object}}
+
+
+{\ttfamily \#include $<$game\+\_\+object.\+hpp$>$}
+
+Diagrama de heranças da classe game\+\_\+object\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgame__object}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgame__object_abffd356756b24f590eff91bc1917b38e}{game\+\_\+object}} (float x, float y, int w, int h, ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}bitmap)
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{classgame__object}{game\+\_\+object}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{game__object_8hpp_aaf3bf2398ad88d99808776aec49a86e6}{abs\+\_\+pos}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classgame__object_aa32ba851c49b691f6342a13d5b306dd5}{Get\+\_\+position}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a posição absoluta do objeto. \end{DoxyCompactList}\item 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classgame__object_a638a58a73fb4ab09aa34461fddaefa57}{get\+\_\+bitmap}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o bitmap(sprite) do objeto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgame__object_a3a5fc5a2c88413958d3652bea296d0df}{is\+\_\+colliding}} (\mbox{\hyperlink{classgame__object}{game\+\_\+object}} \texorpdfstring{$\ast$}{*}other\+\_\+object)
+\begin{DoxyCompactList}\small\item\em Detecta colisão entre este objeto e outro objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgame__object_ae5eb741d2f67ac954dc62050095478ca}{set\+\_\+bitmap}} (std\+::string sprite)
+\begin{DoxyCompactList}\small\item\em Troca o bitmap(sprite) do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgame__object_a247dd13bb4bfdd649e11670df72031ce}{set\+\_\+bitmap}} (ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}sprite)
+\begin{DoxyCompactList}\small\item\em Troca o bitmap(sprite) do objeto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgame__object_ad3e388773d75df2a870661e82bf828c2}{Draw}} (float scale)
+\begin{DoxyCompactList}\small\item\em Desenha o objeto na tela. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classgame__object_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classgame__object_abffd356756b24f590eff91bc1917b38e}\index{game\_object@{game\_object}!game\_object@{game\_object}}
+\index{game\_object@{game\_object}!game\_object@{game\_object}}
+\doxysubsubsection{\texorpdfstring{game\_object()}{game\_object()}}
+{\footnotesize\ttfamily \label{classgame__object_abffd356756b24f590eff91bc1917b38e} 
+game\+\_\+object\+::game\+\_\+object (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{y}{, }\item[{int}]{w}{, }\item[{int}]{h}{, }\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{bitmap}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{classgame__object}{game\+\_\+object}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em x} & Posição X do objeto \\
+\hline
+{\em y} & Posição Y do objeto \\
+\hline
+{\em w} & Largura do objeto \\
+\hline
+{\em h} & Altura do objeto \\
+\hline
+{\em bitmap} & Bitmap(sprite) do objeto \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classgame__object_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classgame__object_ad3e388773d75df2a870661e82bf828c2}\index{game\_object@{game\_object}!Draw@{Draw}}
+\index{Draw@{Draw}!game\_object@{game\_object}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily \label{classgame__object_ad3e388773d75df2a870661e82bf828c2} 
+void game\+\_\+object\+::\+Draw (\begin{DoxyParamCaption}\item[{float}]{scale}{}\end{DoxyParamCaption})}
+
+
+
+Desenha o objeto na tela. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em scale} & Escala de desenho do objeto \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classgame__object_a638a58a73fb4ab09aa34461fddaefa57}\index{game\_object@{game\_object}!get\_bitmap@{get\_bitmap}}
+\index{get\_bitmap@{get\_bitmap}!game\_object@{game\_object}}
+\doxysubsubsection{\texorpdfstring{get\_bitmap()}{get\_bitmap()}}
+{\footnotesize\ttfamily \label{classgame__object_a638a58a73fb4ab09aa34461fddaefa57} 
+ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*} game\+\_\+object\+::get\+\_\+bitmap (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna o bitmap(sprite) do objeto. 
+
+\begin{DoxyReturn}{Retorna}
+Bitmap do objeto 
+\end{DoxyReturn}
+\Hypertarget{classgame__object_aa32ba851c49b691f6342a13d5b306dd5}\index{game\_object@{game\_object}!Get\_position@{Get\_position}}
+\index{Get\_position@{Get\_position}!game\_object@{game\_object}}
+\doxysubsubsection{\texorpdfstring{Get\_position()}{Get\_position()}}
+{\footnotesize\ttfamily \label{classgame__object_aa32ba851c49b691f6342a13d5b306dd5} 
+\mbox{\hyperlink{game__object_8hpp_aaf3bf2398ad88d99808776aec49a86e6}{abs\+\_\+pos}} \texorpdfstring{$\ast$}{*} game\+\_\+object\+::\+Get\+\_\+position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a posição absoluta do objeto. 
+
+\begin{DoxyReturn}{Retorna}
+Ponteiro para a estrutura \doxylink{structabsolute__position}{absolute\+\_\+position} que contém a posição e dimensão do objeto 
+\end{DoxyReturn}
+\Hypertarget{classgame__object_a3a5fc5a2c88413958d3652bea296d0df}\index{game\_object@{game\_object}!is\_colliding@{is\_colliding}}
+\index{is\_colliding@{is\_colliding}!game\_object@{game\_object}}
+\doxysubsubsection{\texorpdfstring{is\_colliding()}{is\_colliding()}}
+{\footnotesize\ttfamily \label{classgame__object_a3a5fc5a2c88413958d3652bea296d0df} 
+bool game\+\_\+object\+::is\+\_\+colliding (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgame__object}{game\+\_\+object}} \texorpdfstring{$\ast$}{*}}]{other\+\_\+object}{}\end{DoxyParamCaption})}
+
+
+
+Detecta colisão entre este objeto e outro objeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em other\+\_\+object} & Referência ao outro objeto a ser verificado a colisão \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+True se está colidindo, false caso contrário 
+\end{DoxyReturn}
+\Hypertarget{classgame__object_a247dd13bb4bfdd649e11670df72031ce}\index{game\_object@{game\_object}!set\_bitmap@{set\_bitmap}}
+\index{set\_bitmap@{set\_bitmap}!game\_object@{game\_object}}
+\doxysubsubsection{\texorpdfstring{set\_bitmap()}{set\_bitmap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classgame__object_a247dd13bb4bfdd649e11670df72031ce} 
+void game\+\_\+object\+::set\+\_\+bitmap (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{sprite}{}\end{DoxyParamCaption})}
+
+
+
+Troca o bitmap(sprite) do objeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sprite} & Ponteiro para o bitmap a ser usado \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classgame__object_ae5eb741d2f67ac954dc62050095478ca}\index{game\_object@{game\_object}!set\_bitmap@{set\_bitmap}}
+\index{set\_bitmap@{set\_bitmap}!game\_object@{game\_object}}
+\doxysubsubsection{\texorpdfstring{set\_bitmap()}{set\_bitmap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classgame__object_ae5eb741d2f67ac954dc62050095478ca} 
+void game\+\_\+object\+::set\+\_\+bitmap (\begin{DoxyParamCaption}\item[{std\+::string}]{sprite}{}\end{DoxyParamCaption})}
+
+
+
+Troca o bitmap(sprite) do objeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sprite} & Nome do arquivo de imagem a ser carregado como bitmap \\
+\hline
+\end{DoxyParams}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{game__object_8hpp}{game\+\_\+object.\+hpp}}\item 
+src/\mbox{\hyperlink{game__object_8cpp}{game\+\_\+object.\+cpp}}\end{DoxyCompactItemize}

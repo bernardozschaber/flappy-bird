@@ -1,0 +1,187 @@
+\doxysection{Referência à classe remove\+\_\+user\+\_\+screen}
+\hypertarget{classremove__user__screen}{}\label{classremove__user__screen}\index{remove\_user\_screen@{remove\_user\_screen}}
+
+
+Tela que lida com a remoção de jogadores.  
+
+
+
+
+{\ttfamily \#include $<$remove\+\_\+user\+\_\+screen.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classremove__user__screen_aee7f449e0a97970d6721d1ad2226303c}{remove\+\_\+user\+\_\+screen}} (int screen\+\_\+w, int screen\+\_\+h, \mbox{\hyperlink{classregistration}{registration}} \&data\+\_\+ref, std\+::multiset$<$ \mbox{\hyperlink{structplayer}{player}} $>$ \&players, ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}key\+\_\+sample, ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}click\+\_\+sample)
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa a tela de remoção. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classremove__user__screen_ae175e33ace83f2e1d2fe708190a21a21}{handle\+\_\+event}} (const ALLEGRO\+\_\+\+EVENT \&ev)
+\begin{DoxyCompactList}\small\item\em Trata eventos e atualiza flags internas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classremove__user__screen_ad21baa9ae436d8a1f5050887e419fc35}{draw}} (ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}font)
+\begin{DoxyCompactList}\small\item\em Desenha a tela e seus componentes. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classremove__user__screen_a30294d6b9bed08ca1de42e29739f19be}{go\+\_\+to\+\_\+main\+\_\+menu}} () const
+\begin{DoxyCompactList}\small\item\em Indica se deve voltar à tela de login. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \mbox{\hyperlink{classtext__box}{text\+\_\+box}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classremove__user__screen_a51a74167d0b55b8f2151183fcf7018a2}{get\+\_\+text\+\_\+boxes}} () const
+\begin{DoxyCompactList}\small\item\em Get do vetor com ponteiros para as caixas de texto para testes e manipulação de áudio. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \mbox{\hyperlink{classbutton}{button}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classremove__user__screen_a4addf8eef6fcd13909899b3fecbe9dd2}{get\+\_\+buttons}} () const
+\begin{DoxyCompactList}\small\item\em Get do vetor com ponteiros para os botões para testes e manipulação de áudio. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classremove__user__screen_a4859d638a4360bd0d45aea8e02181368}{is\+\_\+in\+\_\+confirmation}} () const
+\begin{DoxyCompactList}\small\item\em Indica a fase que a remoção está \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classremove__user__screen_a21e23788c319fc913dc8a21e70c031bd}{is\+\_\+removal\+\_\+done}} () const
+\begin{DoxyCompactList}\small\item\em Indica se a remoção foi concluída. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classremove__user__screen_a05c59e2a5a8593e3f7b05e682e0fc4c5}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Reseta a tela para uso futuro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Tela que lida com a remoção de jogadores. 
+
+
+\begin{DoxyItemize}
+\item Fase 1\+: entrada do nome do usuário a ser removido
+\item Fase 2\+: confirmação com a senha para certeza da exclusão 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{classremove__user__screen_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classremove__user__screen_aee7f449e0a97970d6721d1ad2226303c}\index{remove\_user\_screen@{remove\_user\_screen}!remove\_user\_screen@{remove\_user\_screen}}
+\index{remove\_user\_screen@{remove\_user\_screen}!remove\_user\_screen@{remove\_user\_screen}}
+\doxysubsubsection{\texorpdfstring{remove\_user\_screen()}{remove\_user\_screen()}}
+{\footnotesize\ttfamily \label{classremove__user__screen_aee7f449e0a97970d6721d1ad2226303c} 
+remove\+\_\+user\+\_\+screen\+::remove\+\_\+user\+\_\+screen (\begin{DoxyParamCaption}\item[{int}]{screen\+\_\+w}{, }\item[{int}]{screen\+\_\+h}{, }\item[{\mbox{\hyperlink{classregistration}{registration}} \&}]{data\+\_\+ref}{, }\item[{std\+::multiset$<$ \mbox{\hyperlink{structplayer}{player}} $>$ \&}]{players}{, }\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{key\+\_\+sample}{, }\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{click\+\_\+sample}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que inicializa a tela de remoção. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em screen\+\_\+w} & Largura da tela \\
+\hline
+{\em screen\+\_\+h} & Altura da tela \\
+\hline
+{\em data\+\_\+ref} & Referência ao objeto que manipula os arquivos \\
+\hline
+{\em players} & Multiset com todos os players registrados para atualizar em caso de remoção \\
+\hline
+{\em key\+\_\+sample} & Efeito sonoro das caixas de texto \\
+\hline
+{\em click\+\_\+sample} & Efeito sonoro dos botões \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classremove__user__screen_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classremove__user__screen_ad21baa9ae436d8a1f5050887e419fc35}\index{remove\_user\_screen@{remove\_user\_screen}!draw@{draw}}
+\index{draw@{draw}!remove\_user\_screen@{remove\_user\_screen}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classremove__user__screen_ad21baa9ae436d8a1f5050887e419fc35} 
+void remove\+\_\+user\+\_\+screen\+::draw (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}}]{font}{}\end{DoxyParamCaption})}
+
+
+
+Desenha a tela e seus componentes. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em font} & Fonte utilizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classremove__user__screen_a4addf8eef6fcd13909899b3fecbe9dd2}\index{remove\_user\_screen@{remove\_user\_screen}!get\_buttons@{get\_buttons}}
+\index{get\_buttons@{get\_buttons}!remove\_user\_screen@{remove\_user\_screen}}
+\doxysubsubsection{\texorpdfstring{get\_buttons()}{get\_buttons()}}
+{\footnotesize\ttfamily \label{classremove__user__screen_a4addf8eef6fcd13909899b3fecbe9dd2} 
+const std\+::vector$<$ \mbox{\hyperlink{classbutton}{button}} \texorpdfstring{$\ast$}{*} $>$ \& remove\+\_\+user\+\_\+screen\+::get\+\_\+buttons (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get do vetor com ponteiros para os botões para testes e manipulação de áudio. 
+
+\begin{DoxyReturn}{Retorna}
+Vetor com os ponteiros 
+\end{DoxyReturn}
+\Hypertarget{classremove__user__screen_a51a74167d0b55b8f2151183fcf7018a2}\index{remove\_user\_screen@{remove\_user\_screen}!get\_text\_boxes@{get\_text\_boxes}}
+\index{get\_text\_boxes@{get\_text\_boxes}!remove\_user\_screen@{remove\_user\_screen}}
+\doxysubsubsection{\texorpdfstring{get\_text\_boxes()}{get\_text\_boxes()}}
+{\footnotesize\ttfamily \label{classremove__user__screen_a51a74167d0b55b8f2151183fcf7018a2} 
+const std\+::vector$<$ \mbox{\hyperlink{classtext__box}{text\+\_\+box}} \texorpdfstring{$\ast$}{*} $>$ \& remove\+\_\+user\+\_\+screen\+::get\+\_\+text\+\_\+boxes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get do vetor com ponteiros para as caixas de texto para testes e manipulação de áudio. 
+
+\begin{DoxyReturn}{Retorna}
+Vetor com os ponteiros 
+\end{DoxyReturn}
+\Hypertarget{classremove__user__screen_a30294d6b9bed08ca1de42e29739f19be}\index{remove\_user\_screen@{remove\_user\_screen}!go\_to\_main\_menu@{go\_to\_main\_menu}}
+\index{go\_to\_main\_menu@{go\_to\_main\_menu}!remove\_user\_screen@{remove\_user\_screen}}
+\doxysubsubsection{\texorpdfstring{go\_to\_main\_menu()}{go\_to\_main\_menu()}}
+{\footnotesize\ttfamily \label{classremove__user__screen_a30294d6b9bed08ca1de42e29739f19be} 
+bool remove\+\_\+user\+\_\+screen\+::go\+\_\+to\+\_\+main\+\_\+menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica se deve voltar à tela de login. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica o estado da volta 
+\end{DoxyReturn}
+\Hypertarget{classremove__user__screen_ae175e33ace83f2e1d2fe708190a21a21}\index{remove\_user\_screen@{remove\_user\_screen}!handle\_event@{handle\_event}}
+\index{handle\_event@{handle\_event}!remove\_user\_screen@{remove\_user\_screen}}
+\doxysubsubsection{\texorpdfstring{handle\_event()}{handle\_event()}}
+{\footnotesize\ttfamily \label{classremove__user__screen_ae175e33ace83f2e1d2fe708190a21a21} 
+void remove\+\_\+user\+\_\+screen\+::handle\+\_\+event (\begin{DoxyParamCaption}\item[{const ALLEGRO\+\_\+\+EVENT \&}]{ev}{}\end{DoxyParamCaption})}
+
+
+
+Trata eventos e atualiza flags internas. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ev} & Evento tratado \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classremove__user__screen_a4859d638a4360bd0d45aea8e02181368}\index{remove\_user\_screen@{remove\_user\_screen}!is\_in\_confirmation@{is\_in\_confirmation}}
+\index{is\_in\_confirmation@{is\_in\_confirmation}!remove\_user\_screen@{remove\_user\_screen}}
+\doxysubsubsection{\texorpdfstring{is\_in\_confirmation()}{is\_in\_confirmation()}}
+{\footnotesize\ttfamily \label{classremove__user__screen_a4859d638a4360bd0d45aea8e02181368} 
+bool remove\+\_\+user\+\_\+screen\+::is\+\_\+in\+\_\+confirmation (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica a fase que a remoção está 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica se está na fase 2\+: confirmação 
+\end{DoxyReturn}
+\Hypertarget{classremove__user__screen_a21e23788c319fc913dc8a21e70c031bd}\index{remove\_user\_screen@{remove\_user\_screen}!is\_removal\_done@{is\_removal\_done}}
+\index{is\_removal\_done@{is\_removal\_done}!remove\_user\_screen@{remove\_user\_screen}}
+\doxysubsubsection{\texorpdfstring{is\_removal\_done()}{is\_removal\_done()}}
+{\footnotesize\ttfamily \label{classremove__user__screen_a21e23788c319fc913dc8a21e70c031bd} 
+bool remove\+\_\+user\+\_\+screen\+::is\+\_\+removal\+\_\+done (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica se a remoção foi concluída. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica o estado da remoção 
+\end{DoxyReturn}
+\Hypertarget{classremove__user__screen_a05c59e2a5a8593e3f7b05e682e0fc4c5}\index{remove\_user\_screen@{remove\_user\_screen}!reset@{reset}}
+\index{reset@{reset}!remove\_user\_screen@{remove\_user\_screen}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classremove__user__screen_a05c59e2a5a8593e3f7b05e682e0fc4c5} 
+void remove\+\_\+user\+\_\+screen\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reseta a tela para uso futuro. 
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{remove__user__screen_8hpp}{remove\+\_\+user\+\_\+screen.\+hpp}}\item 
+src/\mbox{\hyperlink{remove__user__screen_8cpp}{remove\+\_\+user\+\_\+screen.\+cpp}}\end{DoxyCompactItemize}

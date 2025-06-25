@@ -1,0 +1,155 @@
+\doxysection{game\+\_\+loop.\+hpp}
+\hypertarget{game__loop_8hpp_source}{}\label{game__loop_8hpp_source}\index{include/game\_loop.hpp@{include/game\_loop.hpp}}
+\mbox{\hyperlink{game__loop_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GAME\_LOOP\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GAME\_LOOP\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{game__object_8hpp}{game\_object.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{background__object_8hpp}{background\_object.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pipe__object_8hpp}{pipe\_object.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{moving__button_8hpp}{moving\_button.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{bird__object_8hpp}{bird\_object.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{image_8hpp}{image.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{score_8hpp}{score.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{registration_8hpp}{registration.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_audio.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ CONSTANTES\ DE\ PATH\ }}
+\DoxyCodeLine{00016\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_ae856fd9e9eb470b17346dba969a1cb48}{ARIAL\_FONT\_FILEPATH}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_a5463d4d6fed515acd15da7816831672f}{PSANS\_FONT\_FILEPATH}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_a0d4c738f74169d87fa2947f556d5ef87}{BIRD\_SPRITE}}[6];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_a159d1f06c23f149aff29cb550e4d1595}{PIPE\_SPRITE}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_acb531bbbf72124dc6151437929ed2d0b}{GOLDEN\_PIPE\_SPRITE}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_a70c1a8f25b3c95275ab4cfce8bf2f061}{MOUNTAIN\_SPRITE\_1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_ac196aba7dcd73adb8b5a7a6e3660d975}{MOUNTAIN\_SPRITE\_2}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_ac6d8324b7d16ad75fa3ba4d3602d590d}{MOUNTAIN\_SPRITE\_3}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_a2b2ab5e638eae34a700e507b028c1e9d}{GRASS\_SPRITE}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_a7eaa3ebf328a26c5a5d7a0dfafb59604}{ACHIEVEMENTS\_BUTTON\_SPRITE}}[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_ac6f81fa926a1d78fb0a605ab57e19767}{BACK\_BUTTON\_SPRITE}}[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_a5701a161d0bf9261d7e3a7df4e2535dc}{SETTINGS\_BUTTON\_SPRITE}}[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_aac8971b3200129792a6888b2273ab7aa}{INSTRUÇÕES\_SPRITE}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_a66c8cdd8d1373bae8688f0c62b0e31f9}{SCORE\_SPRITE}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_acdfcacf8bc9b742e55228ac3148d30bd}{HOME\_SPRITE}}[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_ab7468c58bfe25562161210e119133c6e}{BACKGROUND}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_aa7309b74fae45ad9ef8544103af0f7d6}{NUMBERS\_SPRITES}}[10];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_aa143a78a1ad7d02a92b0a146343f7b10}{SOUND\_BUTTON\_SPRITE}}[4];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_adf8e461e3d53ef14cfd420014d244f13}{PAUSE\_BUTTON\_SPRITE}}[4];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_aefaf712a0749353cf25b79030a500e90}{DEATH\_SCREEN\_FRAME}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_a15ebe5fcd600d0846f3b488e8d149aba}{TRY\_AGAIN\_BUTTON\_SPRITE}}[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_a57213da153dc322a0b6726cf2e6c31fa}{SCORE\_NOW}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_ae6ce26640bc52364d45ea732fea89f46}{MAX\_SCORE}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_a0ca859196c368e755571e925f594b364}{PAUSED}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_a9397a6082fe4d7bd25c305eba2bd91a1}{SCORE\_BOX\_1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_ad5273f9e682ca6ae904c73e3ff47ceed}{SCORE\_BOX\_2}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{game__loop_8hpp_afb8a03ac3ad09a97371c38a0b4734cb1}{STATISTICS\_BUTTON\_SPRITE}}[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ CONSTANTES\ DE\ PROPRIEDADE\ PARA\ OBJETOS\ DO\ CENÁRIO}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a27cddfd509d28b4b2b0b44c093fac090}{SCREEN\_H}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a9b6bc9242882d1e758e06ed751a2e8ec}{SCREEN\_W}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game__loop_8hpp_a7ec33da8078befd2fa14476b0ad35852}{HEIGHT\_REFFERENCE}};\ \ \ \ \ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game__loop_8hpp_a35ced579e7e8c3bb22c4265bc5bcf7b0}{random\_offset}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{game__loop_8hpp_a025972eb75530e83c807d3df1a162e7d}{golden\_odds\_setter}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{game__loop_8hpp_ace63adf20ffbab0547d2f1a1c806181b}{gravity\_setter}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{game__loop_8hpp_a8c5cd9b525ee73a24b1d9d8e34982d1c}{score}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{game__loop_8hpp_ad5ce61f736f9a2961945949de4531a54}{max\_score}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game__loop_8hpp_a35c30f46e84633eaa7a7b3e6bf67c89a}{PIPE\_SPACE}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{game__loop_8hpp_a6ec666cdcd59ec24f7a8b7f7f01fc283}{PIPE\_INITIAL\_SPEED}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{game__loop_8hpp_a1bac67ae9d699398178b533922253976}{PIPE\_SPEED\_MAX}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{game__loop_8hpp_a600c80b1fb156bbf8fc270642a83cae4}{PIPE\_SPEED\_INCREASE}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game__loop_8hpp_a638a5de4abce9374e834ac6f361853ae}{BIRD\_JUMP\_VEL}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game__loop_8hpp_aae691e933a02744eeacd914b5636cbbf}{BIRD\_MAX\_UP\_VEL}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{game__loop_8hpp_a7aec9d4a68371ef1bf524c838ea25a53}{BIRD\_MAX\_DOWN\_VEL}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstates}{states}}\{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstates_a6b4a95fcc98d0259284dcc3838b93c85}{open}}\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstates_a0c2eebd42821342bbc1e3c0fcf253a1b}{is\_updating}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstates_a0215a75ebced6aee16052675cf3dd23b}{registration\_screen}}\ =\ \textcolor{keyword}{true};\ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstates_a24b8844800bd02f3ebfc3317af5e1552}{settings\_screen}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstates_a21b493d7974a0ecc1515e8335cd187e8}{was\_in\_menu}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstates_ae6911562902e440c9c69f0e242fa6879}{was\_playing}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstates_afcd63c1972e1e9726ce1bfb387327b53}{load\_user}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstates_ad104f7533fd910736ed5af9053e16a9c}{game\_loop\_screen}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstates_acc448dbcfdb5c60a52fe4525eb4eda23}{achievements\_screen}}\ =\ \textcolor{keyword}{false};\ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structstates_adc0553bc80fe23f1a0702721f3ad2288}{home\_screen}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structstates_a7b2ae74b045f6e36586739028be245c2}{volume}}\ =\ 1.0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{structplayer}{player}}\ \mbox{\hyperlink{structstates_a87355d2fc386dd326e3ea28ab347bbb0}{p}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00081\ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGame__Loop_a0ba2779aa051e27558d3bc7ce650faa9}{Game\_Loop}}\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Vetores\ dos\ objetos\ do\ jogo}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classbird__object}{bird\_object}}*\ birdo;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ std::vector<pipe\_object*>\ pipe\_objects;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ std::vector<moving\_button*>\ buttons;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_0;\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_1;\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_2;\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_3;\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ std::vector<image*>\ images;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Bitmaps\ dos\ objetos\ do\ jogo}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ bird\_animation\_sprite[6];\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ pipe\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ golden\_pipe\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ mountain\_sprite\_1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ mountain\_sprite\_2;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ mountain\_sprite\_3;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ grass\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ achievements\_button\_sprite[2];\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ back\_button\_sprite[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ settings\_button\_sprite[2];\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ instruções\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ score\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ home\_sprite[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ background;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ numbers\_sprites[10];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ sound\_button\_sprite[4];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ pause\_button\_sprite[4];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ death\_screen\_frame;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ best\_score\_text;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ new\_best\_text;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ tryagain\_sprite[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ max\_score;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ score\_now;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ paused\_text;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ score\_box\_1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ score\_box\_2;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Fontes\ do\ jogo}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ ALLEGRO\_FONT\ *pixel\_sans;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Controle\ de\ áudio}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ ALLEGRO\_SAMPLE*\ flap\_sound;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ ALLEGRO\_SAMPLE*\ score\_sound;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ ALLEGRO\_SAMPLE*\ golden\_score\_sound;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ ALLEGRO\_SAMPLE*\ death\_sound;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ ALLEGRO\_SAMPLE*\ death\_screen\_point\_sound;\ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ ALLEGRO\_SAMPLE*\ high\_score\_sound;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Váriáveis\ de\ estado\ do\ game\_loop}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ playing\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ dead\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ death\_menu\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ paused\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ sound\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00144\ \ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame__Loop_a0ba2779aa051e27558d3bc7ce650faa9}{Game\_Loop}}();}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame__Loop_a874fb59c1f7dc60273fc5541046838b9}{\string~Game\_Loop}}();}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGame__Loop_af6e0faf1bde6695343b5230835e6229a}{commands}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ key[],\ \textcolor{keywordtype}{bool}\ mouse\_is\_down,\ \textcolor{keywordtype}{bool}\ \&mouse\_just\_released,\ \textcolor{keywordtype}{int}\ mouse\_update\_x,\ \textcolor{keywordtype}{int}\ mouse\_update\_y,\ \mbox{\hyperlink{structstates}{states}}*\ state);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGame__Loop_a0a01f7f1d6a2596a55a4e1f6da0240b8}{update}}(\mbox{\hyperlink{structstates}{states}}*\ state);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGame__Loop_ae863a066d1f53760c88a054fcfbfda0d}{draw}}();}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGame__Loop_a48e7b4c083d6d019cc2af082b59fba84}{reset\_game}}();\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Método\ que\ reseta\ o\ jogo,\ recriando\ os\ objetos\ e\ o\ cenário}}
+\DoxyCodeLine{00184\ \};}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

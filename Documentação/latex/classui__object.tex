@@ -1,0 +1,278 @@
+\doxysection{Referência à classe ui\+\_\+object}
+\hypertarget{classui__object}{}\label{classui__object}\index{ui\_object@{ui\_object}}
+
+
+Classe abstrata genêrica de objetos de interface.  
+
+
+
+
+{\ttfamily \#include $<$ui\+\_\+object.\+hpp$>$}
+
+Diagrama de heranças da classe ui\+\_\+object\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classui__object}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classui__object_a8e48c858fc29ec57df399ed268694e2a}{ui\+\_\+object}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}, float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}, int \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}}, int \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}})
+\begin{DoxyCompactList}\small\item\em Construtor genêrico de objetos de UI. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classui__object_a109a266a6688a36a7a80af513af6aa3a}{handle\+\_\+event}} (const ALLEGRO\+\_\+\+EVENT \&ev)=0
+\begin{DoxyCompactList}\small\item\em Método virtual puro para objetos de UI processarem eventos. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classui__object_ac0ef8445a32b5e0b594f839ecc9b991c}{draw}} (ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}font)=0
+\begin{DoxyCompactList}\small\item\em Método virtual puro para desenhar objetos de UI. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_af92b7c5ebcdc42b2bad45b95a36dbf50}{get\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Get para a coordenada x. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_a2c389711da7495d7ddbd3d737e58d252}{get\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Get para a coordenada y. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_aad941a2d7673057e07ea04009b4b2781}{get\+\_\+width}} ()
+\begin{DoxyCompactList}\small\item\em Get para a largura. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_a1f604114f5d5f9430a3ed33da16a66f5}{get\+\_\+height}} ()
+\begin{DoxyCompactList}\small\item\em Get para a altura. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classui__object_ab680ce54233178efb0a9d712253f04bb}{set\+\_\+x}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}})
+\begin{DoxyCompactList}\small\item\em Set para a coordenada x. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classui__object_a8a97830ba3ada2f8a288b6ad5f0d2c38}{set\+\_\+y}} (float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}})
+\begin{DoxyCompactList}\small\item\em Set para a coordenada y. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classui__object_a819037b1a21fcc0bef890c66f155bdf0}{contains}} (int mx, int my) const
+\begin{DoxyCompactList}\small\item\em Verifica se o mouse está em cima do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos Protegidos}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}
+\begin{DoxyCompactList}\small\item\em Coordenada x do inicio da área do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}
+\begin{DoxyCompactList}\small\item\em Coordenada y do inicio da área do objeto. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}}
+\begin{DoxyCompactList}\small\item\em Largura do objeto. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}}
+\begin{DoxyCompactList}\small\item\em Altura do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe abstrata genêrica de objetos de interface. 
+
+Possui métodos virtuais para serem redefinidos pelos herdeiros e verifica se o mouse está em cima do objeto 
+
+\label{doc-constructors}
+\Hypertarget{classui__object_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classui__object_a8e48c858fc29ec57df399ed268694e2a}\index{ui\_object@{ui\_object}!ui\_object@{ui\_object}}
+\index{ui\_object@{ui\_object}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{ui\_object()}{ui\_object()}}
+{\footnotesize\ttfamily \label{classui__object_a8e48c858fc29ec57df399ed268694e2a} 
+ui\+\_\+object\+::ui\+\_\+object (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{y}{, }\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption})}
+
+
+
+Construtor genêrico de objetos de UI. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em x} & Coordenada x que inicia a área do objeto \\
+\hline
+{\em y} & Coordenada y que inicia a área do objeto \\
+\hline
+{\em width} & Largura do objeto \\
+\hline
+{\em height} & Altura do objeto \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classui__object_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classui__object_a819037b1a21fcc0bef890c66f155bdf0}\index{ui\_object@{ui\_object}!contains@{contains}}
+\index{contains@{contains}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily \label{classui__object_a819037b1a21fcc0bef890c66f155bdf0} 
+bool ui\+\_\+object\+::contains (\begin{DoxyParamCaption}\item[{int}]{mx}{, }\item[{int}]{my}{}\end{DoxyParamCaption}) const}
+
+
+
+Verifica se o mouse está em cima do objeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em mx} & Coordenada x da posição do cursor \\
+\hline
+{\em my} & Coordenada y da posição do cursor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Booleano que indica se o mouse está na área do objeto ou não 
+\end{DoxyReturn}
+\Hypertarget{classui__object_ac0ef8445a32b5e0b594f839ecc9b991c}\index{ui\_object@{ui\_object}!draw@{draw}}
+\index{draw@{draw}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classui__object_ac0ef8445a32b5e0b594f839ecc9b991c} 
+virtual void ui\+\_\+object\+::draw (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}}]{font}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Método virtual puro para desenhar objetos de UI. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em font} & Fonte utilizada nos textos \\
+\hline
+\end{DoxyParams}
+
+
+Implementado em \mbox{\hyperlink{classbutton_a7d7e18d17ea5435d7c9e4ba529a75f14}{button}}, \mbox{\hyperlink{classmoving__button_ae6c469eed97559dff234996f1f973edc}{moving\+\_\+button}}, \mbox{\hyperlink{classslider_a8ca2661b277b375ca88257b847a51daf}{slider}} e \mbox{\hyperlink{classtext__box_a0d71edd728a87cd723757548aa32f195}{text\+\_\+box}}.
+
+\Hypertarget{classui__object_a1f604114f5d5f9430a3ed33da16a66f5}\index{ui\_object@{ui\_object}!get\_height@{get\_height}}
+\index{get\_height@{get\_height}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{get\_height()}{get\_height()}}
+{\footnotesize\ttfamily \label{classui__object_a1f604114f5d5f9430a3ed33da16a66f5} 
+int ui\+\_\+object\+::get\+\_\+height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get para a altura. 
+
+\begin{DoxyReturn}{Retorna}
+Valor da altura 
+\end{DoxyReturn}
+\Hypertarget{classui__object_aad941a2d7673057e07ea04009b4b2781}\index{ui\_object@{ui\_object}!get\_width@{get\_width}}
+\index{get\_width@{get\_width}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{get\_width()}{get\_width()}}
+{\footnotesize\ttfamily \label{classui__object_aad941a2d7673057e07ea04009b4b2781} 
+int ui\+\_\+object\+::get\+\_\+width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get para a largura. 
+
+\begin{DoxyReturn}{Retorna}
+Valor da largura 
+\end{DoxyReturn}
+\Hypertarget{classui__object_af92b7c5ebcdc42b2bad45b95a36dbf50}\index{ui\_object@{ui\_object}!get\_x@{get\_x}}
+\index{get\_x@{get\_x}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{get\_x()}{get\_x()}}
+{\footnotesize\ttfamily \label{classui__object_af92b7c5ebcdc42b2bad45b95a36dbf50} 
+float ui\+\_\+object\+::get\+\_\+x (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get para a coordenada x. 
+
+\begin{DoxyReturn}{Retorna}
+Valor da coordenada x 
+\end{DoxyReturn}
+\Hypertarget{classui__object_a2c389711da7495d7ddbd3d737e58d252}\index{ui\_object@{ui\_object}!get\_y@{get\_y}}
+\index{get\_y@{get\_y}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{get\_y()}{get\_y()}}
+{\footnotesize\ttfamily \label{classui__object_a2c389711da7495d7ddbd3d737e58d252} 
+float ui\+\_\+object\+::get\+\_\+y (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get para a coordenada y. 
+
+\begin{DoxyReturn}{Retorna}
+Valor da coordenada y 
+\end{DoxyReturn}
+\Hypertarget{classui__object_a109a266a6688a36a7a80af513af6aa3a}\index{ui\_object@{ui\_object}!handle\_event@{handle\_event}}
+\index{handle\_event@{handle\_event}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{handle\_event()}{handle\_event()}}
+{\footnotesize\ttfamily \label{classui__object_a109a266a6688a36a7a80af513af6aa3a} 
+virtual void ui\+\_\+object\+::handle\+\_\+event (\begin{DoxyParamCaption}\item[{const ALLEGRO\+\_\+\+EVENT \&}]{ev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Método virtual puro para objetos de UI processarem eventos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ev} & Evento a ser processado \\
+\hline
+\end{DoxyParams}
+
+
+Implementado em \mbox{\hyperlink{classbutton_aeae61520a35f1a0cb35a3df8f7d8137d}{button}}, \mbox{\hyperlink{classmoving__button_a25224dace0ff4d9f9b793e902d7a054a}{moving\+\_\+button}}, \mbox{\hyperlink{classslider_a0a0e7ffd1d1cb200a0d31805def0c079}{slider}} e \mbox{\hyperlink{classtext__box_a08f94eff214fa1be3987199ec1d250df}{text\+\_\+box}}.
+
+\Hypertarget{classui__object_ab680ce54233178efb0a9d712253f04bb}\index{ui\_object@{ui\_object}!set\_x@{set\_x}}
+\index{set\_x@{set\_x}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{set\_x()}{set\_x()}}
+{\footnotesize\ttfamily \label{classui__object_ab680ce54233178efb0a9d712253f04bb} 
+void ui\+\_\+object\+::set\+\_\+x (\begin{DoxyParamCaption}\item[{float}]{x}{}\end{DoxyParamCaption})}
+
+
+
+Set para a coordenada x. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em x} & Novo valor de x \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classui__object_a8a97830ba3ada2f8a288b6ad5f0d2c38}\index{ui\_object@{ui\_object}!set\_y@{set\_y}}
+\index{set\_y@{set\_y}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{set\_y()}{set\_y()}}
+{\footnotesize\ttfamily \label{classui__object_a8a97830ba3ada2f8a288b6ad5f0d2c38} 
+void ui\+\_\+object\+::set\+\_\+y (\begin{DoxyParamCaption}\item[{float}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Set para a coordenada y. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em y} & Novo valor de y \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{classui__object_doc-variable-members}
+\doxysubsection{Documentação dos dados membro}
+\Hypertarget{classui__object_adc7dbf341883f5426b53d21554f61601}\index{ui\_object@{ui\_object}!height@{height}}
+\index{height@{height}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \label{classui__object_adc7dbf341883f5426b53d21554f61601} 
+int ui\+\_\+object\+::height\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Altura do objeto. 
+
+\Hypertarget{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}\index{ui\_object@{ui\_object}!width@{width}}
+\index{width@{width}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily \label{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2} 
+int ui\+\_\+object\+::width\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Largura do objeto. 
+
+\Hypertarget{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}\index{ui\_object@{ui\_object}!x@{x}}
+\index{x@{x}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily \label{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d} 
+float ui\+\_\+object\+::x\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Coordenada x do inicio da área do objeto. 
+
+\Hypertarget{classui__object_af929118b76e3a339121ee106356c3ab4}\index{ui\_object@{ui\_object}!y@{y}}
+\index{y@{y}!ui\_object@{ui\_object}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily \label{classui__object_af929118b76e3a339121ee106356c3ab4} 
+float ui\+\_\+object\+::y\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Coordenada y do inicio da área do objeto. 
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{ui__object_8hpp}{ui\+\_\+object.\+hpp}}\item 
+src/\mbox{\hyperlink{ui__object_8cpp}{ui\+\_\+object.\+cpp}}\end{DoxyCompactItemize}

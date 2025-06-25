@@ -1,0 +1,275 @@
+\doxysection{Referência à classe image}
+\hypertarget{classimage}{}\label{classimage}\index{image@{image}}
+
+
+Classe que representa uma imagem no jogo.  
+
+
+
+
+{\ttfamily \#include $<$image.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classimage_aa7c28092bb0626268d3368aa0a5bf34c}{image}} (ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}sprite, float x, float y)
+\begin{DoxyCompactList}\small\item\em Construtor da classe image. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classimage_ad02c6e98b1a1524a6c00c59bfc12d186}{image}} (ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}sprite, float x, float y, float vx, float vy, float ax, float ay)
+\begin{DoxyCompactList}\small\item\em Construtor da classe image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_ae1ed9afeb5bf50d42356f7443f11fadd}{Draw}} ()
+\begin{DoxyCompactList}\small\item\em Desenha a imagem na tela. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_a6251fa7dc3eb7dd66ab13de4aca80b13}{Draw}} (float scale)
+\begin{DoxyCompactList}\small\item\em Desenha a imagem na tela com escala. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_a97c8f2dd019cfdf78e7803b70c2d53ea}{Update}} ()
+\begin{DoxyCompactList}\small\item\em Atualiza a posição da imagem com base na velocidade e aceleração. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classimage_a569b33078b28b51fe0c9a735d44bd18c}{get\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a posição X da imagem. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classimage_a3cef4902a688a8e5d8c8d07077ab510f}{get\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a posição Y da imagem. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classimage_ad94b9944ff060c382c4863d8b2561e2c}{get\+\_\+velocity\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a velocidade horizontal da imagem. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classimage_a24d59d3738ac7ef48c333777de2f78ea}{get\+\_\+velocity\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a velocidade vertical da imagem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_ad1e3258c54f0eb8de47adb137bee3981}{set\+\_\+position\+\_\+x}} (float new\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Seta a posição X da imagem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_a51d31770f8728868c66958a51ed5f797}{set\+\_\+position\+\_\+y}} (float new\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Seta a posição Y da imagem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_ac98829af6fdfbd466b2438f03eb7aa0f}{set\+\_\+velocity}} (float new\+\_\+vel\+\_\+x, float new\+\_\+vel\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Seta a velocidade da imagem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_a06a9b620628b4e1d198cba62402f823f}{set\+\_\+acceleration}} (float new\+\_\+accel\+\_\+x, float new\+\_\+accel\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Seta a aceleração da imagem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classimage_ac5071c34bcb894ed3a5ae646e7c57f11}{set\+\_\+bitmap}} (ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}new\+\_\+sprite)
+\begin{DoxyCompactList}\small\item\em Troca o bitmap(sprite) da imagem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe que representa uma imagem no jogo. 
+
+Esta classe é usada exatamente como uma imagem, não possui interações mas pode se mover. 
+
+\label{doc-constructors}
+\Hypertarget{classimage_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classimage_aa7c28092bb0626268d3368aa0a5bf34c}\index{image@{image}!image@{image}}
+\index{image@{image}!image@{image}}
+\doxysubsubsection{\texorpdfstring{image()}{image()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classimage_aa7c28092bb0626268d3368aa0a5bf34c} 
+image\+::image (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{sprite}{, }\item[{float}]{x}{, }\item[{float}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor da classe image. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sprite} & Bitmap(sprite) da imagem \\
+\hline
+{\em x} & Posição X da imagem \\
+\hline
+{\em y} & Posição Y da imagem\\
+\hline
+\end{DoxyParams}
+Este construtor inicializa velocidade e aceleração como 0, e largura e altura como as dimensões do bitmap. \Hypertarget{classimage_ad02c6e98b1a1524a6c00c59bfc12d186}\index{image@{image}!image@{image}}
+\index{image@{image}!image@{image}}
+\doxysubsubsection{\texorpdfstring{image()}{image()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classimage_ad02c6e98b1a1524a6c00c59bfc12d186} 
+image\+::image (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{sprite}{, }\item[{float}]{x}{, }\item[{float}]{y}{, }\item[{float}]{vx}{, }\item[{float}]{vy}{, }\item[{float}]{ax}{, }\item[{float}]{ay}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da classe image. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em sprite} & Bitmap(sprite) da imagem \\
+\hline
+{\em x} & Posição X da imagem \\
+\hline
+{\em y} & Posição Y da imagem \\
+\hline
+{\em vx} & Velocidade horizontal da imagem \\
+\hline
+{\em vy} & Velocidade vertical da imagem \\
+\hline
+{\em ax} & Aceleração horizontal da imagem \\
+\hline
+{\em ay} & Aceleração vertical da imagem\\
+\hline
+\end{DoxyParams}
+Este construtor inicializa a largura e altura como as dimensões do bitmap. 
+
+\label{doc-func-members}
+\Hypertarget{classimage_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classimage_ae1ed9afeb5bf50d42356f7443f11fadd}\index{image@{image}!Draw@{Draw}}
+\index{Draw@{Draw}!image@{image}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classimage_ae1ed9afeb5bf50d42356f7443f11fadd} 
+void image\+::\+Draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Desenha a imagem na tela. 
+
+\Hypertarget{classimage_a6251fa7dc3eb7dd66ab13de4aca80b13}\index{image@{image}!Draw@{Draw}}
+\index{Draw@{Draw}!image@{image}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classimage_a6251fa7dc3eb7dd66ab13de4aca80b13} 
+void image\+::\+Draw (\begin{DoxyParamCaption}\item[{float}]{scale}{}\end{DoxyParamCaption})}
+
+
+
+Desenha a imagem na tela com escala. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em scale} & Fator de escala para desenhar a imagem \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classimage_ad94b9944ff060c382c4863d8b2561e2c}\index{image@{image}!get\_velocity\_x@{get\_velocity\_x}}
+\index{get\_velocity\_x@{get\_velocity\_x}!image@{image}}
+\doxysubsubsection{\texorpdfstring{get\_velocity\_x()}{get\_velocity\_x()}}
+{\footnotesize\ttfamily \label{classimage_ad94b9944ff060c382c4863d8b2561e2c} 
+float image\+::get\+\_\+velocity\+\_\+x (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a velocidade horizontal da imagem. 
+
+\begin{DoxyReturn}{Retorna}
+Velocidade X da imagem 
+\end{DoxyReturn}
+\Hypertarget{classimage_a24d59d3738ac7ef48c333777de2f78ea}\index{image@{image}!get\_velocity\_y@{get\_velocity\_y}}
+\index{get\_velocity\_y@{get\_velocity\_y}!image@{image}}
+\doxysubsubsection{\texorpdfstring{get\_velocity\_y()}{get\_velocity\_y()}}
+{\footnotesize\ttfamily \label{classimage_a24d59d3738ac7ef48c333777de2f78ea} 
+float image\+::get\+\_\+velocity\+\_\+y (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a velocidade vertical da imagem. 
+
+\begin{DoxyReturn}{Retorna}
+Velocidade Y da imagem 
+\end{DoxyReturn}
+\Hypertarget{classimage_a569b33078b28b51fe0c9a735d44bd18c}\index{image@{image}!get\_x@{get\_x}}
+\index{get\_x@{get\_x}!image@{image}}
+\doxysubsubsection{\texorpdfstring{get\_x()}{get\_x()}}
+{\footnotesize\ttfamily \label{classimage_a569b33078b28b51fe0c9a735d44bd18c} 
+float image\+::get\+\_\+x (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a posição X da imagem. 
+
+\begin{DoxyReturn}{Retorna}
+Coordenada X de posição imagem 
+\end{DoxyReturn}
+\Hypertarget{classimage_a3cef4902a688a8e5d8c8d07077ab510f}\index{image@{image}!get\_y@{get\_y}}
+\index{get\_y@{get\_y}!image@{image}}
+\doxysubsubsection{\texorpdfstring{get\_y()}{get\_y()}}
+{\footnotesize\ttfamily \label{classimage_a3cef4902a688a8e5d8c8d07077ab510f} 
+float image\+::get\+\_\+y (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a posição Y da imagem. 
+
+\begin{DoxyReturn}{Retorna}
+Coordenada Y de posição imagem 
+\end{DoxyReturn}
+\Hypertarget{classimage_a06a9b620628b4e1d198cba62402f823f}\index{image@{image}!set\_acceleration@{set\_acceleration}}
+\index{set\_acceleration@{set\_acceleration}!image@{image}}
+\doxysubsubsection{\texorpdfstring{set\_acceleration()}{set\_acceleration()}}
+{\footnotesize\ttfamily \label{classimage_a06a9b620628b4e1d198cba62402f823f} 
+void image\+::set\+\_\+acceleration (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+accel\+\_\+x}{, }\item[{float}]{new\+\_\+accel\+\_\+y}{}\end{DoxyParamCaption})}
+
+
+
+Seta a aceleração da imagem. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em new\+\_\+accel\+\_\+x} & Nova aceleração horizontal a ser definida \\
+\hline
+{\em new\+\_\+accel\+\_\+y} & Nova aceleração vertical a ser definida \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classimage_ac5071c34bcb894ed3a5ae646e7c57f11}\index{image@{image}!set\_bitmap@{set\_bitmap}}
+\index{set\_bitmap@{set\_bitmap}!image@{image}}
+\doxysubsubsection{\texorpdfstring{set\_bitmap()}{set\_bitmap()}}
+{\footnotesize\ttfamily \label{classimage_ac5071c34bcb894ed3a5ae646e7c57f11} 
+void image\+::set\+\_\+bitmap (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{new\+\_\+sprite}{}\end{DoxyParamCaption})}
+
+
+
+Troca o bitmap(sprite) da imagem. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em new\+\_\+sprite} & Novo bitmap a ser usado \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classimage_ad1e3258c54f0eb8de47adb137bee3981}\index{image@{image}!set\_position\_x@{set\_position\_x}}
+\index{set\_position\_x@{set\_position\_x}!image@{image}}
+\doxysubsubsection{\texorpdfstring{set\_position\_x()}{set\_position\_x()}}
+{\footnotesize\ttfamily \label{classimage_ad1e3258c54f0eb8de47adb137bee3981} 
+void image\+::set\+\_\+position\+\_\+x (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+x}{}\end{DoxyParamCaption})}
+
+
+
+Seta a posição X da imagem. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em new\+\_\+x} & Nova posição X a ser definida \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classimage_a51d31770f8728868c66958a51ed5f797}\index{image@{image}!set\_position\_y@{set\_position\_y}}
+\index{set\_position\_y@{set\_position\_y}!image@{image}}
+\doxysubsubsection{\texorpdfstring{set\_position\_y()}{set\_position\_y()}}
+{\footnotesize\ttfamily \label{classimage_a51d31770f8728868c66958a51ed5f797} 
+void image\+::set\+\_\+position\+\_\+y (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+y}{}\end{DoxyParamCaption})}
+
+
+
+Seta a posição Y da imagem. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em new\+\_\+y} & Nova posição Y a ser definida \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classimage_ac98829af6fdfbd466b2438f03eb7aa0f}\index{image@{image}!set\_velocity@{set\_velocity}}
+\index{set\_velocity@{set\_velocity}!image@{image}}
+\doxysubsubsection{\texorpdfstring{set\_velocity()}{set\_velocity()}}
+{\footnotesize\ttfamily \label{classimage_ac98829af6fdfbd466b2438f03eb7aa0f} 
+void image\+::set\+\_\+velocity (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+vel\+\_\+x}{, }\item[{float}]{new\+\_\+vel\+\_\+y}{}\end{DoxyParamCaption})}
+
+
+
+Seta a velocidade da imagem. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em new\+\_\+vel\+\_\+x} & Nova velocidade horizontal a ser definida \\
+\hline
+{\em new\+\_\+vel\+\_\+y} & Nova velocidade vertical a ser definida \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classimage_a97c8f2dd019cfdf78e7803b70c2d53ea}\index{image@{image}!Update@{Update}}
+\index{Update@{Update}!image@{image}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{classimage_a97c8f2dd019cfdf78e7803b70c2d53ea} 
+void image\+::\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza a posição da imagem com base na velocidade e aceleração. 
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{image_8hpp}{image.\+hpp}}\item 
+src/\mbox{\hyperlink{image_8cpp}{image.\+cpp}}\end{DoxyCompactItemize}

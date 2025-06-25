@@ -1,0 +1,42 @@
+\doxysection{text\+\_\+box.\+hpp}
+\hypertarget{text__box_8hpp_source}{}\label{text__box_8hpp_source}\index{include/text\_box.hpp@{include/text\_box.hpp}}
+\mbox{\hyperlink{text__box_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TEXT\_BOX\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TEXT\_BOX\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ui__object_8hpp}{ui\_object.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_audio.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtext__box_a3085a2b186a97ca099325c304820b7dd}{text\_box}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classui__object_a8e48c858fc29ec57df399ed268694e2a}{ui\_object}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{classtext__box_a3085a2b186a97ca099325c304820b7dd}{text\_box}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}},\ \textcolor{keywordtype}{int}\ max\_length,\ ALLEGRO\_SAMPLE*\ key\_s);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtext__box_aa2a47801b82bb5e2ee44094b031af169}{set\_mask}}(\textcolor{keywordtype}{bool}\ mask\_enabled);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtext__box_a291d4894ec3908ef503e9bbbe94eef1f}{set\_active}}(\textcolor{keywordtype}{bool}\ active);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtext__box_a1f53f91d98ae9f82c6558ba5b5066e07}{is\_active\_box}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtext__box_a08f94eff214fa1be3987199ec1d250df}{handle\_event}}(\textcolor{keyword}{const}\ ALLEGRO\_EVENT\ \&ev)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtext__box_a0d71edd728a87cd723757548aa32f195}{draw}}(ALLEGRO\_FONT\ *font)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtext__box_ae8c3d7e4e348acf571b629dd44053720}{set\_text}}(\textcolor{keyword}{const}\ std::string\ \&t);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ std::string\ \mbox{\hyperlink{classtext__box_a55606a361eba9e191f6aeea1656e00fa}{get\_text}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtext__box_a446a3583e84b17098ffc5a93730c78e8}{set\_sample}}(ALLEGRO\_SAMPLE*\ s);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00076\ \ \ std::string\ text;\ }
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordtype}{bool}\ is\_active;\ }
+\DoxyCodeLine{00078\ \ \ \textcolor{keywordtype}{bool}\ masked;\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordtype}{int}\ max\_length;\ }
+\DoxyCodeLine{00080\ \ \ ALLEGRO\_SAMPLE*\ sample\_key;\ }
+\DoxyCodeLine{00081\ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TEXT\_BOX\_HPP}}
+
+\end{DoxyCode}

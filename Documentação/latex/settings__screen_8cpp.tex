@@ -1,0 +1,56 @@
+\doxysection{Referência ao ficheiro src/settings\+\_\+screen.cpp}
+\hypertarget{settings__screen_8cpp}{}\label{settings__screen_8cpp}\index{src/settings\_screen.cpp@{src/settings\_screen.cpp}}
+{\ttfamily \#include "{}settings\+\_\+screen.\+hpp"{}}\newline
+{\ttfamily \#include $<$allegro5/allegro.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include "{}game\+\_\+loop.\+hpp"{}}\newline
+\doxysubsubsection*{Variáveis}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{settings__screen_8cpp_a4e51a31c5d5eb09b5651d6e02201f299}{BACK\+\_\+\+SPRITE}} \mbox{[}2\mbox{]} = \{"{}../assets/UI/back\+\_\+not.\+png"{}, "{}../assets/UI/back\+\_\+yes.\+png"{}\}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{settings__screen_8cpp_aa6621effdb991b91f51538f1b017cbda}{INDICATOR\+\_\+\+SPRITE}} \mbox{[}2\mbox{]} = \{"{}../assets/UI/indicator.\+png"{}, "{}../assets/UI/indicator\+\_\+pressed.\+png"{}\}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{settings__screen_8cpp_a67e89067e5896ac8d723723c630eb455}{SETTINGS\+\_\+\+SCREEN\+\_\+\+FRAME}} = \{"{}../assets/UI/settings\+\_\+background.\+png"{}\}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{settings__screen_8cpp_a6909dcee3637c34e77145e7f07b22e9e}{TITLE\+\_\+\+SETTINGS\+\_\+\+SPRITE}} = \{"{}../assets/UI/settings\+\_\+title.\+png"{}\}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{settings__screen_8cpp_a9929e94efa63125d023c81d022815b3f}{SHOW\+\_\+\+SPRITE}} = \{"{}../assets/UI/show.\+png"{}\}
+\end{DoxyCompactItemize}
+
+
+\label{doc-var-members}
+\Hypertarget{settings__screen_8cpp_doc-var-members}
+\doxysubsection{Documentação das variáveis}
+\Hypertarget{settings__screen_8cpp_a4e51a31c5d5eb09b5651d6e02201f299}\index{settings\_screen.cpp@{settings\_screen.cpp}!BACK\_SPRITE@{BACK\_SPRITE}}
+\index{BACK\_SPRITE@{BACK\_SPRITE}!settings\_screen.cpp@{settings\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{BACK\_SPRITE}{BACK\_SPRITE}}
+{\footnotesize\ttfamily \label{settings__screen_8cpp_a4e51a31c5d5eb09b5651d6e02201f299} 
+const char\texorpdfstring{$\ast$}{*} BACK\+\_\+\+SPRITE\mbox{[}2\mbox{]} = \{"{}../assets/UI/back\+\_\+not.\+png"{}, "{}../assets/UI/back\+\_\+yes.\+png"{}\}}
+
+\Hypertarget{settings__screen_8cpp_aa6621effdb991b91f51538f1b017cbda}\index{settings\_screen.cpp@{settings\_screen.cpp}!INDICATOR\_SPRITE@{INDICATOR\_SPRITE}}
+\index{INDICATOR\_SPRITE@{INDICATOR\_SPRITE}!settings\_screen.cpp@{settings\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{INDICATOR\_SPRITE}{INDICATOR\_SPRITE}}
+{\footnotesize\ttfamily \label{settings__screen_8cpp_aa6621effdb991b91f51538f1b017cbda} 
+const char\texorpdfstring{$\ast$}{*} INDICATOR\+\_\+\+SPRITE\mbox{[}2\mbox{]} = \{"{}../assets/UI/indicator.\+png"{}, "{}../assets/UI/indicator\+\_\+pressed.\+png"{}\}}
+
+\Hypertarget{settings__screen_8cpp_a67e89067e5896ac8d723723c630eb455}\index{settings\_screen.cpp@{settings\_screen.cpp}!SETTINGS\_SCREEN\_FRAME@{SETTINGS\_SCREEN\_FRAME}}
+\index{SETTINGS\_SCREEN\_FRAME@{SETTINGS\_SCREEN\_FRAME}!settings\_screen.cpp@{settings\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{SETTINGS\_SCREEN\_FRAME}{SETTINGS\_SCREEN\_FRAME}}
+{\footnotesize\ttfamily \label{settings__screen_8cpp_a67e89067e5896ac8d723723c630eb455} 
+const char\texorpdfstring{$\ast$}{*} SETTINGS\+\_\+\+SCREEN\+\_\+\+FRAME = \{"{}../assets/UI/settings\+\_\+background.\+png"{}\}}
+
+\Hypertarget{settings__screen_8cpp_a9929e94efa63125d023c81d022815b3f}\index{settings\_screen.cpp@{settings\_screen.cpp}!SHOW\_SPRITE@{SHOW\_SPRITE}}
+\index{SHOW\_SPRITE@{SHOW\_SPRITE}!settings\_screen.cpp@{settings\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{SHOW\_SPRITE}{SHOW\_SPRITE}}
+{\footnotesize\ttfamily \label{settings__screen_8cpp_a9929e94efa63125d023c81d022815b3f} 
+const char\texorpdfstring{$\ast$}{*} SHOW\+\_\+\+SPRITE = \{"{}../assets/UI/show.\+png"{}\}}
+
+\Hypertarget{settings__screen_8cpp_a6909dcee3637c34e77145e7f07b22e9e}\index{settings\_screen.cpp@{settings\_screen.cpp}!TITLE\_SETTINGS\_SPRITE@{TITLE\_SETTINGS\_SPRITE}}
+\index{TITLE\_SETTINGS\_SPRITE@{TITLE\_SETTINGS\_SPRITE}!settings\_screen.cpp@{settings\_screen.cpp}}
+\doxysubsubsection{\texorpdfstring{TITLE\_SETTINGS\_SPRITE}{TITLE\_SETTINGS\_SPRITE}}
+{\footnotesize\ttfamily \label{settings__screen_8cpp_a6909dcee3637c34e77145e7f07b22e9e} 
+const char\texorpdfstring{$\ast$}{*} TITLE\+\_\+\+SETTINGS\+\_\+\+SPRITE = \{"{}../assets/UI/settings\+\_\+title.\+png"{}\}}
+

@@ -1,0 +1,42 @@
+\doxysection{ui\+\_\+object.\+hpp}
+\hypertarget{ui__object_8hpp_source}{}\label{ui__object_8hpp_source}\index{include/ui\_object.hpp@{include/ui\_object.hpp}}
+\mbox{\hyperlink{ui__object_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ UIOBJECT\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ UIOBJECT\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_font.h>}}
+\DoxyCodeLine{00006\ \ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classui__object_a8e48c858fc29ec57df399ed268694e2a}{ui\_object}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{classui__object_a8e48c858fc29ec57df399ed268694e2a}{ui\_object}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}});}
+\DoxyCodeLine{00023\ \ }
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classui__object_a109a266a6688a36a7a80af513af6aa3a}{handle\_event}}(\textcolor{keyword}{const}\ ALLEGRO\_EVENT\ \&ev)\ =\ 0;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classui__object_ac0ef8445a32b5e0b594f839ecc9b991c}{draw}}(ALLEGRO\_FONT\ *font)\ =\ 0;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_af92b7c5ebcdc42b2bad45b95a36dbf50}{get\_x}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_a2c389711da7495d7ddbd3d737e58d252}{get\_y}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_aad941a2d7673057e07ea04009b4b2781}{get\_width}}();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_a1f604114f5d5f9430a3ed33da16a66f5}{get\_height}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classui__object_ab680ce54233178efb0a9d712253f04bb}{set\_x}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}});}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classui__object_a8a97830ba3ada2f8a288b6ad5f0d2c38}{set\_y}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}});}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00078\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classui__object_a819037b1a21fcc0bef890c66f155bdf0}{contains}}(\textcolor{keywordtype}{int}\ mx,\ \textcolor{keywordtype}{int}\ my)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}};\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}};\ }
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}};\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}};\ }
+\DoxyCodeLine{00085\ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ UIOBJECT\_HPP}}
+
+\end{DoxyCode}

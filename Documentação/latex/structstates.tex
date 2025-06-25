@@ -1,0 +1,171 @@
+\doxysection{Referência à estrutura states}
+\hypertarget{structstates}{}\label{structstates}\index{states@{states}}
+
+
+Estrutura que armazena informações sobre o estado do jogo.  
+
+
+
+
+{\ttfamily \#include $<$game\+\_\+loop.\+hpp$>$}
+
+\doxysubsubsection*{Atributos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structstates_a6b4a95fcc98d0259284dcc3838b93c85}{open}} = true
+\begin{DoxyCompactList}\small\item\em Indica se o jogo está aberto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structstates_a0c2eebd42821342bbc1e3c0fcf253a1b}{is\+\_\+updating}} = false
+\begin{DoxyCompactList}\small\item\em O jogo deve atualizar o estado. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structstates_a0215a75ebced6aee16052675cf3dd23b}{registration\+\_\+screen}} = true
+\begin{DoxyCompactList}\small\item\em Tela de registro está aberta. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structstates_a24b8844800bd02f3ebfc3317af5e1552}{settings\+\_\+screen}} = false
+\begin{DoxyCompactList}\small\item\em Tela de configurações está aberta. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structstates_a21b493d7974a0ecc1515e8335cd187e8}{was\+\_\+in\+\_\+menu}} = false
+\begin{DoxyCompactList}\small\item\em Tela anterior era o menu. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structstates_ae6911562902e440c9c69f0e242fa6879}{was\+\_\+playing}} = false
+\begin{DoxyCompactList}\small\item\em Tela anterior era o loop de jogo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structstates_afcd63c1972e1e9726ce1bfb387327b53}{load\+\_\+user}} = false
+\begin{DoxyCompactList}\small\item\em O jogo deve carregar o usuário. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structstates_ad104f7533fd910736ed5af9053e16a9c}{game\+\_\+loop\+\_\+screen}} = false
+\begin{DoxyCompactList}\small\item\em O jogo está no loop de jogo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structstates_acc448dbcfdb5c60a52fe4525eb4eda23}{achievements\+\_\+screen}} = false
+\begin{DoxyCompactList}\small\item\em Tela de conquistas está aberta. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structstates_adc0553bc80fe23f1a0702721f3ad2288}{home\+\_\+screen}} = false
+\begin{DoxyCompactList}\small\item\em Tela inicial esta aberta. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structstates_a7b2ae74b045f6e36586739028be245c2}{volume}} = 1.\+0
+\begin{DoxyCompactList}\small\item\em Amplificador do volume do jogo. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplayer}{player}} \mbox{\hyperlink{structstates_a87355d2fc386dd326e3ea28ab347bbb0}{p}}
+\begin{DoxyCompactList}\small\item\em Dados do jogador logado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Estrutura que armazena informações sobre o estado do jogo. 
+
+\label{doc-variable-members}
+\Hypertarget{structstates_doc-variable-members}
+\doxysubsection{Documentação dos dados membro}
+\Hypertarget{structstates_acc448dbcfdb5c60a52fe4525eb4eda23}\index{states@{states}!achievements\_screen@{achievements\_screen}}
+\index{achievements\_screen@{achievements\_screen}!states@{states}}
+\doxysubsubsection{\texorpdfstring{achievements\_screen}{achievements\_screen}}
+{\footnotesize\ttfamily \label{structstates_acc448dbcfdb5c60a52fe4525eb4eda23} 
+bool states\+::achievements\+\_\+screen = false}
+
+
+
+Tela de conquistas está aberta. 
+
+\Hypertarget{structstates_ad104f7533fd910736ed5af9053e16a9c}\index{states@{states}!game\_loop\_screen@{game\_loop\_screen}}
+\index{game\_loop\_screen@{game\_loop\_screen}!states@{states}}
+\doxysubsubsection{\texorpdfstring{game\_loop\_screen}{game\_loop\_screen}}
+{\footnotesize\ttfamily \label{structstates_ad104f7533fd910736ed5af9053e16a9c} 
+bool states\+::game\+\_\+loop\+\_\+screen = false}
+
+
+
+O jogo está no loop de jogo. 
+
+\Hypertarget{structstates_adc0553bc80fe23f1a0702721f3ad2288}\index{states@{states}!home\_screen@{home\_screen}}
+\index{home\_screen@{home\_screen}!states@{states}}
+\doxysubsubsection{\texorpdfstring{home\_screen}{home\_screen}}
+{\footnotesize\ttfamily \label{structstates_adc0553bc80fe23f1a0702721f3ad2288} 
+bool states\+::home\+\_\+screen = false}
+
+
+
+Tela inicial esta aberta. 
+
+\Hypertarget{structstates_a0c2eebd42821342bbc1e3c0fcf253a1b}\index{states@{states}!is\_updating@{is\_updating}}
+\index{is\_updating@{is\_updating}!states@{states}}
+\doxysubsubsection{\texorpdfstring{is\_updating}{is\_updating}}
+{\footnotesize\ttfamily \label{structstates_a0c2eebd42821342bbc1e3c0fcf253a1b} 
+bool states\+::is\+\_\+updating = false}
+
+
+
+O jogo deve atualizar o estado. 
+
+\Hypertarget{structstates_afcd63c1972e1e9726ce1bfb387327b53}\index{states@{states}!load\_user@{load\_user}}
+\index{load\_user@{load\_user}!states@{states}}
+\doxysubsubsection{\texorpdfstring{load\_user}{load\_user}}
+{\footnotesize\ttfamily \label{structstates_afcd63c1972e1e9726ce1bfb387327b53} 
+bool states\+::load\+\_\+user = false}
+
+
+
+O jogo deve carregar o usuário. 
+
+\Hypertarget{structstates_a6b4a95fcc98d0259284dcc3838b93c85}\index{states@{states}!open@{open}}
+\index{open@{open}!states@{states}}
+\doxysubsubsection{\texorpdfstring{open}{open}}
+{\footnotesize\ttfamily \label{structstates_a6b4a95fcc98d0259284dcc3838b93c85} 
+bool states\+::open = true}
+
+
+
+Indica se o jogo está aberto. 
+
+\Hypertarget{structstates_a87355d2fc386dd326e3ea28ab347bbb0}\index{states@{states}!p@{p}}
+\index{p@{p}!states@{states}}
+\doxysubsubsection{\texorpdfstring{p}{p}}
+{\footnotesize\ttfamily \label{structstates_a87355d2fc386dd326e3ea28ab347bbb0} 
+\mbox{\hyperlink{structplayer}{player}} states\+::p}
+
+
+
+Dados do jogador logado. 
+
+\Hypertarget{structstates_a0215a75ebced6aee16052675cf3dd23b}\index{states@{states}!registration\_screen@{registration\_screen}}
+\index{registration\_screen@{registration\_screen}!states@{states}}
+\doxysubsubsection{\texorpdfstring{registration\_screen}{registration\_screen}}
+{\footnotesize\ttfamily \label{structstates_a0215a75ebced6aee16052675cf3dd23b} 
+bool states\+::registration\+\_\+screen = true}
+
+
+
+Tela de registro está aberta. 
+
+\Hypertarget{structstates_a24b8844800bd02f3ebfc3317af5e1552}\index{states@{states}!settings\_screen@{settings\_screen}}
+\index{settings\_screen@{settings\_screen}!states@{states}}
+\doxysubsubsection{\texorpdfstring{settings\_screen}{settings\_screen}}
+{\footnotesize\ttfamily \label{structstates_a24b8844800bd02f3ebfc3317af5e1552} 
+bool states\+::settings\+\_\+screen = false}
+
+
+
+Tela de configurações está aberta. 
+
+\Hypertarget{structstates_a7b2ae74b045f6e36586739028be245c2}\index{states@{states}!volume@{volume}}
+\index{volume@{volume}!states@{states}}
+\doxysubsubsection{\texorpdfstring{volume}{volume}}
+{\footnotesize\ttfamily \label{structstates_a7b2ae74b045f6e36586739028be245c2} 
+float states\+::volume = 1.\+0}
+
+
+
+Amplificador do volume do jogo. 
+
+\Hypertarget{structstates_a21b493d7974a0ecc1515e8335cd187e8}\index{states@{states}!was\_in\_menu@{was\_in\_menu}}
+\index{was\_in\_menu@{was\_in\_menu}!states@{states}}
+\doxysubsubsection{\texorpdfstring{was\_in\_menu}{was\_in\_menu}}
+{\footnotesize\ttfamily \label{structstates_a21b493d7974a0ecc1515e8335cd187e8} 
+bool states\+::was\+\_\+in\+\_\+menu = false}
+
+
+
+Tela anterior era o menu. 
+
+\Hypertarget{structstates_ae6911562902e440c9c69f0e242fa6879}\index{states@{states}!was\_playing@{was\_playing}}
+\index{was\_playing@{was\_playing}!states@{states}}
+\doxysubsubsection{\texorpdfstring{was\_playing}{was\_playing}}
+{\footnotesize\ttfamily \label{structstates_ae6911562902e440c9c69f0e242fa6879} 
+bool states\+::was\+\_\+playing = false}
+
+
+
+Tela anterior era o loop de jogo. 
+
+
+
+A documentação para esta estrutura foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{game__loop_8hpp}{game\+\_\+loop.\+hpp}}\end{DoxyCompactItemize}

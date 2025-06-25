@@ -1,0 +1,28 @@
+var annotated_dup =
+[
+    [ "absolute_position", "structabsolute__position.html", "structabsolute__position" ],
+    [ "Achievements_Screen", "classAchievements__Screen.html", "classAchievements__Screen" ],
+    [ "background_object", "classbackground__object.html", "classbackground__object" ],
+    [ "bird_object", "classbird__object.html", "classbird__object" ],
+    [ "button", "classbutton.html", "classbutton" ],
+    [ "Game_Loop", "classGame__Loop.html", "classGame__Loop" ],
+    [ "game_object", "classgame__object.html", "classgame__object" ],
+    [ "Home_Screen", "classHome__Screen.html", "classHome__Screen" ],
+    [ "image", "classimage.html", "classimage" ],
+    [ "login_screen", "classlogin__screen.html", "classlogin__screen" ],
+    [ "menu", "classmenu.html", "classmenu" ],
+    [ "menu_audio", "classmenu__audio.html", "classmenu__audio" ],
+    [ "moving_button", "classmoving__button.html", "classmoving__button" ],
+    [ "pipe_object", "classpipe__object.html", "classpipe__object" ],
+    [ "player", "structplayer.html", "structplayer" ],
+    [ "player_list_screen", "classplayer__list__screen.html", "classplayer__list__screen" ],
+    [ "register_screen", "classregister__screen.html", "classregister__screen" ],
+    [ "registration", "classregistration.html", "classregistration" ],
+    [ "remove_user_screen", "classremove__user__screen.html", "classremove__user__screen" ],
+    [ "Score", "classScore.html", "classScore" ],
+    [ "settings_screen", "classsettings__screen.html", "classsettings__screen" ],
+    [ "slider", "classslider.html", "classslider" ],
+    [ "states", "structstates.html", "structstates" ],
+    [ "text_box", "classtext__box.html", "classtext__box" ],
+    [ "ui_object", "classui__object.html", "classui__object" ]
+];

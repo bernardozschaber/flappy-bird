@@ -1,0 +1,53 @@
+\doxysection{achievements\+\_\+screen.\+hpp}
+\hypertarget{achievements__screen_8hpp_source}{}\label{achievements__screen_8hpp_source}\index{include/achievements\_screen.hpp@{include/achievements\_screen.hpp}}
+\mbox{\hyperlink{achievements__screen_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ACHIEVEMENTS\_SCREEN\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ACHIEVEMENTS\_SCREEN\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{game__object_8hpp}{game\_object.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{background__object_8hpp}{background\_object.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{moving__button_8hpp}{moving\_button.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{image_8hpp}{image.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{game__loop_8hpp}{game\_loop.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{home__screen_8hpp}{home\_screen.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAchievements__Screen_a613126ddc18948b5bda150b1752bd0d2}{Achievements\_Screen}}\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vetores\ de\ objetos}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ std::vector<moving\_button*>\ buttons;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vetor\ que\ armazena\ os\ botões\ do\ jogo}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ std::vector<image*>\ images;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vetor\ que\ armazena\ as\ imagens}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_0;\ \textcolor{comment}{//\ Vetor\ que\ armazena\ os\ tiles\ de\ grama}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_1;\ \textcolor{comment}{//\ Vetor\ que\ armazena\ as\ montanhas\ (1)}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_2;\ \textcolor{comment}{//\ Vetor\ que\ armazena\ as\ montanhas\ (2)}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ std::vector<background\_object*>\ background\_objects\_3;\ \textcolor{comment}{//\ Vetor\ que\ armazena\ as\ montanhas\ (3)}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmaps}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ mountain\_sprite\_1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmap\ da\ montanha\ (da\ frente)}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ mountain\_sprite\_2;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmap\ da\ montanha\ (do\ meio)}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ mountain\_sprite\_3;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmap\ da\ montanha\ (de\ trás)}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ grass\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmap\ da\ grama\ }}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ background\_sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmap\ do\ fundo}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ achievements\_screen\_frame\_sprite;\ \ \ \ \ \textcolor{comment}{//\ Bitmap\ do\ quadro\ da\ tela\ de\ achievements}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ settings\_button\_sprite[2];\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmap\ do\ botão\ de\ configurações}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ statistics\_button\_sprite[2];\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmap\ do\ botão\ de\ estatísticas\ (stats)}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ achievements\_badges[16];\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmap\ dos\ badges\ de\ conquistas}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ home\_button\_sprite[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmap\ do\ botão\ de\ hom}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ achievements\_locked[16];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmap\ dos\ badges\ de\ conquistas\ bloqueados}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fonte\ principal\ do\ jogo}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ ALLEGRO\_FONT*\ pixel\_sans;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fonte\ principal\ do\ jogo}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAchievements__Screen_a613126ddc18948b5bda150b1752bd0d2}{Achievements\_Screen}}();\ \ \ \ \ \ \textcolor{comment}{//\ Construtor}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAchievements__Screen_a011b5692719813e73fe6d2aa5ae3bf42}{\string~Achievements\_Screen}}();\ \ \ \ \ \textcolor{comment}{//\ Destrutor}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAchievements__Screen_a0dbb8d6b8f22f8e55dfa6875040e2ede}{commands}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ key[],\ \textcolor{keywordtype}{bool}\&\ mouse\_is\_down,\ \textcolor{keywordtype}{bool}\&\ mouse\_just\_released,\ \textcolor{keywordtype}{int}\ mouse\_update\_x,\ \textcolor{keywordtype}{int}\ mouse\_update\_y,\ \mbox{\hyperlink{structstates}{states}}\&\ state);\ \ \ \ \ \textcolor{comment}{//\ Método\ que\ processa\ os\ comandos\ }}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAchievements__Screen_aa73bc5eff9f750ac11647533e636f09b}{update}}();\ \ \ \ \ \ \textcolor{comment}{//\ Método\ que\ atualiza\ o\ estado\ dos\ objetos}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAchievements__Screen_a0551e58ddb6373bb0c9d0ab0361ea544}{draw}}();\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Método\ que\ desenha\ os\ objetos}}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

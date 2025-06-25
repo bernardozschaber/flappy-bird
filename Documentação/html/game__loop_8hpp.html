@@ -1,0 +1,1230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>pds2_projeto_final: Referência ao ficheiro include/game_loop.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">pds2_projeto_final
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('game__loop_8hpp.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referência ao ficheiro game_loop.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="game__object_8hpp_source.html">game_object.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="background__object_8hpp_source.html">background_object.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="pipe__object_8hpp_source.html">pipe_object.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="moving__button_8hpp_source.html">moving_button.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="bird__object_8hpp_source.html">bird_object.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="image_8hpp_source.html">image.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="score_8hpp_source.html">score.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="registration_8hpp_source.html">registration.hpp</a>&quot;</code><br />
+<code>#include &lt;allegro5/allegro_audio.h&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;random&gt;</code><br />
+</div>
+<p><a href="game__loop_8hpp_source.html">Ir para o código fonte deste ficheiro.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Componentes</h2></td></tr>
+<tr class="memitem:states" id="r_states"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstates.html">states</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estrutura que armazena informações sobre o estado do jogo.  <a href="structstates.html#details">Mais...</a><br /></td></tr>
+<tr class="memitem:Game_5FLoop" id="r_Game_5FLoop"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame__Loop.html">Game_Loop</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe que representa a tela de loop de gameplay.  <a href="classGame__Loop.html#details">Mais...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variáveis</h2></td></tr>
+<tr class="memitem:ae856fd9e9eb470b17346dba969a1cb48" id="r_ae856fd9e9eb470b17346dba969a1cb48"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae856fd9e9eb470b17346dba969a1cb48">ARIAL_FONT_FILEPATH</a></td></tr>
+<tr class="memdesc:ae856fd9e9eb470b17346dba969a1cb48"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho para a fonte arial  <br /></td></tr>
+<tr class="memitem:a5463d4d6fed515acd15da7816831672f" id="r_a5463d4d6fed515acd15da7816831672f"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5463d4d6fed515acd15da7816831672f">PSANS_FONT_FILEPATH</a></td></tr>
+<tr class="memdesc:a5463d4d6fed515acd15da7816831672f"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho para a fonte pixelify sans  <br /></td></tr>
+<tr class="memitem:a0d4c738f74169d87fa2947f556d5ef87" id="r_a0d4c738f74169d87fa2947f556d5ef87"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d4c738f74169d87fa2947f556d5ef87">BIRD_SPRITE</a> [6]</td></tr>
+<tr class="memdesc:a0d4c738f74169d87fa2947f556d5ef87"><td class="mdescLeft">&#160;</td><td class="mdescRight">bitmap do sprite do pássaro  <br /></td></tr>
+<tr class="memitem:a159d1f06c23f149aff29cb550e4d1595" id="r_a159d1f06c23f149aff29cb550e4d1595"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a159d1f06c23f149aff29cb550e4d1595">PIPE_SPRITE</a></td></tr>
+<tr class="memdesc:a159d1f06c23f149aff29cb550e4d1595"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite do cano  <br /></td></tr>
+<tr class="memitem:acb531bbbf72124dc6151437929ed2d0b" id="r_acb531bbbf72124dc6151437929ed2d0b"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb531bbbf72124dc6151437929ed2d0b">GOLDEN_PIPE_SPRITE</a></td></tr>
+<tr class="memdesc:acb531bbbf72124dc6151437929ed2d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite do cano dourado  <br /></td></tr>
+<tr class="memitem:a70c1a8f25b3c95275ab4cfce8bf2f061" id="r_a70c1a8f25b3c95275ab4cfce8bf2f061"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70c1a8f25b3c95275ab4cfce8bf2f061">MOUNTAIN_SPRITE_1</a></td></tr>
+<tr class="memdesc:a70c1a8f25b3c95275ab4cfce8bf2f061"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho das montanhas (da frente)  <br /></td></tr>
+<tr class="memitem:ac196aba7dcd73adb8b5a7a6e3660d975" id="r_ac196aba7dcd73adb8b5a7a6e3660d975"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac196aba7dcd73adb8b5a7a6e3660d975">MOUNTAIN_SPRITE_2</a></td></tr>
+<tr class="memdesc:ac196aba7dcd73adb8b5a7a6e3660d975"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho das montanhas (do meio)  <br /></td></tr>
+<tr class="memitem:ac6d8324b7d16ad75fa3ba4d3602d590d" id="r_ac6d8324b7d16ad75fa3ba4d3602d590d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6d8324b7d16ad75fa3ba4d3602d590d">MOUNTAIN_SPRITE_3</a></td></tr>
+<tr class="memdesc:ac6d8324b7d16ad75fa3ba4d3602d590d"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho das montanhas (de trás)  <br /></td></tr>
+<tr class="memitem:a2b2ab5e638eae34a700e507b028c1e9d" id="r_a2b2ab5e638eae34a700e507b028c1e9d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b2ab5e638eae34a700e507b028c1e9d">GRASS_SPRITE</a></td></tr>
+<tr class="memdesc:a2b2ab5e638eae34a700e507b028c1e9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho da grama  <br /></td></tr>
+<tr class="memitem:a7eaa3ebf328a26c5a5d7a0dfafb59604" id="r_a7eaa3ebf328a26c5a5d7a0dfafb59604"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7eaa3ebf328a26c5a5d7a0dfafb59604">ACHIEVEMENTS_BUTTON_SPRITE</a> [2]</td></tr>
+<tr class="memdesc:a7eaa3ebf328a26c5a5d7a0dfafb59604"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de conquistas  <br /></td></tr>
+<tr class="memitem:ac6f81fa926a1d78fb0a605ab57e19767" id="r_ac6f81fa926a1d78fb0a605ab57e19767"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6f81fa926a1d78fb0a605ab57e19767">BACK_BUTTON_SPRITE</a> [2]</td></tr>
+<tr class="memdesc:ac6f81fa926a1d78fb0a605ab57e19767"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de voltar  <br /></td></tr>
+<tr class="memitem:a5701a161d0bf9261d7e3a7df4e2535dc" id="r_a5701a161d0bf9261d7e3a7df4e2535dc"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5701a161d0bf9261d7e3a7df4e2535dc">SETTINGS_BUTTON_SPRITE</a> [2]</td></tr>
+<tr class="memdesc:a5701a161d0bf9261d7e3a7df4e2535dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de configurações  <br /></td></tr>
+<tr class="memitem:aac8971b3200129792a6888b2273ab7aa" id="r_aac8971b3200129792a6888b2273ab7aa"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac8971b3200129792a6888b2273ab7aa">INSTRUÇÕES_SPRITE</a></td></tr>
+<tr class="memdesc:aac8971b3200129792a6888b2273ab7aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho das instruções  <br /></td></tr>
+<tr class="memitem:a66c8cdd8d1373bae8688f0c62b0e31f9" id="r_a66c8cdd8d1373bae8688f0c62b0e31f9"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66c8cdd8d1373bae8688f0c62b0e31f9">SCORE_SPRITE</a></td></tr>
+<tr class="memdesc:a66c8cdd8d1373bae8688f0c62b0e31f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho da tela de morte  <br /></td></tr>
+<tr class="memitem:acdfcacf8bc9b742e55228ac3148d30bd" id="r_acdfcacf8bc9b742e55228ac3148d30bd"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdfcacf8bc9b742e55228ac3148d30bd">HOME_SPRITE</a> [2]</td></tr>
+<tr class="memdesc:acdfcacf8bc9b742e55228ac3148d30bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite de home  <br /></td></tr>
+<tr class="memitem:ab7468c58bfe25562161210e119133c6e" id="r_ab7468c58bfe25562161210e119133c6e"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7468c58bfe25562161210e119133c6e">BACKGROUND</a></td></tr>
+<tr class="memdesc:ab7468c58bfe25562161210e119133c6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite do fundo  <br /></td></tr>
+<tr class="memitem:aa7309b74fae45ad9ef8544103af0f7d6" id="r_aa7309b74fae45ad9ef8544103af0f7d6"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7309b74fae45ad9ef8544103af0f7d6">NUMBERS_SPRITES</a> [10]</td></tr>
+<tr class="memdesc:aa7309b74fae45ad9ef8544103af0f7d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho dos números  <br /></td></tr>
+<tr class="memitem:aa143a78a1ad7d02a92b0a146343f7b10" id="r_aa143a78a1ad7d02a92b0a146343f7b10"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa143a78a1ad7d02a92b0a146343f7b10">SOUND_BUTTON_SPRITE</a> [4]</td></tr>
+<tr class="memdesc:aa143a78a1ad7d02a92b0a146343f7b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de som ligado/desligado  <br /></td></tr>
+<tr class="memitem:adf8e461e3d53ef14cfd420014d244f13" id="r_adf8e461e3d53ef14cfd420014d244f13"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf8e461e3d53ef14cfd420014d244f13">PAUSE_BUTTON_SPRITE</a> [4]</td></tr>
+<tr class="memdesc:adf8e461e3d53ef14cfd420014d244f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de pause/despause  <br /></td></tr>
+<tr class="memitem:aefaf712a0749353cf25b79030a500e90" id="r_aefaf712a0749353cf25b79030a500e90"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefaf712a0749353cf25b79030a500e90">DEATH_SCREEN_FRAME</a></td></tr>
+<tr class="memdesc:aefaf712a0749353cf25b79030a500e90"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do frame da tela de morte  <br /></td></tr>
+<tr class="memitem:a15ebe5fcd600d0846f3b488e8d149aba" id="r_a15ebe5fcd600d0846f3b488e8d149aba"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15ebe5fcd600d0846f3b488e8d149aba">TRY_AGAIN_BUTTON_SPRITE</a> [2]</td></tr>
+<tr class="memdesc:a15ebe5fcd600d0846f3b488e8d149aba"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de tentar de novo  <br /></td></tr>
+<tr class="memitem:a57213da153dc322a0b6726cf2e6c31fa" id="r_a57213da153dc322a0b6726cf2e6c31fa"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57213da153dc322a0b6726cf2e6c31fa">SCORE_NOW</a></td></tr>
+<tr class="memdesc:a57213da153dc322a0b6726cf2e6c31fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite do score da jogatina  <br /></td></tr>
+<tr class="memitem:ae6ce26640bc52364d45ea732fea89f46" id="r_ae6ce26640bc52364d45ea732fea89f46"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6ce26640bc52364d45ea732fea89f46">MAX_SCORE</a></td></tr>
+<tr class="memdesc:ae6ce26640bc52364d45ea732fea89f46"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite do max score  <br /></td></tr>
+<tr class="memitem:a0ca859196c368e755571e925f594b364" id="r_a0ca859196c368e755571e925f594b364"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ca859196c368e755571e925f594b364">PAUSED</a></td></tr>
+<tr class="memdesc:a0ca859196c368e755571e925f594b364"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do sprite do texto de pause  <br /></td></tr>
+<tr class="memitem:a9397a6082fe4d7bd25c305eba2bd91a1" id="r_a9397a6082fe4d7bd25c305eba2bd91a1"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9397a6082fe4d7bd25c305eba2bd91a1">SCORE_BOX_1</a></td></tr>
+<tr class="memdesc:a9397a6082fe4d7bd25c305eba2bd91a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho da caixa de score  <br /></td></tr>
+<tr class="memitem:ad5273f9e682ca6ae904c73e3ff47ceed" id="r_ad5273f9e682ca6ae904c73e3ff47ceed"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5273f9e682ca6ae904c73e3ff47ceed">SCORE_BOX_2</a></td></tr>
+<tr class="memdesc:ad5273f9e682ca6ae904c73e3ff47ceed"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho da caixa de score  <br /></td></tr>
+<tr class="memitem:afb8a03ac3ad09a97371c38a0b4734cb1" id="r_afb8a03ac3ad09a97371c38a0b4734cb1"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb8a03ac3ad09a97371c38a0b4734cb1">STATISTICS_BUTTON_SPRITE</a> [2]</td></tr>
+<tr class="memdesc:afb8a03ac3ad09a97371c38a0b4734cb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">caminho do botão de achievements  <br /></td></tr>
+<tr class="memitem:a42c075b5e54349391d38c5d53c4eddde" id="r_a42c075b5e54349391d38c5d53c4eddde"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42c075b5e54349391d38c5d53c4eddde">SCREEN_H</a></td></tr>
+<tr class="memdesc:a42c075b5e54349391d38c5d53c4eddde"><td class="mdescLeft">&#160;</td><td class="mdescRight">altura da tela  <br /></td></tr>
+<tr class="memitem:afca0db9c0e472d6c9aefd3022751d0ba" id="r_afca0db9c0e472d6c9aefd3022751d0ba"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afca0db9c0e472d6c9aefd3022751d0ba">SCREEN_W</a></td></tr>
+<tr class="memdesc:afca0db9c0e472d6c9aefd3022751d0ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">comprimento da tela  <br /></td></tr>
+<tr class="memitem:a7ec33da8078befd2fa14476b0ad35852" id="r_a7ec33da8078befd2fa14476b0ad35852"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ec33da8078befd2fa14476b0ad35852">HEIGHT_REFFERENCE</a></td></tr>
+<tr class="memdesc:a7ec33da8078befd2fa14476b0ad35852"><td class="mdescLeft">&#160;</td><td class="mdescRight">altura de referência para spawn de objetos do cenário  <br /></td></tr>
+<tr class="memitem:a35ced579e7e8c3bb22c4265bc5bcf7b0" id="r_a35ced579e7e8c3bb22c4265bc5bcf7b0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35ced579e7e8c3bb22c4265bc5bcf7b0">random_offset</a></td></tr>
+<tr class="memdesc:a35ced579e7e8c3bb22c4265bc5bcf7b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset do cano a ser spawnado.  <br /></td></tr>
+<tr class="memitem:a025972eb75530e83c807d3df1a162e7d" id="r_a025972eb75530e83c807d3df1a162e7d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a025972eb75530e83c807d3df1a162e7d">golden_odds_setter</a></td></tr>
+<tr class="memdesc:a025972eb75530e83c807d3df1a162e7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Probabilidade de spawn de canos dourados.  <br /></td></tr>
+<tr class="memitem:ace63adf20ffbab0547d2f1a1c806181b" id="r_ace63adf20ffbab0547d2f1a1c806181b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace63adf20ffbab0547d2f1a1c806181b">gravity_setter</a></td></tr>
+<tr class="memdesc:ace63adf20ffbab0547d2f1a1c806181b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gravidade do jogo.  <br /></td></tr>
+<tr class="memitem:a8c5cd9b525ee73a24b1d9d8e34982d1c" id="r_a8c5cd9b525ee73a24b1d9d8e34982d1c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c5cd9b525ee73a24b1d9d8e34982d1c">score</a></td></tr>
+<tr class="memdesc:a8c5cd9b525ee73a24b1d9d8e34982d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classScore.html">Score</a> atual do jogo.  <br /></td></tr>
+<tr class="memitem:ad5ce61f736f9a2961945949de4531a54" id="r_ad5ce61f736f9a2961945949de4531a54"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5ce61f736f9a2961945949de4531a54">max_score</a></td></tr>
+<tr class="memdesc:ad5ce61f736f9a2961945949de4531a54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Melhor score do jogador logado.  <br /></td></tr>
+<tr class="memitem:a35c30f46e84633eaa7a7b3e6bf67c89a" id="r_a35c30f46e84633eaa7a7b3e6bf67c89a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35c30f46e84633eaa7a7b3e6bf67c89a">PIPE_SPACE</a></td></tr>
+<tr class="memdesc:a35c30f46e84633eaa7a7b3e6bf67c89a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Espaçamento entre os canos.  <br /></td></tr>
+<tr class="memitem:a6ec666cdcd59ec24f7a8b7f7f01fc283" id="r_a6ec666cdcd59ec24f7a8b7f7f01fc283"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ec666cdcd59ec24f7a8b7f7f01fc283">PIPE_INITIAL_SPEED</a></td></tr>
+<tr class="memdesc:a6ec666cdcd59ec24f7a8b7f7f01fc283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidade atual dos canos.  <br /></td></tr>
+<tr class="memitem:a1bac67ae9d699398178b533922253976" id="r_a1bac67ae9d699398178b533922253976"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bac67ae9d699398178b533922253976">PIPE_SPEED_MAX</a></td></tr>
+<tr class="memdesc:a1bac67ae9d699398178b533922253976"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidade máxima dos canos.  <br /></td></tr>
+<tr class="memitem:a600c80b1fb156bbf8fc270642a83cae4" id="r_a600c80b1fb156bbf8fc270642a83cae4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a600c80b1fb156bbf8fc270642a83cae4">PIPE_SPEED_INCREASE</a></td></tr>
+<tr class="memdesc:a600c80b1fb156bbf8fc270642a83cae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aumento da velocidade dos canos a cada 10 pontos.  <br /></td></tr>
+<tr class="memitem:a638a5de4abce9374e834ac6f361853ae" id="r_a638a5de4abce9374e834ac6f361853ae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a638a5de4abce9374e834ac6f361853ae">BIRD_JUMP_VEL</a></td></tr>
+<tr class="memdesc:a638a5de4abce9374e834ac6f361853ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidade do pulo do pássaro.  <br /></td></tr>
+<tr class="memitem:aae691e933a02744eeacd914b5636cbbf" id="r_aae691e933a02744eeacd914b5636cbbf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae691e933a02744eeacd914b5636cbbf">BIRD_MAX_UP_VEL</a></td></tr>
+<tr class="memdesc:aae691e933a02744eeacd914b5636cbbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidade máxima de subida do pássaro.  <br /></td></tr>
+<tr class="memitem:a7aec9d4a68371ef1bf524c838ea25a53" id="r_a7aec9d4a68371ef1bf524c838ea25a53"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7aec9d4a68371ef1bf524c838ea25a53">BIRD_MAX_DOWN_VEL</a></td></tr>
+<tr class="memdesc:a7aec9d4a68371ef1bf524c838ea25a53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Velocidade máxima de descida do pássaro.  <br /></td></tr>
+</table>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentação das variáveis</h2>
+<a id="a7eaa3ebf328a26c5a5d7a0dfafb59604" name="a7eaa3ebf328a26c5a5d7a0dfafb59604"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eaa3ebf328a26c5a5d7a0dfafb59604">&#9670;&#160;</a></span>ACHIEVEMENTS_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* ACHIEVEMENTS_BUTTON_SPRITE[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do botão de conquistas </p>
+
+</div>
+</div>
+<a id="ae856fd9e9eb470b17346dba969a1cb48" name="ae856fd9e9eb470b17346dba969a1cb48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae856fd9e9eb470b17346dba969a1cb48">&#9670;&#160;</a></span>ARIAL_FONT_FILEPATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* ARIAL_FONT_FILEPATH</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho para a fonte arial </p>
+
+</div>
+</div>
+<a id="ac6f81fa926a1d78fb0a605ab57e19767" name="ac6f81fa926a1d78fb0a605ab57e19767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6f81fa926a1d78fb0a605ab57e19767">&#9670;&#160;</a></span>BACK_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* BACK_BUTTON_SPRITE[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do botão de voltar </p>
+
+</div>
+</div>
+<a id="ab7468c58bfe25562161210e119133c6e" name="ab7468c58bfe25562161210e119133c6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7468c58bfe25562161210e119133c6e">&#9670;&#160;</a></span>BACKGROUND</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* BACKGROUND</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do sprite do fundo </p>
+
+</div>
+</div>
+<a id="a638a5de4abce9374e834ac6f361853ae" name="a638a5de4abce9374e834ac6f361853ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a638a5de4abce9374e834ac6f361853ae">&#9670;&#160;</a></span>BIRD_JUMP_VEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BIRD_JUMP_VEL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Velocidade do pulo do pássaro. </p>
+
+</div>
+</div>
+<a id="a7aec9d4a68371ef1bf524c838ea25a53" name="a7aec9d4a68371ef1bf524c838ea25a53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aec9d4a68371ef1bf524c838ea25a53">&#9670;&#160;</a></span>BIRD_MAX_DOWN_VEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BIRD_MAX_DOWN_VEL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Velocidade máxima de descida do pássaro. </p>
+
+</div>
+</div>
+<a id="aae691e933a02744eeacd914b5636cbbf" name="aae691e933a02744eeacd914b5636cbbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae691e933a02744eeacd914b5636cbbf">&#9670;&#160;</a></span>BIRD_MAX_UP_VEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BIRD_MAX_UP_VEL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Velocidade máxima de subida do pássaro. </p>
+
+</div>
+</div>
+<a id="a0d4c738f74169d87fa2947f556d5ef87" name="a0d4c738f74169d87fa2947f556d5ef87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d4c738f74169d87fa2947f556d5ef87">&#9670;&#160;</a></span>BIRD_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* BIRD_SPRITE[6]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>bitmap do sprite do pássaro </p>
+
+</div>
+</div>
+<a id="aefaf712a0749353cf25b79030a500e90" name="aefaf712a0749353cf25b79030a500e90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefaf712a0749353cf25b79030a500e90">&#9670;&#160;</a></span>DEATH_SCREEN_FRAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* DEATH_SCREEN_FRAME</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do frame da tela de morte </p>
+
+</div>
+</div>
+<a id="a025972eb75530e83c807d3df1a162e7d" name="a025972eb75530e83c807d3df1a162e7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a025972eb75530e83c807d3df1a162e7d">&#9670;&#160;</a></span>golden_odds_setter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float golden_odds_setter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Probabilidade de spawn de canos dourados. </p>
+
+</div>
+</div>
+<a id="acb531bbbf72124dc6151437929ed2d0b" name="acb531bbbf72124dc6151437929ed2d0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb531bbbf72124dc6151437929ed2d0b">&#9670;&#160;</a></span>GOLDEN_PIPE_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* GOLDEN_PIPE_SPRITE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do sprite do cano dourado </p>
+
+</div>
+</div>
+<a id="a2b2ab5e638eae34a700e507b028c1e9d" name="a2b2ab5e638eae34a700e507b028c1e9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b2ab5e638eae34a700e507b028c1e9d">&#9670;&#160;</a></span>GRASS_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* GRASS_SPRITE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho da grama </p>
+
+</div>
+</div>
+<a id="ace63adf20ffbab0547d2f1a1c806181b" name="ace63adf20ffbab0547d2f1a1c806181b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace63adf20ffbab0547d2f1a1c806181b">&#9670;&#160;</a></span>gravity_setter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float gravity_setter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gravidade do jogo. </p>
+
+</div>
+</div>
+<a id="a7ec33da8078befd2fa14476b0ad35852" name="a7ec33da8078befd2fa14476b0ad35852"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ec33da8078befd2fa14476b0ad35852">&#9670;&#160;</a></span>HEIGHT_REFFERENCE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HEIGHT_REFFERENCE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>altura de referência para spawn de objetos do cenário </p>
+<p>VARIÁVEIS EXTRAS </p>
+
+</div>
+</div>
+<a id="acdfcacf8bc9b742e55228ac3148d30bd" name="acdfcacf8bc9b742e55228ac3148d30bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdfcacf8bc9b742e55228ac3148d30bd">&#9670;&#160;</a></span>HOME_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* HOME_SPRITE[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do sprite de home </p>
+
+</div>
+</div>
+<a id="aac8971b3200129792a6888b2273ab7aa" name="aac8971b3200129792a6888b2273ab7aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac8971b3200129792a6888b2273ab7aa">&#9670;&#160;</a></span>INSTRUÇÕES_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* INSTRUÇÕES_SPRITE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho das instruções </p>
+
+</div>
+</div>
+<a id="ae6ce26640bc52364d45ea732fea89f46" name="ae6ce26640bc52364d45ea732fea89f46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ce26640bc52364d45ea732fea89f46">&#9670;&#160;</a></span>MAX_SCORE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* MAX_SCORE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do sprite do max score </p>
+
+</div>
+</div>
+<a id="ad5ce61f736f9a2961945949de4531a54" name="ad5ce61f736f9a2961945949de4531a54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5ce61f736f9a2961945949de4531a54">&#9670;&#160;</a></span>max_score</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float max_score</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Melhor score do jogador logado. </p>
+
+</div>
+</div>
+<a id="a70c1a8f25b3c95275ab4cfce8bf2f061" name="a70c1a8f25b3c95275ab4cfce8bf2f061"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70c1a8f25b3c95275ab4cfce8bf2f061">&#9670;&#160;</a></span>MOUNTAIN_SPRITE_1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* MOUNTAIN_SPRITE_1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho das montanhas (da frente) </p>
+
+</div>
+</div>
+<a id="ac196aba7dcd73adb8b5a7a6e3660d975" name="ac196aba7dcd73adb8b5a7a6e3660d975"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac196aba7dcd73adb8b5a7a6e3660d975">&#9670;&#160;</a></span>MOUNTAIN_SPRITE_2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* MOUNTAIN_SPRITE_2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho das montanhas (do meio) </p>
+
+</div>
+</div>
+<a id="ac6d8324b7d16ad75fa3ba4d3602d590d" name="ac6d8324b7d16ad75fa3ba4d3602d590d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6d8324b7d16ad75fa3ba4d3602d590d">&#9670;&#160;</a></span>MOUNTAIN_SPRITE_3</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* MOUNTAIN_SPRITE_3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho das montanhas (de trás) </p>
+
+</div>
+</div>
+<a id="aa7309b74fae45ad9ef8544103af0f7d6" name="aa7309b74fae45ad9ef8544103af0f7d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7309b74fae45ad9ef8544103af0f7d6">&#9670;&#160;</a></span>NUMBERS_SPRITES</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* NUMBERS_SPRITES[10]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho dos números </p>
+
+</div>
+</div>
+<a id="adf8e461e3d53ef14cfd420014d244f13" name="adf8e461e3d53ef14cfd420014d244f13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf8e461e3d53ef14cfd420014d244f13">&#9670;&#160;</a></span>PAUSE_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* PAUSE_BUTTON_SPRITE[4]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do botão de pause/despause </p>
+
+</div>
+</div>
+<a id="a0ca859196c368e755571e925f594b364" name="a0ca859196c368e755571e925f594b364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ca859196c368e755571e925f594b364">&#9670;&#160;</a></span>PAUSED</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* PAUSED</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do sprite do texto de pause </p>
+
+</div>
+</div>
+<a id="a6ec666cdcd59ec24f7a8b7f7f01fc283" name="a6ec666cdcd59ec24f7a8b7f7f01fc283"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ec666cdcd59ec24f7a8b7f7f01fc283">&#9670;&#160;</a></span>PIPE_INITIAL_SPEED</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PIPE_INITIAL_SPEED</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Velocidade atual dos canos. </p>
+
+</div>
+</div>
+<a id="a35c30f46e84633eaa7a7b3e6bf67c89a" name="a35c30f46e84633eaa7a7b3e6bf67c89a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35c30f46e84633eaa7a7b3e6bf67c89a">&#9670;&#160;</a></span>PIPE_SPACE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PIPE_SPACE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Espaçamento entre os canos. </p>
+
+</div>
+</div>
+<a id="a600c80b1fb156bbf8fc270642a83cae4" name="a600c80b1fb156bbf8fc270642a83cae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a600c80b1fb156bbf8fc270642a83cae4">&#9670;&#160;</a></span>PIPE_SPEED_INCREASE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PIPE_SPEED_INCREASE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Aumento da velocidade dos canos a cada 10 pontos. </p>
+
+</div>
+</div>
+<a id="a1bac67ae9d699398178b533922253976" name="a1bac67ae9d699398178b533922253976"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bac67ae9d699398178b533922253976">&#9670;&#160;</a></span>PIPE_SPEED_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PIPE_SPEED_MAX</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Velocidade máxima dos canos. </p>
+
+</div>
+</div>
+<a id="a159d1f06c23f149aff29cb550e4d1595" name="a159d1f06c23f149aff29cb550e4d1595"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a159d1f06c23f149aff29cb550e4d1595">&#9670;&#160;</a></span>PIPE_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* PIPE_SPRITE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do sprite do cano </p>
+
+</div>
+</div>
+<a id="a5463d4d6fed515acd15da7816831672f" name="a5463d4d6fed515acd15da7816831672f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5463d4d6fed515acd15da7816831672f">&#9670;&#160;</a></span>PSANS_FONT_FILEPATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* PSANS_FONT_FILEPATH</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho para a fonte pixelify sans </p>
+
+</div>
+</div>
+<a id="a35ced579e7e8c3bb22c4265bc5bcf7b0" name="a35ced579e7e8c3bb22c4265bc5bcf7b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35ced579e7e8c3bb22c4265bc5bcf7b0">&#9670;&#160;</a></span>random_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int random_offset</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Offset do cano a ser spawnado. </p>
+
+</div>
+</div>
+<a id="a8c5cd9b525ee73a24b1d9d8e34982d1c" name="a8c5cd9b525ee73a24b1d9d8e34982d1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c5cd9b525ee73a24b1d9d8e34982d1c">&#9670;&#160;</a></span>score</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float score</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classScore.html">Score</a> atual do jogo. </p>
+
+</div>
+</div>
+<a id="a9397a6082fe4d7bd25c305eba2bd91a1" name="a9397a6082fe4d7bd25c305eba2bd91a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9397a6082fe4d7bd25c305eba2bd91a1">&#9670;&#160;</a></span>SCORE_BOX_1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SCORE_BOX_1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho da caixa de score </p>
+
+</div>
+</div>
+<a id="ad5273f9e682ca6ae904c73e3ff47ceed" name="ad5273f9e682ca6ae904c73e3ff47ceed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5273f9e682ca6ae904c73e3ff47ceed">&#9670;&#160;</a></span>SCORE_BOX_2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SCORE_BOX_2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho da caixa de score </p>
+
+</div>
+</div>
+<a id="a57213da153dc322a0b6726cf2e6c31fa" name="a57213da153dc322a0b6726cf2e6c31fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57213da153dc322a0b6726cf2e6c31fa">&#9670;&#160;</a></span>SCORE_NOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SCORE_NOW</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do sprite do score da jogatina </p>
+
+</div>
+</div>
+<a id="a66c8cdd8d1373bae8688f0c62b0e31f9" name="a66c8cdd8d1373bae8688f0c62b0e31f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66c8cdd8d1373bae8688f0c62b0e31f9">&#9670;&#160;</a></span>SCORE_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SCORE_SPRITE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho da tela de morte </p>
+
+</div>
+</div>
+<a id="a42c075b5e54349391d38c5d53c4eddde" name="a42c075b5e54349391d38c5d53c4eddde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42c075b5e54349391d38c5d53c4eddde">&#9670;&#160;</a></span>SCREEN_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int SCREEN_H</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>altura da tela </p>
+
+</div>
+</div>
+<a id="afca0db9c0e472d6c9aefd3022751d0ba" name="afca0db9c0e472d6c9aefd3022751d0ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afca0db9c0e472d6c9aefd3022751d0ba">&#9670;&#160;</a></span>SCREEN_W</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int SCREEN_W</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>comprimento da tela </p>
+
+</div>
+</div>
+<a id="a5701a161d0bf9261d7e3a7df4e2535dc" name="a5701a161d0bf9261d7e3a7df4e2535dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5701a161d0bf9261d7e3a7df4e2535dc">&#9670;&#160;</a></span>SETTINGS_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SETTINGS_BUTTON_SPRITE[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do botão de configurações </p>
+
+</div>
+</div>
+<a id="aa143a78a1ad7d02a92b0a146343f7b10" name="aa143a78a1ad7d02a92b0a146343f7b10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa143a78a1ad7d02a92b0a146343f7b10">&#9670;&#160;</a></span>SOUND_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* SOUND_BUTTON_SPRITE[4]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do botão de som ligado/desligado </p>
+
+</div>
+</div>
+<a id="afb8a03ac3ad09a97371c38a0b4734cb1" name="afb8a03ac3ad09a97371c38a0b4734cb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb8a03ac3ad09a97371c38a0b4734cb1">&#9670;&#160;</a></span>STATISTICS_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* STATISTICS_BUTTON_SPRITE[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do botão de achievements </p>
+
+</div>
+</div>
+<a id="a15ebe5fcd600d0846f3b488e8d149aba" name="a15ebe5fcd600d0846f3b488e8d149aba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15ebe5fcd600d0846f3b488e8d149aba">&#9670;&#160;</a></span>TRY_AGAIN_BUTTON_SPRITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* TRY_AGAIN_BUTTON_SPRITE[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>caminho do botão de tentar de novo </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="game__loop_8hpp.html">game_loop.hpp</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

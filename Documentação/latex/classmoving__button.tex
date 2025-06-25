@@ -1,0 +1,302 @@
+\doxysection{Referência à classe moving\+\_\+button}
+\hypertarget{classmoving__button}{}\label{classmoving__button}\index{moving\_button@{moving\_button}}
+
+
+Classe que representa um botão que se pode se mover na tela\+: Herda da classe genérica de objetos de UI.  
+
+
+
+
+{\ttfamily \#include $<$moving\+\_\+button.\+hpp$>$}
+
+Diagrama de heranças da classe moving\+\_\+button\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classmoving__button}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmoving__button_ade5cd3e393b566bad48728c8ae54b959}{moving\+\_\+button}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}, float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}, ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}Bitmap)
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{classmoving__button}{moving\+\_\+button}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmoving__button_a4c68628993f89d4dd02c94145421f948}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Desenha o botão na tela. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmoving__button_ac750787bb4c4758e654d1305f08e7cab}{draw}} (float scale)
+\begin{DoxyCompactList}\small\item\em Desenha o botão na tela com escala. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmoving__button_acfa977ed2a006b6a8c05bd4414fb71e8}{set\+\_\+velocity}} (float vx, float vy)
+\begin{DoxyCompactList}\small\item\em Seta uma nova velocidade para o botão. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmoving__button_a2eded2c03c362c9e9ecc057f3e31c05f}{set\+\_\+acceleration}} (float ax, float ay)
+\begin{DoxyCompactList}\small\item\em Seta uma nova aceleração para o botão. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classmoving__button_af3412b3c13681554e01a367a09a9d560}{get\+\_\+velocity\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a velocidade vertical do botão. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classmoving__button_a41aa2a5e3847948c9dd73378e1073879}{get\+\_\+velocity\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Retorna a velocidade horizontal do botão. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmoving__button_a81b25bfed75b41d4823a47e7530d9de0}{set\+\_\+bitmap}} (ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}bitmap)
+\begin{DoxyCompactList}\small\item\em Seta o bitmap do botão. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmoving__button_ab446c8bf94add297b810f45e49b09b2e}{contains\+\_\+click}} (float mouse\+\_\+x, float mouse\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Verifica se o botão contém um clique do mouse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmoving__button_a13b0a0767adcd3cecacdb6001e615b47}{set\+\_\+pressed}} (bool pressed)
+\begin{DoxyCompactList}\small\item\em Seta o botão como apertado ou não. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmoving__button_ace1f14899172b8f4303d36968deb62e3}{is\+\_\+pressed}} ()
+\begin{DoxyCompactList}\small\item\em Retorna se o botão está sendo pressionado. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmoving__button_a62ef119f7022406776f6f3ff7b35cbb2}{Update}} ()
+\begin{DoxyCompactList}\small\item\em Atualiza a posição do botão com base na velocidade e aceleração. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmoving__button_a25224dace0ff4d9f9b793e902d7a054a}{handle\+\_\+event}} (const ALLEGRO\+\_\+\+EVENT \&ev)
+\begin{DoxyCompactList}\small\item\em Não faz nada, mas precisa estar definido por causa da herança. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmoving__button_ae6c469eed97559dff234996f1f973edc}{draw}} (ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}font)
+\begin{DoxyCompactList}\small\item\em Não faz nada, mas precisa estar definido por causa da herança. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Membros públicos herdados de \mbox{\hyperlink{classui__object}{ui\+\_\+object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classui__object_a8e48c858fc29ec57df399ed268694e2a}{ui\+\_\+object}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}, float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}, int \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}}, int \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}})
+\begin{DoxyCompactList}\small\item\em Construtor genêrico de objetos de UI. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_af92b7c5ebcdc42b2bad45b95a36dbf50}{get\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Get para a coordenada x. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_a2c389711da7495d7ddbd3d737e58d252}{get\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Get para a coordenada y. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_aad941a2d7673057e07ea04009b4b2781}{get\+\_\+width}} ()
+\begin{DoxyCompactList}\small\item\em Get para a largura. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_a1f604114f5d5f9430a3ed33da16a66f5}{get\+\_\+height}} ()
+\begin{DoxyCompactList}\small\item\em Get para a altura. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classui__object_ab680ce54233178efb0a9d712253f04bb}{set\+\_\+x}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}})
+\begin{DoxyCompactList}\small\item\em Set para a coordenada x. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classui__object_a8a97830ba3ada2f8a288b6ad5f0d2c38}{set\+\_\+y}} (float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}})
+\begin{DoxyCompactList}\small\item\em Set para a coordenada y. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classui__object_a819037b1a21fcc0bef890c66f155bdf0}{contains}} (int mx, int my) const
+\begin{DoxyCompactList}\small\item\em Verifica se o mouse está em cima do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Outros membros herdados}
+\doxysubsection*{Atributos Protegidos herdados de \mbox{\hyperlink{classui__object}{ui\+\_\+object}}}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}
+\begin{DoxyCompactList}\small\item\em Coordenada x do inicio da área do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}
+\begin{DoxyCompactList}\small\item\em Coordenada y do inicio da área do objeto. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}}
+\begin{DoxyCompactList}\small\item\em Largura do objeto. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}}
+\begin{DoxyCompactList}\small\item\em Altura do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe que representa um botão que se pode se mover na tela\+: Herda da classe genérica de objetos de UI. 
+
+Os botões processam cliques do mouse, se estiver dentro de sua área. 
+
+\label{doc-constructors}
+\Hypertarget{classmoving__button_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classmoving__button_ade5cd3e393b566bad48728c8ae54b959}\index{moving\_button@{moving\_button}!moving\_button@{moving\_button}}
+\index{moving\_button@{moving\_button}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{moving\_button()}{moving\_button()}}
+{\footnotesize\ttfamily \label{classmoving__button_ade5cd3e393b566bad48728c8ae54b959} 
+moving\+\_\+button\+::moving\+\_\+button (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{y}{, }\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{Bitmap}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{classmoving__button}{moving\+\_\+button}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em x} & Posição X do botão \\
+\hline
+{\em y} & Posição Y do botão \\
+\hline
+{\em Bitmap} & Bitmap(sprite) do botão \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classmoving__button_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classmoving__button_ab446c8bf94add297b810f45e49b09b2e}\index{moving\_button@{moving\_button}!contains\_click@{contains\_click}}
+\index{contains\_click@{contains\_click}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{contains\_click()}{contains\_click()}}
+{\footnotesize\ttfamily \label{classmoving__button_ab446c8bf94add297b810f45e49b09b2e} 
+bool moving\+\_\+button\+::contains\+\_\+click (\begin{DoxyParamCaption}\item[{float}]{mouse\+\_\+x}{, }\item[{float}]{mouse\+\_\+y}{}\end{DoxyParamCaption})}
+
+
+
+Verifica se o botão contém um clique do mouse. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em mouse\+\_\+x} & Posição X do mouse \\
+\hline
+{\em mouse\+\_\+y} & Posição Y do mouse \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classmoving__button_a4c68628993f89d4dd02c94145421f948}\index{moving\_button@{moving\_button}!draw@{draw}}
+\index{draw@{draw}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classmoving__button_a4c68628993f89d4dd02c94145421f948} 
+void moving\+\_\+button\+::draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Desenha o botão na tela. 
+
+\Hypertarget{classmoving__button_ae6c469eed97559dff234996f1f973edc}\index{moving\_button@{moving\_button}!draw@{draw}}
+\index{draw@{draw}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classmoving__button_ae6c469eed97559dff234996f1f973edc} 
+void moving\+\_\+button\+::draw (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}}]{font}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Não faz nada, mas precisa estar definido por causa da herança. 
+
+
+
+Implementa \mbox{\hyperlink{classui__object_ac0ef8445a32b5e0b594f839ecc9b991c}{ui\+\_\+object}}.
+
+\Hypertarget{classmoving__button_ac750787bb4c4758e654d1305f08e7cab}\index{moving\_button@{moving\_button}!draw@{draw}}
+\index{draw@{draw}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classmoving__button_ac750787bb4c4758e654d1305f08e7cab} 
+void moving\+\_\+button\+::draw (\begin{DoxyParamCaption}\item[{float}]{scale}{}\end{DoxyParamCaption})}
+
+
+
+Desenha o botão na tela com escala. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em scale} & Fator de escala para desenhar o botão \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classmoving__button_a41aa2a5e3847948c9dd73378e1073879}\index{moving\_button@{moving\_button}!get\_velocity\_x@{get\_velocity\_x}}
+\index{get\_velocity\_x@{get\_velocity\_x}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{get\_velocity\_x()}{get\_velocity\_x()}}
+{\footnotesize\ttfamily \label{classmoving__button_a41aa2a5e3847948c9dd73378e1073879} 
+float moving\+\_\+button\+::get\+\_\+velocity\+\_\+x (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a velocidade horizontal do botão. 
+
+\begin{DoxyReturn}{Retorna}
+Velocidade horizontal do botão 
+\end{DoxyReturn}
+\Hypertarget{classmoving__button_af3412b3c13681554e01a367a09a9d560}\index{moving\_button@{moving\_button}!get\_velocity\_y@{get\_velocity\_y}}
+\index{get\_velocity\_y@{get\_velocity\_y}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{get\_velocity\_y()}{get\_velocity\_y()}}
+{\footnotesize\ttfamily \label{classmoving__button_af3412b3c13681554e01a367a09a9d560} 
+float moving\+\_\+button\+::get\+\_\+velocity\+\_\+y (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna a velocidade vertical do botão. 
+
+\begin{DoxyReturn}{Retorna}
+Velocidade vertical do botão 
+\end{DoxyReturn}
+\Hypertarget{classmoving__button_a25224dace0ff4d9f9b793e902d7a054a}\index{moving\_button@{moving\_button}!handle\_event@{handle\_event}}
+\index{handle\_event@{handle\_event}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{handle\_event()}{handle\_event()}}
+{\footnotesize\ttfamily \label{classmoving__button_a25224dace0ff4d9f9b793e902d7a054a} 
+void moving\+\_\+button\+::handle\+\_\+event (\begin{DoxyParamCaption}\item[{const ALLEGRO\+\_\+\+EVENT \&}]{ev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Não faz nada, mas precisa estar definido por causa da herança. 
+
+
+
+Implementa \mbox{\hyperlink{classui__object_a109a266a6688a36a7a80af513af6aa3a}{ui\+\_\+object}}.
+
+\Hypertarget{classmoving__button_ace1f14899172b8f4303d36968deb62e3}\index{moving\_button@{moving\_button}!is\_pressed@{is\_pressed}}
+\index{is\_pressed@{is\_pressed}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{is\_pressed()}{is\_pressed()}}
+{\footnotesize\ttfamily \label{classmoving__button_ace1f14899172b8f4303d36968deb62e3} 
+bool moving\+\_\+button\+::is\+\_\+pressed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna se o botão está sendo pressionado. 
+
+\begin{DoxyReturn}{Retorna}
+True caso esteja sendo pressionado, false caso contrário 
+\end{DoxyReturn}
+\Hypertarget{classmoving__button_a2eded2c03c362c9e9ecc057f3e31c05f}\index{moving\_button@{moving\_button}!set\_acceleration@{set\_acceleration}}
+\index{set\_acceleration@{set\_acceleration}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{set\_acceleration()}{set\_acceleration()}}
+{\footnotesize\ttfamily \label{classmoving__button_a2eded2c03c362c9e9ecc057f3e31c05f} 
+void moving\+\_\+button\+::set\+\_\+acceleration (\begin{DoxyParamCaption}\item[{float}]{ax}{, }\item[{float}]{ay}{}\end{DoxyParamCaption})}
+
+
+
+Seta uma nova aceleração para o botão. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ax} & Aceleração horizontal do botão \\
+\hline
+{\em ay} & Aceleração vertical do botão \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classmoving__button_a81b25bfed75b41d4823a47e7530d9de0}\index{moving\_button@{moving\_button}!set\_bitmap@{set\_bitmap}}
+\index{set\_bitmap@{set\_bitmap}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{set\_bitmap()}{set\_bitmap()}}
+{\footnotesize\ttfamily \label{classmoving__button_a81b25bfed75b41d4823a47e7530d9de0} 
+void moving\+\_\+button\+::set\+\_\+bitmap (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{bitmap}{}\end{DoxyParamCaption})}
+
+
+
+Seta o bitmap do botão. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em bitmap} & Bitmap(sprite) do botão \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classmoving__button_a13b0a0767adcd3cecacdb6001e615b47}\index{moving\_button@{moving\_button}!set\_pressed@{set\_pressed}}
+\index{set\_pressed@{set\_pressed}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{set\_pressed()}{set\_pressed()}}
+{\footnotesize\ttfamily \label{classmoving__button_a13b0a0767adcd3cecacdb6001e615b47} 
+void moving\+\_\+button\+::set\+\_\+pressed (\begin{DoxyParamCaption}\item[{bool}]{pressed}{}\end{DoxyParamCaption})}
+
+
+
+Seta o botão como apertado ou não. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em pressed} & True caso queira que o botão esteja pressionado, false caso contrário \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classmoving__button_acfa977ed2a006b6a8c05bd4414fb71e8}\index{moving\_button@{moving\_button}!set\_velocity@{set\_velocity}}
+\index{set\_velocity@{set\_velocity}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{set\_velocity()}{set\_velocity()}}
+{\footnotesize\ttfamily \label{classmoving__button_acfa977ed2a006b6a8c05bd4414fb71e8} 
+void moving\+\_\+button\+::set\+\_\+velocity (\begin{DoxyParamCaption}\item[{float}]{vx}{, }\item[{float}]{vy}{}\end{DoxyParamCaption})}
+
+
+
+Seta uma nova velocidade para o botão. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em vx} & Velocidade horizontal do botão \\
+\hline
+{\em vy} & Velocidade vertical do botão \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classmoving__button_a62ef119f7022406776f6f3ff7b35cbb2}\index{moving\_button@{moving\_button}!Update@{Update}}
+\index{Update@{Update}!moving\_button@{moving\_button}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{classmoving__button_a62ef119f7022406776f6f3ff7b35cbb2} 
+void moving\+\_\+button\+::\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza a posição do botão com base na velocidade e aceleração. 
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{moving__button_8hpp}{moving\+\_\+button.\+hpp}}\item 
+src/\mbox{\hyperlink{moving__button_8cpp}{moving\+\_\+button.\+cpp}}\end{DoxyCompactItemize}

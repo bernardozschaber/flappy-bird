@@ -1,0 +1,239 @@
+\doxysection{Referência à classe text\+\_\+box}
+\hypertarget{classtext__box}{}\label{classtext__box}\index{text\_box@{text\_box}}
+
+
+Classe que representa caixas de texto do menu\+: Herda da classe genêrica de objetos de UI.  
+
+
+
+
+{\ttfamily \#include $<$text\+\_\+box.\+hpp$>$}
+
+Diagrama de heranças da classe text\+\_\+box\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtext__box}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtext__box_a3085a2b186a97ca099325c304820b7dd}{text\+\_\+box}} (int \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}, int \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}, int \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}}, int \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}}, int max\+\_\+length, ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}key\+\_\+s)
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa uma caixa de texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtext__box_aa2a47801b82bb5e2ee44094b031af169}{set\+\_\+mask}} (bool mask\+\_\+enabled)
+\begin{DoxyCompactList}\small\item\em Ativa/\+Desativa máscara de caracteres (para senhas) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtext__box_a291d4894ec3908ef503e9bbbe94eef1f}{set\+\_\+active}} (bool active)
+\begin{DoxyCompactList}\small\item\em Define se a caixa de texto está ativa. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classtext__box_a1f53f91d98ae9f82c6558ba5b5066e07}{is\+\_\+active\+\_\+box}} () const
+\begin{DoxyCompactList}\small\item\em Indica o estado de ativação da caixa. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtext__box_a08f94eff214fa1be3987199ec1d250df}{handle\+\_\+event}} (const ALLEGRO\+\_\+\+EVENT \&ev) override
+\begin{DoxyCompactList}\small\item\em Processa apenas eventos relevantes (quando ativo) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtext__box_a0d71edd728a87cd723757548aa32f195}{draw}} (ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}font) override
+\begin{DoxyCompactList}\small\item\em Desenha a caixa e seu texto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtext__box_ae8c3d7e4e348acf571b629dd44053720}{set\+\_\+text}} (const std\+::string \&t)
+\begin{DoxyCompactList}\small\item\em Seta o texto da caixa. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classtext__box_a55606a361eba9e191f6aeea1656e00fa}{get\+\_\+text}} () const
+\begin{DoxyCompactList}\small\item\em Get do texto da caixa. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtext__box_a446a3583e84b17098ffc5a93730c78e8}{set\+\_\+sample}} (ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}s)
+\begin{DoxyCompactList}\small\item\em Seta o efeito sonoro (controlado pelo \doxylink{classmenu__audio}{menu\+\_\+audio}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Membros públicos herdados de \mbox{\hyperlink{classui__object}{ui\+\_\+object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classui__object_a8e48c858fc29ec57df399ed268694e2a}{ui\+\_\+object}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}, float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}, int \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}}, int \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}})
+\begin{DoxyCompactList}\small\item\em Construtor genêrico de objetos de UI. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_af92b7c5ebcdc42b2bad45b95a36dbf50}{get\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Get para a coordenada x. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_a2c389711da7495d7ddbd3d737e58d252}{get\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Get para a coordenada y. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_aad941a2d7673057e07ea04009b4b2781}{get\+\_\+width}} ()
+\begin{DoxyCompactList}\small\item\em Get para a largura. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_a1f604114f5d5f9430a3ed33da16a66f5}{get\+\_\+height}} ()
+\begin{DoxyCompactList}\small\item\em Get para a altura. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classui__object_ab680ce54233178efb0a9d712253f04bb}{set\+\_\+x}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}})
+\begin{DoxyCompactList}\small\item\em Set para a coordenada x. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classui__object_a8a97830ba3ada2f8a288b6ad5f0d2c38}{set\+\_\+y}} (float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}})
+\begin{DoxyCompactList}\small\item\em Set para a coordenada y. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classui__object_a819037b1a21fcc0bef890c66f155bdf0}{contains}} (int mx, int my) const
+\begin{DoxyCompactList}\small\item\em Verifica se o mouse está em cima do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Outros membros herdados}
+\doxysubsection*{Atributos Protegidos herdados de \mbox{\hyperlink{classui__object}{ui\+\_\+object}}}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}
+\begin{DoxyCompactList}\small\item\em Coordenada x do inicio da área do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}
+\begin{DoxyCompactList}\small\item\em Coordenada y do inicio da área do objeto. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}}
+\begin{DoxyCompactList}\small\item\em Largura do objeto. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}}
+\begin{DoxyCompactList}\small\item\em Altura do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe que representa caixas de texto do menu\+: Herda da classe genêrica de objetos de UI. 
+
+Caixas de texto se ativam conforme cliques do mouse e processam teclas digitadas, se ativas. 
+
+\label{doc-constructors}
+\Hypertarget{classtext__box_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classtext__box_a3085a2b186a97ca099325c304820b7dd}\index{text\_box@{text\_box}!text\_box@{text\_box}}
+\index{text\_box@{text\_box}!text\_box@{text\_box}}
+\doxysubsubsection{\texorpdfstring{text\_box()}{text\_box()}}
+{\footnotesize\ttfamily \label{classtext__box_a3085a2b186a97ca099325c304820b7dd} 
+text\+\_\+box\+::text\+\_\+box (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{, }\item[{int}]{width}{, }\item[{int}]{height}{, }\item[{int}]{max\+\_\+length}{, }\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{key\+\_\+s}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que inicializa uma caixa de texto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em x} & Coordenada x que inicia a área da caixa \\
+\hline
+{\em y} & Coordenada y que inicia a área da caixa \\
+\hline
+{\em width} & Largura da caixa \\
+\hline
+{\em height} & Altura da caixa \\
+\hline
+{\em max\+\_\+length} & Quantidade máxima de caracteres aceitos na caixa \\
+\hline
+{\em key\+\_\+s} & Efeito sonoro de digitar na caixa \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classtext__box_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classtext__box_a0d71edd728a87cd723757548aa32f195}\index{text\_box@{text\_box}!draw@{draw}}
+\index{draw@{draw}!text\_box@{text\_box}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classtext__box_a0d71edd728a87cd723757548aa32f195} 
+void text\+\_\+box\+::draw (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}}]{font}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Desenha a caixa e seu texto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em font} & Fonte utilizada no texto \\
+\hline
+\end{DoxyParams}
+
+
+Implementa \mbox{\hyperlink{classui__object_ac0ef8445a32b5e0b594f839ecc9b991c}{ui\+\_\+object}}.
+
+\Hypertarget{classtext__box_a55606a361eba9e191f6aeea1656e00fa}\index{text\_box@{text\_box}!get\_text@{get\_text}}
+\index{get\_text@{get\_text}!text\_box@{text\_box}}
+\doxysubsubsection{\texorpdfstring{get\_text()}{get\_text()}}
+{\footnotesize\ttfamily \label{classtext__box_a55606a361eba9e191f6aeea1656e00fa} 
+std\+::string text\+\_\+box\+::get\+\_\+text (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get do texto da caixa. 
+
+\begin{DoxyReturn}{Retorna}
+Texto da caixa 
+\end{DoxyReturn}
+\Hypertarget{classtext__box_a08f94eff214fa1be3987199ec1d250df}\index{text\_box@{text\_box}!handle\_event@{handle\_event}}
+\index{handle\_event@{handle\_event}!text\_box@{text\_box}}
+\doxysubsubsection{\texorpdfstring{handle\_event()}{handle\_event()}}
+{\footnotesize\ttfamily \label{classtext__box_a08f94eff214fa1be3987199ec1d250df} 
+void text\+\_\+box\+::handle\+\_\+event (\begin{DoxyParamCaption}\item[{const ALLEGRO\+\_\+\+EVENT \&}]{ev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Processa apenas eventos relevantes (quando ativo) 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ev} & Evento a ser processado \\
+\hline
+\end{DoxyParams}
+
+
+Implementa \mbox{\hyperlink{classui__object_a109a266a6688a36a7a80af513af6aa3a}{ui\+\_\+object}}.
+
+\Hypertarget{classtext__box_a1f53f91d98ae9f82c6558ba5b5066e07}\index{text\_box@{text\_box}!is\_active\_box@{is\_active\_box}}
+\index{is\_active\_box@{is\_active\_box}!text\_box@{text\_box}}
+\doxysubsubsection{\texorpdfstring{is\_active\_box()}{is\_active\_box()}}
+{\footnotesize\ttfamily \label{classtext__box_a1f53f91d98ae9f82c6558ba5b5066e07} 
+bool text\+\_\+box\+::is\+\_\+active\+\_\+box (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica o estado de ativação da caixa. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica o estado 
+\end{DoxyReturn}
+\Hypertarget{classtext__box_a291d4894ec3908ef503e9bbbe94eef1f}\index{text\_box@{text\_box}!set\_active@{set\_active}}
+\index{set\_active@{set\_active}!text\_box@{text\_box}}
+\doxysubsubsection{\texorpdfstring{set\_active()}{set\_active()}}
+{\footnotesize\ttfamily \label{classtext__box_a291d4894ec3908ef503e9bbbe94eef1f} 
+void text\+\_\+box\+::set\+\_\+active (\begin{DoxyParamCaption}\item[{bool}]{active}{}\end{DoxyParamCaption})}
+
+
+
+Define se a caixa de texto está ativa. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em active} & Define o estado de ativação da caixa \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtext__box_aa2a47801b82bb5e2ee44094b031af169}\index{text\_box@{text\_box}!set\_mask@{set\_mask}}
+\index{set\_mask@{set\_mask}!text\_box@{text\_box}}
+\doxysubsubsection{\texorpdfstring{set\_mask()}{set\_mask()}}
+{\footnotesize\ttfamily \label{classtext__box_aa2a47801b82bb5e2ee44094b031af169} 
+void text\+\_\+box\+::set\+\_\+mask (\begin{DoxyParamCaption}\item[{bool}]{mask\+\_\+enabled}{}\end{DoxyParamCaption})}
+
+
+
+Ativa/\+Desativa máscara de caracteres (para senhas) 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em mask\+\_\+enabled} & Booleano que indica a ativação da máscara \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtext__box_a446a3583e84b17098ffc5a93730c78e8}\index{text\_box@{text\_box}!set\_sample@{set\_sample}}
+\index{set\_sample@{set\_sample}!text\_box@{text\_box}}
+\doxysubsubsection{\texorpdfstring{set\_sample()}{set\_sample()}}
+{\footnotesize\ttfamily \label{classtext__box_a446a3583e84b17098ffc5a93730c78e8} 
+void text\+\_\+box\+::set\+\_\+sample (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{s}{}\end{DoxyParamCaption})}
+
+
+
+Seta o efeito sonoro (controlado pelo \doxylink{classmenu__audio}{menu\+\_\+audio}) 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em s} & Novo sample (nullptr para mutar) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classtext__box_ae8c3d7e4e348acf571b629dd44053720}\index{text\_box@{text\_box}!set\_text@{set\_text}}
+\index{set\_text@{set\_text}!text\_box@{text\_box}}
+\doxysubsubsection{\texorpdfstring{set\_text()}{set\_text()}}
+{\footnotesize\ttfamily \label{classtext__box_ae8c3d7e4e348acf571b629dd44053720} 
+void text\+\_\+box\+::set\+\_\+text (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{t}{}\end{DoxyParamCaption})}
+
+
+
+Seta o texto da caixa. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em t} & Novo texto da caixa \\
+\hline
+\end{DoxyParams}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{text__box_8hpp}{text\+\_\+box.\+hpp}}\item 
+src/\mbox{\hyperlink{text__box_8cpp}{text\+\_\+box.\+cpp}}\end{DoxyCompactItemize}

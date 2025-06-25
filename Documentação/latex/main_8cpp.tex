@@ -1,0 +1,87 @@
+\doxysection{Referência ao ficheiro src/main.cpp}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include $<$allegro5/allegro.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+font.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+primitives.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+audio.\+h$>$}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+acodec.\+h$>$}\newline
+{\ttfamily \#include "{}bird\+\_\+object.\+hpp"{}}\newline
+{\ttfamily \#include "{}pipe\+\_\+object.\+hpp"{}}\newline
+{\ttfamily \#include "{}background\+\_\+object.\+hpp"{}}\newline
+{\ttfamily \#include "{}game\+\_\+loop.\+hpp"{}}\newline
+{\ttfamily \#include "{}home\+\_\+screen.\+hpp"{}}\newline
+{\ttfamily \#include "{}settings\+\_\+screen.\+hpp"{}}\newline
+{\ttfamily \#include "{}achievements\+\_\+screen.\+hpp"{}}\newline
+{\ttfamily \#include "{}menu.\+hpp"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_ac92ca5ab87034a348decad7ee8d4bd1b}{FPS}}~60
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a9b6bc9242882d1e758e06ed751a2e8ec}{SCREEN\+\_\+W}}~800
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a27cddfd509d28b4b2b0b44c093fac090}{SCREEN\+\_\+H}}~600
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a4a804246c6f2835e8ca7bf7d656c6e2b}{SEEN}}~1
+\item 
+\#define \mbox{\hyperlink{main_8cpp_ad74b7f5218b46c8332cd531df7178d45}{RELEASED}}~2
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{main_8cpp_doc-define-members}
+\doxysubsection{Documentação das macros}
+\Hypertarget{main_8cpp_ac92ca5ab87034a348decad7ee8d4bd1b}\index{main.cpp@{main.cpp}!FPS@{FPS}}
+\index{FPS@{FPS}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{FPS}{FPS}}
+{\footnotesize\ttfamily \label{main_8cpp_ac92ca5ab87034a348decad7ee8d4bd1b} 
+\#define FPS~60}
+
+\Hypertarget{main_8cpp_ad74b7f5218b46c8332cd531df7178d45}\index{main.cpp@{main.cpp}!RELEASED@{RELEASED}}
+\index{RELEASED@{RELEASED}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{RELEASED}{RELEASED}}
+{\footnotesize\ttfamily \label{main_8cpp_ad74b7f5218b46c8332cd531df7178d45} 
+\#define RELEASED~2}
+
+\Hypertarget{main_8cpp_a27cddfd509d28b4b2b0b44c093fac090}\index{main.cpp@{main.cpp}!SCREEN\_H@{SCREEN\_H}}
+\index{SCREEN\_H@{SCREEN\_H}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_H}{SCREEN\_H}}
+{\footnotesize\ttfamily \label{main_8cpp_a27cddfd509d28b4b2b0b44c093fac090} 
+\#define SCREEN\+\_\+H~600}
+
+\Hypertarget{main_8cpp_a9b6bc9242882d1e758e06ed751a2e8ec}\index{main.cpp@{main.cpp}!SCREEN\_W@{SCREEN\_W}}
+\index{SCREEN\_W@{SCREEN\_W}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_W}{SCREEN\_W}}
+{\footnotesize\ttfamily \label{main_8cpp_a9b6bc9242882d1e758e06ed751a2e8ec} 
+\#define SCREEN\+\_\+W~800}
+
+\Hypertarget{main_8cpp_a4a804246c6f2835e8ca7bf7d656c6e2b}\index{main.cpp@{main.cpp}!SEEN@{SEEN}}
+\index{SEEN@{SEEN}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{SEEN}{SEEN}}
+{\footnotesize\ttfamily \label{main_8cpp_a4a804246c6f2835e8ca7bf7d656c6e2b} 
+\#define SEEN~1}
+
+
+
+\label{doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv}{}\end{DoxyParamCaption})}
+

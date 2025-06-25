@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>pds2_projeto_final: Código-Fonte de include/bird_object.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">pds2_projeto_final
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('bird__object_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">bird_object.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="bird__object_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef BIRD_OBJECT_HPP</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define BIRD_OBJECT_HPP</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="game__object_8hpp.html">game_object.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;allegro5/allegro.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;allegro5/allegro_image.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span></div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classbird__object.html">   12</a></span><span class="keyword">class </span><a class="code hl_function" href="classbird__object.html#aba2512ef4da44750537778708b0b66a3">bird_object</a> : <span class="keyword">public</span> <a class="code hl_function" href="classgame__object.html#abffd356756b24f590eff91bc1917b38e">game_object</a>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <span class="keywordtype">int</span> vel_x;      </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keywordtype">float</span> vel_y;    </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keywordtype">int</span> acel_x;     </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keywordtype">float</span> acel_y;   </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keywordtype">int</span> VEL_MAX;    </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordtype">int</span> VEL_MIN;    </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keywordtype">int</span> JUMP_VEL;   </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordtype">float</span> angle;    </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <a class="code hl_function" href="classbird__object.html#aba2512ef4da44750537778708b0b66a3">bird_object</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h, ALLEGRO_BITMAP * bitmap, <span class="keywordtype">int</span> max_vel, <span class="keywordtype">int</span> min_vel, <span class="keywordtype">int</span> jump_vel);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="comment">//Override</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classbird__object.html#a30b54c20e8f532d69e03ccd3837d5d0b">Draw</a>(<span class="keywordtype">float</span> scale);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classbird__object.html#a30b54c20e8f532d69e03ccd3837d5d0b">Draw</a>(<span class="keywordtype">float</span> scale, ALLEGRO_BITMAP* bitmap);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classbird__object.html#aafef625b0e1f564413283b2622c39aa8">Update</a>(<span class="keywordtype">int</span> <a class="code hl_define" href="main_8cpp.html#a9b6bc9242882d1e758e06ed751a2e8ec">SCREEN_W</a>, <span class="keywordtype">int</span> <a class="code hl_define" href="main_8cpp.html#a27cddfd509d28b4b2b0b44c093fac090">SCREEN_H</a>);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classbird__object.html#adf4846ae2eb9bd849c60fc16772fa45e">Jump</a>();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classbird__object.html#a14b15b64df52e9954830bdedcde4fb32">Set_x_speed</a>(<span class="keywordtype">float</span> new_x_speed);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classbird__object.html#a971887b093b63664a55b8549a3eab6ef">Set_x_acelleration</a>(<span class="keywordtype">int</span> new_x_accel);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classbird__object.html#a650e752ebbf30ec9cba43ed1cb63a996">Set_y_speed</a>(<span class="keywordtype">float</span> new_y_speed);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classbird__object.html#a45045cd1cae74a38a387727eef339524">Set_y_acelleration</a>(<span class="keywordtype">float</span> new_y_accel);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classbird__object.html#acbfdf963bcb117aaa5ad3861e5a8f248">Draw_spin</a>(<span class="keywordtype">float</span> SPIN_SPEED);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span></div>
+<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classbird__object.html#a35f6769a18666b1ef3514b8b502b651e">   97</a></span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classbird__object.html#a35f6769a18666b1ef3514b8b502b651e">get_vel</a>() {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            <span class="keywordflow">return</span> this-&gt;vel_x;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        }</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span></div>
+<div class="foldopen" id="foldopen00105" data-start="{" data-end="}">
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classbird__object.html#a27f535b0e8c8ff2538a9278192eedf41">  105</a></span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classbird__object.html#a27f535b0e8c8ff2538a9278192eedf41">get_acel</a>() {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            <span class="keywordflow">return</span> this-&gt;acel_x;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        }</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
+</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#endif </span><span class="comment">// BIRD_OBJECT_HPP</span></div>
+<div class="ttc" id="aclassbird__object_html_a14b15b64df52e9954830bdedcde4fb32"><div class="ttname"><a href="classbird__object.html#a14b15b64df52e9954830bdedcde4fb32">bird_object::Set_x_speed</a></div><div class="ttdeci">void Set_x_speed(float new_x_speed)</div><div class="ttdoc">Seta a velocidade horizontal do pássaro.</div><div class="ttdef"><b>Definição</b> bird_object.cpp:70</div></div>
+<div class="ttc" id="aclassbird__object_html_a27f535b0e8c8ff2538a9278192eedf41"><div class="ttname"><a href="classbird__object.html#a27f535b0e8c8ff2538a9278192eedf41">bird_object::get_acel</a></div><div class="ttdeci">float get_acel()</div><div class="ttdoc">Retorna a aceleração horizontal do pássaro.</div><div class="ttdef"><b>Definição</b> bird_object.hpp:105</div></div>
+<div class="ttc" id="aclassbird__object_html_a30b54c20e8f532d69e03ccd3837d5d0b"><div class="ttname"><a href="classbird__object.html#a30b54c20e8f532d69e03ccd3837d5d0b">bird_object::Draw</a></div><div class="ttdeci">void Draw(float scale)</div><div class="ttdoc">Desenha o pássaro na tela.</div><div class="ttdef"><b>Definição</b> bird_object.cpp:34</div></div>
+<div class="ttc" id="aclassbird__object_html_a35f6769a18666b1ef3514b8b502b651e"><div class="ttname"><a href="classbird__object.html#a35f6769a18666b1ef3514b8b502b651e">bird_object::get_vel</a></div><div class="ttdeci">float get_vel()</div><div class="ttdoc">Retorna a velocidade horizontal do pássaro.</div><div class="ttdef"><b>Definição</b> bird_object.hpp:97</div></div>
+<div class="ttc" id="aclassbird__object_html_a45045cd1cae74a38a387727eef339524"><div class="ttname"><a href="classbird__object.html#a45045cd1cae74a38a387727eef339524">bird_object::Set_y_acelleration</a></div><div class="ttdeci">void Set_y_acelleration(float new_y_accel)</div><div class="ttdoc">Seta a aceleração vertical do pássaro.</div><div class="ttdef"><b>Definição</b> bird_object.cpp:82</div></div>
+<div class="ttc" id="aclassbird__object_html_a650e752ebbf30ec9cba43ed1cb63a996"><div class="ttname"><a href="classbird__object.html#a650e752ebbf30ec9cba43ed1cb63a996">bird_object::Set_y_speed</a></div><div class="ttdeci">void Set_y_speed(float new_y_speed)</div><div class="ttdoc">Seta a velocidade vertical do pássaro.</div><div class="ttdef"><b>Definição</b> bird_object.cpp:78</div></div>
+<div class="ttc" id="aclassbird__object_html_a971887b093b63664a55b8549a3eab6ef"><div class="ttname"><a href="classbird__object.html#a971887b093b63664a55b8549a3eab6ef">bird_object::Set_x_acelleration</a></div><div class="ttdeci">void Set_x_acelleration(int new_x_accel)</div><div class="ttdoc">Seta a aceleração horizontal do pássaro.</div><div class="ttdef"><b>Definição</b> bird_object.cpp:74</div></div>
+<div class="ttc" id="aclassbird__object_html_aafef625b0e1f564413283b2622c39aa8"><div class="ttname"><a href="classbird__object.html#aafef625b0e1f564413283b2622c39aa8">bird_object::Update</a></div><div class="ttdeci">void Update(int SCREEN_W, int SCREEN_H)</div><div class="ttdoc">Atualiza a posição e velocidade do pássaro.</div><div class="ttdef"><b>Definição</b> bird_object.cpp:7</div></div>
+<div class="ttc" id="aclassbird__object_html_aba2512ef4da44750537778708b0b66a3"><div class="ttname"><a href="classbird__object.html#aba2512ef4da44750537778708b0b66a3">bird_object::bird_object</a></div><div class="ttdeci">bird_object(float x, float y, int w, int h, ALLEGRO_BITMAP *bitmap, int max_vel, int min_vel, int jump_vel)</div><div class="ttdoc">Construtor da classe bird_object.</div><div class="ttdef"><b>Definição</b> bird_object.cpp:4</div></div>
+<div class="ttc" id="aclassbird__object_html_acbfdf963bcb117aaa5ad3861e5a8f248"><div class="ttname"><a href="classbird__object.html#acbfdf963bcb117aaa5ad3861e5a8f248">bird_object::Draw_spin</a></div><div class="ttdeci">void Draw_spin(float SPIN_SPEED)</div><div class="ttdoc">Desenha o pássaro girando em torno de seu centro.</div><div class="ttdef"><b>Definição</b> bird_object.cpp:50</div></div>
+<div class="ttc" id="aclassbird__object_html_adf4846ae2eb9bd849c60fc16772fa45e"><div class="ttname"><a href="classbird__object.html#adf4846ae2eb9bd849c60fc16772fa45e">bird_object::Jump</a></div><div class="ttdeci">void Jump()</div><div class="ttdoc">Faz o pássaro pular.</div><div class="ttdef"><b>Definição</b> bird_object.cpp:62</div></div>
+<div class="ttc" id="aclassgame__object_html_abffd356756b24f590eff91bc1917b38e"><div class="ttname"><a href="classgame__object.html#abffd356756b24f590eff91bc1917b38e">game_object::game_object</a></div><div class="ttdeci">game_object(float x, float y, int w, int h, ALLEGRO_BITMAP *bitmap)</div><div class="ttdoc">Construtor da classe game_object.</div><div class="ttdef"><b>Definição</b> game_object.cpp:3</div></div>
+<div class="ttc" id="agame__object_8hpp_html"><div class="ttname"><a href="game__object_8hpp.html">game_object.hpp</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a27cddfd509d28b4b2b0b44c093fac090"><div class="ttname"><a href="main_8cpp.html#a27cddfd509d28b4b2b0b44c093fac090">SCREEN_H</a></div><div class="ttdeci">#define SCREEN_H</div><div class="ttdef"><b>Definição</b> main.cpp:28</div></div>
+<div class="ttc" id="amain_8cpp_html_a9b6bc9242882d1e758e06ed751a2e8ec"><div class="ttname"><a href="main_8cpp.html#a9b6bc9242882d1e758e06ed751a2e8ec">SCREEN_W</a></div><div class="ttdeci">#define SCREEN_W</div><div class="ttdef"><b>Definição</b> main.cpp:27</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="bird__object_8hpp.html">bird_object.hpp</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

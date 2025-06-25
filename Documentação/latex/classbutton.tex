@@ -1,0 +1,204 @@
+\doxysection{Referência à classe button}
+\hypertarget{classbutton}{}\label{classbutton}\index{button@{button}}
+
+
+Classe que representa os botões da interface do menu\+: Herda da classe genêrica de objetos de UI.  
+
+
+
+
+{\ttfamily \#include $<$button.\+hpp$>$}
+
+Diagrama de heranças da classe button\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classbutton}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classbutton_add5c251b83cff08466aab9c57afb4769}{button}} (int \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}, int \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}, int \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}}, int \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}}, const std\+::string \&label, ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}button\+\_\+s)
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa um botão. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbutton_aeae61520a35f1a0cb35a3df8f7d8137d}{handle\+\_\+event}} (const ALLEGRO\+\_\+\+EVENT \&ev) override
+\begin{DoxyCompactList}\small\item\em Processa eventos de acordo com cliques do mouse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbutton_a7d7e18d17ea5435d7c9e4ba529a75f14}{draw}} (ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}font) override
+\begin{DoxyCompactList}\small\item\em Desenha o botão na tela. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classbutton_adc37aef94824b37e1f19ed5bf385814c}{was\+\_\+clicked}} () const
+\begin{DoxyCompactList}\small\item\em Indica se o botão foi clicado. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbutton_a8e2059d2b42760f74bfa854640f3d911}{reset\+\_\+clicked}} ()
+\begin{DoxyCompactList}\small\item\em Reseta o estado de clique do botão para "{}false"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbutton_aaa4cb435612110e4f1c3d2f88335d6fd}{set\+\_\+clicked}} (const bool set)
+\begin{DoxyCompactList}\small\item\em Seta o estado de clique do botão. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classbutton_a61ade394e4022e84d0532181edb1dd94}{set\+\_\+sample}} (ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}s)
+\begin{DoxyCompactList}\small\item\em Seta o efeito sonoro do botão. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Membros públicos herdados de \mbox{\hyperlink{classui__object}{ui\+\_\+object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classui__object_a8e48c858fc29ec57df399ed268694e2a}{ui\+\_\+object}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}, float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}, int \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}}, int \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}})
+\begin{DoxyCompactList}\small\item\em Construtor genêrico de objetos de UI. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_af92b7c5ebcdc42b2bad45b95a36dbf50}{get\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Get para a coordenada x. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_a2c389711da7495d7ddbd3d737e58d252}{get\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Get para a coordenada y. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_aad941a2d7673057e07ea04009b4b2781}{get\+\_\+width}} ()
+\begin{DoxyCompactList}\small\item\em Get para a largura. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_a1f604114f5d5f9430a3ed33da16a66f5}{get\+\_\+height}} ()
+\begin{DoxyCompactList}\small\item\em Get para a altura. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classui__object_ab680ce54233178efb0a9d712253f04bb}{set\+\_\+x}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}})
+\begin{DoxyCompactList}\small\item\em Set para a coordenada x. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classui__object_a8a97830ba3ada2f8a288b6ad5f0d2c38}{set\+\_\+y}} (float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}})
+\begin{DoxyCompactList}\small\item\em Set para a coordenada y. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classui__object_a819037b1a21fcc0bef890c66f155bdf0}{contains}} (int mx, int my) const
+\begin{DoxyCompactList}\small\item\em Verifica se o mouse está em cima do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Outros membros herdados}
+\doxysubsection*{Atributos Protegidos herdados de \mbox{\hyperlink{classui__object}{ui\+\_\+object}}}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}
+\begin{DoxyCompactList}\small\item\em Coordenada x do inicio da área do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}
+\begin{DoxyCompactList}\small\item\em Coordenada y do inicio da área do objeto. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}}
+\begin{DoxyCompactList}\small\item\em Largura do objeto. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}}
+\begin{DoxyCompactList}\small\item\em Altura do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe que representa os botões da interface do menu\+: Herda da classe genêrica de objetos de UI. 
+
+Classe genérica que representa os objetos do jogo.
+
+Os botões processam cliques do mouse, se estiver dentro de sua área 
+
+\label{doc-constructors}
+\Hypertarget{classbutton_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classbutton_add5c251b83cff08466aab9c57afb4769}\index{button@{button}!button@{button}}
+\index{button@{button}!button@{button}}
+\doxysubsubsection{\texorpdfstring{button()}{button()}}
+{\footnotesize\ttfamily \label{classbutton_add5c251b83cff08466aab9c57afb4769} 
+button\+::button (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{, }\item[{int}]{width}{, }\item[{int}]{height}{, }\item[{const std\+::string \&}]{label}{, }\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{button\+\_\+s}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que inicializa um botão. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em x} & Coordenada x que inicia a área do botão \\
+\hline
+{\em y} & Coordenada y que inicia a área do botão \\
+\hline
+{\em width} & Largura do botão \\
+\hline
+{\em height} & Altura do botão \\
+\hline
+{\em label} & Texto que aparece no botão \\
+\hline
+{\em button\+\_\+s} & Efeito sonoro de clicar no botão \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classbutton_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classbutton_a7d7e18d17ea5435d7c9e4ba529a75f14}\index{button@{button}!draw@{draw}}
+\index{draw@{draw}!button@{button}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classbutton_a7d7e18d17ea5435d7c9e4ba529a75f14} 
+void button\+::draw (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}}]{font}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Desenha o botão na tela. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em font} & Fonte utilizada no label \\
+\hline
+\end{DoxyParams}
+
+
+Implementa \mbox{\hyperlink{classui__object_ac0ef8445a32b5e0b594f839ecc9b991c}{ui\+\_\+object}}.
+
+\Hypertarget{classbutton_aeae61520a35f1a0cb35a3df8f7d8137d}\index{button@{button}!handle\_event@{handle\_event}}
+\index{handle\_event@{handle\_event}!button@{button}}
+\doxysubsubsection{\texorpdfstring{handle\_event()}{handle\_event()}}
+{\footnotesize\ttfamily \label{classbutton_aeae61520a35f1a0cb35a3df8f7d8137d} 
+void button\+::handle\+\_\+event (\begin{DoxyParamCaption}\item[{const ALLEGRO\+\_\+\+EVENT \&}]{ev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Processa eventos de acordo com cliques do mouse. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ev} & Evento a ser processado \\
+\hline
+\end{DoxyParams}
+
+
+Implementa \mbox{\hyperlink{classui__object_a109a266a6688a36a7a80af513af6aa3a}{ui\+\_\+object}}.
+
+\Hypertarget{classbutton_a8e2059d2b42760f74bfa854640f3d911}\index{button@{button}!reset\_clicked@{reset\_clicked}}
+\index{reset\_clicked@{reset\_clicked}!button@{button}}
+\doxysubsubsection{\texorpdfstring{reset\_clicked()}{reset\_clicked()}}
+{\footnotesize\ttfamily \label{classbutton_a8e2059d2b42760f74bfa854640f3d911} 
+void button\+::reset\+\_\+clicked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reseta o estado de clique do botão para "{}false"{}. 
+
+\Hypertarget{classbutton_aaa4cb435612110e4f1c3d2f88335d6fd}\index{button@{button}!set\_clicked@{set\_clicked}}
+\index{set\_clicked@{set\_clicked}!button@{button}}
+\doxysubsubsection{\texorpdfstring{set\_clicked()}{set\_clicked()}}
+{\footnotesize\ttfamily \label{classbutton_aaa4cb435612110e4f1c3d2f88335d6fd} 
+void button\+::set\+\_\+clicked (\begin{DoxyParamCaption}\item[{const bool}]{set}{}\end{DoxyParamCaption})}
+
+
+
+Seta o estado de clique do botão. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em set} & Novo estado do botão \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classbutton_a61ade394e4022e84d0532181edb1dd94}\index{button@{button}!set\_sample@{set\_sample}}
+\index{set\_sample@{set\_sample}!button@{button}}
+\doxysubsubsection{\texorpdfstring{set\_sample()}{set\_sample()}}
+{\footnotesize\ttfamily \label{classbutton_a61ade394e4022e84d0532181edb1dd94} 
+void button\+::set\+\_\+sample (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{s}{}\end{DoxyParamCaption})}
+
+
+
+Seta o efeito sonoro do botão. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em s} & Novo sample a ser tocado no clique (nullptr para mutar) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classbutton_adc37aef94824b37e1f19ed5bf385814c}\index{button@{button}!was\_clicked@{was\_clicked}}
+\index{was\_clicked@{was\_clicked}!button@{button}}
+\doxysubsubsection{\texorpdfstring{was\_clicked()}{was\_clicked()}}
+{\footnotesize\ttfamily \label{classbutton_adc37aef94824b37e1f19ed5bf385814c} 
+bool button\+::was\+\_\+clicked (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica se o botão foi clicado. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica o estado do clique 
+\end{DoxyReturn}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{button_8hpp}{button.\+hpp}}\item 
+src/\mbox{\hyperlink{button_8cpp}{button.\+cpp}}\end{DoxyCompactItemize}

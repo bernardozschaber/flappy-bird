@@ -1,0 +1,50 @@
+\doxysection{moving\+\_\+button.\+hpp}
+\hypertarget{moving__button_8hpp_source}{}\label{moving__button_8hpp_source}\index{include/moving\_button.hpp@{include/moving\_button.hpp}}
+\mbox{\hyperlink{moving__button_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MOVING\_BUTTON\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MOVING\_BUTTON\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ui__object_8hpp}{ui\_object.hpp}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classmoving__button_ade5cd3e393b566bad48728c8ae54b959}{moving\_button}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classui__object_a8e48c858fc29ec57df399ed268694e2a}{ui\_object}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{float}\ vel\_x\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{float}\ vel\_y\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{float}\ acel\_x\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{float}\ acel\_y\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{float}\ transparacy\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_being\_pressed\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ ALLEGRO\_BITMAP*\ sprite;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classmoving__button_ade5cd3e393b566bad48728c8ae54b959}{moving\_button}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}},\ ALLEGRO\_BITMAP*\ Bitmap);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmoving__button_a4c68628993f89d4dd02c94145421f948}{draw}}();}
+\DoxyCodeLine{00033\ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmoving__button_a4c68628993f89d4dd02c94145421f948}{draw}}(\textcolor{keywordtype}{float}\ scale);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmoving__button_acfa977ed2a006b6a8c05bd4414fb71e8}{set\_velocity}}(\textcolor{keywordtype}{float}\ vx,\ \textcolor{keywordtype}{float}\ vy);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmoving__button_a2eded2c03c362c9e9ecc057f3e31c05f}{set\_acceleration}}(\textcolor{keywordtype}{float}\ ax,\ \textcolor{keywordtype}{float}\ ay);}
+\DoxyCodeLine{00053\ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classmoving__button_af3412b3c13681554e01a367a09a9d560}{get\_velocity\_y}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classmoving__button_a41aa2a5e3847948c9dd73378e1073879}{get\_velocity\_x}}();}
+\DoxyCodeLine{00065\ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmoving__button_a81b25bfed75b41d4823a47e7530d9de0}{set\_bitmap}}(ALLEGRO\_BITMAP*\ bitmap);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmoving__button_ab446c8bf94add297b810f45e49b09b2e}{contains\_click}}(\textcolor{keywordtype}{float}\ mouse\_x,\ \textcolor{keywordtype}{float}\ mouse\_y);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmoving__button_a13b0a0767adcd3cecacdb6001e615b47}{set\_pressed}}(\textcolor{keywordtype}{bool}\ pressed);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmoving__button_ace1f14899172b8f4303d36968deb62e3}{is\_pressed}}();}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmoving__button_a62ef119f7022406776f6f3ff7b35cbb2}{Update}}();}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmoving__button_a25224dace0ff4d9f9b793e902d7a054a}{handle\_event}}(\textcolor{keyword}{const}\ ALLEGRO\_EVENT\ \&ev);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmoving__button_a4c68628993f89d4dd02c94145421f948}{draw}}(ALLEGRO\_FONT\ *font);}
+\DoxyCodeLine{00105\ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

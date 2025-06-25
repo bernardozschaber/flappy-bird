@@ -1,0 +1,36 @@
+\doxysection{button.\+hpp}
+\hypertarget{button_8hpp_source}{}\label{button_8hpp_source}\index{include/button.hpp@{include/button.hpp}}
+\mbox{\hyperlink{button_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BUTTON\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BUTTON\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ui__object_8hpp}{ui\_object.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_audio.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classbutton_add5c251b83cff08466aab9c57afb4769}{button}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classui__object_a8e48c858fc29ec57df399ed268694e2a}{ui\_object}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{classbutton_add5c251b83cff08466aab9c57afb4769}{button}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}},\ \textcolor{keyword}{const}\ std::string\ \&label,\ ALLEGRO\_SAMPLE*\ button\_s);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbutton_aeae61520a35f1a0cb35a3df8f7d8137d}{handle\_event}}(\textcolor{keyword}{const}\ ALLEGRO\_EVENT\ \&ev)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbutton_a7d7e18d17ea5435d7c9e4ba529a75f14}{draw}}(ALLEGRO\_FONT\ *font)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classbutton_adc37aef94824b37e1f19ed5bf385814c}{was\_clicked}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbutton_a8e2059d2b42760f74bfa854640f3d911}{reset\_clicked}}();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbutton_aaa4cb435612110e4f1c3d2f88335d6fd}{set\_clicked}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ set);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classbutton_a61ade394e4022e84d0532181edb1dd94}{set\_sample}}(ALLEGRO\_SAMPLE*\ s);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00063\ \ \ std::string\ label;\ }
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordtype}{bool}\ clicked;\ }
+\DoxyCodeLine{00065\ \ \ ALLEGRO\_SAMPLE*\ sample\_button;\ }
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ BUTTON\_HPP}}
+
+\end{DoxyCode}

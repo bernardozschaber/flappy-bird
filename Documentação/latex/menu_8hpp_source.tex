@@ -1,0 +1,70 @@
+\doxysection{menu.\+hpp}
+\hypertarget{menu_8hpp_source}{}\label{menu_8hpp_source}\index{include/menu.hpp@{include/menu.hpp}}
+\mbox{\hyperlink{menu_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MENU\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MENU\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <allegro5/allegro.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_primitives.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_ttf.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_image.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_acodec.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{login__screen_8hpp}{login\_screen.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{register__screen_8hpp}{register\_screen.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{player__list__screen_8hpp}{player\_list\_screen.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{remove__user__screen_8hpp}{remove\_user\_screen.hpp}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{menu__audio_8hpp}{menu\_audio.hpp}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{game__loop_8hpp}{game\_loop.hpp}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{menu_8hpp_abd70171ddb467bc870e4fa27506d9935}{screen\_type}}\ \{\ \mbox{\hyperlink{menu_8hpp_abd70171ddb467bc870e4fa27506d9935aa5f525c13a62a4ef165be78b0714dbae}{SCREEN\_LOGIN}},\ \mbox{\hyperlink{menu_8hpp_abd70171ddb467bc870e4fa27506d9935ac585fa67040136ac1aba24410273920e}{SCREEN\_REGISTER}},\ \mbox{\hyperlink{menu_8hpp_abd70171ddb467bc870e4fa27506d9935ae1500d955372737563676f7592b5e594}{SCREEN\_LIST}},\ \mbox{\hyperlink{menu_8hpp_abd70171ddb467bc870e4fa27506d9935ad76cd0cf62a86cf19cca672489c03179}{SCREEN\_REMOVE}}\ \};}
+\DoxyCodeLine{00019\ \ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classmenu_ad405a08b68a1d570cb283de07ae063ed}{menu}}\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \mbox{\hyperlink{classmenu_ad405a08b68a1d570cb283de07ae063ed}{menu}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a9b6bc9242882d1e758e06ed751a2e8ec}{SCREEN\_W}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a27cddfd509d28b4b2b0b44c093fac090}{SCREEN\_H}},\ \mbox{\hyperlink{classregistration}{registration}}\ \&data);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \ \ \mbox{\hyperlink{classmenu_a5efbd22f23289b42ed68d2a9bb431f35}{\string~menu}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmenu_af65495911a439d3ec79d863498b82180}{handle\_event}}(\textcolor{keyword}{const}\ ALLEGRO\_EVENT\ \&event,\ \textcolor{keywordtype}{bool}\ \&is\_open,\ \mbox{\hyperlink{structstates}{states}}*\ state);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmenu_a0a08cf07f341224007706c54d1f1ad1e}{draw}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a9b6bc9242882d1e758e06ed751a2e8ec}{SCREEN\_W}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a27cddfd509d28b4b2b0b44c093fac090}{SCREEN\_H}},\ \textcolor{keyword}{const}\ ALLEGRO\_EVENT\ \&event);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmenu_a356d5f977c2c420a25949012cc4de920}{is\_login\_done}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \mbox{\hyperlink{structplayer}{player}}\ \mbox{\hyperlink{classmenu_aee48fe40b118787a56455a6a8992bfdd}{get\_logged\_user}}();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmenu_ae2d0697fb0145ea98352c4c858dd33cb}{set\_players}}(\textcolor{keyword}{const}\ std::multiset<player>\ new\_players);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmenu_ad6674a57772cfab037201468928f38d0}{reset}}();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00080\ \ \ \mbox{\hyperlink{menu_8hpp_abd70171ddb467bc870e4fa27506d9935}{screen\_type}}\ current;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00084\ \ \ ALLEGRO\_SAMPLE*\ sample\_button;\ }
+\DoxyCodeLine{00085\ \ \ ALLEGRO\_SAMPLE*\ sample\_key;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00090\ \ \ ALLEGRO\_BITMAP*\ background\_menu;}
+\DoxyCodeLine{00091\ \ \ ALLEGRO\_BITMAP*\ crown;}
+\DoxyCodeLine{00092\ \ \ ALLEGRO\_BITMAP*\ main\_menu\_title;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00097\ \ \ ALLEGRO\_BITMAP\ *ico\_on;}
+\DoxyCodeLine{00098\ \ \ ALLEGRO\_BITMAP\ *ico\_off;}
+\DoxyCodeLine{00099\ \ \ ALLEGRO\_BITMAP\ *ico\_on\_press;}
+\DoxyCodeLine{00100\ \ \ ALLEGRO\_BITMAP\ *ico\_off\_press;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00104\ \ \ \mbox{\hyperlink{classmenu__audio}{menu\_audio}}\ audio\_ctrl;}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00107\ \ \ std::multiset<player>\ players;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00111\ \ \ \mbox{\hyperlink{classlogin__screen}{login\_screen}}\ login\_scr;}
+\DoxyCodeLine{00112\ \ \ \mbox{\hyperlink{classregister__screen}{register\_screen}}\ register\_scr;}
+\DoxyCodeLine{00113\ \ \ \mbox{\hyperlink{classplayer__list__screen}{player\_list\_screen}}\ list\_scr;}
+\DoxyCodeLine{00114\ \ \ \mbox{\hyperlink{classremove__user__screen}{remove\_user\_screen}}\ rm\_scr;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00118\ \ \ ALLEGRO\_FONT\ *pixel\_sans;}
+\DoxyCodeLine{00119\ \};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MENU\_HPP}}
+
+\end{DoxyCode}

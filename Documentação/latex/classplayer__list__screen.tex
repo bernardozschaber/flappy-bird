@@ -1,0 +1,151 @@
+\doxysection{Referência à classe player\+\_\+list\+\_\+screen}
+\hypertarget{classplayer__list__screen}{}\label{classplayer__list__screen}\index{player\_list\_screen@{player\_list\_screen}}
+
+
+Lista todos os jogadores em ordem decrescente de score e indica os jogadores com o recorde máximo.  
+
+
+
+
+{\ttfamily \#include $<$player\+\_\+list\+\_\+screen.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classplayer__list__screen_af2c4ebae7210765ca90e559d76144133}{player\+\_\+list\+\_\+screen}} (int screen\+\_\+w, int screen\+\_\+h, ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}button\+\_\+s, ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}crown, const std\+::multiset$<$ \mbox{\hyperlink{structplayer}{player}} $>$ \&set, \mbox{\hyperlink{classregistration}{registration}} \&data\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa a tela de listagem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classplayer__list__screen_a3ea0858859df20a896582b94762d5014}{handle\+\_\+event}} (const ALLEGRO\+\_\+\+EVENT \&ev)
+\begin{DoxyCompactList}\small\item\em Avança/\+Retorna páginas ou volta ao menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classplayer__list__screen_ad0083e246953a7da14df42b4fdd89c0e}{draw}} (ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}font)
+\begin{DoxyCompactList}\small\item\em Desenha os jogadores listados e os botões. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classplayer__list__screen_aba6b3ee1178025f2de5a0bfb699d90bd}{go\+\_\+to\+\_\+main\+\_\+menu}} () const
+\begin{DoxyCompactList}\small\item\em Indica se deve voltar ao menu. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \mbox{\hyperlink{classbutton}{button}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classplayer__list__screen_ab9ec0ddfe236a55ac15ee0d72c9085f7}{get\+\_\+buttons}} () const
+\begin{DoxyCompactList}\small\item\em Get do vetor de elementos de UI para manipulação de audio e testes. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classplayer__list__screen_a1de96765a1c8adc2e00e4a53eb161478}{get\+\_\+current\+\_\+page}} () const
+\begin{DoxyCompactList}\small\item\em Indica a página atual. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classplayer__list__screen_abc15b993f06e722a7a591d9872029d0a}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Reseta estado (página, flag) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Lista todos os jogadores em ordem decrescente de score e indica os jogadores com o recorde máximo. 
+
+\label{doc-constructors}
+\Hypertarget{classplayer__list__screen_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classplayer__list__screen_af2c4ebae7210765ca90e559d76144133}\index{player\_list\_screen@{player\_list\_screen}!player\_list\_screen@{player\_list\_screen}}
+\index{player\_list\_screen@{player\_list\_screen}!player\_list\_screen@{player\_list\_screen}}
+\doxysubsubsection{\texorpdfstring{player\_list\_screen()}{player\_list\_screen()}}
+{\footnotesize\ttfamily \label{classplayer__list__screen_af2c4ebae7210765ca90e559d76144133} 
+player\+\_\+list\+\_\+screen\+::player\+\_\+list\+\_\+screen (\begin{DoxyParamCaption}\item[{int}]{screen\+\_\+w}{, }\item[{int}]{screen\+\_\+h}{, }\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{button\+\_\+s}{, }\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{crown}{, }\item[{const std\+::multiset$<$ \mbox{\hyperlink{structplayer}{player}} $>$ \&}]{set}{, }\item[{\mbox{\hyperlink{classregistration}{registration}} \&}]{data\+\_\+ref}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que inicializa a tela de listagem. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em screen\+\_\+w} & Largura da tela \\
+\hline
+{\em screen\+\_\+h} & Altura da tela \\
+\hline
+{\em button\+\_\+s} & Efeito sonoro dos botões \\
+\hline
+{\em crown} & Sprite de coroa para indicar quem tem o maior score \\
+\hline
+{\em set} & Multiset com todos os jogadores a serem listados \\
+\hline
+{\em data\+\_\+ref} & Referência ao objeto que manipula os arquivos \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classplayer__list__screen_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classplayer__list__screen_ad0083e246953a7da14df42b4fdd89c0e}\index{player\_list\_screen@{player\_list\_screen}!draw@{draw}}
+\index{draw@{draw}!player\_list\_screen@{player\_list\_screen}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classplayer__list__screen_ad0083e246953a7da14df42b4fdd89c0e} 
+void player\+\_\+list\+\_\+screen\+::draw (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}}]{font}{}\end{DoxyParamCaption})}
+
+
+
+Desenha os jogadores listados e os botões. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em font} & Fonte utilizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classplayer__list__screen_ab9ec0ddfe236a55ac15ee0d72c9085f7}\index{player\_list\_screen@{player\_list\_screen}!get\_buttons@{get\_buttons}}
+\index{get\_buttons@{get\_buttons}!player\_list\_screen@{player\_list\_screen}}
+\doxysubsubsection{\texorpdfstring{get\_buttons()}{get\_buttons()}}
+{\footnotesize\ttfamily \label{classplayer__list__screen_ab9ec0ddfe236a55ac15ee0d72c9085f7} 
+const std\+::vector$<$ \mbox{\hyperlink{classbutton}{button}} \texorpdfstring{$\ast$}{*} $>$ \& player\+\_\+list\+\_\+screen\+::get\+\_\+buttons (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get do vetor de elementos de UI para manipulação de audio e testes. 
+
+\begin{DoxyReturn}{Retorna}
+Vetor com os ponteiros para os elementos 
+\end{DoxyReturn}
+\Hypertarget{classplayer__list__screen_a1de96765a1c8adc2e00e4a53eb161478}\index{player\_list\_screen@{player\_list\_screen}!get\_current\_page@{get\_current\_page}}
+\index{get\_current\_page@{get\_current\_page}!player\_list\_screen@{player\_list\_screen}}
+\doxysubsubsection{\texorpdfstring{get\_current\_page()}{get\_current\_page()}}
+{\footnotesize\ttfamily \label{classplayer__list__screen_a1de96765a1c8adc2e00e4a53eb161478} 
+int player\+\_\+list\+\_\+screen\+::get\+\_\+current\+\_\+page (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica a página atual. 
+
+\begin{DoxyReturn}{Retorna}
+Valor da página atual 
+\end{DoxyReturn}
+\Hypertarget{classplayer__list__screen_aba6b3ee1178025f2de5a0bfb699d90bd}\index{player\_list\_screen@{player\_list\_screen}!go\_to\_main\_menu@{go\_to\_main\_menu}}
+\index{go\_to\_main\_menu@{go\_to\_main\_menu}!player\_list\_screen@{player\_list\_screen}}
+\doxysubsubsection{\texorpdfstring{go\_to\_main\_menu()}{go\_to\_main\_menu()}}
+{\footnotesize\ttfamily \label{classplayer__list__screen_aba6b3ee1178025f2de5a0bfb699d90bd} 
+bool player\+\_\+list\+\_\+screen\+::go\+\_\+to\+\_\+main\+\_\+menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica se deve voltar ao menu. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica a volta 
+\end{DoxyReturn}
+\Hypertarget{classplayer__list__screen_a3ea0858859df20a896582b94762d5014}\index{player\_list\_screen@{player\_list\_screen}!handle\_event@{handle\_event}}
+\index{handle\_event@{handle\_event}!player\_list\_screen@{player\_list\_screen}}
+\doxysubsubsection{\texorpdfstring{handle\_event()}{handle\_event()}}
+{\footnotesize\ttfamily \label{classplayer__list__screen_a3ea0858859df20a896582b94762d5014} 
+void player\+\_\+list\+\_\+screen\+::handle\+\_\+event (\begin{DoxyParamCaption}\item[{const ALLEGRO\+\_\+\+EVENT \&}]{ev}{}\end{DoxyParamCaption})}
+
+
+
+Avança/\+Retorna páginas ou volta ao menu. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ev} & Evento a ser repassado aos botões \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classplayer__list__screen_abc15b993f06e722a7a591d9872029d0a}\index{player\_list\_screen@{player\_list\_screen}!reset@{reset}}
+\index{reset@{reset}!player\_list\_screen@{player\_list\_screen}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classplayer__list__screen_abc15b993f06e722a7a591d9872029d0a} 
+void player\+\_\+list\+\_\+screen\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reseta estado (página, flag) 
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{player__list__screen_8hpp}{player\+\_\+list\+\_\+screen.\+hpp}}\item 
+src/\mbox{\hyperlink{player__list__screen_8cpp}{player\+\_\+list\+\_\+screen.\+cpp}}\end{DoxyCompactItemize}

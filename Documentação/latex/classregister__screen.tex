@@ -1,0 +1,172 @@
+\doxysection{Referência à classe register\+\_\+screen}
+\hypertarget{classregister__screen}{}\label{classregister__screen}\index{register\_screen@{register\_screen}}
+
+
+Tela que lida com todo o processo de registro de novos usuários.  
+
+
+
+
+{\ttfamily \#include $<$register\+\_\+screen.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classregister__screen_a5e8e4a900f5913d2acc0a2dded3a6446}{register\+\_\+screen}} (int screen\+\_\+w, int screen\+\_\+h, \mbox{\hyperlink{classregistration}{registration}} \&data\+\_\+ref, std\+::multiset$<$ \mbox{\hyperlink{structplayer}{player}} $>$ \&set, ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}key\+\_\+s, ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}button\+\_\+s)
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa a tela de registro. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classregister__screen_af53bb265a34e9dda4450022726329f9b}{handle\+\_\+event}} (const ALLEGRO\+\_\+\+EVENT \&ev)
+\begin{DoxyCompactList}\small\item\em Trata eventos (mouse/teclado) e repassa para componentes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classregister__screen_a3e9a47ea1deefac6f16dc9820d840542}{draw}} (ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}font)
+\begin{DoxyCompactList}\small\item\em Desenha os componentes da tela. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classregister__screen_a115739f738528459aaab38f0fe97b076}{registration\+\_\+complete}} () const
+\begin{DoxyCompactList}\small\item\em Indica se o registro foi concluído com sucesso (para voltar ao login) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classregister__screen_ae46cb0f67fc821a6195fccaba9fbaf8a}{go\+\_\+to\+\_\+login\+\_\+screen}} () const
+\begin{DoxyCompactList}\small\item\em Indica se deve voltar à tela de login. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \mbox{\hyperlink{classtext__box}{text\+\_\+box}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classregister__screen_a113b32f01b2a6a66474269122a063a4f}{get\+\_\+text\+\_\+boxes}} () const
+\begin{DoxyCompactList}\small\item\em Get do vetor com ponteiros para as caixas de texto para testes e manipulação de áudio. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \mbox{\hyperlink{classbutton}{button}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classregister__screen_a1835a3eee456d71aa60d412c62bd3316}{get\+\_\+buttons}} () const
+\begin{DoxyCompactList}\small\item\em Get do vetor com ponteiros para os botões para testes e manipulação de áudio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classregister__screen_aaa356c5084c75005782eaa557e45ff25}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Reseta campos e flags para nova exibição. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Tela que lida com todo o processo de registro de novos usuários. 
+
+
+\begin{DoxyItemize}
+\item Processa e valida tentativas de registro
+\item Atualiza novos usuários no arquivo em caso de registros válidos 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{classregister__screen_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classregister__screen_a5e8e4a900f5913d2acc0a2dded3a6446}\index{register\_screen@{register\_screen}!register\_screen@{register\_screen}}
+\index{register\_screen@{register\_screen}!register\_screen@{register\_screen}}
+\doxysubsubsection{\texorpdfstring{register\_screen()}{register\_screen()}}
+{\footnotesize\ttfamily \label{classregister__screen_a5e8e4a900f5913d2acc0a2dded3a6446} 
+register\+\_\+screen\+::register\+\_\+screen (\begin{DoxyParamCaption}\item[{int}]{screen\+\_\+w}{, }\item[{int}]{screen\+\_\+h}{, }\item[{\mbox{\hyperlink{classregistration}{registration}} \&}]{data\+\_\+ref}{, }\item[{std\+::multiset$<$ \mbox{\hyperlink{structplayer}{player}} $>$ \&}]{set}{, }\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{key\+\_\+s}{, }\item[{ALLEGRO\+\_\+\+SAMPLE \texorpdfstring{$\ast$}{*}}]{button\+\_\+s}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que inicializa a tela de registro. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em screen\+\_\+w} & Largura da tela \\
+\hline
+{\em screen\+\_\+h} & Altura da tela \\
+\hline
+{\em data\+\_\+ref} & Referência ao objeto que manipula os arquivos \\
+\hline
+{\em set} & Multiset com todos os jogadores atuais para atualizar em caso de novo usuário \\
+\hline
+{\em key\+\_\+s} & Efeito sonoro das caixas de texto \\
+\hline
+{\em button\+\_\+s} & Efeito sonoro dos botões \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{classregister__screen_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classregister__screen_a3e9a47ea1deefac6f16dc9820d840542}\index{register\_screen@{register\_screen}!draw@{draw}}
+\index{draw@{draw}!register\_screen@{register\_screen}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classregister__screen_a3e9a47ea1deefac6f16dc9820d840542} 
+void register\+\_\+screen\+::draw (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}}]{font}{}\end{DoxyParamCaption})}
+
+
+
+Desenha os componentes da tela. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em font} & Fonte utilizada \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classregister__screen_a1835a3eee456d71aa60d412c62bd3316}\index{register\_screen@{register\_screen}!get\_buttons@{get\_buttons}}
+\index{get\_buttons@{get\_buttons}!register\_screen@{register\_screen}}
+\doxysubsubsection{\texorpdfstring{get\_buttons()}{get\_buttons()}}
+{\footnotesize\ttfamily \label{classregister__screen_a1835a3eee456d71aa60d412c62bd3316} 
+const std\+::vector$<$ \mbox{\hyperlink{classbutton}{button}} \texorpdfstring{$\ast$}{*} $>$ \& register\+\_\+screen\+::get\+\_\+buttons (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get do vetor com ponteiros para os botões para testes e manipulação de áudio. 
+
+\begin{DoxyReturn}{Retorna}
+Vetor com os ponteiros 
+\end{DoxyReturn}
+\Hypertarget{classregister__screen_a113b32f01b2a6a66474269122a063a4f}\index{register\_screen@{register\_screen}!get\_text\_boxes@{get\_text\_boxes}}
+\index{get\_text\_boxes@{get\_text\_boxes}!register\_screen@{register\_screen}}
+\doxysubsubsection{\texorpdfstring{get\_text\_boxes()}{get\_text\_boxes()}}
+{\footnotesize\ttfamily \label{classregister__screen_a113b32f01b2a6a66474269122a063a4f} 
+const std\+::vector$<$ \mbox{\hyperlink{classtext__box}{text\+\_\+box}} \texorpdfstring{$\ast$}{*} $>$ \& register\+\_\+screen\+::get\+\_\+text\+\_\+boxes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get do vetor com ponteiros para as caixas de texto para testes e manipulação de áudio. 
+
+\begin{DoxyReturn}{Retorna}
+Vetor com os ponteiros 
+\end{DoxyReturn}
+\Hypertarget{classregister__screen_ae46cb0f67fc821a6195fccaba9fbaf8a}\index{register\_screen@{register\_screen}!go\_to\_login\_screen@{go\_to\_login\_screen}}
+\index{go\_to\_login\_screen@{go\_to\_login\_screen}!register\_screen@{register\_screen}}
+\doxysubsubsection{\texorpdfstring{go\_to\_login\_screen()}{go\_to\_login\_screen()}}
+{\footnotesize\ttfamily \label{classregister__screen_ae46cb0f67fc821a6195fccaba9fbaf8a} 
+bool register\+\_\+screen\+::go\+\_\+to\+\_\+login\+\_\+screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica se deve voltar à tela de login. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano que indica o estado da volta 
+\end{DoxyReturn}
+\Hypertarget{classregister__screen_af53bb265a34e9dda4450022726329f9b}\index{register\_screen@{register\_screen}!handle\_event@{handle\_event}}
+\index{handle\_event@{handle\_event}!register\_screen@{register\_screen}}
+\doxysubsubsection{\texorpdfstring{handle\_event()}{handle\_event()}}
+{\footnotesize\ttfamily \label{classregister__screen_af53bb265a34e9dda4450022726329f9b} 
+void register\+\_\+screen\+::handle\+\_\+event (\begin{DoxyParamCaption}\item[{const ALLEGRO\+\_\+\+EVENT \&}]{ev}{}\end{DoxyParamCaption})}
+
+
+
+Trata eventos (mouse/teclado) e repassa para componentes. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ev} & Evento tratado \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classregister__screen_a115739f738528459aaab38f0fe97b076}\index{register\_screen@{register\_screen}!registration\_complete@{registration\_complete}}
+\index{registration\_complete@{registration\_complete}!register\_screen@{register\_screen}}
+\doxysubsubsection{\texorpdfstring{registration\_complete()}{registration\_complete()}}
+{\footnotesize\ttfamily \label{classregister__screen_a115739f738528459aaab38f0fe97b076} 
+bool register\+\_\+screen\+::registration\+\_\+complete (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica se o registro foi concluído com sucesso (para voltar ao login) 
+
+\begin{DoxyReturn}{Retorna}
+Indica o estado do registro 
+\end{DoxyReturn}
+\Hypertarget{classregister__screen_aaa356c5084c75005782eaa557e45ff25}\index{register\_screen@{register\_screen}!reset@{reset}}
+\index{reset@{reset}!register\_screen@{register\_screen}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classregister__screen_aaa356c5084c75005782eaa557e45ff25} 
+void register\+\_\+screen\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reseta campos e flags para nova exibição. 
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{register__screen_8hpp}{register\+\_\+screen.\+hpp}}\item 
+src/\mbox{\hyperlink{register__screen_8cpp}{register\+\_\+screen.\+cpp}}\end{DoxyCompactItemize}

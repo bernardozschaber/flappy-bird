@@ -1,0 +1,66 @@
+\doxysection{remove\+\_\+user\+\_\+screen.\+hpp}
+\hypertarget{remove__user__screen_8hpp_source}{}\label{remove__user__screen_8hpp_source}\index{include/remove\_user\_screen.hpp@{include/remove\_user\_screen.hpp}}
+\mbox{\hyperlink{remove__user__screen_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ REMOVE\_USER\_SCREEN\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ REMOVE\_USER\_SCREEN\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{text__box_8hpp}{text\_box.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{button_8hpp}{button.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{registration_8hpp}{registration.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <allegro5/allegro\_font.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classremove__user__screen_aee7f449e0a97970d6721d1ad2226303c}{remove\_user\_screen}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classremove__user__screen_aee7f449e0a97970d6721d1ad2226303c}{remove\_user\_screen}}(\textcolor{keywordtype}{int}\ screen\_w,\ \textcolor{keywordtype}{int}\ screen\_h,\ \mbox{\hyperlink{classregistration}{registration}}\&\ data\_ref,\ std::multiset<player>\ \&players,\ ALLEGRO\_SAMPLE*\ key\_sample,\ ALLEGRO\_SAMPLE*\ click\_sample);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classremove__user__screen_ae175e33ace83f2e1d2fe708190a21a21}{handle\_event}}(\textcolor{keyword}{const}\ ALLEGRO\_EVENT\&\ ev);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classremove__user__screen_ad21baa9ae436d8a1f5050887e419fc35}{draw}}(ALLEGRO\_FONT*\ font);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classremove__user__screen_a30294d6b9bed08ca1de42e29739f19be}{go\_to\_main\_menu}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<text\_box*>\&\ \mbox{\hyperlink{classremove__user__screen_a51a74167d0b55b8f2151183fcf7018a2}{get\_text\_boxes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<button*>\&\ \ \mbox{\hyperlink{classremove__user__screen_a4addf8eef6fcd13909899b3fecbe9dd2}{get\_buttons}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classremove__user__screen_a4859d638a4360bd0d45aea8e02181368}{is\_in\_confirmation}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classremove__user__screen_a21e23788c319fc913dc8a21e70c031bd}{is\_removal\_done}}()\ \textcolor{keyword}{const};\ \ \ \ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classremove__user__screen_a05c59e2a5a8593e3f7b05e682e0fc4c5}{reset}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{int}\ screen\_width;\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{int}\ screen\_height;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classregistration}{registration}}\&\ data;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ std::multiset<player>\ \&players;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classtext__box}{text\_box}}\ user\_box;}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classbutton}{button}}\ remove\_button;}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{classbutton}{button}}\ cancel\_button;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{bool}\ in\_confirmation;\ }
+\DoxyCodeLine{00098\ \ \ \ \ std::string\ to\_remove;\ }
+\DoxyCodeLine{00099\ \ \ \ \ std::string\ to\_remove\_password;\ }
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{classbutton}{button}}\ confirm\_button;}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{classbutton}{button}}\ cancel\_confirm\_button;}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{classtext__box}{text\_box}}\ password\_box;}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00107\ \ \ \ \ std::vector<text\_box*>\ text\_boxes;}
+\DoxyCodeLine{00108\ \ \ \ \ std::vector<button*>\ buttons;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{bool}\ to\_menu;\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{bool}\ removal\_done;\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ empty\_field;\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{bool}\ exist\_user;\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{bool}\ correct\_password;\ }
+\DoxyCodeLine{00119\ \};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ REMOVE\_USER\_SCREEN\_HPP}}
+\DoxyCodeLine{00122\ }
+
+\end{DoxyCode}

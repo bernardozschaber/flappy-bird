@@ -1,0 +1,251 @@
+\doxysection{Referência à classe registration}
+\hypertarget{classregistration}{}\label{classregistration}\index{registration@{registration}}
+
+
+Classe que realiza operações dentro do arquivo.  
+
+
+
+
+{\ttfamily \#include $<$registration.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classregistration_a3f907d79fe0e297f82d864c6fd5e66ee}{registration}} (std\+::string arquivo)
+\begin{DoxyCompactList}\small\item\em Construtor da classe. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classregistration_aff5f826369fa3d8b4e13ad9c0a3f3285}{is\+File\+Empty}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se o arquivo está vazio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classregistration_a28af6e324536ae56e465407f6a9c15f2}{new\+\_\+user}} (std\+::string name, std\+::string password, int \mbox{\hyperlink{game__loop_8hpp_a8c5cd9b525ee73a24b1d9d8e34982d1c}{score}}, int games)
+\begin{DoxyCompactList}\small\item\em Cadastra um novo jogador. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classregistration_a483e5d95abeb52efe45bdf724ef8ae33}{get\+\_\+stats}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Captura a linha do jogador no arquivo. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplayer}{player}} \mbox{\hyperlink{classregistration_a0cdebda5917f487a9c1ec6bdd3d4aff4}{get\+\_\+player}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Captura as informações do jogador no arquivo. \end{DoxyCompactList}\item 
+std\+::multiset$<$ \mbox{\hyperlink{structplayer}{player}} $>$ \mbox{\hyperlink{classregistration_a79fed56545f5439074097435b926bc67}{get\+\_\+all}} ()
+\begin{DoxyCompactList}\small\item\em Resgata as informações de todos os jogadores, exceto senha. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classregistration_a7d8b264e272556664243073d2253201c}{update}} (\mbox{\hyperlink{structplayer}{player}} \&player\+\_\+stats)
+\begin{DoxyCompactList}\small\item\em Atualiza o arquivo com as informações de determinado jogador. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classregistration_a98c75bd24966f2d21d7407c9fb431949}{delete\+\_\+user}} (std\+::string user)
+\begin{DoxyCompactList}\small\item\em Deleta o jogador. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classregistration_a09a6f7ece46cce35397f7d0a9564c7a1}{get\+\_\+max\+\_\+score}} ()
+\begin{DoxyCompactList}\small\item\em Obtém a maior pontuação do jogo. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classregistration_a7e1b534b0f9ee3297e321846acef7989}{get\+\_\+max\+\_\+user}} ()
+\begin{DoxyCompactList}\small\item\em Obtém o username do jogador com maior pontuação do jogo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classregistration_aa44c2429bda9397f840649f6b475822c}{update\+\_\+champion}} ()
+\begin{DoxyCompactList}\small\item\em Atualiza a posição do "{}possível"{} novo campeão após operações no arquivo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classregistration_a95e66fc3b998064719c5a0404aa49717}{is\+Open\+File}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se o arquivo está aberto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classregistration_a810017b2a89d603f4cf11a0beb9eac4b}{\texorpdfstring{$\sim$}{\string~}registration}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da classe que realiza o fechamento do arquivo(se for necessário). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe que realiza operações dentro do arquivo. 
+
+A classe registration permite inserções, remoções, atualizações, captura de dados dos jogadores que estarão presentes no arquivo. 
+
+\label{doc-constructors}
+\Hypertarget{classregistration_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classregistration_a3f907d79fe0e297f82d864c6fd5e66ee}\index{registration@{registration}!registration@{registration}}
+\index{registration@{registration}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{registration()}{registration()}}
+{\footnotesize\ttfamily \label{classregistration_a3f907d79fe0e297f82d864c6fd5e66ee} 
+registration\+::registration (\begin{DoxyParamCaption}\item[{std\+::string}]{arquivo}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da classe. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em arquivo} & Nome do arquivo. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classregistration_a810017b2a89d603f4cf11a0beb9eac4b}\index{registration@{registration}!````~registration@{\texorpdfstring{$\sim$}{\string~}registration}}
+\index{````~registration@{\texorpdfstring{$\sim$}{\string~}registration}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}registration()}{\string~registration()}}
+{\footnotesize\ttfamily \label{classregistration_a810017b2a89d603f4cf11a0beb9eac4b} 
+registration\+::\texorpdfstring{$\sim$}{\string~}registration (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destrutor da classe que realiza o fechamento do arquivo(se for necessário). 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classregistration_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classregistration_a98c75bd24966f2d21d7407c9fb431949}\index{registration@{registration}!delete\_user@{delete\_user}}
+\index{delete\_user@{delete\_user}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{delete\_user()}{delete\_user()}}
+{\footnotesize\ttfamily \label{classregistration_a98c75bd24966f2d21d7407c9fb431949} 
+int registration\+::delete\+\_\+user (\begin{DoxyParamCaption}\item[{std\+::string}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Deleta o jogador. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em user} & Nome do jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Inteiro identificando se a exclusão foi bem sucedida(1) ou não (0). 
+\end{DoxyReturn}
+\Hypertarget{classregistration_a79fed56545f5439074097435b926bc67}\index{registration@{registration}!get\_all@{get\_all}}
+\index{get\_all@{get\_all}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{get\_all()}{get\_all()}}
+{\footnotesize\ttfamily \label{classregistration_a79fed56545f5439074097435b926bc67} 
+std\+::multiset$<$ \mbox{\hyperlink{structplayer}{player}} $>$ registration\+::get\+\_\+all (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Resgata as informações de todos os jogadores, exceto senha. 
+
+\begin{DoxyReturn}{Retorna}
+Container Multiset ordenado pela pontuação de todos os jogadores. 
+\end{DoxyReturn}
+\Hypertarget{classregistration_a09a6f7ece46cce35397f7d0a9564c7a1}\index{registration@{registration}!get\_max\_score@{get\_max\_score}}
+\index{get\_max\_score@{get\_max\_score}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{get\_max\_score()}{get\_max\_score()}}
+{\footnotesize\ttfamily \label{classregistration_a09a6f7ece46cce35397f7d0a9564c7a1} 
+int registration\+::get\+\_\+max\+\_\+score (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém a maior pontuação do jogo. 
+
+\begin{DoxyReturn}{Retorna}
+Maior pontuação do jogo. 
+\end{DoxyReturn}
+\Hypertarget{classregistration_a7e1b534b0f9ee3297e321846acef7989}\index{registration@{registration}!get\_max\_user@{get\_max\_user}}
+\index{get\_max\_user@{get\_max\_user}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{get\_max\_user()}{get\_max\_user()}}
+{\footnotesize\ttfamily \label{classregistration_a7e1b534b0f9ee3297e321846acef7989} 
+std\+::string registration\+::get\+\_\+max\+\_\+user (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém o username do jogador com maior pontuação do jogo. 
+
+\begin{DoxyReturn}{Retorna}
+Username do jogador. 
+\end{DoxyReturn}
+\Hypertarget{classregistration_a0cdebda5917f487a9c1ec6bdd3d4aff4}\index{registration@{registration}!get\_player@{get\_player}}
+\index{get\_player@{get\_player}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{get\_player()}{get\_player()}}
+{\footnotesize\ttfamily \label{classregistration_a0cdebda5917f487a9c1ec6bdd3d4aff4} 
+\mbox{\hyperlink{structplayer}{player}} registration\+::get\+\_\+player (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Captura as informações do jogador no arquivo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em name} & Nome do jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Objeto com as todas as informações do jogador. 
+\end{DoxyReturn}
+\Hypertarget{classregistration_a483e5d95abeb52efe45bdf724ef8ae33}\index{registration@{registration}!get\_stats@{get\_stats}}
+\index{get\_stats@{get\_stats}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{get\_stats()}{get\_stats()}}
+{\footnotesize\ttfamily \label{classregistration_a483e5d95abeb52efe45bdf724ef8ae33} 
+std\+::string registration\+::get\+\_\+stats (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Captura a linha do jogador no arquivo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em name} & Nome do jogador. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Linha com as informações do jogador. 
+\end{DoxyReturn}
+\Hypertarget{classregistration_aff5f826369fa3d8b4e13ad9c0a3f3285}\index{registration@{registration}!isFileEmpty@{isFileEmpty}}
+\index{isFileEmpty@{isFileEmpty}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{isFileEmpty()}{isFileEmpty()}}
+{\footnotesize\ttfamily \label{classregistration_aff5f826369fa3d8b4e13ad9c0a3f3285} 
+bool registration\+::is\+File\+Empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verifica se o arquivo está vazio. 
+
+\begin{DoxyReturn}{Retorna}
+Booleano representando se o arquivo está vazio(true) ou false. 
+\end{DoxyReturn}
+\Hypertarget{classregistration_a95e66fc3b998064719c5a0404aa49717}\index{registration@{registration}!isOpenFile@{isOpenFile}}
+\index{isOpenFile@{isOpenFile}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{isOpenFile()}{isOpenFile()}}
+{\footnotesize\ttfamily \label{classregistration_a95e66fc3b998064719c5a0404aa49717} 
+bool registration\+::is\+Open\+File (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Verifica se o arquivo está aberto. 
+
+\begin{DoxyReturn}{Retorna}
+Confirmação(true) ou false. 
+\end{DoxyReturn}
+\Hypertarget{classregistration_a28af6e324536ae56e465407f6a9c15f2}\index{registration@{registration}!new\_user@{new\_user}}
+\index{new\_user@{new\_user}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{new\_user()}{new\_user()}}
+{\footnotesize\ttfamily \label{classregistration_a28af6e324536ae56e465407f6a9c15f2} 
+void registration\+::new\+\_\+user (\begin{DoxyParamCaption}\item[{std\+::string}]{name}{, }\item[{std\+::string}]{password}{, }\item[{int}]{score}{, }\item[{int}]{games}{}\end{DoxyParamCaption})}
+
+
+
+Cadastra um novo jogador. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em name} & Nome do jogador. \\
+\hline
+{\em password} & Senha do jogador. \\
+\hline
+{\em score} & Pontuação inicial do jogador. \\
+\hline
+{\em games} & Jogos jogados. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classregistration_a7d8b264e272556664243073d2253201c}\index{registration@{registration}!update@{update}}
+\index{update@{update}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classregistration_a7d8b264e272556664243073d2253201c} 
+void registration\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplayer}{player}} \&}]{player\+\_\+stats}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza o arquivo com as informações de determinado jogador. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em player\+\_\+stats} & Objeto player com as informações do jogador a serem atualizadas. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classregistration_aa44c2429bda9397f840649f6b475822c}\index{registration@{registration}!update\_champion@{update\_champion}}
+\index{update\_champion@{update\_champion}!registration@{registration}}
+\doxysubsubsection{\texorpdfstring{update\_champion()}{update\_champion()}}
+{\footnotesize\ttfamily \label{classregistration_aa44c2429bda9397f840649f6b475822c} 
+void registration\+::update\+\_\+champion (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza a posição do "{}possível"{} novo campeão após operações no arquivo. 
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{registration_8hpp}{registration.\+hpp}}\item 
+src/\mbox{\hyperlink{registration_8cpp}{registration.\+cpp}}\end{DoxyCompactItemize}

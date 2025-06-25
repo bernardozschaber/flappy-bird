@@ -1,0 +1,126 @@
+\doxysection{Referência à classe settings\+\_\+screen}
+\hypertarget{classsettings__screen}{}\label{classsettings__screen}\index{settings\_screen@{settings\_screen}}
+
+
+Classe que representa a tela de configurações do jogo.  
+
+
+
+
+{\ttfamily \#include $<$settings\+\_\+screen.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsettings__screen_ab69725860905a59ed4a50b4ff7a0b6e6}{settings\+\_\+screen}} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{classsettings__screen}{settings\+\_\+screen}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsettings__screen_a97dd9860eedadf96cf2fb6e59c161abc}{\texorpdfstring{$\sim$}{\string~}settings\+\_\+screen}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da classe \doxylink{classsettings__screen}{settings\+\_\+screen} Destrói bitmaps e objetos da tela. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsettings__screen_a3a338c142849e3f1a8458338db4bffeb}{commands}} (unsigned char key\mbox{[}$\,$\mbox{]}, bool \&mouse\+\_\+is\+\_\+down, bool \&mouse\+\_\+just\+\_\+released, int mouse\+\_\+update\+\_\+x, int mouse\+\_\+update\+\_\+y, int mouse\+\_\+x\+\_\+now, \mbox{\hyperlink{structstates}{states}} \&state, \mbox{\hyperlink{classGame__Loop}{Game\+\_\+\+Loop}} \texorpdfstring{$\ast$}{*}main\+\_\+game\+\_\+loop)
+\begin{DoxyCompactList}\small\item\em Processa os comandos da tela de configurações. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsettings__screen_a9de830988afc5a321849fb7fbf5b165b}{update}} ()
+\begin{DoxyCompactList}\small\item\em Desenha todos os componentes na tela. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsettings__screen_a450e81e9c2944d82ac722572a3b79880}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Desenha os objetos da tela de configurações. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsettings__screen_a7fc1a4cfd168802e85a4f24ac6681480}{set\+\_\+values}} ()
+\begin{DoxyCompactList}\small\item\em Pega os valores dos sliders e os armazena nas variáveis correspondentes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe que representa a tela de configurações do jogo. 
+
+Esta tela é composta basicamente por sliders e botões que permitem ao usuário alterar as configurações do jogo, como volume, força do pulo, etc. 
+
+\label{doc-constructors}
+\Hypertarget{classsettings__screen_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classsettings__screen_ab69725860905a59ed4a50b4ff7a0b6e6}\index{settings\_screen@{settings\_screen}!settings\_screen@{settings\_screen}}
+\index{settings\_screen@{settings\_screen}!settings\_screen@{settings\_screen}}
+\doxysubsubsection{\texorpdfstring{settings\_screen()}{settings\_screen()}}
+{\footnotesize\ttfamily \label{classsettings__screen_ab69725860905a59ed4a50b4ff7a0b6e6} 
+settings\+\_\+screen\+::settings\+\_\+screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{classsettings__screen}{settings\+\_\+screen}. 
+
+\Hypertarget{classsettings__screen_a97dd9860eedadf96cf2fb6e59c161abc}\index{settings\_screen@{settings\_screen}!````~settings\_screen@{\texorpdfstring{$\sim$}{\string~}settings\_screen}}
+\index{````~settings\_screen@{\texorpdfstring{$\sim$}{\string~}settings\_screen}!settings\_screen@{settings\_screen}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}settings\_screen()}{\string~settings\_screen()}}
+{\footnotesize\ttfamily \label{classsettings__screen_a97dd9860eedadf96cf2fb6e59c161abc} 
+settings\+\_\+screen\+::\texorpdfstring{$\sim$}{\string~}settings\+\_\+screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destrutor da classe \doxylink{classsettings__screen}{settings\+\_\+screen} Destrói bitmaps e objetos da tela. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsettings__screen_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classsettings__screen_a3a338c142849e3f1a8458338db4bffeb}\index{settings\_screen@{settings\_screen}!commands@{commands}}
+\index{commands@{commands}!settings\_screen@{settings\_screen}}
+\doxysubsubsection{\texorpdfstring{commands()}{commands()}}
+{\footnotesize\ttfamily \label{classsettings__screen_a3a338c142849e3f1a8458338db4bffeb} 
+void settings\+\_\+screen\+::commands (\begin{DoxyParamCaption}\item[{unsigned char}]{key}{\mbox{[}$\,$\mbox{]}, }\item[{bool \&}]{mouse\+\_\+is\+\_\+down}{, }\item[{bool \&}]{mouse\+\_\+just\+\_\+released}{, }\item[{int}]{mouse\+\_\+update\+\_\+x}{, }\item[{int}]{mouse\+\_\+update\+\_\+y}{, }\item[{int}]{mouse\+\_\+x\+\_\+now}{, }\item[{\mbox{\hyperlink{structstates}{states}} \&}]{state}{, }\item[{\mbox{\hyperlink{classGame__Loop}{Game\+\_\+\+Loop}} \texorpdfstring{$\ast$}{*}}]{main\+\_\+game\+\_\+loop}{}\end{DoxyParamCaption})}
+
+
+
+Processa os comandos da tela de configurações. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em key} & Array de teclas pressionadas \\
+\hline
+{\em mouse\+\_\+is\+\_\+down} & Indica se o mouse está pressionado \\
+\hline
+{\em mouse\+\_\+just\+\_\+released} & Indica se o mouse foi solto \\
+\hline
+{\em mouse\+\_\+update\+\_\+x} & Posição X do mouse na atualização \\
+\hline
+{\em mouse\+\_\+update\+\_\+y} & Posição Y do mouse na atualização \\
+\hline
+{\em mouse\+\_\+x\+\_\+now} & Posição X atual do mouse \\
+\hline
+{\em state} & Referência ao estado do jogo \\
+\hline
+{\em main\+\_\+game\+\_\+loop} & Ponteiro para o loop principal do jogo \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsettings__screen_a450e81e9c2944d82ac722572a3b79880}\index{settings\_screen@{settings\_screen}!draw@{draw}}
+\index{draw@{draw}!settings\_screen@{settings\_screen}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classsettings__screen_a450e81e9c2944d82ac722572a3b79880} 
+void settings\+\_\+screen\+::draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Desenha os objetos da tela de configurações. 
+
+\Hypertarget{classsettings__screen_a7fc1a4cfd168802e85a4f24ac6681480}\index{settings\_screen@{settings\_screen}!set\_values@{set\_values}}
+\index{set\_values@{set\_values}!settings\_screen@{settings\_screen}}
+\doxysubsubsection{\texorpdfstring{set\_values()}{set\_values()}}
+{\footnotesize\ttfamily \label{classsettings__screen_a7fc1a4cfd168802e85a4f24ac6681480} 
+void settings\+\_\+screen\+::set\+\_\+values (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Pega os valores dos sliders e os armazena nas variáveis correspondentes. 
+
+\Hypertarget{classsettings__screen_a9de830988afc5a321849fb7fbf5b165b}\index{settings\_screen@{settings\_screen}!update@{update}}
+\index{update@{update}!settings\_screen@{settings\_screen}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classsettings__screen_a9de830988afc5a321849fb7fbf5b165b} 
+void settings\+\_\+screen\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Desenha todos os componentes na tela. 
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{settings__screen_8hpp}{settings\+\_\+screen.\+hpp}}\item 
+src/\mbox{\hyperlink{settings__screen_8cpp}{settings\+\_\+screen.\+cpp}}\end{DoxyCompactItemize}

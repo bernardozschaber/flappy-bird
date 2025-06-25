@@ -1,0 +1,296 @@
+\doxysection{Referência à classe slider}
+\hypertarget{classslider}{}\label{classslider}\index{slider@{slider}}
+
+
+Classe que representa os sliders da tela de configuração\+: Herda da classe gênerica de objetos de UI.  
+
+
+
+
+{\ttfamily \#include $<$slider.\+hpp$>$}
+
+Diagrama de heranças da classe slider\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classslider}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classslider_a2ccc6b22017f36938689c149f11bd854}{slider}} (ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}back\+\_\+sprite, ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}indicator\+\_\+sprite, ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}show, float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}, float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}, float variation\+\_\+, bool show\+\_\+number\+\_\+, float disp\+\_\+h\+\_\+, float disp\+\_\+v\+\_\+, float scale\+\_\+, float min\+\_\+value\+\_\+, float max\+\_\+value\+\_\+, float value\+\_\+, bool is\+\_\+int\+\_\+)
+\begin{DoxyCompactList}\small\item\em Construtor que inicializa o slider. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classslider_aa17a049b92b7905493be6ef06736f381}{\texorpdfstring{$\sim$}{\string~}slider}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor que deleta o slider. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classslider_ac6df50710cb9b96d373ecc5175f79db1}{draw}} (std\+::string nome)
+\begin{DoxyCompactList}\small\item\em Desenha o slider na tela com um nome em cima. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classslider_aeca80f1d24723a90268c07888f1f1595}{update}} (bool mouse\+\_\+is\+\_\+down, bool mouse\+\_\+just\+\_\+released, int x\+\_\+at\+\_\+down, int y\+\_\+at\+\_\+down, int x\+\_\+now)
+\begin{DoxyCompactList}\small\item\em Atualiza o valor e posição do indicador/slider de acordo com o comportamento do mouse do usuário. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classslider_a2c05ea81a8473fd04fd0107641873c21}{set\+\_\+pressed}} (bool is\+\_\+pressed)
+\begin{DoxyCompactList}\small\item\em Muda a váriavel Bool de pressionamento de acordo com o parâmetro. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classslider_a1a66b997a81e954e72822c273bae570c}{cointains\+\_\+indicator}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}, float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}})
+\begin{DoxyCompactList}\small\item\em Retorna se o ponto x,y esta dentro da área do indicador. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classslider_ab07f6ddd2d6fc54c56e301866f4ffe16}{cointains\+\_\+back}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}, float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}})
+\begin{DoxyCompactList}\small\item\em Retorna se o ponto x,y esta dentro da área da parte de trás do slider. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classslider_ab0a82d994446f43523636a27590fef0b}{set\+\_\+bitmap\+\_\+back}} (ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}new\+\_\+back\+\_\+bitmap)
+\begin{DoxyCompactList}\small\item\em Atribui o bitmap passado como parameto para a parte de trás do slider. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classslider_a5b11eca975b7533f48fb1e628db32e79}{set\+\_\+bitmap\+\_\+indicator}} (ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}new\+\_\+indicator\+\_\+bitmap)
+\begin{DoxyCompactList}\small\item\em Atribui o bitmap passado como parameto para o indicator slider. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classslider_a8541ab6d245055c842925fd67e68b12d}{get\+\_\+value}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o valor armazenado no slider. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classslider_a0a0e7ffd1d1cb200a0d31805def0c079}{handle\+\_\+event}} (const ALLEGRO\+\_\+\+EVENT \&ev) override
+\begin{DoxyCompactList}\small\item\em Não faz nada, mas precisa estar definido por causa da herança. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classslider_a8ca2661b277b375ca88257b847a51daf}{draw}} (ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}font) override
+\begin{DoxyCompactList}\small\item\em Não faz nada, mas precisa estar definido por causa da herança. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Membros públicos herdados de \mbox{\hyperlink{classui__object}{ui\+\_\+object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classui__object_a8e48c858fc29ec57df399ed268694e2a}{ui\+\_\+object}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}, float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}, int \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}}, int \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}})
+\begin{DoxyCompactList}\small\item\em Construtor genêrico de objetos de UI. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_af92b7c5ebcdc42b2bad45b95a36dbf50}{get\+\_\+x}} ()
+\begin{DoxyCompactList}\small\item\em Get para a coordenada x. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_a2c389711da7495d7ddbd3d737e58d252}{get\+\_\+y}} ()
+\begin{DoxyCompactList}\small\item\em Get para a coordenada y. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_aad941a2d7673057e07ea04009b4b2781}{get\+\_\+width}} ()
+\begin{DoxyCompactList}\small\item\em Get para a largura. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_a1f604114f5d5f9430a3ed33da16a66f5}{get\+\_\+height}} ()
+\begin{DoxyCompactList}\small\item\em Get para a altura. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classui__object_ab680ce54233178efb0a9d712253f04bb}{set\+\_\+x}} (float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}})
+\begin{DoxyCompactList}\small\item\em Set para a coordenada x. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classui__object_a8a97830ba3ada2f8a288b6ad5f0d2c38}{set\+\_\+y}} (float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}})
+\begin{DoxyCompactList}\small\item\em Set para a coordenada y. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classui__object_a819037b1a21fcc0bef890c66f155bdf0}{contains}} (int mx, int my) const
+\begin{DoxyCompactList}\small\item\em Verifica se o mouse está em cima do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Outros membros herdados}
+\doxysubsection*{Atributos Protegidos herdados de \mbox{\hyperlink{classui__object}{ui\+\_\+object}}}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classui__object_abf9d88bc2a8df75f8aa9bb403fdb7b8d}{x}}
+\begin{DoxyCompactList}\small\item\em Coordenada x do inicio da área do objeto. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classui__object_af929118b76e3a339121ee106356c3ab4}{y}}
+\begin{DoxyCompactList}\small\item\em Coordenada y do inicio da área do objeto. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_ace281fe9cc0dc54bb3b962bcf76511f2}{width}}
+\begin{DoxyCompactList}\small\item\em Largura do objeto. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classui__object_adc7dbf341883f5426b53d21554f61601}{height}}
+\begin{DoxyCompactList}\small\item\em Altura do objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe que representa os sliders da tela de configuração\+: Herda da classe gênerica de objetos de UI. 
+
+O slider processa quando o mouse é pressionado se estiver dentro de sua área e segue, com o indicador, a coordenada x do mouse (dentro de seu escopo), calculando também o valor adequado para armazenar. 
+
+\label{doc-constructors}
+\Hypertarget{classslider_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classslider_a2ccc6b22017f36938689c149f11bd854}\index{slider@{slider}!slider@{slider}}
+\index{slider@{slider}!slider@{slider}}
+\doxysubsubsection{\texorpdfstring{slider()}{slider()}}
+{\footnotesize\ttfamily \label{classslider_a2ccc6b22017f36938689c149f11bd854} 
+slider\+::slider (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{back\+\_\+sprite}{, }\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{indicator\+\_\+sprite}{, }\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{show}{, }\item[{float}]{x}{, }\item[{float}]{y}{, }\item[{float}]{variation\+\_\+}{, }\item[{bool}]{show\+\_\+number\+\_\+}{, }\item[{float}]{disp\+\_\+h\+\_\+}{, }\item[{float}]{disp\+\_\+v\+\_\+}{, }\item[{float}]{scale\+\_\+}{, }\item[{float}]{min\+\_\+value\+\_\+}{, }\item[{float}]{max\+\_\+value\+\_\+}{, }\item[{float}]{value\+\_\+}{, }\item[{bool}]{is\+\_\+int\+\_\+}{}\end{DoxyParamCaption})}
+
+
+
+Construtor que inicializa o slider. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em back\+\_\+sprite} & Sprite da parte de trás do slider \\
+\hline
+{\em indicator\+\_\+sprite} & Sprite do indicador que mostra em que parte do slider esta \\
+\hline
+{\em show} & Sprite da parte de trás do display do valor \\
+\hline
+{\em x} & Coordenada x que inicia a posição do centro do slider \\
+\hline
+{\em y} & Coordenada y que inicia a posição do centro do slider \\
+\hline
+{\em variation\+\_\+} & Tamanho usavel para deslize do sprite do slider \\
+\hline
+{\em show\+\_\+number\+\_\+} & Bool que decide se o número vai ser mostrado ou não \\
+\hline
+{\em disp\+\_\+h\+\_\+} & Diferença horizontal do centro do slider para o local em que o valor sera imprimido \\
+\hline
+{\em disp\+\_\+v\+\_\+} & Diferença vertical do centro do slider para o local em que o valor sera imprimido \\
+\hline
+{\em scale\+\_\+} & Proporção que o slider sera desenhado \\
+\hline
+{\em is\+\_\+int\+\_\+} & Bool que decide se o valor armazenado sera int (1) ou um float com uma casa decimal (0) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classslider_aa17a049b92b7905493be6ef06736f381}\index{slider@{slider}!````~slider@{\texorpdfstring{$\sim$}{\string~}slider}}
+\index{````~slider@{\texorpdfstring{$\sim$}{\string~}slider}!slider@{slider}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}slider()}{\string~slider()}}
+{\footnotesize\ttfamily \label{classslider_aa17a049b92b7905493be6ef06736f381} 
+slider\+::\texorpdfstring{$\sim$}{\string~}slider (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destrutor que deleta o slider. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classslider_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classslider_ab07f6ddd2d6fc54c56e301866f4ffe16}\index{slider@{slider}!cointains\_back@{cointains\_back}}
+\index{cointains\_back@{cointains\_back}!slider@{slider}}
+\doxysubsubsection{\texorpdfstring{cointains\_back()}{cointains\_back()}}
+{\footnotesize\ttfamily \label{classslider_ab07f6ddd2d6fc54c56e301866f4ffe16} 
+bool slider\+::cointains\+\_\+back (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Retorna se o ponto x,y esta dentro da área da parte de trás do slider. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em x} & Coordenada X do ponto analisado \\
+\hline
+{\em y} & Coordenada Y do ponto analisado \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classslider_a1a66b997a81e954e72822c273bae570c}\index{slider@{slider}!cointains\_indicator@{cointains\_indicator}}
+\index{cointains\_indicator@{cointains\_indicator}!slider@{slider}}
+\doxysubsubsection{\texorpdfstring{cointains\_indicator()}{cointains\_indicator()}}
+{\footnotesize\ttfamily \label{classslider_a1a66b997a81e954e72822c273bae570c} 
+bool slider\+::cointains\+\_\+indicator (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Retorna se o ponto x,y esta dentro da área do indicador. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em x} & Coordenada X do ponto analisado \\
+\hline
+{\em y} & Coordenada Y do ponto analisado \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classslider_a8ca2661b277b375ca88257b847a51daf}\index{slider@{slider}!draw@{draw}}
+\index{draw@{draw}!slider@{slider}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classslider_a8ca2661b277b375ca88257b847a51daf} 
+void slider\+::draw (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+FONT \texorpdfstring{$\ast$}{*}}]{font}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Não faz nada, mas precisa estar definido por causa da herança. 
+
+
+
+Implementa \mbox{\hyperlink{classui__object_ac0ef8445a32b5e0b594f839ecc9b991c}{ui\+\_\+object}}.
+
+\Hypertarget{classslider_ac6df50710cb9b96d373ecc5175f79db1}\index{slider@{slider}!draw@{draw}}
+\index{draw@{draw}!slider@{slider}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classslider_ac6df50710cb9b96d373ecc5175f79db1} 
+void slider\+::draw (\begin{DoxyParamCaption}\item[{std\+::string}]{nome}{}\end{DoxyParamCaption})}
+
+
+
+Desenha o slider na tela com um nome em cima. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em nome} & Texto que aparecerá em cima do slider \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classslider_a8541ab6d245055c842925fd67e68b12d}\index{slider@{slider}!get\_value@{get\_value}}
+\index{get\_value@{get\_value}!slider@{slider}}
+\doxysubsubsection{\texorpdfstring{get\_value()}{get\_value()}}
+{\footnotesize\ttfamily \label{classslider_a8541ab6d245055c842925fd67e68b12d} 
+float slider\+::get\+\_\+value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retorna o valor armazenado no slider. 
+
+\Hypertarget{classslider_a0a0e7ffd1d1cb200a0d31805def0c079}\index{slider@{slider}!handle\_event@{handle\_event}}
+\index{handle\_event@{handle\_event}!slider@{slider}}
+\doxysubsubsection{\texorpdfstring{handle\_event()}{handle\_event()}}
+{\footnotesize\ttfamily \label{classslider_a0a0e7ffd1d1cb200a0d31805def0c079} 
+void slider\+::handle\+\_\+event (\begin{DoxyParamCaption}\item[{const ALLEGRO\+\_\+\+EVENT \&}]{ev}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Não faz nada, mas precisa estar definido por causa da herança. 
+
+
+
+Implementa \mbox{\hyperlink{classui__object_a109a266a6688a36a7a80af513af6aa3a}{ui\+\_\+object}}.
+
+\Hypertarget{classslider_ab0a82d994446f43523636a27590fef0b}\index{slider@{slider}!set\_bitmap\_back@{set\_bitmap\_back}}
+\index{set\_bitmap\_back@{set\_bitmap\_back}!slider@{slider}}
+\doxysubsubsection{\texorpdfstring{set\_bitmap\_back()}{set\_bitmap\_back()}}
+{\footnotesize\ttfamily \label{classslider_ab0a82d994446f43523636a27590fef0b} 
+void slider\+::set\+\_\+bitmap\+\_\+back (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{new\+\_\+back\+\_\+bitmap}{}\end{DoxyParamCaption})}
+
+
+
+Atribui o bitmap passado como parameto para a parte de trás do slider. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em new\+\_\+back\+\_\+bitmap} & Novo bitmap da parte de trás do slider \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classslider_a5b11eca975b7533f48fb1e628db32e79}\index{slider@{slider}!set\_bitmap\_indicator@{set\_bitmap\_indicator}}
+\index{set\_bitmap\_indicator@{set\_bitmap\_indicator}!slider@{slider}}
+\doxysubsubsection{\texorpdfstring{set\_bitmap\_indicator()}{set\_bitmap\_indicator()}}
+{\footnotesize\ttfamily \label{classslider_a5b11eca975b7533f48fb1e628db32e79} 
+void slider\+::set\+\_\+bitmap\+\_\+indicator (\begin{DoxyParamCaption}\item[{ALLEGRO\+\_\+\+BITMAP \texorpdfstring{$\ast$}{*}}]{new\+\_\+indicator\+\_\+bitmap}{}\end{DoxyParamCaption})}
+
+
+
+Atribui o bitmap passado como parameto para o indicator slider. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em new\+\_\+indicator\+\_\+bitmap} & Novo bitmap do indicator slider \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classslider_a2c05ea81a8473fd04fd0107641873c21}\index{slider@{slider}!set\_pressed@{set\_pressed}}
+\index{set\_pressed@{set\_pressed}!slider@{slider}}
+\doxysubsubsection{\texorpdfstring{set\_pressed()}{set\_pressed()}}
+{\footnotesize\ttfamily \label{classslider_a2c05ea81a8473fd04fd0107641873c21} 
+void slider\+::set\+\_\+pressed (\begin{DoxyParamCaption}\item[{bool}]{is\+\_\+pressed}{}\end{DoxyParamCaption})}
+
+
+
+Muda a váriavel Bool de pressionamento de acordo com o parâmetro. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em is\+\_\+pressed} & Novo valor da Bool de estado pressionamento \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classslider_aeca80f1d24723a90268c07888f1f1595}\index{slider@{slider}!update@{update}}
+\index{update@{update}!slider@{slider}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classslider_aeca80f1d24723a90268c07888f1f1595} 
+void slider\+::update (\begin{DoxyParamCaption}\item[{bool}]{mouse\+\_\+is\+\_\+down}{, }\item[{bool}]{mouse\+\_\+just\+\_\+released}{, }\item[{int}]{x\+\_\+at\+\_\+down}{, }\item[{int}]{y\+\_\+at\+\_\+down}{, }\item[{int}]{x\+\_\+now}{}\end{DoxyParamCaption})}
+
+
+
+Atualiza o valor e posição do indicador/slider de acordo com o comportamento do mouse do usuário. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em mouse\+\_\+is\+\_\+down} & Bool que fala se o mouse está pressionado \\
+\hline
+{\em mouse\+\_\+just\+\_\+released} & Bool que fala se o mouse acabou de ser liberado \\
+\hline
+{\em x\+\_\+at\+\_\+down} & Coordenada X do ultimo clique do mouse \\
+\hline
+{\em y\+\_\+at\+\_\+down} & Coordenada Y do ultimo clique do mouse \\
+\hline
+{\em x\+\_\+now} & Coordenada X do mouse nesse exato momento \\
+\hline
+\end{DoxyParams}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{slider_8hpp}{slider.\+hpp}}\item 
+src/\mbox{\hyperlink{slider_8cpp}{slider.\+cpp}}\end{DoxyCompactItemize}

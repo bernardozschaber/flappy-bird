@@ -1,0 +1,51 @@
+\doxysection{image.\+hpp}
+\hypertarget{image_8hpp_source}{}\label{image_8hpp_source}\index{include/image.hpp@{include/image.hpp}}
+\mbox{\hyperlink{image_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ IMAGE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ IMAGE\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ui__object_8hpp}{ui\_object.hpp}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classimage_aa7c28092bb0626268d3368aa0a5bf34c}{image}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ ALLEGRO\_BITMAP*\ bitmap;\ }
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ vel\_x;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ vel\_y;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ acel\_x;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ acel\_y;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x,\ y;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ width,\ height;\ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classimage_aa7c28092bb0626268d3368aa0a5bf34c}{image}}(ALLEGRO\_BITMAP*\ sprite,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y)\ :\ \mbox{\hyperlink{classimage_aa7c28092bb0626268d3368aa0a5bf34c}{image}}(sprite,\ x,\ y,\ 0,\ 0,\ 0,\ 0)\ \{\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classimage_aa7c28092bb0626268d3368aa0a5bf34c}{image}}(ALLEGRO\_BITMAP*\ sprite,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ vx,\ \textcolor{keywordtype}{float}\ vy,\ \textcolor{keywordtype}{float}\ ax,\ \textcolor{keywordtype}{float}\ ay);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classimage_ae1ed9afeb5bf50d42356f7443f11fadd}{Draw}}();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classimage_ae1ed9afeb5bf50d42356f7443f11fadd}{Draw}}(\textcolor{keywordtype}{float}\ scale);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classimage_a97c8f2dd019cfdf78e7803b70c2d53ea}{Update}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classimage_a569b33078b28b51fe0c9a735d44bd18c}{get\_x}}();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classimage_a3cef4902a688a8e5d8c8d07077ab510f}{get\_y}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classimage_ad94b9944ff060c382c4863d8b2561e2c}{get\_velocity\_x}}();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classimage_a24d59d3738ac7ef48c333777de2f78ea}{get\_velocity\_y}}();}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classimage_ad1e3258c54f0eb8de47adb137bee3981}{set\_position\_x}}(\textcolor{keywordtype}{float}\ new\_x);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classimage_a51d31770f8728868c66958a51ed5f797}{set\_position\_y}}(\textcolor{keywordtype}{float}\ new\_y);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classimage_ac98829af6fdfbd466b2438f03eb7aa0f}{set\_velocity}}(\textcolor{keywordtype}{float}\ new\_vel\_x,\ \textcolor{keywordtype}{float}\ new\_vel\_y);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classimage_a06a9b620628b4e1d198cba62402f823f}{set\_acceleration}}(\textcolor{keywordtype}{float}\ new\_accel\_x,\ \textcolor{keywordtype}{float}\ new\_accel\_y);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classimage_ac5071c34bcb894ed3a5ae646e7c57f11}{set\_bitmap}}(ALLEGRO\_BITMAP*\ new\_sprite);}
+\DoxyCodeLine{00115\ \};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

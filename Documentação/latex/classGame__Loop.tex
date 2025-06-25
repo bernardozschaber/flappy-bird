@@ -1,0 +1,130 @@
+\doxysection{Referência à classe Game\+\_\+\+Loop}
+\hypertarget{classGame__Loop}{}\label{classGame__Loop}\index{Game\_Loop@{Game\_Loop}}
+
+
+Classe que representa a tela de loop de gameplay.  
+
+
+
+
+{\ttfamily \#include $<$game\+\_\+loop.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGame__Loop_a0ba2779aa051e27558d3bc7ce650faa9}{Game\+\_\+\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{classGame__Loop}{Game\+\_\+\+Loop}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGame__Loop_a874fb59c1f7dc60273fc5541046838b9}{\texorpdfstring{$\sim$}{\string~}\+Game\+\_\+\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da classe \doxylink{classGame__Loop}{Game\+\_\+\+Loop} Destrói bitmaps, sons e objetos do jogo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGame__Loop_af6e0faf1bde6695343b5230835e6229a}{commands}} (unsigned char key\mbox{[}$\,$\mbox{]}, bool mouse\+\_\+is\+\_\+down, bool \&mouse\+\_\+just\+\_\+released, int mouse\+\_\+update\+\_\+x, int mouse\+\_\+update\+\_\+y, \mbox{\hyperlink{structstates}{states}} \texorpdfstring{$\ast$}{*}state)
+\begin{DoxyCompactList}\small\item\em Método que processa os comandos do jogo (mouse, teclado) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGame__Loop_a0a01f7f1d6a2596a55a4e1f6da0240b8}{update}} (\mbox{\hyperlink{structstates}{states}} \texorpdfstring{$\ast$}{*}state)
+\begin{DoxyCompactList}\small\item\em Método que atualiza o estado dos objetos do jogo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGame__Loop_ae863a066d1f53760c88a054fcfbfda0d}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Método que desenha o jogo na tela. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGame__Loop_a48e7b4c083d6d019cc2af082b59fba84}{reset\+\_\+game}} ()
+\begin{DoxyCompactList}\small\item\em Reseta o jogo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe que representa a tela de loop de gameplay. 
+
+\label{doc-constructors}
+\Hypertarget{classGame__Loop_doc-constructors}
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{classGame__Loop_a0ba2779aa051e27558d3bc7ce650faa9}\index{Game\_Loop@{Game\_Loop}!Game\_Loop@{Game\_Loop}}
+\index{Game\_Loop@{Game\_Loop}!Game\_Loop@{Game\_Loop}}
+\doxysubsubsection{\texorpdfstring{Game\_Loop()}{Game\_Loop()}}
+{\footnotesize\ttfamily \label{classGame__Loop_a0ba2779aa051e27558d3bc7ce650faa9} 
+Game\+\_\+\+Loop\+::\+Game\+\_\+\+Loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{classGame__Loop}{Game\+\_\+\+Loop}. 
+
+\Hypertarget{classGame__Loop_a874fb59c1f7dc60273fc5541046838b9}\index{Game\_Loop@{Game\_Loop}!````~Game\_Loop@{\texorpdfstring{$\sim$}{\string~}Game\_Loop}}
+\index{````~Game\_Loop@{\texorpdfstring{$\sim$}{\string~}Game\_Loop}!Game\_Loop@{Game\_Loop}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Game\_Loop()}{\string~Game\_Loop()}}
+{\footnotesize\ttfamily \label{classGame__Loop_a874fb59c1f7dc60273fc5541046838b9} 
+Game\+\_\+\+Loop\+::\texorpdfstring{$\sim$}{\string~}\+Game\+\_\+\+Loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destrutor da classe \doxylink{classGame__Loop}{Game\+\_\+\+Loop} Destrói bitmaps, sons e objetos do jogo. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classGame__Loop_doc-func-members}
+\doxysubsection{Documentação das funções}
+\Hypertarget{classGame__Loop_af6e0faf1bde6695343b5230835e6229a}\index{Game\_Loop@{Game\_Loop}!commands@{commands}}
+\index{commands@{commands}!Game\_Loop@{Game\_Loop}}
+\doxysubsubsection{\texorpdfstring{commands()}{commands()}}
+{\footnotesize\ttfamily \label{classGame__Loop_af6e0faf1bde6695343b5230835e6229a} 
+void Game\+\_\+\+Loop\+::commands (\begin{DoxyParamCaption}\item[{unsigned char}]{key}{\mbox{[}$\,$\mbox{]}, }\item[{bool}]{mouse\+\_\+is\+\_\+down}{, }\item[{bool \&}]{mouse\+\_\+just\+\_\+released}{, }\item[{int}]{mouse\+\_\+update\+\_\+x}{, }\item[{int}]{mouse\+\_\+update\+\_\+y}{, }\item[{\mbox{\hyperlink{structstates}{states}} \texorpdfstring{$\ast$}{*}}]{state}{}\end{DoxyParamCaption})}
+
+
+
+Método que processa os comandos do jogo (mouse, teclado) 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em key} & Array de teclas pressionadas \\
+\hline
+{\em mouse\+\_\+is\+\_\+down} & Indica se o mouse está pressionado \\
+\hline
+{\em mouse\+\_\+just\+\_\+released} & Indica se o mouse foi solto \\
+\hline
+{\em mouse\+\_\+update\+\_\+x} & Posição X de click/release mouse \\
+\hline
+{\em mouse\+\_\+update\+\_\+y} & Posição Y de click/release mouse \\
+\hline
+{\em state} & Estrutura de estados do jogo \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGame__Loop_ae863a066d1f53760c88a054fcfbfda0d}\index{Game\_Loop@{Game\_Loop}!draw@{draw}}
+\index{draw@{draw}!Game\_Loop@{Game\_Loop}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classGame__Loop_ae863a066d1f53760c88a054fcfbfda0d} 
+void Game\+\_\+\+Loop\+::draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Método que desenha o jogo na tela. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em state} & Estrutura de estados do jogo \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classGame__Loop_a48e7b4c083d6d019cc2af082b59fba84}\index{Game\_Loop@{Game\_Loop}!reset\_game@{reset\_game}}
+\index{reset\_game@{reset\_game}!Game\_Loop@{Game\_Loop}}
+\doxysubsubsection{\texorpdfstring{reset\_game()}{reset\_game()}}
+{\footnotesize\ttfamily \label{classGame__Loop_a48e7b4c083d6d019cc2af082b59fba84} 
+void Game\+\_\+\+Loop\+::reset\+\_\+game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reseta o jogo. 
+
+\Hypertarget{classGame__Loop_a0a01f7f1d6a2596a55a4e1f6da0240b8}\index{Game\_Loop@{Game\_Loop}!update@{update}}
+\index{update@{update}!Game\_Loop@{Game\_Loop}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classGame__Loop_a0a01f7f1d6a2596a55a4e1f6da0240b8} 
+void Game\+\_\+\+Loop\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstates}{states}} \texorpdfstring{$\ast$}{*}}]{state}{}\end{DoxyParamCaption})}
+
+
+
+Método que atualiza o estado dos objetos do jogo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em state} & Estrutura de estados do jogo \\
+\hline
+\end{DoxyParams}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{game__loop_8hpp}{game\+\_\+loop.\+hpp}}\item 
+src/\mbox{\hyperlink{game__loop_8cpp}{game\+\_\+loop.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,532 @@
+\doxysection{Referência ao ficheiro include/game\+\_\+loop.hpp}
+\hypertarget{game__loop_8hpp}{}\label{game__loop_8hpp}\index{include/game\_loop.hpp@{include/game\_loop.hpp}}
+{\ttfamily \#include "{}game\+\_\+object.\+hpp"{}}\newline
+{\ttfamily \#include "{}background\+\_\+object.\+hpp"{}}\newline
+{\ttfamily \#include "{}pipe\+\_\+object.\+hpp"{}}\newline
+{\ttfamily \#include "{}moving\+\_\+button.\+hpp"{}}\newline
+{\ttfamily \#include "{}bird\+\_\+object.\+hpp"{}}\newline
+{\ttfamily \#include "{}image.\+hpp"{}}\newline
+{\ttfamily \#include "{}score.\+hpp"{}}\newline
+{\ttfamily \#include "{}registration.\+hpp"{}}\newline
+{\ttfamily \#include $<$allegro5/allegro\+\_\+audio.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+\doxysubsubsection*{Componentes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structstates}{states}}
+\begin{DoxyCompactList}\small\item\em Estrutura que armazena informações sobre o estado do jogo. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classGame__Loop}{Game\+\_\+\+Loop}}
+\begin{DoxyCompactList}\small\item\em Classe que representa a tela de loop de gameplay. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variáveis}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_ae856fd9e9eb470b17346dba969a1cb48}{ARIAL\+\_\+\+FONT\+\_\+\+FILEPATH}}
+\begin{DoxyCompactList}\small\item\em caminho para a fonte arial \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_a5463d4d6fed515acd15da7816831672f}{PSANS\+\_\+\+FONT\+\_\+\+FILEPATH}}
+\begin{DoxyCompactList}\small\item\em caminho para a fonte pixelify sans \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_a0d4c738f74169d87fa2947f556d5ef87}{BIRD\+\_\+\+SPRITE}} \mbox{[}6\mbox{]}
+\begin{DoxyCompactList}\small\item\em bitmap do sprite do pássaro \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_a159d1f06c23f149aff29cb550e4d1595}{PIPE\+\_\+\+SPRITE}}
+\begin{DoxyCompactList}\small\item\em caminho do sprite do cano \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_acb531bbbf72124dc6151437929ed2d0b}{GOLDEN\+\_\+\+PIPE\+\_\+\+SPRITE}}
+\begin{DoxyCompactList}\small\item\em caminho do sprite do cano dourado \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_a70c1a8f25b3c95275ab4cfce8bf2f061}{MOUNTAIN\+\_\+\+SPRITE\+\_\+1}}
+\begin{DoxyCompactList}\small\item\em caminho das montanhas (da frente) \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_ac196aba7dcd73adb8b5a7a6e3660d975}{MOUNTAIN\+\_\+\+SPRITE\+\_\+2}}
+\begin{DoxyCompactList}\small\item\em caminho das montanhas (do meio) \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_ac6d8324b7d16ad75fa3ba4d3602d590d}{MOUNTAIN\+\_\+\+SPRITE\+\_\+3}}
+\begin{DoxyCompactList}\small\item\em caminho das montanhas (de trás) \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_a2b2ab5e638eae34a700e507b028c1e9d}{GRASS\+\_\+\+SPRITE}}
+\begin{DoxyCompactList}\small\item\em caminho da grama \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_a7eaa3ebf328a26c5a5d7a0dfafb59604}{ACHIEVEMENTS\+\_\+\+BUTTON\+\_\+\+SPRITE}} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em caminho do botão de conquistas \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_ac6f81fa926a1d78fb0a605ab57e19767}{BACK\+\_\+\+BUTTON\+\_\+\+SPRITE}} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em caminho do botão de voltar \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_a5701a161d0bf9261d7e3a7df4e2535dc}{SETTINGS\+\_\+\+BUTTON\+\_\+\+SPRITE}} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em caminho do botão de configurações \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_aac8971b3200129792a6888b2273ab7aa}{INSTRUÇÕ\+ES\+\_\+\+SPRITE}}
+\begin{DoxyCompactList}\small\item\em caminho das instruções \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_a66c8cdd8d1373bae8688f0c62b0e31f9}{SCORE\+\_\+\+SPRITE}}
+\begin{DoxyCompactList}\small\item\em caminho da tela de morte \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_acdfcacf8bc9b742e55228ac3148d30bd}{HOME\+\_\+\+SPRITE}} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em caminho do sprite de home \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_ab7468c58bfe25562161210e119133c6e}{BACKGROUND}}
+\begin{DoxyCompactList}\small\item\em caminho do sprite do fundo \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_aa7309b74fae45ad9ef8544103af0f7d6}{NUMBERS\+\_\+\+SPRITES}} \mbox{[}10\mbox{]}
+\begin{DoxyCompactList}\small\item\em caminho dos números \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_aa143a78a1ad7d02a92b0a146343f7b10}{SOUND\+\_\+\+BUTTON\+\_\+\+SPRITE}} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em caminho do botão de som ligado/desligado \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_adf8e461e3d53ef14cfd420014d244f13}{PAUSE\+\_\+\+BUTTON\+\_\+\+SPRITE}} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em caminho do botão de pause/despause \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_aefaf712a0749353cf25b79030a500e90}{DEATH\+\_\+\+SCREEN\+\_\+\+FRAME}}
+\begin{DoxyCompactList}\small\item\em caminho do frame da tela de morte \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_a15ebe5fcd600d0846f3b488e8d149aba}{TRY\+\_\+\+AGAIN\+\_\+\+BUTTON\+\_\+\+SPRITE}} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em caminho do botão de tentar de novo \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_a57213da153dc322a0b6726cf2e6c31fa}{SCORE\+\_\+\+NOW}}
+\begin{DoxyCompactList}\small\item\em caminho do sprite do score da jogatina \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_ae6ce26640bc52364d45ea732fea89f46}{MAX\+\_\+\+SCORE}}
+\begin{DoxyCompactList}\small\item\em caminho do sprite do max score \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_a0ca859196c368e755571e925f594b364}{PAUSED}}
+\begin{DoxyCompactList}\small\item\em caminho do sprite do texto de pause \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_a9397a6082fe4d7bd25c305eba2bd91a1}{SCORE\+\_\+\+BOX\+\_\+1}}
+\begin{DoxyCompactList}\small\item\em caminho da caixa de score \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_ad5273f9e682ca6ae904c73e3ff47ceed}{SCORE\+\_\+\+BOX\+\_\+2}}
+\begin{DoxyCompactList}\small\item\em caminho da caixa de score \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{game__loop_8hpp_afb8a03ac3ad09a97371c38a0b4734cb1}{STATISTICS\+\_\+\+BUTTON\+\_\+\+SPRITE}} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em caminho do botão de achievements \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{game__loop_8hpp_a42c075b5e54349391d38c5d53c4eddde}{SCREEN\+\_\+H}}
+\begin{DoxyCompactList}\small\item\em altura da tela \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{game__loop_8hpp_afca0db9c0e472d6c9aefd3022751d0ba}{SCREEN\+\_\+W}}
+\begin{DoxyCompactList}\small\item\em comprimento da tela \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{game__loop_8hpp_a7ec33da8078befd2fa14476b0ad35852}{HEIGHT\+\_\+\+REFFERENCE}}
+\begin{DoxyCompactList}\small\item\em altura de referência para spawn de objetos do cenário \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__loop_8hpp_a35ced579e7e8c3bb22c4265bc5bcf7b0}{random\+\_\+offset}}
+\begin{DoxyCompactList}\small\item\em Offset do cano a ser spawnado. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{game__loop_8hpp_a025972eb75530e83c807d3df1a162e7d}{golden\+\_\+odds\+\_\+setter}}
+\begin{DoxyCompactList}\small\item\em Probabilidade de spawn de canos dourados. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{game__loop_8hpp_ace63adf20ffbab0547d2f1a1c806181b}{gravity\+\_\+setter}}
+\begin{DoxyCompactList}\small\item\em Gravidade do jogo. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{game__loop_8hpp_a8c5cd9b525ee73a24b1d9d8e34982d1c}{score}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classScore}{Score} atual do jogo. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{game__loop_8hpp_ad5ce61f736f9a2961945949de4531a54}{max\+\_\+score}}
+\begin{DoxyCompactList}\small\item\em Melhor score do jogador logado. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__loop_8hpp_a35c30f46e84633eaa7a7b3e6bf67c89a}{PIPE\+\_\+\+SPACE}}
+\begin{DoxyCompactList}\small\item\em Espaçamento entre os canos. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{game__loop_8hpp_a6ec666cdcd59ec24f7a8b7f7f01fc283}{PIPE\+\_\+\+INITIAL\+\_\+\+SPEED}}
+\begin{DoxyCompactList}\small\item\em Velocidade atual dos canos. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{game__loop_8hpp_a1bac67ae9d699398178b533922253976}{PIPE\+\_\+\+SPEED\+\_\+\+MAX}}
+\begin{DoxyCompactList}\small\item\em Velocidade máxima dos canos. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{game__loop_8hpp_a600c80b1fb156bbf8fc270642a83cae4}{PIPE\+\_\+\+SPEED\+\_\+\+INCREASE}}
+\begin{DoxyCompactList}\small\item\em Aumento da velocidade dos canos a cada 10 pontos. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__loop_8hpp_a638a5de4abce9374e834ac6f361853ae}{BIRD\+\_\+\+JUMP\+\_\+\+VEL}}
+\begin{DoxyCompactList}\small\item\em Velocidade do pulo do pássaro. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__loop_8hpp_aae691e933a02744eeacd914b5636cbbf}{BIRD\+\_\+\+MAX\+\_\+\+UP\+\_\+\+VEL}}
+\begin{DoxyCompactList}\small\item\em Velocidade máxima de subida do pássaro. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{game__loop_8hpp_a7aec9d4a68371ef1bf524c838ea25a53}{BIRD\+\_\+\+MAX\+\_\+\+DOWN\+\_\+\+VEL}}
+\begin{DoxyCompactList}\small\item\em Velocidade máxima de descida do pássaro. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-var-members}
+\Hypertarget{game__loop_8hpp_doc-var-members}
+\doxysubsection{Documentação das variáveis}
+\Hypertarget{game__loop_8hpp_a7eaa3ebf328a26c5a5d7a0dfafb59604}\index{game\_loop.hpp@{game\_loop.hpp}!ACHIEVEMENTS\_BUTTON\_SPRITE@{ACHIEVEMENTS\_BUTTON\_SPRITE}}
+\index{ACHIEVEMENTS\_BUTTON\_SPRITE@{ACHIEVEMENTS\_BUTTON\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{ACHIEVEMENTS\_BUTTON\_SPRITE}{ACHIEVEMENTS\_BUTTON\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a7eaa3ebf328a26c5a5d7a0dfafb59604} 
+const char\texorpdfstring{$\ast$}{*} ACHIEVEMENTS\+\_\+\+BUTTON\+\_\+\+SPRITE\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do botão de conquistas 
+
+\Hypertarget{game__loop_8hpp_ae856fd9e9eb470b17346dba969a1cb48}\index{game\_loop.hpp@{game\_loop.hpp}!ARIAL\_FONT\_FILEPATH@{ARIAL\_FONT\_FILEPATH}}
+\index{ARIAL\_FONT\_FILEPATH@{ARIAL\_FONT\_FILEPATH}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{ARIAL\_FONT\_FILEPATH}{ARIAL\_FONT\_FILEPATH}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_ae856fd9e9eb470b17346dba969a1cb48} 
+const char\texorpdfstring{$\ast$}{*} ARIAL\+\_\+\+FONT\+\_\+\+FILEPATH\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho para a fonte arial 
+
+\Hypertarget{game__loop_8hpp_ac6f81fa926a1d78fb0a605ab57e19767}\index{game\_loop.hpp@{game\_loop.hpp}!BACK\_BUTTON\_SPRITE@{BACK\_BUTTON\_SPRITE}}
+\index{BACK\_BUTTON\_SPRITE@{BACK\_BUTTON\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{BACK\_BUTTON\_SPRITE}{BACK\_BUTTON\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_ac6f81fa926a1d78fb0a605ab57e19767} 
+const char\texorpdfstring{$\ast$}{*} BACK\+\_\+\+BUTTON\+\_\+\+SPRITE\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do botão de voltar 
+
+\Hypertarget{game__loop_8hpp_ab7468c58bfe25562161210e119133c6e}\index{game\_loop.hpp@{game\_loop.hpp}!BACKGROUND@{BACKGROUND}}
+\index{BACKGROUND@{BACKGROUND}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{BACKGROUND}{BACKGROUND}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_ab7468c58bfe25562161210e119133c6e} 
+const char\texorpdfstring{$\ast$}{*} BACKGROUND\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do sprite do fundo 
+
+\Hypertarget{game__loop_8hpp_a638a5de4abce9374e834ac6f361853ae}\index{game\_loop.hpp@{game\_loop.hpp}!BIRD\_JUMP\_VEL@{BIRD\_JUMP\_VEL}}
+\index{BIRD\_JUMP\_VEL@{BIRD\_JUMP\_VEL}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{BIRD\_JUMP\_VEL}{BIRD\_JUMP\_VEL}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a638a5de4abce9374e834ac6f361853ae} 
+int BIRD\+\_\+\+JUMP\+\_\+\+VEL\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Velocidade do pulo do pássaro. 
+
+\Hypertarget{game__loop_8hpp_a7aec9d4a68371ef1bf524c838ea25a53}\index{game\_loop.hpp@{game\_loop.hpp}!BIRD\_MAX\_DOWN\_VEL@{BIRD\_MAX\_DOWN\_VEL}}
+\index{BIRD\_MAX\_DOWN\_VEL@{BIRD\_MAX\_DOWN\_VEL}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{BIRD\_MAX\_DOWN\_VEL}{BIRD\_MAX\_DOWN\_VEL}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a7aec9d4a68371ef1bf524c838ea25a53} 
+int BIRD\+\_\+\+MAX\+\_\+\+DOWN\+\_\+\+VEL\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Velocidade máxima de descida do pássaro. 
+
+\Hypertarget{game__loop_8hpp_aae691e933a02744eeacd914b5636cbbf}\index{game\_loop.hpp@{game\_loop.hpp}!BIRD\_MAX\_UP\_VEL@{BIRD\_MAX\_UP\_VEL}}
+\index{BIRD\_MAX\_UP\_VEL@{BIRD\_MAX\_UP\_VEL}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{BIRD\_MAX\_UP\_VEL}{BIRD\_MAX\_UP\_VEL}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_aae691e933a02744eeacd914b5636cbbf} 
+int BIRD\+\_\+\+MAX\+\_\+\+UP\+\_\+\+VEL\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Velocidade máxima de subida do pássaro. 
+
+\Hypertarget{game__loop_8hpp_a0d4c738f74169d87fa2947f556d5ef87}\index{game\_loop.hpp@{game\_loop.hpp}!BIRD\_SPRITE@{BIRD\_SPRITE}}
+\index{BIRD\_SPRITE@{BIRD\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{BIRD\_SPRITE}{BIRD\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a0d4c738f74169d87fa2947f556d5ef87} 
+const char\texorpdfstring{$\ast$}{*} BIRD\+\_\+\+SPRITE\mbox{[}6\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+bitmap do sprite do pássaro 
+
+\Hypertarget{game__loop_8hpp_aefaf712a0749353cf25b79030a500e90}\index{game\_loop.hpp@{game\_loop.hpp}!DEATH\_SCREEN\_FRAME@{DEATH\_SCREEN\_FRAME}}
+\index{DEATH\_SCREEN\_FRAME@{DEATH\_SCREEN\_FRAME}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{DEATH\_SCREEN\_FRAME}{DEATH\_SCREEN\_FRAME}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_aefaf712a0749353cf25b79030a500e90} 
+const char\texorpdfstring{$\ast$}{*} DEATH\+\_\+\+SCREEN\+\_\+\+FRAME\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do frame da tela de morte 
+
+\Hypertarget{game__loop_8hpp_a025972eb75530e83c807d3df1a162e7d}\index{game\_loop.hpp@{game\_loop.hpp}!golden\_odds\_setter@{golden\_odds\_setter}}
+\index{golden\_odds\_setter@{golden\_odds\_setter}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{golden\_odds\_setter}{golden\_odds\_setter}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a025972eb75530e83c807d3df1a162e7d} 
+float golden\+\_\+odds\+\_\+setter\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Probabilidade de spawn de canos dourados. 
+
+\Hypertarget{game__loop_8hpp_acb531bbbf72124dc6151437929ed2d0b}\index{game\_loop.hpp@{game\_loop.hpp}!GOLDEN\_PIPE\_SPRITE@{GOLDEN\_PIPE\_SPRITE}}
+\index{GOLDEN\_PIPE\_SPRITE@{GOLDEN\_PIPE\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{GOLDEN\_PIPE\_SPRITE}{GOLDEN\_PIPE\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_acb531bbbf72124dc6151437929ed2d0b} 
+const char\texorpdfstring{$\ast$}{*} GOLDEN\+\_\+\+PIPE\+\_\+\+SPRITE\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do sprite do cano dourado 
+
+\Hypertarget{game__loop_8hpp_a2b2ab5e638eae34a700e507b028c1e9d}\index{game\_loop.hpp@{game\_loop.hpp}!GRASS\_SPRITE@{GRASS\_SPRITE}}
+\index{GRASS\_SPRITE@{GRASS\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{GRASS\_SPRITE}{GRASS\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a2b2ab5e638eae34a700e507b028c1e9d} 
+const char\texorpdfstring{$\ast$}{*} GRASS\+\_\+\+SPRITE\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho da grama 
+
+\Hypertarget{game__loop_8hpp_ace63adf20ffbab0547d2f1a1c806181b}\index{game\_loop.hpp@{game\_loop.hpp}!gravity\_setter@{gravity\_setter}}
+\index{gravity\_setter@{gravity\_setter}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{gravity\_setter}{gravity\_setter}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_ace63adf20ffbab0547d2f1a1c806181b} 
+float gravity\+\_\+setter\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Gravidade do jogo. 
+
+\Hypertarget{game__loop_8hpp_a7ec33da8078befd2fa14476b0ad35852}\index{game\_loop.hpp@{game\_loop.hpp}!HEIGHT\_REFFERENCE@{HEIGHT\_REFFERENCE}}
+\index{HEIGHT\_REFFERENCE@{HEIGHT\_REFFERENCE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{HEIGHT\_REFFERENCE}{HEIGHT\_REFFERENCE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a7ec33da8078befd2fa14476b0ad35852} 
+const int HEIGHT\+\_\+\+REFFERENCE\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+altura de referência para spawn de objetos do cenário 
+
+VARIÁ\+VEIS EXTRAS \Hypertarget{game__loop_8hpp_acdfcacf8bc9b742e55228ac3148d30bd}\index{game\_loop.hpp@{game\_loop.hpp}!HOME\_SPRITE@{HOME\_SPRITE}}
+\index{HOME\_SPRITE@{HOME\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{HOME\_SPRITE}{HOME\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_acdfcacf8bc9b742e55228ac3148d30bd} 
+const char\texorpdfstring{$\ast$}{*} HOME\+\_\+\+SPRITE\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do sprite de home 
+
+\Hypertarget{game__loop_8hpp_aac8971b3200129792a6888b2273ab7aa}\index{game\_loop.hpp@{game\_loop.hpp}!INSTRUÇÕES\_SPRITE@{INSTRUÇÕES\_SPRITE}}
+\index{INSTRUÇÕES\_SPRITE@{INSTRUÇÕES\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{INSTRUÇÕES\_SPRITE}{INSTRUÇÕES\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_aac8971b3200129792a6888b2273ab7aa} 
+const char\texorpdfstring{$\ast$}{*} INSTRUÇÕ\+ES\+\_\+\+SPRITE\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho das instruções 
+
+\Hypertarget{game__loop_8hpp_ae6ce26640bc52364d45ea732fea89f46}\index{game\_loop.hpp@{game\_loop.hpp}!MAX\_SCORE@{MAX\_SCORE}}
+\index{MAX\_SCORE@{MAX\_SCORE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_SCORE}{MAX\_SCORE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_ae6ce26640bc52364d45ea732fea89f46} 
+const char\texorpdfstring{$\ast$}{*} MAX\+\_\+\+SCORE\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do sprite do max score 
+
+\Hypertarget{game__loop_8hpp_ad5ce61f736f9a2961945949de4531a54}\index{game\_loop.hpp@{game\_loop.hpp}!max\_score@{max\_score}}
+\index{max\_score@{max\_score}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{max\_score}{max\_score}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_ad5ce61f736f9a2961945949de4531a54} 
+float max\+\_\+score\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Melhor score do jogador logado. 
+
+\Hypertarget{game__loop_8hpp_a70c1a8f25b3c95275ab4cfce8bf2f061}\index{game\_loop.hpp@{game\_loop.hpp}!MOUNTAIN\_SPRITE\_1@{MOUNTAIN\_SPRITE\_1}}
+\index{MOUNTAIN\_SPRITE\_1@{MOUNTAIN\_SPRITE\_1}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{MOUNTAIN\_SPRITE\_1}{MOUNTAIN\_SPRITE\_1}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a70c1a8f25b3c95275ab4cfce8bf2f061} 
+const char\texorpdfstring{$\ast$}{*} MOUNTAIN\+\_\+\+SPRITE\+\_\+1\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho das montanhas (da frente) 
+
+\Hypertarget{game__loop_8hpp_ac196aba7dcd73adb8b5a7a6e3660d975}\index{game\_loop.hpp@{game\_loop.hpp}!MOUNTAIN\_SPRITE\_2@{MOUNTAIN\_SPRITE\_2}}
+\index{MOUNTAIN\_SPRITE\_2@{MOUNTAIN\_SPRITE\_2}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{MOUNTAIN\_SPRITE\_2}{MOUNTAIN\_SPRITE\_2}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_ac196aba7dcd73adb8b5a7a6e3660d975} 
+const char\texorpdfstring{$\ast$}{*} MOUNTAIN\+\_\+\+SPRITE\+\_\+2\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho das montanhas (do meio) 
+
+\Hypertarget{game__loop_8hpp_ac6d8324b7d16ad75fa3ba4d3602d590d}\index{game\_loop.hpp@{game\_loop.hpp}!MOUNTAIN\_SPRITE\_3@{MOUNTAIN\_SPRITE\_3}}
+\index{MOUNTAIN\_SPRITE\_3@{MOUNTAIN\_SPRITE\_3}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{MOUNTAIN\_SPRITE\_3}{MOUNTAIN\_SPRITE\_3}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_ac6d8324b7d16ad75fa3ba4d3602d590d} 
+const char\texorpdfstring{$\ast$}{*} MOUNTAIN\+\_\+\+SPRITE\+\_\+3\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho das montanhas (de trás) 
+
+\Hypertarget{game__loop_8hpp_aa7309b74fae45ad9ef8544103af0f7d6}\index{game\_loop.hpp@{game\_loop.hpp}!NUMBERS\_SPRITES@{NUMBERS\_SPRITES}}
+\index{NUMBERS\_SPRITES@{NUMBERS\_SPRITES}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{NUMBERS\_SPRITES}{NUMBERS\_SPRITES}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_aa7309b74fae45ad9ef8544103af0f7d6} 
+const char\texorpdfstring{$\ast$}{*} NUMBERS\+\_\+\+SPRITES\mbox{[}10\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho dos números 
+
+\Hypertarget{game__loop_8hpp_adf8e461e3d53ef14cfd420014d244f13}\index{game\_loop.hpp@{game\_loop.hpp}!PAUSE\_BUTTON\_SPRITE@{PAUSE\_BUTTON\_SPRITE}}
+\index{PAUSE\_BUTTON\_SPRITE@{PAUSE\_BUTTON\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{PAUSE\_BUTTON\_SPRITE}{PAUSE\_BUTTON\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_adf8e461e3d53ef14cfd420014d244f13} 
+const char\texorpdfstring{$\ast$}{*} PAUSE\+\_\+\+BUTTON\+\_\+\+SPRITE\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do botão de pause/despause 
+
+\Hypertarget{game__loop_8hpp_a0ca859196c368e755571e925f594b364}\index{game\_loop.hpp@{game\_loop.hpp}!PAUSED@{PAUSED}}
+\index{PAUSED@{PAUSED}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{PAUSED}{PAUSED}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a0ca859196c368e755571e925f594b364} 
+const char\texorpdfstring{$\ast$}{*} PAUSED\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do sprite do texto de pause 
+
+\Hypertarget{game__loop_8hpp_a6ec666cdcd59ec24f7a8b7f7f01fc283}\index{game\_loop.hpp@{game\_loop.hpp}!PIPE\_INITIAL\_SPEED@{PIPE\_INITIAL\_SPEED}}
+\index{PIPE\_INITIAL\_SPEED@{PIPE\_INITIAL\_SPEED}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{PIPE\_INITIAL\_SPEED}{PIPE\_INITIAL\_SPEED}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a6ec666cdcd59ec24f7a8b7f7f01fc283} 
+float PIPE\+\_\+\+INITIAL\+\_\+\+SPEED\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Velocidade atual dos canos. 
+
+\Hypertarget{game__loop_8hpp_a35c30f46e84633eaa7a7b3e6bf67c89a}\index{game\_loop.hpp@{game\_loop.hpp}!PIPE\_SPACE@{PIPE\_SPACE}}
+\index{PIPE\_SPACE@{PIPE\_SPACE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{PIPE\_SPACE}{PIPE\_SPACE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a35c30f46e84633eaa7a7b3e6bf67c89a} 
+int PIPE\+\_\+\+SPACE\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Espaçamento entre os canos. 
+
+\Hypertarget{game__loop_8hpp_a600c80b1fb156bbf8fc270642a83cae4}\index{game\_loop.hpp@{game\_loop.hpp}!PIPE\_SPEED\_INCREASE@{PIPE\_SPEED\_INCREASE}}
+\index{PIPE\_SPEED\_INCREASE@{PIPE\_SPEED\_INCREASE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{PIPE\_SPEED\_INCREASE}{PIPE\_SPEED\_INCREASE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a600c80b1fb156bbf8fc270642a83cae4} 
+float PIPE\+\_\+\+SPEED\+\_\+\+INCREASE\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Aumento da velocidade dos canos a cada 10 pontos. 
+
+\Hypertarget{game__loop_8hpp_a1bac67ae9d699398178b533922253976}\index{game\_loop.hpp@{game\_loop.hpp}!PIPE\_SPEED\_MAX@{PIPE\_SPEED\_MAX}}
+\index{PIPE\_SPEED\_MAX@{PIPE\_SPEED\_MAX}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{PIPE\_SPEED\_MAX}{PIPE\_SPEED\_MAX}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a1bac67ae9d699398178b533922253976} 
+float PIPE\+\_\+\+SPEED\+\_\+\+MAX\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Velocidade máxima dos canos. 
+
+\Hypertarget{game__loop_8hpp_a159d1f06c23f149aff29cb550e4d1595}\index{game\_loop.hpp@{game\_loop.hpp}!PIPE\_SPRITE@{PIPE\_SPRITE}}
+\index{PIPE\_SPRITE@{PIPE\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{PIPE\_SPRITE}{PIPE\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a159d1f06c23f149aff29cb550e4d1595} 
+const char\texorpdfstring{$\ast$}{*} PIPE\+\_\+\+SPRITE\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do sprite do cano 
+
+\Hypertarget{game__loop_8hpp_a5463d4d6fed515acd15da7816831672f}\index{game\_loop.hpp@{game\_loop.hpp}!PSANS\_FONT\_FILEPATH@{PSANS\_FONT\_FILEPATH}}
+\index{PSANS\_FONT\_FILEPATH@{PSANS\_FONT\_FILEPATH}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{PSANS\_FONT\_FILEPATH}{PSANS\_FONT\_FILEPATH}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a5463d4d6fed515acd15da7816831672f} 
+const char\texorpdfstring{$\ast$}{*} PSANS\+\_\+\+FONT\+\_\+\+FILEPATH\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho para a fonte pixelify sans 
+
+\Hypertarget{game__loop_8hpp_a35ced579e7e8c3bb22c4265bc5bcf7b0}\index{game\_loop.hpp@{game\_loop.hpp}!random\_offset@{random\_offset}}
+\index{random\_offset@{random\_offset}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{random\_offset}{random\_offset}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a35ced579e7e8c3bb22c4265bc5bcf7b0} 
+int random\+\_\+offset\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Offset do cano a ser spawnado. 
+
+\Hypertarget{game__loop_8hpp_a8c5cd9b525ee73a24b1d9d8e34982d1c}\index{game\_loop.hpp@{game\_loop.hpp}!score@{score}}
+\index{score@{score}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{score}{score}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a8c5cd9b525ee73a24b1d9d8e34982d1c} 
+float score\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+\doxylink{classScore}{Score} atual do jogo. 
+
+\Hypertarget{game__loop_8hpp_a9397a6082fe4d7bd25c305eba2bd91a1}\index{game\_loop.hpp@{game\_loop.hpp}!SCORE\_BOX\_1@{SCORE\_BOX\_1}}
+\index{SCORE\_BOX\_1@{SCORE\_BOX\_1}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{SCORE\_BOX\_1}{SCORE\_BOX\_1}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a9397a6082fe4d7bd25c305eba2bd91a1} 
+const char\texorpdfstring{$\ast$}{*} SCORE\+\_\+\+BOX\+\_\+1\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho da caixa de score 
+
+\Hypertarget{game__loop_8hpp_ad5273f9e682ca6ae904c73e3ff47ceed}\index{game\_loop.hpp@{game\_loop.hpp}!SCORE\_BOX\_2@{SCORE\_BOX\_2}}
+\index{SCORE\_BOX\_2@{SCORE\_BOX\_2}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{SCORE\_BOX\_2}{SCORE\_BOX\_2}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_ad5273f9e682ca6ae904c73e3ff47ceed} 
+const char\texorpdfstring{$\ast$}{*} SCORE\+\_\+\+BOX\+\_\+2\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho da caixa de score 
+
+\Hypertarget{game__loop_8hpp_a57213da153dc322a0b6726cf2e6c31fa}\index{game\_loop.hpp@{game\_loop.hpp}!SCORE\_NOW@{SCORE\_NOW}}
+\index{SCORE\_NOW@{SCORE\_NOW}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{SCORE\_NOW}{SCORE\_NOW}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a57213da153dc322a0b6726cf2e6c31fa} 
+const char\texorpdfstring{$\ast$}{*} SCORE\+\_\+\+NOW\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do sprite do score da jogatina 
+
+\Hypertarget{game__loop_8hpp_a66c8cdd8d1373bae8688f0c62b0e31f9}\index{game\_loop.hpp@{game\_loop.hpp}!SCORE\_SPRITE@{SCORE\_SPRITE}}
+\index{SCORE\_SPRITE@{SCORE\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{SCORE\_SPRITE}{SCORE\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a66c8cdd8d1373bae8688f0c62b0e31f9} 
+const char\texorpdfstring{$\ast$}{*} SCORE\+\_\+\+SPRITE\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho da tela de morte 
+
+\Hypertarget{game__loop_8hpp_a42c075b5e54349391d38c5d53c4eddde}\index{game\_loop.hpp@{game\_loop.hpp}!SCREEN\_H@{SCREEN\_H}}
+\index{SCREEN\_H@{SCREEN\_H}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_H}{SCREEN\_H}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a42c075b5e54349391d38c5d53c4eddde} 
+const int SCREEN\+\_\+H\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+altura da tela 
+
+\Hypertarget{game__loop_8hpp_afca0db9c0e472d6c9aefd3022751d0ba}\index{game\_loop.hpp@{game\_loop.hpp}!SCREEN\_W@{SCREEN\_W}}
+\index{SCREEN\_W@{SCREEN\_W}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_W}{SCREEN\_W}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_afca0db9c0e472d6c9aefd3022751d0ba} 
+const int SCREEN\+\_\+W\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+comprimento da tela 
+
+\Hypertarget{game__loop_8hpp_a5701a161d0bf9261d7e3a7df4e2535dc}\index{game\_loop.hpp@{game\_loop.hpp}!SETTINGS\_BUTTON\_SPRITE@{SETTINGS\_BUTTON\_SPRITE}}
+\index{SETTINGS\_BUTTON\_SPRITE@{SETTINGS\_BUTTON\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{SETTINGS\_BUTTON\_SPRITE}{SETTINGS\_BUTTON\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a5701a161d0bf9261d7e3a7df4e2535dc} 
+const char\texorpdfstring{$\ast$}{*} SETTINGS\+\_\+\+BUTTON\+\_\+\+SPRITE\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do botão de configurações 
+
+\Hypertarget{game__loop_8hpp_aa143a78a1ad7d02a92b0a146343f7b10}\index{game\_loop.hpp@{game\_loop.hpp}!SOUND\_BUTTON\_SPRITE@{SOUND\_BUTTON\_SPRITE}}
+\index{SOUND\_BUTTON\_SPRITE@{SOUND\_BUTTON\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{SOUND\_BUTTON\_SPRITE}{SOUND\_BUTTON\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_aa143a78a1ad7d02a92b0a146343f7b10} 
+const char\texorpdfstring{$\ast$}{*} SOUND\+\_\+\+BUTTON\+\_\+\+SPRITE\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do botão de som ligado/desligado 
+
+\Hypertarget{game__loop_8hpp_afb8a03ac3ad09a97371c38a0b4734cb1}\index{game\_loop.hpp@{game\_loop.hpp}!STATISTICS\_BUTTON\_SPRITE@{STATISTICS\_BUTTON\_SPRITE}}
+\index{STATISTICS\_BUTTON\_SPRITE@{STATISTICS\_BUTTON\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{STATISTICS\_BUTTON\_SPRITE}{STATISTICS\_BUTTON\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_afb8a03ac3ad09a97371c38a0b4734cb1} 
+const char\texorpdfstring{$\ast$}{*} STATISTICS\+\_\+\+BUTTON\+\_\+\+SPRITE\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do botão de achievements 
+
+\Hypertarget{game__loop_8hpp_a15ebe5fcd600d0846f3b488e8d149aba}\index{game\_loop.hpp@{game\_loop.hpp}!TRY\_AGAIN\_BUTTON\_SPRITE@{TRY\_AGAIN\_BUTTON\_SPRITE}}
+\index{TRY\_AGAIN\_BUTTON\_SPRITE@{TRY\_AGAIN\_BUTTON\_SPRITE}!game\_loop.hpp@{game\_loop.hpp}}
+\doxysubsubsection{\texorpdfstring{TRY\_AGAIN\_BUTTON\_SPRITE}{TRY\_AGAIN\_BUTTON\_SPRITE}}
+{\footnotesize\ttfamily \label{game__loop_8hpp_a15ebe5fcd600d0846f3b488e8d149aba} 
+const char\texorpdfstring{$\ast$}{*} TRY\+\_\+\+AGAIN\+\_\+\+BUTTON\+\_\+\+SPRITE\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+caminho do botão de tentar de novo 
+

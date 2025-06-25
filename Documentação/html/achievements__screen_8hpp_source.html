@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>pds2_projeto_final: Código-Fonte de include/achievements_screen.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">pds2_projeto_final
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('achievements__screen_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">achievements_screen.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="achievements__screen_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef ACHIEVEMENTS_SCREEN_HPP</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define ACHIEVEMENTS_SCREEN_HPP</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="game__object_8hpp.html">game_object.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="background__object_8hpp.html">background_object.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="moving__button_8hpp.html">moving_button.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="image_8hpp.html">image.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="game__loop_8hpp.html">game_loop.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="home__screen_8hpp.html">home_screen.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classAchievements__Screen.html">   12</a></span><span class="keyword">class </span><a class="code hl_function" href="classAchievements__Screen.html#a613126ddc18948b5bda150b1752bd0d2">Achievements_Screen</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <span class="comment">// Vetores de objetos</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        std::vector&lt;moving_button*&gt; buttons;                  <span class="comment">// Vetor que armazena os botões do jogo</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        std::vector&lt;image*&gt; images;                           <span class="comment">// Vetor que armazena as imagens</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        std::vector&lt;background_object*&gt; background_objects_0; <span class="comment">// Vetor que armazena os tiles de grama</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        std::vector&lt;background_object*&gt; background_objects_1; <span class="comment">// Vetor que armazena as montanhas (1)</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        std::vector&lt;background_object*&gt; background_objects_2; <span class="comment">// Vetor que armazena as montanhas (2)</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        std::vector&lt;background_object*&gt; background_objects_3; <span class="comment">// Vetor que armazena as montanhas (3)</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="comment">// Bitmaps</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        ALLEGRO_BITMAP* mountain_sprite_1;                    <span class="comment">// Bitmap da montanha (da frente)</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        ALLEGRO_BITMAP* mountain_sprite_2;                    <span class="comment">// Bitmap da montanha (do meio)</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        ALLEGRO_BITMAP* mountain_sprite_3;                    <span class="comment">// Bitmap da montanha (de trás)</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        ALLEGRO_BITMAP* grass_sprite;                         <span class="comment">// Bitmap da grama </span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        ALLEGRO_BITMAP* background_sprite;                    <span class="comment">// Bitmap do fundo</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        ALLEGRO_BITMAP* achievements_screen_frame_sprite;     <span class="comment">// Bitmap do quadro da tela de achievements</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        ALLEGRO_BITMAP* settings_button_sprite[2];            <span class="comment">// Bitmap do botão de configurações</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        ALLEGRO_BITMAP* statistics_button_sprite[2];          <span class="comment">// Bitmap do botão de estatísticas (stats)</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        ALLEGRO_BITMAP* achievements_badges[16];             <span class="comment">// Bitmap dos badges de conquistas</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        ALLEGRO_BITMAP* home_button_sprite[2];                <span class="comment">// Bitmap do botão de hom</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        ALLEGRO_BITMAP* achievements_locked[16];              <span class="comment">// Bitmap dos badges de conquistas bloqueados</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="comment">// Fonte principal do jogo</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        ALLEGRO_FONT* pixel_sans;                             <span class="comment">// Fonte principal do jogo</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <a class="code hl_function" href="classAchievements__Screen.html#a613126ddc18948b5bda150b1752bd0d2">Achievements_Screen</a>();      <span class="comment">// Construtor</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <a class="code hl_function" href="classAchievements__Screen.html#a011b5692719813e73fe6d2aa5ae3bf42">~Achievements_Screen</a>();     <span class="comment">// Destrutor</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classAchievements__Screen.html#a0dbb8d6b8f22f8e55dfa6875040e2ede">commands</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> key[], <span class="keywordtype">bool</span>&amp; mouse_is_down, <span class="keywordtype">bool</span>&amp; mouse_just_released, <span class="keywordtype">int</span> mouse_update_x, <span class="keywordtype">int</span> mouse_update_y, <a class="code hl_struct" href="structstates.html">states</a>&amp; state);     <span class="comment">// Método que processa os comandos </span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classAchievements__Screen.html#aa73bc5eff9f750ac11647533e636f09b">update</a>();      <span class="comment">// Método que atualiza o estado dos objetos</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classAchievements__Screen.html#a0551e58ddb6373bb0c9d0ab0361ea544">draw</a>();        <span class="comment">// Método que desenha os objetos</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
+</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="abackground__object_8hpp_html"><div class="ttname"><a href="background__object_8hpp.html">background_object.hpp</a></div></div>
+<div class="ttc" id="aclassAchievements__Screen_html_a011b5692719813e73fe6d2aa5ae3bf42"><div class="ttname"><a href="classAchievements__Screen.html#a011b5692719813e73fe6d2aa5ae3bf42">Achievements_Screen::~Achievements_Screen</a></div><div class="ttdeci">~Achievements_Screen()</div><div class="ttdef"><b>Definição</b> achievements_screen.cpp:160</div></div>
+<div class="ttc" id="aclassAchievements__Screen_html_a0551e58ddb6373bb0c9d0ab0361ea544"><div class="ttname"><a href="classAchievements__Screen.html#a0551e58ddb6373bb0c9d0ab0361ea544">Achievements_Screen::draw</a></div><div class="ttdeci">void draw()</div><div class="ttdef"><b>Definição</b> achievements_screen.cpp:345</div></div>
+<div class="ttc" id="aclassAchievements__Screen_html_a0dbb8d6b8f22f8e55dfa6875040e2ede"><div class="ttname"><a href="classAchievements__Screen.html#a0dbb8d6b8f22f8e55dfa6875040e2ede">Achievements_Screen::commands</a></div><div class="ttdeci">void commands(unsigned char key[], bool &amp;mouse_is_down, bool &amp;mouse_just_released, int mouse_update_x, int mouse_update_y, states &amp;state)</div><div class="ttdef"><b>Definição</b> achievements_screen.cpp:243</div></div>
+<div class="ttc" id="aclassAchievements__Screen_html_a613126ddc18948b5bda150b1752bd0d2"><div class="ttname"><a href="classAchievements__Screen.html#a613126ddc18948b5bda150b1752bd0d2">Achievements_Screen::Achievements_Screen</a></div><div class="ttdeci">Achievements_Screen()</div><div class="ttdef"><b>Definição</b> achievements_screen.cpp:54</div></div>
+<div class="ttc" id="aclassAchievements__Screen_html_aa73bc5eff9f750ac11647533e636f09b"><div class="ttname"><a href="classAchievements__Screen.html#aa73bc5eff9f750ac11647533e636f09b">Achievements_Screen::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definição</b> achievements_screen.cpp:294</div></div>
+<div class="ttc" id="agame__loop_8hpp_html"><div class="ttname"><a href="game__loop_8hpp.html">game_loop.hpp</a></div></div>
+<div class="ttc" id="agame__object_8hpp_html"><div class="ttname"><a href="game__object_8hpp.html">game_object.hpp</a></div></div>
+<div class="ttc" id="ahome__screen_8hpp_html"><div class="ttname"><a href="home__screen_8hpp.html">home_screen.hpp</a></div></div>
+<div class="ttc" id="aimage_8hpp_html"><div class="ttname"><a href="image_8hpp.html">image.hpp</a></div></div>
+<div class="ttc" id="amoving__button_8hpp_html"><div class="ttname"><a href="moving__button_8hpp.html">moving_button.hpp</a></div></div>
+<div class="ttc" id="astructstates_html"><div class="ttname"><a href="structstates.html">states</a></div><div class="ttdoc">Estrutura que armazena informações sobre o estado do jogo.</div><div class="ttdef"><b>Definição</b> game_loop.hpp:68</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="achievements__screen_8hpp.html">achievements_screen.hpp</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

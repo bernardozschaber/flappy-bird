@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>pds2_projeto_final: Referência à classe player_list_screen</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">pds2_projeto_final
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classplayer__list__screen.html','','classplayer__list__screen-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referência à classe player_list_screen</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Lista todos os jogadores em ordem decrescente de score e indica os jogadores com o recorde máximo.  
+ <a href="#details">Mais...</a></p>
+
+<p><code>#include &lt;<a class="el" href="player__list__screen_8hpp_source.html">player_list_screen.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Membros públicos</h2></td></tr>
+<tr class="memitem:af2c4ebae7210765ca90e559d76144133" id="r_af2c4ebae7210765ca90e559d76144133"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2c4ebae7210765ca90e559d76144133">player_list_screen</a> (int screen_w, int screen_h, ALLEGRO_SAMPLE *button_s, ALLEGRO_BITMAP *crown, const std::multiset&lt; <a class="el" href="structplayer.html">player</a> &gt; &amp;set, <a class="el" href="classregistration.html">registration</a> &amp;data_ref)</td></tr>
+<tr class="memdesc:af2c4ebae7210765ca90e559d76144133"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construtor que inicializa a tela de listagem.  <br /></td></tr>
+<tr class="memitem:a3ea0858859df20a896582b94762d5014" id="r_a3ea0858859df20a896582b94762d5014"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ea0858859df20a896582b94762d5014">handle_event</a> (const ALLEGRO_EVENT &amp;ev)</td></tr>
+<tr class="memdesc:a3ea0858859df20a896582b94762d5014"><td class="mdescLeft">&#160;</td><td class="mdescRight">Avança/Retorna páginas ou volta ao menu.  <br /></td></tr>
+<tr class="memitem:ad0083e246953a7da14df42b4fdd89c0e" id="r_ad0083e246953a7da14df42b4fdd89c0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0083e246953a7da14df42b4fdd89c0e">draw</a> (ALLEGRO_FONT *font)</td></tr>
+<tr class="memdesc:ad0083e246953a7da14df42b4fdd89c0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Desenha os jogadores listados e os botões.  <br /></td></tr>
+<tr class="memitem:aba6b3ee1178025f2de5a0bfb699d90bd" id="r_aba6b3ee1178025f2de5a0bfb699d90bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba6b3ee1178025f2de5a0bfb699d90bd">go_to_main_menu</a> () const</td></tr>
+<tr class="memdesc:aba6b3ee1178025f2de5a0bfb699d90bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indica se deve voltar ao menu.  <br /></td></tr>
+<tr class="memitem:ab9ec0ddfe236a55ac15ee0d72c9085f7" id="r_ab9ec0ddfe236a55ac15ee0d72c9085f7"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classbutton.html">button</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9ec0ddfe236a55ac15ee0d72c9085f7">get_buttons</a> () const</td></tr>
+<tr class="memdesc:ab9ec0ddfe236a55ac15ee0d72c9085f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get do vetor de elementos de UI para manipulação de audio e testes.  <br /></td></tr>
+<tr class="memitem:a1de96765a1c8adc2e00e4a53eb161478" id="r_a1de96765a1c8adc2e00e4a53eb161478"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1de96765a1c8adc2e00e4a53eb161478">get_current_page</a> () const</td></tr>
+<tr class="memdesc:a1de96765a1c8adc2e00e4a53eb161478"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indica a página atual.  <br /></td></tr>
+<tr class="memitem:abc15b993f06e722a7a591d9872029d0a" id="r_abc15b993f06e722a7a591d9872029d0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc15b993f06e722a7a591d9872029d0a">reset</a> ()</td></tr>
+<tr class="memdesc:abc15b993f06e722a7a591d9872029d0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reseta estado (página, flag)  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Lista todos os jogadores em ordem decrescente de score e indica os jogadores com o recorde máximo. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Documentação dos Construtores &amp; Destrutor</h2>
+<a id="af2c4ebae7210765ca90e559d76144133" name="af2c4ebae7210765ca90e559d76144133"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2c4ebae7210765ca90e559d76144133">&#9670;&#160;</a></span>player_list_screen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">player_list_screen::player_list_screen </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>screen_w</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>screen_h</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ALLEGRO_SAMPLE *</td>          <td class="paramname"><span class="paramname"><em>button_s</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ALLEGRO_BITMAP *</td>          <td class="paramname"><span class="paramname"><em>crown</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::multiset&lt; <a class="el" href="structplayer.html">player</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>set</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classregistration.html">registration</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data_ref</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construtor que inicializa a tela de listagem. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">screen_w</td><td>Largura da tela </td></tr>
+    <tr><td class="paramname">screen_h</td><td>Altura da tela </td></tr>
+    <tr><td class="paramname">button_s</td><td>Efeito sonoro dos botões </td></tr>
+    <tr><td class="paramname">crown</td><td>Sprite de coroa para indicar quem tem o maior score </td></tr>
+    <tr><td class="paramname">set</td><td>Multiset com todos os jogadores a serem listados </td></tr>
+    <tr><td class="paramname">data_ref</td><td>Referência ao objeto que manipula os arquivos </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentação das funções</h2>
+<a id="ad0083e246953a7da14df42b4fdd89c0e" name="ad0083e246953a7da14df42b4fdd89c0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0083e246953a7da14df42b4fdd89c0e">&#9670;&#160;</a></span>draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void player_list_screen::draw </td>
+          <td>(</td>
+          <td class="paramtype">ALLEGRO_FONT *</td>          <td class="paramname"><span class="paramname"><em>font</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Desenha os jogadores listados e os botões. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">font</td><td>Fonte utilizada </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab9ec0ddfe236a55ac15ee0d72c9085f7" name="ab9ec0ddfe236a55ac15ee0d72c9085f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9ec0ddfe236a55ac15ee0d72c9085f7">&#9670;&#160;</a></span>get_buttons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; <a class="el" href="classbutton.html">button</a> * &gt; &amp; player_list_screen::get_buttons </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get do vetor de elementos de UI para manipulação de audio e testes. </p>
+<dl class="section return"><dt>Retorna</dt><dd>Vetor com os ponteiros para os elementos </dd></dl>
+
+</div>
+</div>
+<a id="a1de96765a1c8adc2e00e4a53eb161478" name="a1de96765a1c8adc2e00e4a53eb161478"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1de96765a1c8adc2e00e4a53eb161478">&#9670;&#160;</a></span>get_current_page()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int player_list_screen::get_current_page </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indica a página atual. </p>
+<dl class="section return"><dt>Retorna</dt><dd>Valor da página atual </dd></dl>
+
+</div>
+</div>
+<a id="aba6b3ee1178025f2de5a0bfb699d90bd" name="aba6b3ee1178025f2de5a0bfb699d90bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba6b3ee1178025f2de5a0bfb699d90bd">&#9670;&#160;</a></span>go_to_main_menu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool player_list_screen::go_to_main_menu </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indica se deve voltar ao menu. </p>
+<dl class="section return"><dt>Retorna</dt><dd>Booleano que indica a volta </dd></dl>
+
+</div>
+</div>
+<a id="a3ea0858859df20a896582b94762d5014" name="a3ea0858859df20a896582b94762d5014"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ea0858859df20a896582b94762d5014">&#9670;&#160;</a></span>handle_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void player_list_screen::handle_event </td>
+          <td>(</td>
+          <td class="paramtype">const ALLEGRO_EVENT &amp;</td>          <td class="paramname"><span class="paramname"><em>ev</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Avança/Retorna páginas ou volta ao menu. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ev</td><td>Evento a ser repassado aos botões </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abc15b993f06e722a7a591d9872029d0a" name="abc15b993f06e722a7a591d9872029d0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc15b993f06e722a7a591d9872029d0a">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void player_list_screen::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reseta estado (página, flag) </p>
+
+</div>
+</div>
+<hr/>A documentação para esta classe foi gerada a partir dos seguintes ficheiros:<ul>
+<li>include/<a class="el" href="player__list__screen_8hpp_source.html">player_list_screen.hpp</a></li>
+<li>src/<a class="el" href="player__list__screen_8cpp.html">player_list_screen.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="classplayer__list__screen.html">player_list_screen</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

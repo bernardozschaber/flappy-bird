@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>pds2_projeto_final: Código-Fonte de include/registration.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">pds2_projeto_final
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('registration_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">registration.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="registration_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifndef REGISTRATION_HPP</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define REGISTRATION_HPP</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structplayer.html">   24</a></span><span class="keyword">struct </span><a class="code hl_function" href="structplayer.html#a97de83bce15f880241f561b55b016b02">player</a>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">private</span>: </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  std::string password = <span class="stringliteral">&quot;&quot;</span>;  </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structplayer.html#a6716b2fe7ed415cce33439a9cac72cc5">   30</a></span>  std::string <a class="code hl_variable" href="structplayer.html#a6716b2fe7ed415cce33439a9cac72cc5">username</a> = <span class="stringliteral">&quot;&quot;</span>;  </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structplayer.html#a0effac341657c96528752f808fa23291">   31</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="structplayer.html#a0effac341657c96528752f808fa23291">score</a> = 0;                </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structplayer.html#a5c50d0ffb7d0f552fbe12b79c101c6a9">   32</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="structplayer.html#a5c50d0ffb7d0f552fbe12b79c101c6a9">games</a> = 0;              </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structplayer.html#a8b5c1761cffc71d5f21b0a79b57310b9">   33</a></span>  std::vector&lt;bool&gt; <a class="code hl_variable" href="structplayer.html#a8b5c1761cffc71d5f21b0a79b57310b9">achievements</a>; </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structplayer.html#a77c34ceb5d7379882c786c17fb1588d5">   38</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="structplayer.html#a0bf42934b61750e6f27c1ade3ed3a104">jump_count</a> = 0, <a class="code hl_variable" href="structplayer.html#a77c34ceb5d7379882c786c17fb1588d5">ground_deaths</a> = 0, <a class="code hl_variable" href="structplayer.html#a6e69ce1bf46971aff6726c9a514f34df">pipe_deaths</a> = 0;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structplayer.html#a97de83bce15f880241f561b55b016b02">   43</a></span>  <a class="code hl_function" href="structplayer.html#a97de83bce15f880241f561b55b016b02">player</a>(){}</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structplayer.html#a5ea0bb1f7707e13ccd9d792c78070eb7">   55</a></span>  <a class="code hl_function" href="structplayer.html#a5ea0bb1f7707e13ccd9d792c78070eb7">player</a>(<span class="keyword">const</span> std::string&amp; <a class="code hl_variable" href="structplayer.html#a6716b2fe7ed415cce33439a9cac72cc5">username</a>, <span class="keyword">const</span> std::string&amp; password, <span class="keywordtype">int</span> <a class="code hl_variable" href="structplayer.html#a0effac341657c96528752f808fa23291">score</a>, <span class="keywordtype">int</span> <a class="code hl_variable" href="structplayer.html#a5c50d0ffb7d0f552fbe12b79c101c6a9">games</a>, <span class="keywordtype">int</span> <a class="code hl_variable" href="structplayer.html#a0bf42934b61750e6f27c1ade3ed3a104">jump_count</a>, <span class="keywordtype">int</span> <a class="code hl_variable" href="structplayer.html#a77c34ceb5d7379882c786c17fb1588d5">ground_deaths</a>, <span class="keywordtype">int</span> <a class="code hl_variable" href="structplayer.html#a6e69ce1bf46971aff6726c9a514f34df">pipe_deaths</a>) : <a class="code hl_variable" href="structplayer.html#a6716b2fe7ed415cce33439a9cac72cc5">username</a>(<a class="code hl_variable" href="structplayer.html#a6716b2fe7ed415cce33439a9cac72cc5">username</a>), <a class="code hl_variable" href="structplayer.html#a0effac341657c96528752f808fa23291">score</a>(<a class="code hl_variable" href="structplayer.html#a0effac341657c96528752f808fa23291">score</a>), <a class="code hl_variable" href="structplayer.html#a5c50d0ffb7d0f552fbe12b79c101c6a9">games</a>(<a class="code hl_variable" href="structplayer.html#a5c50d0ffb7d0f552fbe12b79c101c6a9">games</a>), password(password), <a class="code hl_variable" href="structplayer.html#a0bf42934b61750e6f27c1ade3ed3a104">jump_count</a>(<a class="code hl_variable" href="structplayer.html#a0bf42934b61750e6f27c1ade3ed3a104">jump_count</a>), <a class="code hl_variable" href="structplayer.html#a77c34ceb5d7379882c786c17fb1588d5">ground_deaths</a>(<a class="code hl_variable" href="structplayer.html#a77c34ceb5d7379882c786c17fb1588d5">ground_deaths</a>), <a class="code hl_variable" href="structplayer.html#a6e69ce1bf46971aff6726c9a514f34df">pipe_deaths</a>(<a class="code hl_variable" href="structplayer.html#a6e69ce1bf46971aff6726c9a514f34df">pipe_deaths</a>) {}</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structplayer.html#a530f8d77198f831d713b5c67bf524a68">   64</a></span>  <a class="code hl_function" href="structplayer.html#a530f8d77198f831d713b5c67bf524a68">player</a>(<span class="keyword">const</span> std::string&amp; <a class="code hl_variable" href="structplayer.html#a6716b2fe7ed415cce33439a9cac72cc5">username</a>, <span class="keyword">const</span> std::string&amp; password, <span class="keywordtype">int</span> <a class="code hl_variable" href="structplayer.html#a0effac341657c96528752f808fa23291">score</a>, <span class="keywordtype">int</span> <a class="code hl_variable" href="structplayer.html#a5c50d0ffb7d0f552fbe12b79c101c6a9">games</a>) : <a class="code hl_variable" href="structplayer.html#a6716b2fe7ed415cce33439a9cac72cc5">username</a>(<a class="code hl_variable" href="structplayer.html#a6716b2fe7ed415cce33439a9cac72cc5">username</a>), password(password), <a class="code hl_variable" href="structplayer.html#a0effac341657c96528752f808fa23291">score</a>(<a class="code hl_variable" href="structplayer.html#a0effac341657c96528752f808fa23291">score</a>), <a class="code hl_variable" href="structplayer.html#a5c50d0ffb7d0f552fbe12b79c101c6a9">games</a>(<a class="code hl_variable" href="structplayer.html#a5c50d0ffb7d0f552fbe12b79c101c6a9">games</a>) {}</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structplayer.html#a19d4e87009b0ba219527016845a8a926">   71</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="structplayer.html#a19d4e87009b0ba219527016845a8a926">operator &lt; </a>(<span class="keyword">const</span> <a class="code hl_function" href="structplayer.html#a97de83bce15f880241f561b55b016b02">player</a>&amp; otherplayer)<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="structplayer.html#a0effac341657c96528752f808fa23291">score</a> &gt; otherplayer.<a class="code hl_variable" href="structplayer.html#a0effac341657c96528752f808fa23291">score</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  }</div>
+</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structplayer.html#a8eafebc562f28bf8e3e6c6f4dff67acf">   79</a></span>  std::string <a class="code hl_function" href="structplayer.html#a8eafebc562f28bf8e3e6c6f4dff67acf">get_password</a>()<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">return</span> password;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  }</div>
+</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>};</div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="foldopen" id="foldopen00091" data-start="{" data-end="};">
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classregistration.html">   91</a></span><span class="keyword">class </span><a class="code hl_function" href="classregistration.html#a3f907d79fe0e297f82d864c6fd5e66ee">registration</a> {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  std::fstream users; </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  std::string file; </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keywordtype">bool</span> openfile_check = <span class="keyword">false</span>;  </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  std::streampos pos_champion;  </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="keywordtype">int</span> score_champion = 0; </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keywordtype">int</span> getline_number(std::string user);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <a class="code hl_function" href="classregistration.html#a3f907d79fe0e297f82d864c6fd5e66ee">registration</a>(std::string arquivo);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classregistration.html#aff5f826369fa3d8b4e13ad9c0a3f3285">isFileEmpty</a>();</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classregistration.html#a28af6e324536ae56e465407f6a9c15f2">new_user</a>(std::string name, std::string password, <span class="keywordtype">int</span> <a class="code hl_variable" href="game__loop_8hpp.html#a8c5cd9b525ee73a24b1d9d8e34982d1c">score</a>, <span class="keywordtype">int</span> games);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  std::string <a class="code hl_function" href="classregistration.html#a483e5d95abeb52efe45bdf724ef8ae33">get_stats</a>(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <a class="code hl_struct" href="structplayer.html">player</a> <a class="code hl_function" href="classregistration.html#a0cdebda5917f487a9c1ec6bdd3d4aff4">get_player</a>(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  std::multiset&lt;player&gt; <a class="code hl_function" href="classregistration.html#a79fed56545f5439074097435b926bc67">get_all</a>();</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classregistration.html#a7d8b264e272556664243073d2253201c">update</a>(<a class="code hl_struct" href="structplayer.html">player</a>&amp; player_stats);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classregistration.html#a98c75bd24966f2d21d7407c9fb431949">delete_user</a>(std::string user);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classregistration.html#a09a6f7ece46cce35397f7d0a9564c7a1">get_max_score</a>();</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  std::string <a class="code hl_function" href="classregistration.html#a7e1b534b0f9ee3297e321846acef7989">get_max_user</a>();</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classregistration.html#aa44c2429bda9397f840649f6b475822c">update_champion</a>();</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classregistration.html#a95e66fc3b998064719c5a0404aa49717">isOpenFile</a>();</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  <a class="code hl_function" href="classregistration.html#a810017b2a89d603f4cf11a0beb9eac4b">~registration</a>();</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>};</div>
+</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">#endif </span><span class="comment">// REGISTRATION_HPP</span></div>
+<div class="ttc" id="aclassregistration_html_a09a6f7ece46cce35397f7d0a9564c7a1"><div class="ttname"><a href="classregistration.html#a09a6f7ece46cce35397f7d0a9564c7a1">registration::get_max_score</a></div><div class="ttdeci">int get_max_score()</div><div class="ttdoc">Obtém a maior pontuação do jogo.</div><div class="ttdef"><b>Definição</b> registration.cpp:252</div></div>
+<div class="ttc" id="aclassregistration_html_a0cdebda5917f487a9c1ec6bdd3d4aff4"><div class="ttname"><a href="classregistration.html#a0cdebda5917f487a9c1ec6bdd3d4aff4">registration::get_player</a></div><div class="ttdeci">player get_player(const std::string &amp;name)</div><div class="ttdoc">Captura as informações do jogador no arquivo.</div><div class="ttdef"><b>Definição</b> registration.cpp:91</div></div>
+<div class="ttc" id="aclassregistration_html_a28af6e324536ae56e465407f6a9c15f2"><div class="ttname"><a href="classregistration.html#a28af6e324536ae56e465407f6a9c15f2">registration::new_user</a></div><div class="ttdeci">void new_user(std::string name, std::string password, int score, int games)</div><div class="ttdoc">Cadastra um novo jogador.</div><div class="ttdef"><b>Definição</b> registration.cpp:36</div></div>
+<div class="ttc" id="aclassregistration_html_a3f907d79fe0e297f82d864c6fd5e66ee"><div class="ttname"><a href="classregistration.html#a3f907d79fe0e297f82d864c6fd5e66ee">registration::registration</a></div><div class="ttdeci">registration(std::string arquivo)</div><div class="ttdoc">Construtor da classe.</div><div class="ttdef"><b>Definição</b> registration.cpp:4</div></div>
+<div class="ttc" id="aclassregistration_html_a483e5d95abeb52efe45bdf724ef8ae33"><div class="ttname"><a href="classregistration.html#a483e5d95abeb52efe45bdf724ef8ae33">registration::get_stats</a></div><div class="ttdeci">std::string get_stats(const std::string &amp;name)</div><div class="ttdoc">Captura a linha do jogador no arquivo.</div><div class="ttdef"><b>Definição</b> registration.cpp:52</div></div>
+<div class="ttc" id="aclassregistration_html_a79fed56545f5439074097435b926bc67"><div class="ttname"><a href="classregistration.html#a79fed56545f5439074097435b926bc67">registration::get_all</a></div><div class="ttdeci">std::multiset&lt; player &gt; get_all()</div><div class="ttdoc">Resgata as informações de todos os jogadores, exceto senha.</div><div class="ttdef"><b>Definição</b> registration.cpp:144</div></div>
+<div class="ttc" id="aclassregistration_html_a7d8b264e272556664243073d2253201c"><div class="ttname"><a href="classregistration.html#a7d8b264e272556664243073d2253201c">registration::update</a></div><div class="ttdeci">void update(player &amp;player_stats)</div><div class="ttdoc">Atualiza o arquivo com as informações de determinado jogador.</div><div class="ttdef"><b>Definição</b> registration.cpp:163</div></div>
+<div class="ttc" id="aclassregistration_html_a7e1b534b0f9ee3297e321846acef7989"><div class="ttname"><a href="classregistration.html#a7e1b534b0f9ee3297e321846acef7989">registration::get_max_user</a></div><div class="ttdeci">std::string get_max_user()</div><div class="ttdoc">Obtém o username do jogador com maior pontuação do jogo.</div><div class="ttdef"><b>Definição</b> registration.cpp:324</div></div>
+<div class="ttc" id="aclassregistration_html_a810017b2a89d603f4cf11a0beb9eac4b"><div class="ttname"><a href="classregistration.html#a810017b2a89d603f4cf11a0beb9eac4b">registration::~registration</a></div><div class="ttdeci">~registration()</div><div class="ttdoc">Destrutor da classe que realiza o fechamento do arquivo(se for necessário).</div><div class="ttdef"><b>Definição</b> registration.cpp:18</div></div>
+<div class="ttc" id="aclassregistration_html_a95e66fc3b998064719c5a0404aa49717"><div class="ttname"><a href="classregistration.html#a95e66fc3b998064719c5a0404aa49717">registration::isOpenFile</a></div><div class="ttdeci">bool isOpenFile()</div><div class="ttdoc">Verifica se o arquivo está aberto.</div><div class="ttdef"><b>Definição</b> registration.cpp:32</div></div>
+<div class="ttc" id="aclassregistration_html_a98c75bd24966f2d21d7407c9fb431949"><div class="ttname"><a href="classregistration.html#a98c75bd24966f2d21d7407c9fb431949">registration::delete_user</a></div><div class="ttdeci">int delete_user(std::string user)</div><div class="ttdoc">Deleta o jogador.</div><div class="ttdef"><b>Definição</b> registration.cpp:214</div></div>
+<div class="ttc" id="aclassregistration_html_aa44c2429bda9397f840649f6b475822c"><div class="ttname"><a href="classregistration.html#aa44c2429bda9397f840649f6b475822c">registration::update_champion</a></div><div class="ttdeci">void update_champion()</div><div class="ttdoc">Atualiza a posição do &quot;possível&quot; novo campeão após operações no arquivo.</div><div class="ttdef"><b>Definição</b> registration.cpp:266</div></div>
+<div class="ttc" id="aclassregistration_html_aff5f826369fa3d8b4e13ad9c0a3f3285"><div class="ttname"><a href="classregistration.html#aff5f826369fa3d8b4e13ad9c0a3f3285">registration::isFileEmpty</a></div><div class="ttdeci">bool isFileEmpty()</div><div class="ttdoc">Verifica se o arquivo está vazio.</div><div class="ttdef"><b>Definição</b> registration.cpp:25</div></div>
+<div class="ttc" id="agame__loop_8hpp_html_a8c5cd9b525ee73a24b1d9d8e34982d1c"><div class="ttname"><a href="game__loop_8hpp.html#a8c5cd9b525ee73a24b1d9d8e34982d1c">score</a></div><div class="ttdeci">float score</div><div class="ttdoc">Score atual do jogo.</div><div class="ttdef"><b>Definição</b> game_loop.cpp:53</div></div>
+<div class="ttc" id="astructplayer_html"><div class="ttname"><a href="structplayer.html">player</a></div><div class="ttdoc">Struct que representa um jogador.</div><div class="ttdef"><b>Definição</b> registration.hpp:24</div></div>
+<div class="ttc" id="astructplayer_html_a0bf42934b61750e6f27c1ade3ed3a104"><div class="ttname"><a href="structplayer.html#a0bf42934b61750e6f27c1ade3ed3a104">player::jump_count</a></div><div class="ttdeci">int jump_count</div><div class="ttdoc">Variáveis auxiliares para o desbloqueio de determinadas conquistas.</div><div class="ttdef"><b>Definição</b> registration.hpp:38</div></div>
+<div class="ttc" id="astructplayer_html_a0effac341657c96528752f808fa23291"><div class="ttname"><a href="structplayer.html#a0effac341657c96528752f808fa23291">player::score</a></div><div class="ttdeci">int score</div><div class="ttdef"><b>Definição</b> registration.hpp:31</div></div>
+<div class="ttc" id="astructplayer_html_a19d4e87009b0ba219527016845a8a926"><div class="ttname"><a href="structplayer.html#a19d4e87009b0ba219527016845a8a926">player::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const player &amp;otherplayer) const</div><div class="ttdoc">Sobrecarga no operador &lt; para colocar em ordem descrescente de score dentro do container multiset.</div><div class="ttdef"><b>Definição</b> registration.hpp:71</div></div>
+<div class="ttc" id="astructplayer_html_a530f8d77198f831d713b5c67bf524a68"><div class="ttname"><a href="structplayer.html#a530f8d77198f831d713b5c67bf524a68">player::player</a></div><div class="ttdeci">player(const std::string &amp;username, const std::string &amp;password, int score, int games)</div><div class="ttdoc">Construtor que inicializa o jogador com username, password, score e games.</div><div class="ttdef"><b>Definição</b> registration.hpp:64</div></div>
+<div class="ttc" id="astructplayer_html_a5c50d0ffb7d0f552fbe12b79c101c6a9"><div class="ttname"><a href="structplayer.html#a5c50d0ffb7d0f552fbe12b79c101c6a9">player::games</a></div><div class="ttdeci">int games</div><div class="ttdef"><b>Definição</b> registration.hpp:32</div></div>
+<div class="ttc" id="astructplayer_html_a5ea0bb1f7707e13ccd9d792c78070eb7"><div class="ttname"><a href="structplayer.html#a5ea0bb1f7707e13ccd9d792c78070eb7">player::player</a></div><div class="ttdeci">player(const std::string &amp;username, const std::string &amp;password, int score, int games, int jump_count, int ground_deaths, int pipe_deaths)</div><div class="ttdoc">Construtor que inicializa o jogador com todos os atributos da struct.</div><div class="ttdef"><b>Definição</b> registration.hpp:55</div></div>
+<div class="ttc" id="astructplayer_html_a6716b2fe7ed415cce33439a9cac72cc5"><div class="ttname"><a href="structplayer.html#a6716b2fe7ed415cce33439a9cac72cc5">player::username</a></div><div class="ttdeci">std::string username</div><div class="ttdef"><b>Definição</b> registration.hpp:30</div></div>
+<div class="ttc" id="astructplayer_html_a6e69ce1bf46971aff6726c9a514f34df"><div class="ttname"><a href="structplayer.html#a6e69ce1bf46971aff6726c9a514f34df">player::pipe_deaths</a></div><div class="ttdeci">int pipe_deaths</div><div class="ttdef"><b>Definição</b> registration.hpp:38</div></div>
+<div class="ttc" id="astructplayer_html_a77c34ceb5d7379882c786c17fb1588d5"><div class="ttname"><a href="structplayer.html#a77c34ceb5d7379882c786c17fb1588d5">player::ground_deaths</a></div><div class="ttdeci">int ground_deaths</div><div class="ttdef"><b>Definição</b> registration.hpp:38</div></div>
+<div class="ttc" id="astructplayer_html_a8b5c1761cffc71d5f21b0a79b57310b9"><div class="ttname"><a href="structplayer.html#a8b5c1761cffc71d5f21b0a79b57310b9">player::achievements</a></div><div class="ttdeci">std::vector&lt; bool &gt; achievements</div><div class="ttdef"><b>Definição</b> registration.hpp:33</div></div>
+<div class="ttc" id="astructplayer_html_a8eafebc562f28bf8e3e6c6f4dff67acf"><div class="ttname"><a href="structplayer.html#a8eafebc562f28bf8e3e6c6f4dff67acf">player::get_password</a></div><div class="ttdeci">std::string get_password() const</div><div class="ttdoc">Obtém a senha do jogador.</div><div class="ttdef"><b>Definição</b> registration.hpp:79</div></div>
+<div class="ttc" id="astructplayer_html_a97de83bce15f880241f561b55b016b02"><div class="ttname"><a href="structplayer.html#a97de83bce15f880241f561b55b016b02">player::player</a></div><div class="ttdeci">player()</div><div class="ttdoc">Construtor padrão.</div><div class="ttdef"><b>Definição</b> registration.hpp:43</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="registration_8hpp.html">registration.hpp</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>

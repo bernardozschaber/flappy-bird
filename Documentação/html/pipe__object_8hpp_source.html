@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>pds2_projeto_final: Código-Fonte de include/pipe_object.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">pds2_projeto_final
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Localizar',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('pipe__object_8hpp_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">pipe_object.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="pipe__object_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="game__object_8hpp.html">game_object.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef PIPE_OBJECT_HPP</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#define PIPE_OBJECT_HPP</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span></div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classpipe__object.html">   11</a></span><span class="keyword">class </span><a class="code hl_function" href="classpipe__object.html#a23015d6171e76b605c19e325382609c3">pipe_object</a> : <span class="keyword">public</span> <a class="code hl_function" href="classgame__object.html#abffd356756b24f590eff91bc1917b38e">game_object</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <span class="keyword">static</span> <span class="keywordtype">float</span> vel_x;     </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <span class="keywordtype">int</span> vel_y;              </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keywordtype">bool</span> scored;            </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keywordtype">bool</span> golden;            </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <a class="code hl_function" href="classpipe__object.html#a23015d6171e76b605c19e325382609c3">pipe_object</a>(<span class="keywordtype">float</span> pos_x, <span class="keywordtype">float</span> pos_y, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height, ALLEGRO_BITMAP *Bitmap, <span class="keywordtype">bool</span> <a class="code hl_function" href="classpipe__object.html#afb9c3d7653ec9db29877a1c788722861">is_golden</a>);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classpipe__object.html#a3226d7413f30adc55bcb3a2a0ac832d0">Draw</a>(<span class="keywordtype">float</span> scale);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classpipe__object.html#af404503e3b8ef5d3c2f9994ea2fa9ce2">Update</a>(<span class="keywordtype">int</span> a, <span class="keywordtype">int</span> b);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classpipe__object.html#ab6f76f4b0dc24ed66f2513d945c3629b">Set_x_speed</a>(<span class="keywordtype">float</span> new_x_speed);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classpipe__object.html#ad8a03f2071c3e9afc5d93fa105aa77bb">Set_y_speed</a>(<span class="keywordtype">float</span> new_y_speed);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classpipe__object.html#adc0cbd76276d5a3c0c4f1b560181eeeb">Set_score</a>(<span class="keywordtype">bool</span> scored);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classpipe__object.html#a9f13480c292c7ba370fd8e80d710b89e">is_scored</a>();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classpipe__object.html#afb9c3d7653ec9db29877a1c788722861">is_golden</a>();</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classpipe__object.html#ab8cc642f00b3b8fae15a4778405df9dc">Get_x_speed</a>();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};</div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#endif </span><span class="comment">// PIPE_OBJECT_HPP</span></div>
+<div class="ttc" id="aclassgame__object_html_abffd356756b24f590eff91bc1917b38e"><div class="ttname"><a href="classgame__object.html#abffd356756b24f590eff91bc1917b38e">game_object::game_object</a></div><div class="ttdeci">game_object(float x, float y, int w, int h, ALLEGRO_BITMAP *bitmap)</div><div class="ttdoc">Construtor da classe game_object.</div><div class="ttdef"><b>Definição</b> game_object.cpp:3</div></div>
+<div class="ttc" id="aclasspipe__object_html_a23015d6171e76b605c19e325382609c3"><div class="ttname"><a href="classpipe__object.html#a23015d6171e76b605c19e325382609c3">pipe_object::pipe_object</a></div><div class="ttdeci">pipe_object(float pos_x, float pos_y, int width, int height, ALLEGRO_BITMAP *Bitmap, bool is_golden)</div><div class="ttdoc">Construtor da classe pipe_object.</div><div class="ttdef"><b>Definição</b> pipe_object.cpp:4</div></div>
+<div class="ttc" id="aclasspipe__object_html_a3226d7413f30adc55bcb3a2a0ac832d0"><div class="ttname"><a href="classpipe__object.html#a3226d7413f30adc55bcb3a2a0ac832d0">pipe_object::Draw</a></div><div class="ttdeci">void Draw(float scale)</div><div class="ttdoc">Desenha o cano na tela.</div><div class="ttdef"><b>Definição</b> pipe_object.cpp:6</div></div>
+<div class="ttc" id="aclasspipe__object_html_a9f13480c292c7ba370fd8e80d710b89e"><div class="ttname"><a href="classpipe__object.html#a9f13480c292c7ba370fd8e80d710b89e">pipe_object::is_scored</a></div><div class="ttdeci">bool is_scored()</div><div class="ttdoc">Verifica se o cano já foi pontuado (se o pássaro passou por ele)</div><div class="ttdef"><b>Definição</b> pipe_object.cpp:28</div></div>
+<div class="ttc" id="aclasspipe__object_html_ab6f76f4b0dc24ed66f2513d945c3629b"><div class="ttname"><a href="classpipe__object.html#ab6f76f4b0dc24ed66f2513d945c3629b">pipe_object::Set_x_speed</a></div><div class="ttdeci">void Set_x_speed(float new_x_speed)</div><div class="ttdoc">Seta a velocidade horizontal do cano.</div><div class="ttdef"><b>Definição</b> pipe_object.cpp:16</div></div>
+<div class="ttc" id="aclasspipe__object_html_ab8cc642f00b3b8fae15a4778405df9dc"><div class="ttname"><a href="classpipe__object.html#ab8cc642f00b3b8fae15a4778405df9dc">pipe_object::Get_x_speed</a></div><div class="ttdeci">float Get_x_speed()</div><div class="ttdoc">Retorna a velocidade horizontal do cano.</div><div class="ttdef"><b>Definição</b> pipe_object.cpp:36</div></div>
+<div class="ttc" id="aclasspipe__object_html_ad8a03f2071c3e9afc5d93fa105aa77bb"><div class="ttname"><a href="classpipe__object.html#ad8a03f2071c3e9afc5d93fa105aa77bb">pipe_object::Set_y_speed</a></div><div class="ttdeci">void Set_y_speed(float new_y_speed)</div><div class="ttdoc">Seta a velocidade vertical do cano.</div><div class="ttdef"><b>Definição</b> pipe_object.cpp:20</div></div>
+<div class="ttc" id="aclasspipe__object_html_adc0cbd76276d5a3c0c4f1b560181eeeb"><div class="ttname"><a href="classpipe__object.html#adc0cbd76276d5a3c0c4f1b560181eeeb">pipe_object::Set_score</a></div><div class="ttdeci">void Set_score(bool scored)</div><div class="ttdoc">Seta se o cano já foi pontuado (se o pássaro passou por ele)</div><div class="ttdef"><b>Definição</b> pipe_object.cpp:24</div></div>
+<div class="ttc" id="aclasspipe__object_html_af404503e3b8ef5d3c2f9994ea2fa9ce2"><div class="ttname"><a href="classpipe__object.html#af404503e3b8ef5d3c2f9994ea2fa9ce2">pipe_object::Update</a></div><div class="ttdeci">void Update(int a, int b)</div><div class="ttdoc">Atualiza a posição do cano.</div><div class="ttdef"><b>Definição</b> pipe_object.cpp:11</div></div>
+<div class="ttc" id="aclasspipe__object_html_afb9c3d7653ec9db29877a1c788722861"><div class="ttname"><a href="classpipe__object.html#afb9c3d7653ec9db29877a1c788722861">pipe_object::is_golden</a></div><div class="ttdeci">bool is_golden()</div><div class="ttdoc">Verifica se o cano é um cano dourado.</div><div class="ttdef"><b>Definição</b> pipe_object.cpp:32</div></div>
+<div class="ttc" id="agame__object_8hpp_html"><div class="ttname"><a href="game__object_8hpp.html">game_object.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="pipe__object_8hpp.html">pipe_object.hpp</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
+  </ul>
+</div>
+</body>
+</html>
