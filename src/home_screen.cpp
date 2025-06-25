@@ -437,12 +437,12 @@ void Home_Screen::draw() {
         // Escreve as estatísticas do jogador
         int num_achievements;
         for (int a=0; a<16 ; a++){
-            num_achievements += (int)p1.achievements.at(a);
+            if (p1.achievements[a]) num_achievements++;
         }
         al_draw_textf(title_font, al_map_rgb(255, 50, 70), images.at(2)->get_x(), images.at(2)->get_y()-190, ALLEGRO_ALIGN_CENTER, "%s", p1.username.c_str());
         al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()-130, ALLEGRO_ALIGN_LEFT, "Total de Jogos: %d", p1.games);
         al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()-90, ALLEGRO_ALIGN_LEFT, "Pontuação máxima: %d", p1.score);
-        al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()-50, ALLEGRO_ALIGN_LEFT, "Conquistas: %d/%d", num_achievements-4, 16);
+        al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()-50, ALLEGRO_ALIGN_LEFT, "Conquistas: %d/%d", num_achievements, 16);
         al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()+10, ALLEGRO_ALIGN_LEFT, "Mortes para canos: %d", p1.pipe_deaths);
         al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()+50, ALLEGRO_ALIGN_LEFT, "Mortes por cair: %d", p1.ground_deaths);
         al_draw_textf(regular_text_font, al_map_rgb(0, 0, 0), images.at(2)->get_x()-150, images.at(2)->get_y()+90, ALLEGRO_ALIGN_LEFT, "Pulos: %d", p1.jump_count);

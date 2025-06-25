@@ -1,0 +1,175 @@
+\chapter{README }
+\hypertarget{md_README}{}\label{md_README}\index{README@{README}}
+
+
+ \hypertarget{md_README_autotoc_md0}{}\doxysubsection{\texorpdfstring{\# 🎮 Flappy Bird C++ com Allegro}{\# 🎮 Flappy Bird C++ com Allegro}}\label{md_README_autotoc_md0}
+ 
+
+ 
+
+ 
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md2}{}\doxysubsection{\texorpdfstring{📋 Descrição do Problema}{📋 Descrição do Problema}}\label{md_README_autotoc_md2}
+O objetivo deste projeto é implementar uma versão simplificada do jogo {\bfseries{Flappy Bird}}, aliando\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Padrão Orientado a Objetos}} em C++, com hierarquias de classes para tela de jogo e UI. ~\newline
+
+\item {\bfseries{Interface gráfica}} de menu (login, cadastro, listagem e remoção de jogadores) usando Allegro 5. ~\newline
+
+\item {\bfseries{Persistência}} de cadastro de jogadores em arquivo de texto, com armazenamento de nome, senha, recorde, partidas jogadas e {\itshape conquistas}.
+\item {\bfseries{Integração}} consistente entre a manipulação dos arquivos e a execução do jogo em si.
+\item {\bfseries{Execução robusta}} do jogo, sem bugs, usando Allegro 5.
+\item {\bfseries{Configuração personalizável}} das variáveis do jogo.
+\end{DoxyEnumerate}
+
+O sistema deve permitir\+: ~\newline
+
+\begin{DoxyItemize}
+\item {\bfseries{Login/\+Logout}} de usuários. ~\newline
+
+\item {\bfseries{Registro}} de novos jogadores. ~\newline
+
+\item {\bfseries{Listagem paginada}} de todos os jogadores, com destaque de recordistas e navegação entre páginas. ~\newline
+
+\item {\bfseries{Remoção}} de jogadores, com confirmação de senha. ~\newline
+
+\item {\bfseries{Execução do jogo}} propriamente dito (Flappy Bird).
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md4}{}\doxysubsection{\texorpdfstring{📂 Estrutura do projeto}{📂 Estrutura do projeto}}\label{md_README_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{├─\ assets/\ \#\ Imagens,\ sons\ e\ fontes}
+\DoxyCodeLine{│\ ├─\ audio\ \#\ Arquivos\ de\ audio}
+\DoxyCodeLine{│\ │\ \ ├─\ button\_press.wav}
+\DoxyCodeLine{│\ │\ \ ├─\ point.wav}
+\DoxyCodeLine{│\ │\ \ └─\ ...}
+\DoxyCodeLine{│\ ├─\ UI\ \#\ Imagens\ de\ interface}
+\DoxyCodeLine{│\ │\ \ ├─\ achievements\ \#\ Sprites\ das\ conquistas}
+\DoxyCodeLine{│\ │\ \ │\ \ ├─\ achievements-\/01.png}
+\DoxyCodeLine{│\ │\ \ │\ \ ├─\ achievements-\/02.png}
+\DoxyCodeLine{│\ │\ \ │\ \ └─\ ...}
+\DoxyCodeLine{│\ │\ \ ├─\ score\_box-\/1.png}
+\DoxyCodeLine{│\ │\ \ ├─\ home\_button.png}
+\DoxyCodeLine{│\ │\ \ └─\ ...}
+\DoxyCodeLine{│\ ├─\ fonts\ \#\ Fontes\ utilizadas}
+\DoxyCodeLine{│\ │\ \ ├─\ pixelify\_sans.ttf}
+\DoxyCodeLine{│\ │\ \ └─\ ...}
+\DoxyCodeLine{│\ ├─\ scenario\ \#\ Backgrounds}
+\DoxyCodeLine{│\ │\ \ ├─\ background.png}
+\DoxyCodeLine{│\ │\ \ ├─\ background\_login.png}
+\DoxyCodeLine{│\ │\ \ └─\ ...}
+\DoxyCodeLine{│\ ├─\ bird-\/1.png}
+\DoxyCodeLine{│\ ├─\ bird-\/2.png}
+\DoxyCodeLine{│\ ├─\ pipe.png}
+\DoxyCodeLine{│\ ├─\ pipe\_golden.png}
+\DoxyCodeLine{│\ └─\ ...\ \#\ Sprites\ básicos\ da\ animação\ do\ pássaro}
+\DoxyCodeLine{├─\ include/\ \#\ headers\ (.hpp)}
+\DoxyCodeLine{├─\ src/\ \#\ fontes\ (.cpp)}
+\DoxyCodeLine{├─\ bin/\ \#\ executáveis}
+\DoxyCodeLine{├─\ modeling/\ \#\ pdf's\ com\ a\ modelagem\ do\ projeto}
+\DoxyCodeLine{├─\ jogadores.txt\ \#\ dados\ dos\ jogadores\ para\ persistência\ entre\ execuções}
+\DoxyCodeLine{├─\ obj/\ \#\ objetos}
+\DoxyCodeLine{├─\ tests/\ \#\ testes\ com\ doctest}
+\DoxyCodeLine{└─\ Makefile\ \#\ regras\ de\ compilação}
+
+\end{DoxyCode}
+ \DoxyHorRuler{0}
+ \hypertarget{md_README_autotoc_md6}{}\doxysubsection{\texorpdfstring{⚙️ Visão Geral da Solução}{⚙️ Visão Geral da Solução}}\label{md_README_autotoc_md6}
+\hypertarget{md_README_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{Principais Componentes}{Principais Componentes}}\label{md_README_autotoc_md7}
+\hypertarget{md_README_autotoc_md8}{}\doxysubsubsubsection{\texorpdfstring{Menu Principal / Registro\+:}{Menu Principal / Registro\+:}}\label{md_README_autotoc_md8}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Componente  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Responsabilidade  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Componente  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Responsabilidade  }\\\cline{1-2}
+\endhead
+{\bfseries{ui\+\_\+object}}  &Base para todos os elementos de interface  \\\cline{1-2}
+{\bfseries{text\+\_\+box / button}}  &Entrada de texto e botões com feedback sonoro  \\\cline{1-2}
+{\bfseries{login\+\_\+screen}}  &Tela de login + navegação para outras telas  \\\cline{1-2}
+{\bfseries{register\+\_\+screen}}  &Cadastro de novos jogadores  \\\cline{1-2}
+{\bfseries{player\+\_\+list\+\_\+screen}}  &Listagem paginada, coroação de recordistas  \\\cline{1-2}
+{\bfseries{remove\+\_\+user\+\_\+screen}}  &Remoção com confirmação de senha  \\\cline{1-2}
+{\bfseries{menu\+\_\+audio}}  &Gerenciamento de som e botão de mute/unmute  \\\cline{1-2}
+{\bfseries{registration}}  &Persistência em arquivo de jogadores  \\\cline{1-2}
+{\bfseries{menu}}  &Controle de fluxo entre telas  \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md_README_autotoc_md9}{}\doxysubsubsubsection{\texorpdfstring{Jogo\+:}{Jogo\+:}}\label{md_README_autotoc_md9}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Componente  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Responsabilidade  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Componente  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Responsabilidade  }\\\cline{1-2}
+\endhead
+{\bfseries{game\+\_\+object}}  &Base para todos os objetos do jogo  \\\cline{1-2}
+{\bfseries{bird\+\_\+object}}  &Objeto usado para manipular o pássaro no jogo.  \\\cline{1-2}
+{\bfseries{pipe\+\_\+object}}  &Objeto usado para manipular os canos no jogo.  \\\cline{1-2}
+{\bfseries{background\+\_\+object}}  &Objeto usado para manipular a paisagem de fundo.  \\\cline{1-2}
+{\bfseries{image}}  &Carrega imagens paradas.  \\\cline{1-2}
+{\bfseries{slider}}  &Controla por meio do mouse um slider.  \\\cline{1-2}
+{\bfseries{moving\+\_\+button}}  &Botões que conseguem se mover durante a execução.  \\\cline{1-2}
+{\bfseries{home\+\_\+screen}}  &Tela inicial da parte de gameplay.  \\\cline{1-2}
+{\bfseries{settings\+\_\+screen}}  &Tela onde se configura as opções do jogo com sliders.  \\\cline{1-2}
+{\bfseries{achievements\+\_\+screen}}  &Tela onde se localiza as conquistas do jogador.  \\\cline{1-2}
+{\bfseries{game\+\_\+loop}}  &Tela onde o jogo em si ocorre.  \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md11}{}\doxysubsection{\texorpdfstring{🛠️ Principais Dificuldades Encontradas}{🛠️ Principais Dificuldades Encontradas}}\label{md_README_autotoc_md11}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Persistência em Arquivo}} ~\newline
+ Manter {\ttfamily std\+::fstream} sem corromper dados e tratar erros de I/O. ~\newline
+
+\item {\bfseries{Testabilidade}} ~\newline
+ Conseguir simular eventos do Allegro sem uma interface gráfica "{}real"{}.
+\item {\bfseries{Paginação da tela de listagem}} 
+\end{DoxyEnumerate}\hypertarget{md_README_autotoc_md12}{}\doxysubsection{\texorpdfstring{Criar uma lógica que fosse capaz de listar todos os jogadores considerando um espaço finito da tela 800x600 disponível.}{Criar uma lógica que fosse capaz de listar todos os jogadores considerando um espaço finito da tela 800x600 disponível.}}\label{md_README_autotoc_md12}
+\hypertarget{md_README_autotoc_md13}{}\doxysubsection{\texorpdfstring{✨ Extras Implementados}{✨ Extras Implementados}}\label{md_README_autotoc_md13}
+
+\begin{DoxyItemize}
+\item {\bfseries{Melhoria da parte gráfica\+:}} Sprites personalizados para botões e objetos do jogo.
+\item {\bfseries{Sistema de conquistas\+:}} Conquistas que consideram dados persistentes entre execuções do programa.
+\item {\bfseries{Configuração personalizada com "{}sliders"{}\+:}} Possibilidade de alterar variáveis do jogo com interface amigável com "{}sliders"{}.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md15}{}\doxysubsection{\texorpdfstring{▶️ Como Compilar e Executar}{▶️ Como Compilar e Executar}}\label{md_README_autotoc_md15}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Pré-\/requisitos}} ~\newline
+
+\begin{DoxyItemize}
+\item Allegro 5 (+ addons audio, image, ttf, primitives, acodec) ~\newline
+
+\item g++ (C++17) + pkg-\/config ~\newline
+
+\end{DoxyItemize}
+\item {\bfseries{Compilar}} ~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+ → gera {\ttfamily main }(jogo) e arquivos de teste({\ttfamily testregistration},{\ttfamily test\+\_\+main\+\_\+menu})
+\item {\bfseries{Executar}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ bin}
+\DoxyCodeLine{./main}
+
+\end{DoxyCode}
+ 
+\end{DoxyEnumerate}
