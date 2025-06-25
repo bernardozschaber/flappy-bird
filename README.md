@@ -97,7 +97,7 @@ O sistema deve permitir:
 | **pipe_object**        | Objeto usado para manipular os canos no jogo.         |
 | **background_object**  | Objeto usado para manipular a paisagem de fundo.      |
 | **image**              | Carrega imagens paradas.                              |
-| **slider**             | Controla por meio do mouse um slider entre dois valo  |
+| **slider**             | Controla por meio do mouse um slider.                 |
 | **moving_button**      | Botões que conseguem se mover durante a execução.     |
 | **home_screen**        | Tela inicial da parte de gameplay.                    |
 | **settings_screen**    | Tela onde se configura as opções do jogo com sliders. |
