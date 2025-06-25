@@ -42,7 +42,7 @@ class moving_button : public ui_object {
 
     void Update();
 
-    // Overrides inúteis só pra não ser abstrata (problema futuro)
+    // Overrides inúteis só pra não ser abstrata
     void handle_event(const ALLEGRO_EVENT &ev);
 
     void draw(ALLEGRO_FONT *font);
