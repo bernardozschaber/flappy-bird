@@ -70,7 +70,7 @@ O sistema deve permitir:
 ├─ modeling/ # pdf's com a modelagem do projeto
 ├─ jogadores.txt # dados dos jogadores para persistência entre execuções
 ├─ obj/ # objetos
-├─ Documentação # arquivos gerados pelo Doxygen
+├─ Documentação/ # arquivos gerados pelo Doxygen
 ├─ Doxyfile # Configuração da geração do Doxygen
 ├─ tests/ # testes com doctest e doxygen
 └─ Makefile # regras de compilação
