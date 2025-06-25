@@ -1,0 +1,5 @@
+41 Roberto flappy 1 41 1 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 1
+30 Luiz flappybird2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+110 Fabio flappybird3 21 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+130 Rodney flappybird4 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+72 Héctor flappybird5 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0

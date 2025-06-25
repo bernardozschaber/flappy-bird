@@ -59,11 +59,15 @@ MAIN_SCR := main.cpp
 MAIN_OBJ := $(addprefix $(OBJ_DIR)/, $(MAIN_SCR:.cpp=.o))  
 
 # 3.4) Testes
-TESTREG_SRC := $(TEST_DIR)/test_registration.cpp
-TESTMM_SRC  := $(TEST_DIR)/test_main_menu.cpp
+TESTREG_SRC   := $(TEST_DIR)/test_registration.cpp
+TESTMM_SRC    := $(TEST_DIR)/test_main_menu.cpp
+TESTGO_SRC    := $(TEST_DIR)/test_game_objects.cpp
+TESTMISC_SRC  := $(TEST_DIR)/test_misc.cpp
 
-TESTREG_OBJ := $(OBJ_DIR)/test_registration.o
-TESTMM_OBJ  := $(OBJ_DIR)/test_main_menu.o
+TESTREG_OBJ   := $(OBJ_DIR)/test_registration.o
+TESTMM_OBJ    := $(OBJ_DIR)/test_main_menu.o
+TESTGO_OBJ    := $(OBJ_DIR)/test_game_objects.o
+TESTMISC_OBJ  := $(OBJ_DIR)/test_misc.o
 
 # -------------------------------------------------------------------------
 # 4) Alvos Principais
@@ -73,7 +77,9 @@ TESTMM_OBJ  := $(OBJ_DIR)/test_main_menu.o
 all: dirs \
     $(BIN_DIR)/main \
     $(BIN_DIR)/test_registration \
-    $(BIN_DIR)/test_main_menu
+    $(BIN_DIR)/test_main_menu \
+    $(BIN_DIR)/test_game_objects \
+    $(BIN_DIR)/test_misc
 
 # -------------------------------------------------------------------------
 # 5) Criação de Diretórios
@@ -104,6 +110,14 @@ $(BIN_DIR)/test_registration: $(TESTREG_OBJ) $(OBJ_DIR)/registration.o
 
 # 7.3) Teste do Menu Principal
 $(BIN_DIR)/test_main_menu: $(TESTMM_OBJ) $(MENU_OBJS)
+	$(CXX) $^ -o $@ $(PKG_LIBS)
+
+# 7.4) Teste dos Objetos do Jogo
+$(BIN_DIR)/test_game_objects: $(TESTGO_OBJ) $(GAME_OBJS)
+	$(CXX) $^ -o $@ $(PKG_LIBS)
+
+# 7.5) Teste Miscellaneous
+$(BIN_DIR)/test_misc: $(TESTMISC_OBJ) $(GAME_OBJS)
 	$(CXX) $^ -o $@ $(PKG_LIBS)
 
 # -------------------------------------------------------------------------
