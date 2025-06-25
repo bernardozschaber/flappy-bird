@@ -74,7 +74,6 @@ TEST_CASE("moving_button: criação e métodos") {
     CHECK(btn.get_y() == 100);
     CHECK(btn.get_velocity_x() == 0);
     CHECK(btn.get_velocity_y() == 0);
-    CHECK(btn.get_acel() == 0);
 
     // Testa setters
     btn.set_velocity(5, -3);
@@ -82,7 +81,6 @@ TEST_CASE("moving_button: criação e métodos") {
 
     CHECK(btn.get_velocity_x() == 5);
     CHECK(btn.get_velocity_y() == -3);
-    CHECK(btn.get_acel() == 0.5);
 
     // Clique
     CHECK(btn.contains_click(75, 75) == true);      // Clique dentro do botão

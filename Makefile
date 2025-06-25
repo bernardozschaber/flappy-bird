@@ -30,7 +30,6 @@ GAME_SRCS   := \
     background_object.cpp \
     moving_button.cpp \
     image.cpp \
-    score.cpp \
     home_screen.cpp \
     achievements_screen.cpp \
     settings_screen.cpp \
